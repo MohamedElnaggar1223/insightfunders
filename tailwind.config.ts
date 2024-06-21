@@ -55,7 +55,8 @@ const config = {
         "strong-purple": "#7F56D9",
         "main-purple": "#6941C6",
         "light-purple": "#F9F5FF",
-        "main-gray": "#475467"
+        "main-gray": "#475467",
+        "strong-gray": "#0C111D"
       },
       borderRadius: {
         lg: "var(--radius)",

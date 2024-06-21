@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function LearnMore()
 {
     return (
-        <section className='p-24 flex items-center justify-between gap-16 bg-[#0C111D]'>
+        <section className='p-24 flex items-center justify-between gap-16 bg-strong-gray'>
             <div className='flex flex-1 flex-col items-start justify-center text-left gap-12'>
                 <div className='flex flex-col items-start justify-center text-left gap-6'>
                     <p className='text-white text-wrap font-semibold text-5xl leading-[60px]'>Transparent relation between startups and investors.</p>

@@ -4,8 +4,7 @@ import Image from "next/image";
 export default function Hero() 
 {
     return (
-        <section className='flex flex-col bg-[#0C111D] min-h-screen'>
-			<Header />
+        <section className='flex flex-col bg-strong-gray min-h-screen'>
 			<section className='flex flex-col py-20 w-full gap-12'>
 				<h1 className='text-center text-white text-6xl font-medium'>
 					Secure, Risk-Adjusted Returns for <br /> Private Credit Investors

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Testimonial() 
 {
     return (
-        <section className='p-24 flex items-start justify-between gap-28 bg-[#0C111D]'>
+        <section className='p-24 flex items-start justify-between gap-28 bg-strong-gray'>
             <Image
                 src='/images/testimonial.png'
                 alt='Testimonial'

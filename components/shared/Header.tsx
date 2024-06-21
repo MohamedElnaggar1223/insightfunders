@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header() 
 {
     return (
-        <header className='flex justify-between text-base items-center pt-4 px-8 bg-transparent text-white gap-4 font-semibold'>
+        <header className='flex justify-between text-base items-center py-4 bg-[#0C111D] px-8 text-white gap-4 font-semibold'>
             <Image
                 src='/images/logo.png'
                 alt='Logo'
@@ -14,7 +14,7 @@ export default function Header()
 
             <div className='gap-8 flex items-center'>
                 <Link href='/'>Home</Link>
-                <Link href='/'>About us</Link>
+                <Link href='/about-us'>About us</Link>
                 <Link href='/'>How it works</Link>
                 <Link href='/'>FAQ</Link>
             </div>
