@@ -25,7 +25,7 @@ export default function Build()
                 <div className='gap-2 text-left flex flex-col'>
                     <p className='text-strong-purple text-6xl  font-semibold mb-2'>100+</p>
                     <p className='text-lg font-semibold'>Startup funded</p>
-                    <p className='text-lg text-main-gray font-semibold'>We’re proud of our 5-star rating with over 200 reviews.</p>
+                    <p className='text-lg text-main-gray font-semibold'>We're proud of our 5-star rating with over 200 reviews.</p>
                 </div>
             </div>
         </section>

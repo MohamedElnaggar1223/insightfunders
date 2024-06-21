@@ -10,9 +10,9 @@ export default function Hero()
 				<h1 className='text-center text-white text-6xl font-medium'>
 					Secure, Risk-Adjusted Returns for <br /> Private Credit Investors
 				</h1>
-				<h3 className='text-[#EAECF0] text-xl text-center font-normal'>
+				<h2 className='text-[#EAECF0] text-xl text-center font-normal'>
 					Our AI-powered platform assesses tech startups' creditworthiness, <br />enabling private credit investors to earn secure returns while<br /> accelerating startup growth without equity dilution.
-				</h3>
+				</h2>
 				<div className='gap-3 flex w-full items-center justify-center font-semibold'>
 					<button className='rounded-full text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
 					<button className='rounded-full text-lg px-5 py-3 border text-white border-white bg-transparent'>Contact Sales</button>
@@ -45,9 +45,9 @@ export default function Hero()
 					</div>
 				</div>
 				<div className='flex flex-col gap-8 mt-2'>
-                    <h4 className='text-[#D0D5DD] text-center'>
+                    <h3 className='text-[#D0D5DD] text-center'>
                         Join 4,000+ startups already growing
-                    </h4>
+                    </h3>
                     <div className='w-full items-center flex justify-center gap-20'>
                         <Image 
                             src='/images/boltshift.svg'
