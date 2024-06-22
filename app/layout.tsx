@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
+import { cn } from "@/lib/utils";
+import BottomBar from "@/components/shared/BottomBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
         <Header />
         {children}
+        <BottomBar />
         <Footer />
       </body>
     </html>

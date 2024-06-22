@@ -9,10 +9,10 @@ export default function Features()
                     <div className='w-1.5 h-1.5 bg-main-purple rounded-full' />
                     <p className='text-sm text-main-purple font-medium'>Features</p>
                 </div>
-                <h4 className='text-center text-[#101828] text-4xl font-semibold'>
+                <h4 className='text-center text-[#101828] text-3xl lg:text-4xl font-semibold max-md:px-5'>
                     Secure, Risk-Adjusted Returns for Private <br/> Credit Investors
                 </h4>
-                <h5 className='text-main-gray text-xl text-center font-normal leading-[30px]'>
+                <h5 className='text-main-gray text-lg lg:text-xl text-center font-normal leading-[30px] max-md:px-5'>
                     Our AI-powered platform assesses tech startups' creditworthiness, enabling <br /> private credit investors to earn secure returns while accelerating startup growth <br /> without equity dilution.				
                 </h5>
             </div>
@@ -24,7 +24,7 @@ export default function Features()
                     height={512}
                 />
             </div>
-            <div className='w-full flex gap-8 items-center justify-center px-20'>
+            <div className='w-full flex gap-8 items-center justify-center px-20 max-md:flex-wrap'>
                 <div className='flex flex-col gap-4 items-center justify-center text-center'>
                     <Image
                         src='/images/secureReturns.svg'

@@ -6,18 +6,18 @@ export default function Hero()
     return (
         <section className='flex flex-col bg-strong-gray min-h-screen'>
 			<section className='flex flex-col py-20 w-full gap-12'>
-				<h1 className='text-center text-white text-6xl font-medium'>
+				<h1 className='text-center text-white text-4xl lg:text-6xl font-medium max-lg:px-4'>
 					Secure, Risk-Adjusted Returns for <br /> Private Credit Investors
 				</h1>
-				<h2 className='text-[#EAECF0] text-xl text-center font-normal'>
+				<h2 className='text-[#EAECF0] text-lg lg:text-xl text-center font-normal max-lg:px-4'>
 					Our AI-powered platform assesses tech startups' creditworthiness, <br />enabling private credit investors to earn secure returns while<br /> accelerating startup growth without equity dilution.
 				</h2>
 				<div className='gap-3 flex w-full items-center justify-center font-semibold'>
-					<button className='rounded-full text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
-					<button className='rounded-full text-lg px-5 py-3 border text-white border-white bg-transparent'>Contact Sales</button>
+					<button className='rounded-full text-sm lg:text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
+					<button className='rounded-full text-sm lg:text-lg px-5 py-3 border text-white border-white bg-transparent'>Contact Sales</button>
 				</div>
 				<div className='flex w-full items-center justify-between gap-2 overflow-hidden'>
-					<div className='w-[600px] h-[400px] rounded-3xl -ml-[20px] overflow-hidden'>
+					<div className='w-1/3 rounded-3xl -ml-[20px] overflow-hidden'>
 						<Image
 							src='/images/first.png'
 							alt='First'
@@ -31,9 +31,9 @@ export default function Hero()
 						alt='Second'
 						width={400}
 						height={400}
-						className='rounded-3xl object-contain' 
+						className='rounded-3xl max-h-[450px] object-contain w-1/3' 
 					/>
-					<div className='w-[600px] h-[400px] rounded-3xl -mr-[20px] overflow-hidden'>
+					<div className='rounded-3xl -mr-[20px] overflow-hidden w-1/3'>
 						<Image
 							src='/images/third.png'
 							alt='Third'
@@ -47,7 +47,7 @@ export default function Hero()
                     <h3 className='text-[#D0D5DD] text-center'>
                         Join 4,000+ startups already growing
                     </h3>
-                    <div className='w-full items-center flex justify-center gap-20'>
+                    <div className='w-full items-center flex justify-center gap-20 max-lg:flex-wrap'>
                         <Image 
                             src='/images/boltshift.svg'
                             alt='Boltshift'

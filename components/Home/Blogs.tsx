@@ -39,16 +39,17 @@ const blogs = [
 export default function Blogs()
 {
     return (
-        <section className='p-24 flex flex-col items-center justify-center gap-12'>
-            <div className='flex items-start justify-between w-full'>
-                <div className='flex flex-col gap-4'>
+        <section className='p-16 lg:p-24 flex flex-col items-center justify-center gap-12'>
+            <div className='flex items-start justify-between w-full max-md:flex-col-reverse'>
+                <div className='flex flex-col gap-4 max-md:text-left max-md:mr-auto'>
                     <p className='text-base text-main-purple font-semibold'>Our blog</p>
-                    <p className='text-4xl font-semibold'>Lastest blog posts</p>
-                    <p className='text-xl text-main-gray'>Tool and strategies modern teams need to help their companies grow.</p>
+                    <p className='text-3xl lg:text-4xl font-semibold'>Lastest blog posts</p>
+                    <p className='text-lg lg:text-xl text-main-gray'>Tool and strategies modern teams need to help their companies grow.</p>
                 </div>
-                <button className='rounded-[8px] text-base px-5 py-3 text-white bg-main-purple font-semibold'>View all posts</button>
+                <button className='rounded-[8px] max-lg:hidden text-base px-5 py-3 text-white bg-main-purple font-semibold'>View all posts</button>
+                <button className='rounded-[8px] max-md:ml-auto lg:hidden text-sm px-4 text-nowrap py-3 text-white bg-main-purple font-semibold'>View all</button>
             </div>
-            <div className='flex items-center justify-center gap-8'>
+            <div className='flex items-center justify-center gap-8 max-md:flex-wrap'>
                 {blogs.map((blog, index) => (
                     <BlogPost blog={blog} key={index} />
                 ))}

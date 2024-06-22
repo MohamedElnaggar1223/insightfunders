@@ -28,9 +28,9 @@ export default function BlogPost({ blog }: Props)
                     height={240}
                 />
             </div>
-            <p className='text-sm text-main-purple font-semibold mt-2'>{blog.category}</p>
+            <p className='text-xs lg:text-sm text-main-purple font-semibold mt-2'>{blog.category}</p>
             <div className='flex justify-between items-center'>
-                <p className='text-2xl font-semibold'>{blog.title}</p>
+                <p className='text-lg lg:text-2xl font-semibold'>{blog.title}</p>
                 <Image
                     src='/images/blogArrow.svg'
                     alt='Arrow'
@@ -38,7 +38,7 @@ export default function BlogPost({ blog }: Props)
                     height={24} 
                 />
             </div>
-            <p className='text-main-gray max-w-[90%]'>{blog.excerpt}</p>
+            <p className='text-main-gray max-w-[90%] text-sm lg:text-base'>{blog.excerpt}</p>
             <div className='flex items-center justify-start mt-4 gap-3'>
                 <Image
                     src={blog.author.image}
