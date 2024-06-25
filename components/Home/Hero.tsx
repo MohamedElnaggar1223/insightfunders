@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Hero() 
 {
     return (
-        <section className='flex flex-col bg-strong-gray min-h-screen'>
+        <section className='flex flex-col bg-strong-gray min-h-screen overflow-x-hidden'>
 			<section className='flex flex-col py-20 w-full gap-12'>
 				<h1 className='text-center text-white text-4xl lg:text-6xl font-medium max-lg:px-4'>
 					Secure, Risk-Adjusted Returns for <br /> Private Credit Investors
@@ -78,7 +78,7 @@ export default function Hero()
                     <h3 className='text-[#D0D5DD] text-center'>
                         Join 4,000+ startups already growing
                     </h3>
-                    <div className='w-full items-center flex justify-center gap-20 max-lg:flex-wrap animate-banner-full'>
+                    <div className='w-full items-center flex justify-center gap-20 max-md:justify-start animate-banner-full'>
                         <Image 
                             src='/images/boltshift.svg'
                             alt='Boltshift'
