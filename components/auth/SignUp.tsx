@@ -12,18 +12,18 @@ import {
     FormMessage,
   } from "@/components/ui/form"
 import { signUpSchema } from "@/lib/validations/authSchema"
-import Link from "next/link"
-import { useActionState, useState } from "react"
+import { useState } from "react"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
 
 export default function SignIn()
 {
     const [rolePage, setRolePage] = useState(true)
     const [isPending, setIsPending] = useState(false)
+    const [passwordVisible, setPasswordVisible] = useState(false)
     
     const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signUpSchema),
@@ -32,7 +32,6 @@ export default function SignIn()
             lastName: "",
             email: "",
             password: "",
-            confirmPassword: "",
             role: 'startup'
         },
     })
@@ -217,21 +216,28 @@ export default function SignIn()
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                        <input type="password" className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="password" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="confirmPassword"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <FormControl>
-                                        <input type="password" className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="password" {...field} />
+                                        <div className='relative'>
+                                            <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none w-full' placeholder="Password" {...field} />
+                                            {passwordVisible ? (
+                                                <Eye
+                                                    className={cn('absolute top-[32%] z-50 cursor-pointer left-[92%]')} 
+                                                    onClick={(e) => {
+                                                        e.stopPropagation()
+                                                        setPasswordVisible(prev => !prev)
+                                                    }}
+                                                    size={18}
+                                                />
+                                            ) : (
+                                                <EyeOff
+                                                    className={cn('absolute top-[32%] z-50 cursor-pointer left-[92%]')} 
+                                                    onClick={(e) => {
+                                                        e.stopPropagation()
+                                                        setPasswordVisible(prev => !prev)
+                                                    }} 
+                                                    size={18}
+                                                />
+                                            )}
+                                        </div>
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>

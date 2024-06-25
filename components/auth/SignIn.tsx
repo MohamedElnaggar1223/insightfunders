@@ -13,9 +13,13 @@ import {
   } from "@/components/ui/form"
 import { signInSchema } from "@/lib/validations/authSchema"
 import Link from "next/link"
+import { useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
 
 export default function SignIn()
 {
+    const [passwordVisible, setPasswordVisible] = useState(false)
+
     const form = useForm<z.infer<typeof signInSchema>>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -51,7 +55,28 @@ export default function SignIn()
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                                <input type="password" className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="you@company.com" {...field} />
+                                <div className='relative'>
+                                    <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="you@company.com" {...field} />
+                                    {passwordVisible ? (
+                                        <Eye
+                                            className={'absolute top-[32%] z-50 cursor-pointer left-[92%]'} 
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                setPasswordVisible(prev => !prev)
+                                            }}
+                                            size={18}
+                                        />
+                                    ) : (
+                                        <EyeOff
+                                            className={'absolute top-[32%] z-50 cursor-pointer left-[92%]'} 
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                setPasswordVisible(prev => !prev)
+                                            }} 
+                                            size={18}
+                                        />
+                                    )}
+                                </div>
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>

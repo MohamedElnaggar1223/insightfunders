@@ -1,5 +1,6 @@
 import Header from "@/components/shared/Header";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() 
 {
@@ -13,8 +14,9 @@ export default function Hero()
 					Our AI-powered platform assesses tech startups' creditworthiness, <br />enabling private credit investors to earn secure returns while<br /> accelerating startup growth without equity dilution.
 				</h2>
 				<div className='gap-3 flex w-full items-center justify-center font-semibold'>
-					<button className='rounded-full text-sm lg:text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
-					<button className='rounded-full text-sm lg:text-lg px-5 py-3 border text-white border-white bg-transparent'>Contact Sales</button>
+					<Link href='/sign-up'>
+						<button className='rounded-full text-sm lg:text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
+					</Link>
 				</div>
 				<div className='flex w-[200vw] items-center justify-between overflow-hidden animate-banner animate-banner-hover'>
 					<div className='w-[49%] flex items-center justify-between'>
