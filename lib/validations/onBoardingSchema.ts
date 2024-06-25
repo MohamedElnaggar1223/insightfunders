@@ -1,7 +1,7 @@
 import { countryDialingCodes } from '@/constants'
 import * as z from 'zod'
 
-export const startUpDetailsSchema = z.object({
+const startUpDetailsSchemaEffect = z.object({
     companyName: z.string().min(2, {
         message: 'Company name must be at least 2 characters long'
     }),
@@ -11,7 +11,7 @@ export const startUpDetailsSchema = z.object({
             message: 'Owner name must be at least 2 characters long'
         }),
         share: z.number().min(25, {
-            message: 'Share must be a positive number'
+            message: 'Share must be a bigger than 25%'
         }).max(100, {
             message: 'Share must be less than or equal to 100'
         }),
@@ -35,12 +35,13 @@ export const startUpDetailsSchema = z.object({
         message: 'Address must be at least 6 characters long'
     }),
     industrySector: z.enum(["Technology", "Healthcare", "Financial Services", "Consumer Goods", "Industrial Goods", "Energy", "Real Estate", "Retail", "Media and Entertainment", "Transportation", "Telecommunications", "Agriculture", "Education", "Hospitality and Leisure", "Utilities", "Other"]),
-    otherSector: z.string().min(2, {
-        message: 'Sector must be at least 2 characters long'
-    }).optional(),
-}).refine(data => {
+    otherSector: z.string().optional(),
+})
+.refine(data => {
     if(data.industrySector === 'Other') {
         return !!data.otherSector
     }
     return true
 }, { message: 'Please enter the sector', path: ['otherSector']})
+
+export const startUpDetailsSchema = startUpDetailsSchemaEffect.innerType()

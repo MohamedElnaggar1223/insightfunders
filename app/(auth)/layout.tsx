@@ -31,6 +31,10 @@ export default async function RootLayout({
 			if(userStartUpOwners.data?.length === 0) {
 				return redirect('/startup-details')
 			}
+
+			if(!userStartUp.data.submitted) {
+				return redirect('/startup-details/submit')
+			}
 		}
 		
 		return redirect('/')

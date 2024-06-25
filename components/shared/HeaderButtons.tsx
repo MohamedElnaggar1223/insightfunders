@@ -12,7 +12,7 @@ export default async function HeadersButtons()
 		const userDetails = await supabase.from('users').select().eq('id', user?.id!).single()
 		if(userDetails.data?.role === 'startup') {
 			const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
-			if(!userStartUp.data?.EIN || !userStartUp.data?.industry_sector || !userStartUp.data.address || !userStartUp.data.business_structure || !userStartUp.data.company_name || !userStartUp.data.email || !userStartUp.data.phone_number) {
+			if(!userStartUp.data?.EIN || !userStartUp.data?.industry_sector || !userStartUp.data.address || !userStartUp.data.business_structure || !userStartUp.data.company_name || !userStartUp.data.email || !userStartUp.data.phone_number || !userStartUp.data.submitted) {
 				return (
                     <Link href='/startup-details'>
                         <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>

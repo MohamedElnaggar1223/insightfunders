@@ -51,6 +51,7 @@ export type Database = {
             | null
           other_industry_and_sector: string | null
           phone_number: string | null
+          submitted: boolean
           user_id: string
         }
         Insert: {
@@ -68,6 +69,7 @@ export type Database = {
             | null
           other_industry_and_sector?: string | null
           phone_number?: string | null
+          submitted?: boolean
           user_id?: string
         }
         Update: {
@@ -85,6 +87,7 @@ export type Database = {
             | null
           other_industry_and_sector?: string | null
           phone_number?: string | null
+          submitted?: boolean
           user_id?: string
         }
         Relationships: [

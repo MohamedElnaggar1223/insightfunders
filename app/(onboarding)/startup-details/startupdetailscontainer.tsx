@@ -12,5 +12,7 @@ export default async function StartUpDetailsContainer()
 
     if(userStartUp.error || userStartUpOwners.error) return null
 
+    console.log(userStartUpOwners.data)
+
     return <StartUpDetails startUpDetails={userStartUp.data} startUpOwners={userStartUpOwners.data} />
 }

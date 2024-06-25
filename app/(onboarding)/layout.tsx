@@ -23,13 +23,10 @@ export default async function RootLayout({
 		const userStartUp = await supabase.from('startups').select(`*,user:user_id(*)`).eq('user_id', user?.id!).single()
 		//@ts-expect-error user
 		if((userStartUp.data?.user.role) === 'startup') {
-			if(userStartUp.data?.EIN && userStartUp.data?.industry_sector && userStartUp.data.address && userStartUp.data.business_structure && userStartUp.data.company_name && userStartUp.data.email && userStartUp.data.phone_number) {
-				return redirect('/')
-			}
-
 			const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
-			if(userStartUpOwners.data?.length !== 0) {
-				return redirect('/')
+			if(userStartUpOwners.data?.length !== 0 && userStartUp.data?.EIN && userStartUp.data?.industry_sector && userStartUp.data.address && userStartUp.data.business_structure && userStartUp.data.company_name && userStartUp.data.email && userStartUp.data.phone_number) {
+				if(userStartUp.data.submitted)
+					return redirect('/')
 			}
 		}
 	}

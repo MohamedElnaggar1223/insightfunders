@@ -19,6 +19,7 @@ import { startUpDetailsSchema } from "@/lib/validations/onBoardingSchema"
 import { Check, Loader2, X } from "lucide-react"
 import { countryDialingCodes } from "@/constants"
 import { saveStartUpDetails } from "@/lib/actions/onboarding"
+import { useRouter } from "next/navigation"
 
 type Props = {
     startUpDetails: {
@@ -58,6 +59,8 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
     const [error, setError] = useState<string | null>(null)
     const [saveSuccess, setSaveSuccess] = useState(false)
 
+    const router = useRouter()
+
     const form = useForm<z.infer<typeof startUpDetailsSchema>>({
         resolver: zodResolver(startUpDetailsSchema),
         defaultValues: {
@@ -70,8 +73,8 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
             })),
             EIN: startUpDetails.EIN ?? "",
             companyEmail: startUpDetails.email ?? "",
-            phoneNumber: startUpDetails.phone_number ?? "",
-            countryCode: startUpDetails.phone_number?.split(" ")[0] ?? countryDialingCodes.US,
+            phoneNumber: startUpDetails.phone_number?.split(" ")[1] ?? "",
+            countryCode: Object.entries(countryDialingCodes).find(([code, value]) => value === startUpDetails.phone_number?.split(" ")[0])?.[0] ?? countryDialingCodes.US,
             address: startUpDetails.address ?? "",
             industrySector: startUpDetails.industry_sector ?? "Technology",
             otherSector: startUpDetails.other_industry_and_sector ?? "",
@@ -82,13 +85,22 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
     form.watch('businessOwners')
 
     const onSubmit = async (values: z.infer<typeof startUpDetailsSchema>) => {
-        console.log(values)
+        setIsPending(true)
+
+        const { error } = await saveStartUpDetails(startUpDetails.id, values)
+
+        if(error) setError(error)
+        else setSaveSuccess(true)
+
+        router.push('/startup-details/submit')
+
+        setIsPending(false)
     }
 
     const handleSaveStartUpDetails = async () => {
         setIsPending(true)
         
-        const { error, success } = await saveStartUpDetails(startUpDetails.id, form.getValues())
+        const { error } = await saveStartUpDetails(startUpDetails.id, form.getValues())
 
         if(error) setError(error)
         else setSaveSuccess(true)
@@ -161,7 +173,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                                                 <X 
                                                     size={16} 
                                                     className='cursor-pointer'
-                                                    onClick={() => form.setValue('businessOwners', form.getValues('businessOwners').filter((_, i) => i !== index))} 
+                                                    onClick={() => form.setValue('businessOwners', form.getValues('businessOwners')?.filter((_, i) => i !== index))} 
                                                 />
                                             </div>
                                         ) : (
@@ -190,7 +202,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                                         
                                         ))}
                                     </div>
-                                    <p onClick={() => form.setValue('businessOwners', [...form.getValues('businessOwners'), { name: "", share: 25, saved: false }])} className='text-main-purple cursor-pointer'>Add owner</p>
+                                    <p onClick={() => form.setValue('businessOwners', [...form.getValues('businessOwners') ?? [], { name: "", share: 25, saved: false }])} className='text-main-purple cursor-pointer'>Add owner</p>
                                 </div>
                             </FormControl>
                             {form.getFieldState('businessOwners').error && <p className='absolute text-red-600 -bottom-6'>Please enter valid details</p>}
