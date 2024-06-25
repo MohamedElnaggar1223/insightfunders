@@ -16,38 +16,67 @@ export default function Hero()
 					<button className='rounded-full text-sm lg:text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
 					<button className='rounded-full text-sm lg:text-lg px-5 py-3 border text-white border-white bg-transparent'>Contact Sales</button>
 				</div>
-				<div className='flex w-full items-center justify-between gap-2 overflow-hidden'>
-					<div className='w-1/3 rounded-3xl -ml-[20px] overflow-hidden'>
+				<div className='flex w-[200vw] items-center justify-between overflow-hidden animate-banner animate-banner-hover'>
+					<div className='w-[49%] flex items-center justify-between'>
+						<div className='w-1/3 rounded-3xl overflow-hidden'>
+							<Image
+								src='/images/first.png'
+								alt='First'
+								width={600}
+								height={400}
+								className='rounded-3xl object-contain' 
+							/>
+						</div>
 						<Image
-							src='/images/first.png'
-							alt='First'
-							width={600}
+							src='/images/second.png'
+							alt='Second'
+							width={400}
 							height={400}
-							className='rounded-3xl object-contain' 
+							className='rounded-3xl max-h-[450px] object-contain w-1/3' 
 						/>
+						<div className='rounded-3xl overflow-hidden w-1/3'>
+							<Image
+								src='/images/third.png'
+								alt='Third'
+								width={600}
+								height={400}
+								className='rounded-3xl object-contain'
+							/>
+						</div>
 					</div>
-					<Image
-						src='/images/second.png'
-						alt='Second'
-						width={400}
-						height={400}
-						className='rounded-3xl max-h-[450px] object-contain w-1/3' 
-					/>
-					<div className='rounded-3xl -mr-[20px] overflow-hidden w-1/3'>
+					<div className='w-[49%] flex items-center justify-between'>
+						<div className='w-1/3 rounded-3xl overflow-hidden'>
+							<Image
+								src='/images/first.png'
+								alt='First'
+								width={600}
+								height={400}
+								className='rounded-3xl object-contain' 
+							/>
+						</div>
 						<Image
-							src='/images/third.png'
-							alt='Third'
-							width={600}
+							src='/images/second.png'
+							alt='Second'
+							width={400}
 							height={400}
-							className='rounded-3xl object-contain'
+							className='rounded-3xl max-h-[450px] object-contain w-1/3' 
 						/>
+						<div className='rounded-3xl overflow-hidden w-1/3'>
+							<Image
+								src='/images/third.png'
+								alt='Third'
+								width={600}
+								height={400}
+								className='rounded-3xl object-contain'
+							/>
+						</div>
 					</div>
 				</div>
-				<div className='flex flex-col gap-8 mt-2'>
+				<div className='flex flex-col gap-8 mt-2 overflow-hidden w-fit mx-auto'>
                     <h3 className='text-[#D0D5DD] text-center'>
                         Join 4,000+ startups already growing
                     </h3>
-                    <div className='w-full items-center flex justify-center gap-20 max-lg:flex-wrap'>
+                    <div className='w-full items-center flex justify-center gap-20 max-lg:flex-wrap animate-banner-full'>
                         <Image 
                             src='/images/boltshift.svg'
                             alt='Boltshift'
