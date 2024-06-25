@@ -344,7 +344,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
             )}
             {error && (
                 <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6'>
-                    <Check size={24} className='text-[#F86C6C]' />
+                    <X size={24} className='text-[#F86C6C]' />
                     <p className='text-black font-semibold'>{error}</p>
                 </div>
             )}

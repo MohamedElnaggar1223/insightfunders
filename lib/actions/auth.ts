@@ -29,3 +29,8 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
 
     return redirect("/");
 }
+
+export const signOut = async () => {
+    await supabase.auth.signOut();
+    return redirect("/");
+}

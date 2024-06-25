@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import StartUpSubmitApplication from "./submitapplication";
+import SignOutBtn from "@/components/startup/SignOutBtn";
 
 export default function SubmitStartUpDetailsPage()
 {
@@ -16,11 +17,7 @@ export default function SubmitStartUpDetailsPage()
                     /> 
                 </Link>
 
-                <div className='font-semibold'>
-                    <p className='text-main-purple'>
-                        Log out
-                    </p>
-                </div>
+                <SignOutBtn />
             </header>
             <div className='flex flex-col items-center justify-center gap-8 my-12'>
                 <div className='flex flex-col items-center justify-center gap-4 w-screen max-w-[1200px]'>

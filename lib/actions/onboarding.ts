@@ -81,3 +81,21 @@ export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeo
 
     return { success: true }
 }
+
+export const submitApplication = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+
+    const { error, data } = await supabase.from('startups').select('id').eq('user_id', user?.id!).single()
+
+    if(error) return { error: error.message }
+
+    if(!data) return { error: 'Startup not found' }
+
+    const { error: submitError } = await supabase.from('startups').update({
+        submitted: true
+    }).eq('id', data.id)
+
+    if(submitError) return { error: submitError.message }
+
+    return { success: true }
+}

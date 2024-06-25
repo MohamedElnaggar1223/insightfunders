@@ -3,6 +3,7 @@ import Link from "next/link";
 import StartUpDetailsContainer from "./startupdetailscontainer";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import SignOutBtn from "@/components/startup/SignOutBtn";
 
 export default async function StartUpDetailsPage()
 {
@@ -35,11 +36,7 @@ export default async function StartUpDetailsPage()
                     /> 
                 </Link>
 
-                <div className='font-semibold'>
-                    <p className='text-main-purple'>
-                        Log out
-                    </p>
-                </div>
+                <SignOutBtn />
             </header>
             <div className='flex flex-col items-center justify-center gap-8 my-12'>
                 <div className='flex flex-col items-center justify-center gap-4 w-screen max-w-[1200px]'>
