@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "@/app/globals.css"; 
 import { createClient } from "@/utils/supabase/server";
 import { cn } from "@/lib/utils";
 

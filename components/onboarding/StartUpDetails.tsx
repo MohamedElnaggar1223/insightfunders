@@ -159,49 +159,51 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     name="businessOwners"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Business structure</FormLabel>
+                            <FormLabel>Business owners</FormLabel>
                             <p className='text-main-gray'>Provide details of any individual with an ownership stake of 25% or more in your business.</p>
                             <FormControl>
                                 <div className='flex flex-col gap-4'>
-                                    <div className='border border-[#D0D5DD] rounded-[8px] flex flex-col px-6 py-6'>
-                                        {form.getValues('businessOwners')?.map((owner, index) => owner.saved ? (
-                                            <div key={index} className='flex gap-4 items-center justify-center'>
-                                                <div className='flex items-center justify-start gap-4 flex-1'>
-                                                    <p className=''>{owner.name}</p>
-                                                    <p className='text-main-gray'>{owner.share}% Share</p>
-                                                </div>
-                                                <X 
-                                                    size={16} 
-                                                    className='cursor-pointer'
-                                                    onClick={() => form.setValue('businessOwners', form.getValues('businessOwners')?.filter((_, i) => i !== index))} 
-                                                />
-                                            </div>
-                                        ) : (
-                                            <div key={index} className='flex gap-4 items-center justify-center'>
-                                                <div className='w-[90%] flex items-center justify-between'>
-                                                    <input 
-                                                        className='flex border max-w-[220px] border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' 
-                                                        placeholder="Owner name" 
-                                                        value={owner.name} 
-                                                        onChange={e => form.setValue(`businessOwners.${index}.name`, e.target.value)} 
-                                                    />
-                                                    <input 
-                                                        className='flex border max-w-[70px] border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' 
-                                                        placeholder="Share" 
-                                                        type="number"
-                                                        value={owner.share} 
-                                                        onChange={e => form.setValue(`businessOwners.${index}.share`, parseInt(e.target.value))} 
+                                    {form.getValues('businessOwners')?.length > 0 && (
+                                        <div className='border border-[#D0D5DD] rounded-[8px] flex flex-col px-6 py-6'>
+                                            {form.getValues('businessOwners')?.map((owner, index) => owner.saved ? (
+                                                <div key={index} className='flex gap-4 items-center justify-center'>
+                                                    <div className='flex items-center justify-start gap-4 flex-1'>
+                                                        <p className=''>{owner.name}</p>
+                                                        <p className='text-main-gray'>{owner.share}% Share</p>
+                                                    </div>
+                                                    <X 
+                                                        size={16} 
+                                                        className='cursor-pointer'
+                                                        onClick={() => form.setValue('businessOwners', form.getValues('businessOwners')?.filter((_, i) => i !== index))} 
                                                     />
                                                 </div>
-                                                <Check
-                                                    size={16} 
-                                                    className='cursor-pointer'
-                                                    onClick={() => form.setValue(`businessOwners.${index}.saved`, true)} 
-                                                />
-                                            </div>
-                                        
-                                        ))}
-                                    </div>
+                                            ) : (
+                                                <div key={index} className='flex gap-4 items-center justify-center'>
+                                                    <div className='w-[90%] flex items-center justify-between'>
+                                                        <input 
+                                                            className='flex border max-w-[220px] border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' 
+                                                            placeholder="Owner name" 
+                                                            value={owner.name} 
+                                                            onChange={e => form.setValue(`businessOwners.${index}.name`, e.target.value)} 
+                                                        />
+                                                        <input 
+                                                            className='flex border max-w-[70px] border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' 
+                                                            placeholder="Share" 
+                                                            type="number"
+                                                            value={owner.share} 
+                                                            onChange={e => form.setValue(`businessOwners.${index}.share`, parseInt(e.target.value))} 
+                                                        />
+                                                    </div>
+                                                    <Check
+                                                        size={16} 
+                                                        className='cursor-pointer'
+                                                        onClick={() => form.setValue(`businessOwners.${index}.saved`, true)} 
+                                                    />
+                                                </div>
+                                            
+                                            ))}
+                                        </div>
+                                    )}
                                     <p onClick={() => form.setValue('businessOwners', [...form.getValues('businessOwners') ?? [], { name: "", share: 25, saved: false }])} className='text-main-purple cursor-pointer'>Add owner</p>
                                 </div>
                             </FormControl>
@@ -333,7 +335,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                 )}
                 <div className='flex items-center justify-center gap-2 w-full'>
                     <button onClick={handleSaveStartUpDetails} disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
-                    <button disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
+                    <button disabled={isPending || form.getValues('businessOwners').length === 0} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
                 </div>
             </form>
             {saveSuccess && (
