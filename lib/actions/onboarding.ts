@@ -6,9 +6,9 @@ import { createClient } from "@/utils/supabase/server"
 import { countryDialingCodes } from "@/constants"
 import { revalidatePath } from "next/cache"
 
-const supabase = createClient()
-
 export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeof startUpDetailsSchema>) => {
+    const supabase = createClient()
+    
     const partialData = Object.keys(data).reduce((acc, key) => {
         if (data[key as keyof z.infer<typeof startUpDetailsSchema>] !== "" && data[key as keyof z.infer<typeof startUpDetailsSchema>] !== undefined && data[key as keyof z.infer<typeof startUpDetailsSchema>] !== null) {
             acc[key as keyof z.infer<typeof startUpDetailsSchema>] = data[key as keyof z.infer<typeof startUpDetailsSchema>]
@@ -88,6 +88,8 @@ export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeo
 }
 
 export const submitApplication = async () => {
+    const supabase = createClient()
+    
     const { data: { user } } = await supabase.auth.getUser()
 
     const { error, data } = await supabase.from('startups').select('id').eq('user_id', user?.id!).single()

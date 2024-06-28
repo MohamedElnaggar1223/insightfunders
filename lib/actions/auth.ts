@@ -4,12 +4,11 @@ import { z } from "zod"
 import { signInSchema, signUpSchema } from "../validations/authSchema"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
-import { cache } from "react"
 import { revalidatePath } from "next/cache"
 
-const supabase = createClient()
-
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
+    const supabase = createClient()
+
     const { email, password, firstName, lastName, role } = values
 
     const { error, data } = await supabase.auth.signUp({
@@ -42,6 +41,8 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
 }
 
 export const signIn = async (values: z.infer<typeof signInSchema>) => {
+    const supabase = createClient()
+
     const { error, data } = await supabase.auth.signInWithPassword({
         email: values.email,
         password: values.password,
@@ -56,6 +57,8 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
 }
 
 export const signOut = async () => {
+    const supabase = createClient()
+
     await supabase.auth.signOut();
 
     revalidatePath('/')
@@ -63,6 +66,8 @@ export const signOut = async () => {
 }
 
 export const getUser = async () => {
+    const supabase = createClient()
+    
     const { data: { user } } = await supabase.auth.getUser()
     if(!user) return null
 
