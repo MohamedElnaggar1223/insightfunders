@@ -16,11 +16,6 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
         password,
     })
 
-    await supabase.auth.signInWithPassword({
-        email,
-        password
-    })
-
     if (error) {
       console.log("error", error)
       return redirect(`/sign-up?error=${error.message}`)
@@ -67,7 +62,7 @@ export const signOut = async () => {
 
 export const getUser = async () => {
     const supabase = createClient()
-    
+
     const { data: { user } } = await supabase.auth.getUser()
     if(!user) return null
 
