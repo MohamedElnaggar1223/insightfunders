@@ -335,7 +335,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                 )}
                 <div className='flex items-center justify-center gap-2 w-full'>
                     <button onClick={handleSaveStartUpDetails} disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
-                    <button disabled={isPending || form.getValues('businessOwners').length === 0} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
+                    <button disabled={isPending || (form.getValues('businessOwners')?.length ?? 0) === 0} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
                 </div>
             </form>
             {saveSuccess && (

@@ -4,6 +4,7 @@ import { z } from "zod"
 import { startUpDetailsSchema } from "../validations/onBoardingSchema"
 import { createClient } from "@/utils/supabase/server"
 import { countryDialingCodes } from "@/constants"
+import { revalidatePath } from "next/cache"
 
 const supabase = createClient()
 
@@ -34,6 +35,7 @@ export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeo
 
     const { error: partialError } = startUpDetailsSchema.pick(partialDataShape).safeParse(partialData)
 
+    revalidatePath('/')
     if(partialError) return { error: partialError?.errors[0].message }
 
     const { error } = await supabase.from('startups').update({
@@ -73,12 +75,15 @@ export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeo
             await Promise.all(insertBusinessOwners)
         }
         catch (error: any) {
+            revalidatePath('/')
             return { error: error.message }
         }
     }
     
+    revalidatePath('/')
     if(error) return { error: error.message}
 
+    revalidatePath('/')
     return { success: true }
 }
 
@@ -97,5 +102,6 @@ export const submitApplication = async () => {
 
     if(submitError) return { error: submitError.message }
 
+    revalidatePath('/')
     return { success: true }
 }

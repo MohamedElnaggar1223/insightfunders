@@ -2,9 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import StartUpSubmitApplication from "./submitapplication";
 import SignOutBtn from "@/components/startup/SignOutBtn";
+import { getUser } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
+import { unstable_noStore } from "next/cache";
 
-export default function SubmitStartUpDetailsPage()
+export default async function SubmitStartUpDetailsPage()
 {
+    // unstable_noStore()
+
+    const user = await getUser()
+
+    if(!user) return redirect('/')
+
+    if(user.userInfo.data.role === 'startup') {
+        if(user?.userStartUpOwners?.data?.length === 0 || !user?.userStartUp?.data?.EIN || !user?.userStartUp?.data?.industry_sector || !user?.userStartUp?.data.address || !user?.userStartUp?.data.business_structure || !user?.userStartUp?.data.company_name || !user?.userStartUp?.data.email || !user?.userStartUp?.data.phone_number) {
+            return redirect('/startup-details')
+        }
+        else if(user.userStartUp.data.submitted) return redirect('/')
+    }
+
     return (
         <section className='w-full flex flex-col'>
             <header className='flex justify-between text-sm lg:text-base items-center py-4 px-2 lg:px-8 text-main-gray gap-2 lg:gap-4 font-semibold'>

@@ -1,18 +1,15 @@
+import { getUser } from "@/lib/actions/auth";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function HeadersButtons()
 {
-    const supabase = createClient()
-
-	const { data: { user } } = await supabase.auth.getUser()
+    const user = await getUser()
 
 	if(user) {
-		const userDetails = await supabase.from('users').select().eq('id', user?.id!).single()
-		if(userDetails.data?.role === 'startup') {
-			const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
-			if(!userStartUp.data?.EIN || !userStartUp.data?.industry_sector || !userStartUp.data.address || !userStartUp.data.business_structure || !userStartUp.data.company_name || !userStartUp.data.email || !userStartUp.data.phone_number || !userStartUp.data.submitted) {
+		if(user?.userInfo.data?.role === 'startup') {
+			if(!user?.userStartUp?.data?.EIN || !user?.userStartUp.data?.industry_sector || !user?.userStartUp.data.address || !user?.userStartUp.data.business_structure || !user?.userStartUp.data.company_name || !user?.userStartUp.data.email || !user?.userStartUp.data.phone_number || !user?.userStartUp.data.submitted) {
 				return (
                     <Link href='/startup-details'>
                         <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
@@ -20,8 +17,7 @@ export default async function HeadersButtons()
                 )
 			}
 
-			const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp.data.id)
-			if(userStartUpOwners.data?.length === 0) {
+			if(user.userStartUpOwners.data?.length === 0) {
 				return (
                     <Link href='/startup-details'>
                         <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>

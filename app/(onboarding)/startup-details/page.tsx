@@ -4,25 +4,42 @@ import StartUpDetailsContainer from "./startupdetailscontainer";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import SignOutBtn from "@/components/startup/SignOutBtn";
+import { getUser } from "@/lib/actions/auth";
+import { unstable_noStore } from "next/cache";
 
 export default async function StartUpDetailsPage()
 {
-    const supabase = createClient()
+    // unstable_noStore()
+    // const supabase = createClient()
 
-	const { data: { user } } = await supabase.auth.getUser()
+	// const { data: { user } } = await supabase.auth.getUser()
 
-	if(user) {
-		const userStartUp = await supabase.from('startups').select(`*,user:user_id(*)`).eq('user_id', user?.id!).single()
-		//@ts-expect-error user
-		if((userStartUp.data?.user.role) === 'startup') {
-			const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
-			if(userStartUpOwners.data?.length !== 0 && userStartUp.data?.EIN && userStartUp.data?.industry_sector && userStartUp.data.address && userStartUp.data.business_structure && userStartUp.data.company_name && userStartUp.data.email && userStartUp.data.phone_number) {
-				if(!userStartUp.data.submitted) return redirect('/startup-details/submit')
-				return redirect('/')
-			}
-		}
-	}
-	else return redirect('/')
+	// if(user) {
+	// 	const userInfo = await supabase.from('users').select().eq('id', user?.id!).single()
+		
+	// 	if(userInfo.data && userInfo.data.role === 'startup') {
+    //         const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
+    //         const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
+			
+    //         if(userStartUpOwners.data?.length !== 0 && userStartUp.data?.EIN && userStartUp.data?.industry_sector && userStartUp.data.address && userStartUp.data.business_structure && userStartUp.data.company_name && userStartUp.data.email && userStartUp.data.phone_number) {
+	// 			if(!userStartUp.data.submitted) return redirect('/startup-details/submit')
+	// 			return redirect('/')
+	// 		}
+	// 	}
+	// }
+	// else return redirect('/')
+
+    const user = await getUser()
+
+    if(!user) return redirect('/')
+
+    if(user.userInfo.data.role === 'startup') {
+        if(user.userStartUpOwners?.data?.length !== 0 && user?.userStartUp?.data?.EIN && user?.userStartUp?.data?.industry_sector && user?.userStartUp?.data.address && user?.userStartUp?.data.business_structure && user?.userStartUp?.data.company_name && user?.userStartUp?.data.email && user?.userStartUp?.data.phone_number) {
+            console.log(user.userStartUp.data.submitted)
+            if(!user.userStartUp.data.submitted) return redirect('/startup-details/submit')
+            return redirect('/')
+        }
+    }
 
     return (
         <section className='w-full flex flex-col'>

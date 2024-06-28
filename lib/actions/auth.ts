@@ -1,9 +1,11 @@
 'use server'
 
 import { z } from "zod"
-import { signUpSchema } from "../validations/authSchema"
+import { signInSchema, signUpSchema } from "../validations/authSchema"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
+import { cache } from "react"
+import { revalidatePath } from "next/cache"
 
 const supabase = createClient()
 
@@ -15,22 +17,66 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
         password,
     })
 
+    await supabase.auth.signInWithPassword({
+        email,
+        password
+    })
+
     if (error) {
       console.log("error", error)
       return redirect(`/sign-up?error=${error.message}`)
     }
 
-    await supabase.from('users').insert({
+
+    const { error: insertError } = await supabase.from('users').insert({
         id: data.user?.id,
         first_name: firstName,
         last_name: lastName,
         role,
     })
 
+    if(insertError) console.log("error", insertError)
+
+    revalidatePath('/')
     return redirect("/");
+}
+
+export const signIn = async (values: z.infer<typeof signInSchema>) => {
+    const { error, data } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+    })
+
+    if (error) {
+        console.log("error", error)
+    }
+
+    revalidatePath('/')
+    return redirect("/")
 }
 
 export const signOut = async () => {
     await supabase.auth.signOut();
+
+    revalidatePath('/')
     return redirect("/");
+}
+
+export const getUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if(!user) return null
+
+    const userInfo = await supabase.from('users').select().eq('id', user?.id!).single()
+
+    if(userInfo.data && userInfo.data.role === 'startup') {
+        const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
+        const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
+
+        return { user, userInfo, userStartUp, userStartUpOwners }
+    }
+    else if(userInfo.data && userInfo.data.role === 'investor') {
+        const userInvestor = await supabase.from('investors').select().eq('user_id', user?.id!).single()
+
+        return { user, userInfo, userInvestor }
+    }
 }
