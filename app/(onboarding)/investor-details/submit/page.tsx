@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import StartUpSubmitApplication from "./submitapplication";
 import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
-import { unstable_noStore } from "next/cache";
+import InvestorSubmitApplication from "./submitapplication";
 
 export default async function SubmitStartUpDetailsPage()
 {
@@ -14,11 +13,11 @@ export default async function SubmitStartUpDetailsPage()
 
     if(!user) return redirect('/')
 
-    if(user.userInfo.data.role === 'startup') {
-        if(user?.userStartUpOwners?.data?.length === 0 || !user?.userStartUp?.data?.EIN || !user?.userStartUp?.data?.industry_sector || !user?.userStartUp?.data.address || !user?.userStartUp?.data.business_structure || !user?.userStartUp?.data.company_name || !user?.userStartUp?.data.email || !user?.userStartUp?.data.phone_number) {
-            return redirect('/startup-details')
+    if(user.userInfo.data.role === 'investor') {
+        if(!user?.userInvestor?.data?.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
+            return redirect('/investor-details')
         }
-        else if(user.userStartUp.data.submitted) return redirect('/')
+        else if(user?.userInvestor?.data?.submitted) return redirect('/')
     }
     else return redirect('/')
 
@@ -74,7 +73,7 @@ export default async function SubmitStartUpDetailsPage()
                     <h1 className='text-3xl font-semibold text-center'>Submit your initial application for InsightFunder's review</h1>
                     <h2 className='text-base text-center text-main-gray'>Following this step, your initial application will be submitted, and you'll have access to InsightFunder's secure Dashboard to connect your financials</h2>
                 </div>
-                <StartUpSubmitApplication />
+                <InvestorSubmitApplication />
             </div>
         </section>
     )

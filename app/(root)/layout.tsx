@@ -86,14 +86,16 @@ export default async function RootLayout({
 			)
 		}
 	}
-	else {
-		return (
-			<html lang="en">
-				<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
-					{investor}
-				</body>
-			</html>
-		)
+	else if(user?.userInfo.data && user?.userInfo.data.role === 'investor') {
+		if(user?.userInvestor?.data?.submitted && user?.userInvestor.data.company_email && user?.userInvestor.data.company_name && user?.userInvestor.data.company_email && user?.userInvestor.data.company_website && user?.userInvestor.data.geographies_served && user?.userInvestor.data.max_facility_size && user?.userInvestor.data.minimum_revenue_requirement && user?.userInvestor.data.products_offered) {
+			return (
+				<html lang="en">
+					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
+						{investor}
+					</body>
+				</html>
+			)
+		}
 	}
 
 	return (

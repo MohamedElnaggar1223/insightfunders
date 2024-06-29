@@ -45,3 +45,27 @@ const startUpDetailsSchemaEffect = z.object({
 }, { message: 'Please enter the sector', path: ['otherSector']})
 
 export const startUpDetailsSchema = startUpDetailsSchemaEffect.innerType()
+
+export const investorDetailsSchema = z.object({
+    companyName: z.string().min(2, {
+        message: 'Company name must be at least 2 characters long'
+    }),
+    companyEmail: z.string().email({
+        message: 'Please enter a valid email address'
+    }),
+    companyWebsite: z.string().min(2, {
+        message: 'Company website must be at least 2 characters long'
+    }),
+    minimumRevenueRequirement: z.enum(["N/A", "<$1M", "$1-10M", "$10-50M", "$50-100M", "$100M+"], {
+        message: 'Please select an option'
+    }),
+    maxFacilitySize: z.enum(["N/A", "<$1M", "$1-10M", "$10-50M", "$50-250M", "$250M+"], {
+        message: 'Please select an option'
+    }),
+    productsOffered: z.enum(["Venture Debt", "Asset-Based Lending", "Warehouse Lending", "Invoice and Contract Factoring", "Revenue-Based Financing", "Equipment Leasing", "M&A", "Recapitalizations and Refinancing", "Buyouts", "Bridge Loans", "Other"], {
+        message: 'Please select an option'
+    }).array(),
+    geographiesServed: z.enum(["United States", "Canada", "Mexico", "United Kingdom", "Other"], {
+        message: 'Please select an option'
+    }).array(),
+})

@@ -12,17 +12,65 @@ export type Database = {
       investors: {
         Row: {
           accepted: boolean
+          company_email: string | null
+          company_name: string | null
+          company_website: string | null
+          geographies_served:
+            | Database["public"]["Enums"]["geographies_served"][]
+            | null
           id: number
+          max_facility_size:
+            | Database["public"]["Enums"]["max_facility_size"]
+            | null
+          minimum_revenue_requirement:
+            | Database["public"]["Enums"]["minimum_revenue_requirement"]
+            | null
+          products_offered:
+            | Database["public"]["Enums"]["products_offered"][]
+            | null
+          submitted: boolean | null
           user_id: string
         }
         Insert: {
           accepted?: boolean
+          company_email?: string | null
+          company_name?: string | null
+          company_website?: string | null
+          geographies_served?:
+            | Database["public"]["Enums"]["geographies_served"][]
+            | null
           id?: number
+          max_facility_size?:
+            | Database["public"]["Enums"]["max_facility_size"]
+            | null
+          minimum_revenue_requirement?:
+            | Database["public"]["Enums"]["minimum_revenue_requirement"]
+            | null
+          products_offered?:
+            | Database["public"]["Enums"]["products_offered"][]
+            | null
+          submitted?: boolean | null
           user_id?: string
         }
         Update: {
           accepted?: boolean
+          company_email?: string | null
+          company_name?: string | null
+          company_website?: string | null
+          geographies_served?:
+            | Database["public"]["Enums"]["geographies_served"][]
+            | null
           id?: number
+          max_facility_size?:
+            | Database["public"]["Enums"]["max_facility_size"]
+            | null
+          minimum_revenue_requirement?:
+            | Database["public"]["Enums"]["minimum_revenue_requirement"]
+            | null
+          products_offered?:
+            | Database["public"]["Enums"]["products_offered"][]
+            | null
+          submitted?: boolean | null
           user_id?: string
         }
         Relationships: [
@@ -172,6 +220,12 @@ export type Database = {
         | "Corporation"
         | "S Corporation"
         | "Limited Liability Company"
+      geographies_served:
+        | "United States"
+        | "Canada"
+        | "Mexico"
+        | "United Kingdom"
+        | "Other"
       industry_and_sector:
         | "Technology"
         | "Healthcare"
@@ -188,6 +242,32 @@ export type Database = {
         | "Education"
         | "Hospitality and Leisure"
         | "Utilities"
+        | "Other"
+      max_facility_size:
+        | "N/A"
+        | "<$1M"
+        | "$1-10M"
+        | "$10-50M"
+        | "$50-250M"
+        | "$250M+"
+      minimum_revenue_requirement:
+        | "N/A"
+        | "<$1M"
+        | "$1-10M"
+        | "$10-50M"
+        | "$50-100M"
+        | "$100M+"
+      products_offered:
+        | "Venture Debt"
+        | "Asset-Based Lending"
+        | "Warehouse Lending"
+        | "Invoice and Contract Factoring"
+        | "Revenue-Based Financing"
+        | "Equipment Leasing"
+        | "M&A"
+        | "Recapitalizations and Refinancing"
+        | "Buyouts"
+        | "Bridge Loans"
         | "Other"
       user_role: "startup" | "investor"
     }

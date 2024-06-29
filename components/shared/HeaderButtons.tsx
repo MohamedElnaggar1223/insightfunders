@@ -25,6 +25,15 @@ export default async function HeadersButtons()
                 )
 			}
 		}
+        else if(user?.userInfo.data?.role === 'investor') {
+            if(!user?.userInvestor?.data?.submitted || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
+                return (
+                    <Link href='/investor-details'>
+                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                    </Link>
+                )
+            }
+        }
 	}
 
     return (

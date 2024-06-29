@@ -60,6 +60,13 @@ export default async function RootLayout({
 
 		return redirect('/')
 	}
+	else if((user?.userInfo.data.role) === 'investor') {
+		if(!user?.userInvestor?.data?.submitted || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
+			return redirect('/investor-details')
+		}
+
+		return redirect('/')
+	}
 
 	return (
 		<html lang="en">

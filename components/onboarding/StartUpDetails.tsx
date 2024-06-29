@@ -38,12 +38,6 @@ type Props = {
         other_industry_and_sector: string | null
         phone_number: string | null
         user_id: string,
-        user: {}[] | {
-            role: string
-            id: string
-            first_name: string
-            last_name: string
-        }
     }
     startUpOwners: {
         id: number;

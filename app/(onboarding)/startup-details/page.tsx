@@ -40,6 +40,7 @@ export default async function StartUpDetailsPage()
             return redirect('/')
         }
     }
+    else return redirect('/')
 
     return (
         <section className='w-full flex flex-col'>
