@@ -14,28 +14,16 @@ import {
 import { countryDialingCodes } from "@/constants"
 import { Textarea } from "@/components/ui/textarea"
 import Link from "next/link"
- 
-const getInTouchSchema = z.object({
-    firstname: z.string().min(2, {
-        message: 'Invalid job title'
-    }),
-    lastname: z.string().min(2, {
-        message: 'Invalid job title'
-    }),
-    email: z.string().email(),
-    mobile: z.string().min(6, {
-        message: 'Invalid mobile number'
-    }).refine(value => {
-        return /^\d+$/.test(value)
-    }),
-    countryCode: z.enum(Object.keys(countryDialingCodes) as [string, ...string[]]),
-    message: z.string().min(10, {
-        message: 'Message must be at least 10 characters long'
-    }),
-})
+import { getInTouchSchema } from "@/lib/validations/contactSchema"
+import { sendMail } from "@/lib/actions/contact"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 export default function GetInTouchForm()
 {
+    const [pending, setPending] = useState(false)
+    const [checked, setChecked] = useState(false)
+
     const form = useForm<z.infer<typeof getInTouchSchema>>({
         resolver: zodResolver(getInTouchSchema),
         defaultValues: {
@@ -48,8 +36,11 @@ export default function GetInTouchForm()
         },
     })
 
-    function onSubmit(values: z.infer<typeof getInTouchSchema>) {
-
+    async function onSubmit(values: z.infer<typeof getInTouchSchema>) {
+        setPending(true)
+        await sendMail(values)
+        setPending(false)
+        form.reset()
     }
 
     return (
@@ -58,6 +49,7 @@ export default function GetInTouchForm()
                 <div className='flex gap-8 w-full items-center justify-between max-lg:flex-wrap'>
                     <FormField
                         control={form.control}
+                        disabled={pending}
                         name="firstname"
                         render={({ field }) => (
                             <FormItem className='flex flex-col gap-1 max-lg:flex-1'>
@@ -71,6 +63,7 @@ export default function GetInTouchForm()
                     />
                     <FormField
                         control={form.control}
+                        disabled={pending}
                         name="lastname"
                         render={({ field }) => (
                             <FormItem className='flex flex-col gap-1 max-lg:flex-1'>
@@ -85,6 +78,7 @@ export default function GetInTouchForm()
                 </div>
                 <FormField
                     control={form.control}
+                    disabled={pending}
                     name="email"
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-1 flex-1'>
@@ -101,6 +95,7 @@ export default function GetInTouchForm()
                     <div className='flex flex-1 overflow-hidden'>
                         <FormField
                             control={form.control}
+                            disabled={pending}
                             name="countryCode"
                             render={({ field }) => (
                                 <FormItem className='flex'>
@@ -117,6 +112,7 @@ export default function GetInTouchForm()
                         />
                         <FormField
                             control={form.control}
+                            disabled={pending}
                             name="mobile"
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-1 flex-1'>
@@ -131,6 +127,7 @@ export default function GetInTouchForm()
                 </FormItem>
                 <FormField
                     control={form.control}
+                    disabled={pending}
                     name="message"
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-1 flex-1'>
@@ -143,10 +140,10 @@ export default function GetInTouchForm()
                     )}
                 />
                 <div className='flex items-center justify-start gap-2'>
-                    <input type="checkbox" className='rounded-[2px]' />
+                    <input checked={checked} onChange={() => setChecked(prev => !prev)} type="checkbox" className='rounded-[2px]' />
                     <p className='text-main-gray text-sm'>You agree to our friendly <Link href='/' className='underline'>privacy policy</Link>.</p>
                 </div>
-                <button className='w-full bg-main-purple text-white font-semibold rounded-full py-3 px-4' type="submit">Send message</button>
+                <button disabled={pending || !checked} className={cn('w-full bg-main-purple text-white font-semibold rounded-full py-3 px-4', (pending || !checked) && 'text-gray-500')} type="submit">Send message</button>
             </form>
         </Form>
     )
