@@ -58,7 +58,7 @@ export const signOut = async () => {
     await supabase.auth.signOut();
 
     revalidatePath('/')
-    return redirect("/");
+    return redirect("/")
 }
 
 export const getUser = cache(async () => {
