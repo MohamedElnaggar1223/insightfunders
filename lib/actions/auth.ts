@@ -5,6 +5,7 @@ import { signInSchema, signUpSchema } from "../validations/authSchema"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
+import { cache } from "react"
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     const supabase = createClient()
@@ -60,7 +61,7 @@ export const signOut = async () => {
     return redirect("/");
 }
 
-export const getUser = async () => {
+export const getUser = cache(async () => {
     const supabase = createClient()
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -79,4 +80,4 @@ export const getUser = async () => {
 
         return { user, userInfo, userInvestor }
     }
-}
+})
