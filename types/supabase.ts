@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      faqs: {
+        Row: {
+          answer: string | null
+          id: number
+          question: string
+          tab: Database["public"]["Enums"]["faqs_tabs"] | null
+        }
+        Insert: {
+          answer?: string | null
+          id?: number
+          question: string
+          tab?: Database["public"]["Enums"]["faqs_tabs"] | null
+        }
+        Update: {
+          answer?: string | null
+          id?: number
+          question?: string
+          tab?: Database["public"]["Enums"]["faqs_tabs"] | null
+        }
+        Relationships: []
+      }
       investors: {
         Row: {
           accepted: boolean
@@ -220,6 +241,7 @@ export type Database = {
         | "Corporation"
         | "S Corporation"
         | "Limited Liability Company"
+      faqs_tabs: "General Questions" | "For Startups" | "For Investors"
       geographies_served:
         | "United States"
         | "Canada"

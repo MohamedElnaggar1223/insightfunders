@@ -6,7 +6,7 @@ export default async function StartUpDetailsContainer()
 {
     const user = await getUser()
 
-    if(user?.userStartUp?.error || user?.userStartUpOwners?.error) return null
+    if(!user?.userStartUp || !user?.userStartUpOwners) return null
 
-    return <StartUpDetails startUpDetails={user?.userStartUp?.data!} startUpOwners={user?.userStartUpOwners?.data!} />
+    return <StartUpDetails startUpDetails={user?.userStartUp} startUpOwners={user?.userStartUpOwners} />
 }

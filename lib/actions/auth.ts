@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
+import { db } from "@/db"
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     const supabase = createClient()
@@ -39,7 +40,7 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
 export const signIn = async (values: z.infer<typeof signInSchema>) => {
     const supabase = createClient()
 
-    const { error, data } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
         email: values.email,
         password: values.password,
     })
@@ -62,21 +63,43 @@ export const signOut = async () => {
 }
 
 export const getUser = cache(async () => {
+
     const supabase = createClient()
 
     const { data: { user } } = await supabase.auth.getUser()
     if(!user) return null
 
-    const userInfo = await supabase.from('users').select().eq('id', user?.id!).single()
+    const userInfo = await db.query.users.findFirst({
+        columns: {
+            role: true
+        },
+        where: (table, { eq }) => eq(table.id, user?.id!)
+    })
 
-    if(userInfo.data && userInfo.data.role === 'startup') {
-        const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
-        const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
+    if(userInfo?.role === 'startup') {
+        const userStartUpData = await db.query.startups.findFirst({
+            with: {
+                startups_owners: {
+                    columns: {
+                        name: true,
+                        share: true,
+                        id: true
+                    }
+                },
+            },
+            where: (table, { eq }) => eq(table.user_id, user?.id!)
+        })
 
-        return { user, userInfo, userStartUp, userStartUpOwners }
+        if(!userStartUpData) return { user, userInfo }
+
+        const userStartUp = {...userStartUpData, startups_owners: userStartUpData?.startups_owners.map((owner) => ({...owner, share: parseInt((owner.share! ?? 0))}))}
+
+        return { user, userInfo, userStartUp, userStartUpOwners: userStartUp?.startups_owners }
     }
-    else if(userInfo.data && userInfo.data.role === 'investor') {
-        const userInvestor = await supabase.from('investors').select().eq('user_id', user?.id!).single()
+    else if(userInfo?.role === 'investor') {
+        const userInvestor = await db.query.investors.findFirst({
+            where: (table, { eq }) => eq(table.user_id, user?.id!)
+        })
 
         return { user, userInfo, userInvestor }
     }

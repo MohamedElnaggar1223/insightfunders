@@ -14,11 +14,11 @@ export default async function SubmitStartUpDetailsPage()
 
     if(!user) return redirect('/')
 
-    if(user.userInfo.data.role === 'startup') {
-        if(user?.userStartUpOwners?.data?.length === 0 || !user?.userStartUp?.data?.EIN || !user?.userStartUp?.data?.industry_sector || !user?.userStartUp?.data.address || !user?.userStartUp?.data.business_structure || !user?.userStartUp?.data.company_name || !user?.userStartUp?.data.email || !user?.userStartUp?.data.phone_number) {
+    if(user.userInfo.role === 'startup') {
+        if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }
-        else if(user.userStartUp.data.submitted) return redirect('/')
+        else if(user.userStartUp.submitted) return redirect('/')
     }
     else return redirect('/')
 

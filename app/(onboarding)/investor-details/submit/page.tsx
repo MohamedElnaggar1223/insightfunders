@@ -13,11 +13,11 @@ export default async function SubmitStartUpDetailsPage()
 
     if(!user) return redirect('/')
 
-    if(user.userInfo.data.role === 'investor') {
-        if(!user?.userInvestor?.data?.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
+    if(user.userInfo.role === 'investor') {
+        if(!user?.userInvestor?.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
             return redirect('/investor-details')
         }
-        else if(user?.userInvestor?.data?.submitted) return redirect('/')
+        else if(user?.userInvestor?.submitted) return redirect('/')
     }
     else return redirect('/')
 

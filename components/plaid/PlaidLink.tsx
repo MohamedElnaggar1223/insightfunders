@@ -1,17 +1,13 @@
 import { Database } from "@/types/supabase";
 import { User } from "@supabase/supabase-js";
-import { PostgrestSingleResponse } from "@supabase/supabase-js";
 
 type Props = {
     user: {
-        user: User,
-        userInfo: PostgrestSingleResponse<{
-            first_name: string;
-            id: string;
-            last_name: string | null;
+        user: User
+        userInfo: {
             role: "startup" | "investor" | null;
-        }>
-        userStartUp: PostgrestSingleResponse<{
+        }
+        userStartUp: {
             accepted: boolean
             address: string | null
             business_structure:
@@ -28,14 +24,13 @@ type Props = {
             phone_number: string | null
             submitted: boolean
             user_id: string
-        }>
-        userStartUpOwners: PostgrestSingleResponse<{
+        }
+        userStartUpOwners: {
             id: number;
             name: string | null;
             share: number | null;
-            startup_id: number;
-        }[]>
-        userInvestor?: PostgrestSingleResponse<{
+        }[]
+        userInvestor?: {
             accepted: boolean
             company_email: string | null
             company_name: string | null
@@ -55,7 +50,7 @@ type Props = {
                 | null
             submitted: boolean | null
             user_id: string
-        }>
+        }
     } | null
 }
 

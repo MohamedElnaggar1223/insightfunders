@@ -7,7 +7,7 @@ export default async function InvestorDetailsContainer()
 {
     const user = await getUser()
 
-    if(user?.userInvestor?.error) return null
+    if(!user?.userInvestor) return null
 
-    return <InvestorDetails investorDetails={user?.userInvestor?.data!} />
+    return <InvestorDetails investorDetails={user?.userInvestor} />
 }

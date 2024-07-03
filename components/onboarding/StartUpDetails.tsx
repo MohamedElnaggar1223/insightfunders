@@ -43,7 +43,6 @@ type Props = {
         id: number;
         name: string | null;
         share: number | null;
-        startup_id: number;
     }[]
 }
 

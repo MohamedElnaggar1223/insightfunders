@@ -17,12 +17,12 @@ export default async function StartUpDetailsPage()
 	// if(user) {
 	// 	const userInfo = await supabase.from('users').select().eq('id', user?.id!).single()
 		
-	// 	if(userInfo.data && userInfo.data.role === 'startup') {
+	// 	if(userInfo && userInfo.role === 'startup') {
     //         const userStartUp = await supabase.from('startups').select().eq('user_id', user?.id!).single()
-    //         const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.data?.id!)
+    //         const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp?.id!)
 			
-    //         if(userStartUpOwners.data?.length !== 0 && userStartUp.data?.EIN && userStartUp.data?.industry_sector && userStartUp.data.address && userStartUp.data.business_structure && userStartUp.data.company_name && userStartUp.data.email && userStartUp.data.phone_number) {
-	// 			if(!userStartUp.data.submitted) return redirect('/startup-details/submit')
+    //         if(userStartUpOwners?.length !== 0 && userStartUp?.EIN && userStartUp?.industry_sector && userStartUp.address && userStartUp.business_structure && userStartUp.company_name && userStartUp.email && userStartUp.phone_number) {
+	// 			if(!userStartUp.submitted) return redirect('/startup-details/submit')
 	// 			return redirect('/')
 	// 		}
 	// 	}
@@ -33,10 +33,10 @@ export default async function StartUpDetailsPage()
 
     if(!user) return redirect('/')
 
-    if(user.userInfo.data.role === 'startup') {
-        if(user.userStartUpOwners?.data?.length !== 0 && user?.userStartUp?.data?.EIN && user?.userStartUp?.data?.industry_sector && user?.userStartUp?.data.address && user?.userStartUp?.data.business_structure && user?.userStartUp?.data.company_name && user?.userStartUp?.data.email && user?.userStartUp?.data.phone_number) {
-            console.log(user.userStartUp.data.submitted)
-            if(!user.userStartUp.data.submitted) return redirect('/startup-details/submit')
+    if(user.userInfo.role === 'startup') {
+        if(user.userStartUpOwners?.length !== 0 && user?.userStartUp?.EIN && user?.userStartUp?.industry_sector && user?.userStartUp?.address && user?.userStartUp?.business_structure && user?.userStartUp?.company_name && user?.userStartUp?.email && user?.userStartUp?.phone_number) {
+            console.log(user.userStartUp.submitted)
+            if(!user.userStartUp.submitted) return redirect('/startup-details/submit')
             return redirect('/')
         }
     }

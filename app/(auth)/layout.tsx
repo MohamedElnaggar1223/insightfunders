@@ -23,17 +23,17 @@ export default async function RootLayout({
 	// if(user) {
 	// 	const userStartUp = await supabase.from('startups').select(`*,user:user_id(*)`).eq('user_id', user?.id!).single()
 	// 	//@ts-expect-error user
-	// 	if((userStartUp.data?.user.role) === 'startup') {
-	// 		if(!userStartUp.data?.EIN || !userStartUp.data?.industry_sector || !userStartUp.data.address || !userStartUp.data.business_structure || !userStartUp.data.company_name || !userStartUp.data.email || !userStartUp.data.phone_number) {
+	// 	if((userStartUp?.user.role) === 'startup') {
+	// 		if(!userStartUp?.EIN || !userStartUp?.industry_sector || !userStartUp.address || !userStartUp.business_structure || !userStartUp.company_name || !userStartUp.email || !userStartUp.phone_number) {
 	// 			return redirect('/startup-details')
 	// 		}
 
-	// 		const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp.data.id)
-	// 		if(userStartUpOwners.data?.length === 0) {
+	// 		const userStartUpOwners = await supabase.from('startups_owners').select().eq('startup_id', userStartUp.id)
+	// 		if(userStartUpOwners?.length === 0) {
 	// 			return redirect('/startup-details')
 	// 		}
 
-	// 		if(!userStartUp.data.submitted) {
+	// 		if(!userStartUp.submitted) {
 	// 			return redirect('/startup-details/submit')
 	// 		}
 	// 	}
@@ -45,23 +45,23 @@ export default async function RootLayout({
 
 	// if(!user) return redirect('/')
 
-	if((user?.userInfo.data.role) === 'startup') {
-		if(!user?.userStartUp?.data?.EIN || !user?.userStartUp.data?.industry_sector || !user?.userStartUp.data.address || !user?.userStartUp.data.business_structure || !user?.userStartUp.data.company_name || !user?.userStartUp.data.email || !user?.userStartUp.data.phone_number) {
+	if((user?.userInfo.role) === 'startup') {
+		if(!user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp.address || !user?.userStartUp.business_structure || !user?.userStartUp.company_name || !user?.userStartUp.email || !user?.userStartUp.phone_number) {
 			return redirect('/startup-details')
 		}
 
-		if(user?.userStartUpOwners?.data?.length === 0) {
+		if(user?.userStartUpOwners?.length === 0) {
 			return redirect('/startup-details')
 		}
 
-		if(!user?.userStartUp.data.submitted) {
+		if(!user?.userStartUp.submitted) {
 			return redirect('/startup-details/submit')
 		}
 
 		return redirect('/')
 	}
-	else if((user?.userInfo.data.role) === 'investor') {
-		if(!user?.userInvestor?.data?.submitted || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
+	else if((user?.userInfo.role) === 'investor') {
+		if(!user?.userInvestor?.submitted || !user?.userInvestor.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
 			return redirect('/investor-details')
 		}
 
