@@ -9,6 +9,44 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      bank_accounts: {
+        Row: {
+          access_token: string | null
+          account_id: string | null
+          bank_id: string | null
+          funding_source_url: string | null
+          id: number
+          shareable_id: string | null
+          user_id: string
+        }
+        Insert: {
+          access_token?: string | null
+          account_id?: string | null
+          bank_id?: string | null
+          funding_source_url?: string | null
+          id?: number
+          shareable_id?: string | null
+          user_id?: string
+        }
+        Update: {
+          access_token?: string | null
+          account_id?: string | null
+          bank_id?: string | null
+          funding_source_url?: string | null
+          id?: number
+          shareable_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bank_accounts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       faqs: {
         Row: {
           answer: string | null
@@ -200,21 +238,30 @@ export type Database = {
       }
       users: {
         Row: {
+          dwolla_customer_id: string | null
+          dwolla_customer_url: string | null
           first_name: string
           id: string
           last_name: string | null
+          plaid_id: string | null
           role: Database["public"]["Enums"]["user_role"] | null
         }
         Insert: {
+          dwolla_customer_id?: string | null
+          dwolla_customer_url?: string | null
           first_name: string
           id?: string
           last_name?: string | null
+          plaid_id?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
         }
         Update: {
+          dwolla_customer_id?: string | null
+          dwolla_customer_url?: string | null
           first_name?: string
           id?: string
           last_name?: string | null
+          plaid_id?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
         }
         Relationships: [

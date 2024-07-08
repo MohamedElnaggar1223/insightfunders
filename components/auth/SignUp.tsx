@@ -18,6 +18,15 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import { Calendar } from "@/components/ui/calendar"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+import { Button } from "../ui/button"
 
 export default function SignIn()
 {
@@ -32,10 +41,19 @@ export default function SignIn()
             lastName: "",
             email: "",
             password: "",
-            role: 'startup'
+            role: 'startup',
+            address1: "",
+            city: "",
+            state: "",
+            postalCode: "",
+            ssn: "",
+            dateOfBirth: "",
         },
     })
 
+    form.watch('dateOfBirth')
+
+    console.log(form.getValues().dateOfBirth)
 
     const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
         setIsPending(true)
@@ -45,7 +63,7 @@ export default function SignIn()
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col pb-8">
                 {rolePage ? (
                     <>
                         <FormField
@@ -203,6 +221,131 @@ export default function SignIn()
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
                                         <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="you@company.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        {/* <FormField
+                            control={form.control}
+                            name="dateOfBirth"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-col relative">
+                                <FormLabel>Date of birth</FormLabel>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                    <FormControl>
+                                        <Button
+                                            variant={"outline"}
+                                            className={cn(
+                                                "flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none max-w-[384px] text-base",
+                                                !field.value && "text-muted-foreground"
+                                            )}
+                                            >
+                                            {field.value ? (
+                                                format(field.value, "PPP")
+                                            ) : (
+                                                <span>Pick a date</span>
+                                            )}
+                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                        </Button>
+                                    </FormControl>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0 bg-white" align="start">
+                                    <Calendar
+                                        mode="single"
+                                        selected={field.value}
+                                        onSelect={field.onChange}
+                                        disabled={(date) =>
+                                        date > new Date() || date < new Date("1900-01-01")
+                                        }
+                                        initialFocus
+                                    />
+                                    </PopoverContent>
+                                </Popover>
+                                <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        /> */}
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="address1"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>Address</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 55 st name." {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="city"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>City</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. New York" {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="state"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>State</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. NY" {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="postalCode"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>Postal Code</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 50314" {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="ssn"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>SSN</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. AAA-GG-SSSS" {...field} />
+                                    </FormControl>
+                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            disabled={isPending}
+                            name="dateOfBirth"
+                            render={({ field }) => (
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                    <FormLabel>Date of Birth</FormLabel>
+                                    <FormControl>
+                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 2000-01-01" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>

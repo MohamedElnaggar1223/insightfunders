@@ -7,11 +7,14 @@ import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
 import { db } from "@/db"
+import { extractCustomerIdFromUrl } from "../utils"
+import { createDwollaCustomer } from "./dwolla"
+import { nanoid } from 'nanoid';
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     const supabase = createClient()
 
-    const { email, password, firstName, lastName, role } = values
+    const { email, password, firstName, lastName, role, address1, city, postalCode, dateOfBirth, ssn, state } = values
 
     const { error, data } = await supabase.auth.signUp({
         email,
@@ -19,19 +22,38 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     })
 
     if (error) {
-      console.log("error", error)
+      console.error("error", error)
       return redirect(`/sign-up?error=${error.message}`)
     }
 
+    const dwollaCustomerUrl = await createDwollaCustomer({
+        email,
+        firstName,
+        lastName,
+        address1,
+        city,
+        state,
+        postalCode,
+        dateOfBirth,
+        ssn,
+        type: 'personal'
+    })
+
+    if(!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
+
+    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
     const { error: insertError } = await supabase.from('users').insert({
         id: data.user?.id,
         first_name: firstName,
         last_name: lastName,
         role,
+        dwolla_customer_id: dwollaCustomerId,
+        dwolla_customer_url: dwollaCustomerUrl,
+        plaid_id: nanoid(30)
     })
 
-    if(insertError) console.log("error", insertError)
+    if(insertError) console.error("error", insertError)
 
     revalidatePath('/')
     return redirect("/");
@@ -46,7 +68,7 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
     })
 
     if (error) {
-        console.log("error", error)
+        console.error("error", error)
     }
 
     revalidatePath('/')
@@ -71,7 +93,12 @@ export const getUser = cache(async () => {
 
     const userInfo = await db.query.users.findFirst({
         columns: {
-            role: true
+            role: true,
+            first_name: true,
+            last_name: true,
+            plaid_id: true,
+            dwolla_customer_id: true,
+            dwolla_customer_url: true
         },
         where: (table, { eq }) => eq(table.id, user?.id!)
     })
@@ -104,3 +131,24 @@ export const getUser = cache(async () => {
         return { user, userInfo, userInvestor }
     }
 })
+
+export const createBankAccount = async ({ userId, bankId, accountId, accessToken, fundingSourceUrl, shareableId }: { userId: string, bankId: string, accountId: string, accessToken: string, fundingSourceUrl: string, shareableId: string }) => {
+    const supabase = createClient()
+
+    const { error } = await supabase.from('bank_accounts').insert({
+        user_id: userId,
+        bank_id: bankId,
+        account_id: accountId,
+        access_token: accessToken,
+        funding_source_url: fundingSourceUrl,
+        shareable_id: shareableId
+    })
+
+    if(error) console.error("error", error)
+
+    revalidatePath('/')
+
+    return {
+        success: true
+    }
+}

@@ -1,5 +1,5 @@
 // import { relations } from "drizzle-orm/relations";
-// import { usersInAuth, users, startups, investors, startups_owners } from "./schema";
+// import { usersInAuth, users, startups, bank_accounts, investors, startups_owners } from "./schema";
 
 // export const usersRelations = relations(users, ({one, many}) => ({
 // 	usersInAuth: one(usersInAuth, {
@@ -7,6 +7,7 @@
 // 		references: [usersInAuth.id]
 // 	}),
 // 	startups: many(startups),
+// 	bank_accounts: many(bank_accounts),
 // 	investors: many(investors),
 // }));
 
@@ -20,6 +21,13 @@
 // 		references: [users.id]
 // 	}),
 // 	startups_owners: many(startups_owners),
+// }));
+
+// export const bank_accountsRelations = relations(bank_accounts, ({one}) => ({
+// 	user: one(users, {
+// 		fields: [bank_accounts.user_id],
+// 		references: [users.id]
+// 	}),
 // }));
 
 // export const investorsRelations = relations(investors, ({one}) => ({

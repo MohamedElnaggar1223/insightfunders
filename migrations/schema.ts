@@ -27,6 +27,9 @@ export const users = pgTable("users", {
 	first_name: text("first_name").notNull(),
 	last_name: text("last_name"),
 	role: user_role("role"),
+	dwolla_customer_url: text("dwolla_customer_url"),
+	dwolla_customer_id: text("dwolla_customer_id"),
+	plaid_id: text("plaid_id"),
 },
 (table) => {
 	return {
@@ -57,6 +60,17 @@ export const startups = pgTable("startups", {
 	return {
 		startups_id_key: unique("startups_id_key").on(table.id),
 	}
+});
+
+export const bank_accounts = pgTable("bank_accounts", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	user_id: uuid("user_id").default(sql`auth.uid()`).notNull().references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	bank_id: text("bank_id"),
+	account_id: text("account_id"),
+	access_token: text("access_token"),
+	funding_source_url: text("funding_source_url"),
+	shareable_id: text("shareable_id"),
 });
 
 export const investors = pgTable("investors", {
@@ -102,6 +116,7 @@ export const usersRelations = relations(users, ({one, many}) => ({
 		references: [usersInAuth.id]
 	}),
 	startups: many(startups),
+	bank_accounts: many(bank_accounts),
 	investors: many(investors),
 }));
 
@@ -115,6 +130,13 @@ export const startupsRelations = relations(startups, ({one, many}) => ({
 		references: [users.id]
 	}),
 	startups_owners: many(startups_owners),
+}));
+
+export const bank_accountsRelations = relations(bank_accounts, ({one}) => ({
+	user: one(users, {
+		fields: [bank_accounts.user_id],
+		references: [users.id]
+	}),
 }));
 
 export const investorsRelations = relations(investors, ({one}) => ({

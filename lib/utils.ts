@@ -11,3 +11,15 @@ export const stringToUuid = (str: string) => {
     return str[p % str.length];
   });
 }
+
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
+export const encryptId = (id: string) =>  btoa(id);
+
+export function extractCustomerIdFromUrl(url: string) {
+    const parts = url.split("/");
+
+    const customerId = parts[parts.length - 1];
+
+    return customerId;
+}

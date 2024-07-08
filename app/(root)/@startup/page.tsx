@@ -16,7 +16,7 @@ export default async function StartUpPage()
         )
     }
     else return (
-        <section className='flex flex-col'>
+        <section className='w-screen h-screen flex flex-col items-center justify-center text-center gap-12 max-w-[920px] mx-auto'>
             <h1 className='text-3xl font-semibold leading-[3rem]'>Please Connect Your BanK Account To Use InsightFunders!</h1>
             <PlaidLink user={user} />
         </section>
