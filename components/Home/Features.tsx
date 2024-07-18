@@ -38,7 +38,9 @@ export default function Features()
                         width={52}
                         height={52} 
                     />
-                    <p className='font-semibold text-xl text-center'>AI-Powered Insights</p>
+                    <p className='font-semibold text-xl text-center'>
+                        AI-Powered Insights
+                    </p>
                     <p className='text-main-gray text-base text-center'>
                         Our advanced AI algorithms analyze startups' creditworthiness, providing investors with data-driven insights.
                     </p>
