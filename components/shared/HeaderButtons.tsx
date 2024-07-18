@@ -12,7 +12,7 @@ export default async function HeadersButtons()
 			if(!user?.userStartUp?.data?.EIN || !user?.userStartUp.data?.industry_sector || !user?.userStartUp.data.address || !user?.userStartUp.data.business_structure || !user?.userStartUp.data.company_name || !user?.userStartUp.data.email || !user?.userStartUp.data.phone_number || !user?.userStartUp.data.submitted) {
 				return (
                     <Link href='/startup-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
 			}
@@ -20,7 +20,7 @@ export default async function HeadersButtons()
 			if(user.userStartUpOwners.data?.length === 0) {
 				return (
                     <Link href='/startup-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
 			}
@@ -29,7 +29,7 @@ export default async function HeadersButtons()
             if(!user?.userInvestor?.data?.submitted || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_name || !user?.userInvestor.data.company_email || !user?.userInvestor.data.company_website || !user?.userInvestor.data.geographies_served || !user?.userInvestor.data.max_facility_size || !user?.userInvestor.data.minimum_revenue_requirement || !user?.userInvestor.data.products_offered) {
                 return (
                     <Link href='/investor-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
             }
@@ -38,9 +38,9 @@ export default async function HeadersButtons()
 
     return (
         <div className='gap-8 flex items-center'>
-            <Link href='/sign-in'>Login</Link>
+            <Link className='font-light text-sm' href='/sign-in'>Login</Link>
             <Link href='/sign-up'>
-                <button className='rounded-full px-5 py-2 bg-strong-purple'>Sign up</button>
+                <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Create account</button>
             </Link>
         </div>
     )
