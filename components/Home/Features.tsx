@@ -44,7 +44,9 @@ export default function Features()
                         width={48}
                         height={48} 
                     />
-                    <p className='font-semibold text-xl text-center'>Accelerate Startup Growth</p>
+                    <p className='font-semibold text-xl text-center'>
+                        Accelerate Startup Growth
+                    </p>
                     <p className='text-main-gray text-base text-center'>
                         Our platform enables startups to access growth capital without equity dilution, fueling their expansion.
                     </p>
