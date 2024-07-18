@@ -12,7 +12,7 @@ export default async function HeadersButtons()
 			if(!user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp.address || !user?.userStartUp.business_structure || !user?.userStartUp.company_name || !user?.userStartUp.email || !user?.userStartUp.phone_number || !user?.userStartUp.submitted) {
 				return (
                     <Link href='/startup-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
 			}
@@ -20,7 +20,7 @@ export default async function HeadersButtons()
 			if(user.userStartUpOwners?.length === 0) {
 				return (
                     <Link href='/startup-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
 			}
@@ -29,7 +29,7 @@ export default async function HeadersButtons()
             if(!user?.userInvestor?.submitted || !user?.userInvestor.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
                 return (
                     <Link href='/investor-details'>
-                        <button className='rounded-full px-5 py-2 bg-strong-purple'>Continue</button>
+                        <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Continue</button>
                     </Link>
                 )
             }
@@ -38,9 +38,9 @@ export default async function HeadersButtons()
 
     return (
         <div className='gap-8 flex items-center'>
-            <Link href='/sign-in'>Login</Link>
+            <Link className='font-light text-sm' href='/sign-in'>Login</Link>
             <Link href='/sign-up'>
-                <button className='rounded-full px-5 py-2 bg-strong-purple'>Sign up</button>
+                <button className='bg-white rounded-[2px] w-32 font-light text-black text-sm h-9'>Create account</button>
             </Link>
         </div>
     )
