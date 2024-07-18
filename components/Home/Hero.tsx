@@ -1,115 +1,29 @@
 import Header from "@/components/shared/Header";
+import { Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() 
 {
     return (
-        <section className='flex flex-col bg-strong-gray min-h-screen overflow-x-hidden'>
-			<section className='flex flex-col py-20 w-full gap-12'>
-				<h1 className='text-center text-white text-4xl lg:text-6xl font-medium max-lg:px-4'>
-					Secure, Risk-Adjusted Returns for <br /> Private Credit Investors
-				</h1>
-				<h2 className='text-[#EAECF0] text-lg lg:text-xl text-center font-normal max-lg:px-4'>
-					Our AI-powered platform assesses tech startups' creditworthiness, <br />enabling private credit investors to earn secure returns while<br /> accelerating startup growth without equity dilution.
-				</h2>
-				<div className='gap-3 flex w-full items-center justify-center font-semibold'>
-					<Link href='/sign-up'>
-						<button className='rounded-full text-sm lg:text-lg px-5 py-3 bg-strong-purple text-white'>Get Started</button>
-					</Link>
-				</div>
-				<div className='flex w-[200vw] items-center justify-between overflow-hidden animate-banner animate-banner-hover'>
-					<div className='w-[49%] flex items-center justify-between'>
-						<div className='w-1/3 rounded-3xl overflow-hidden'>
-							<Image
-								src='/images/first.png'
-								alt='First'
-								width={600}
-								height={400}
-								className='rounded-3xl object-contain' 
-							/>
-						</div>
-						<Image
-							src='/images/second.png'
-							alt='Second'
-							width={400}
-							height={400}
-							className='rounded-3xl max-h-[450px] object-contain w-1/3' 
-						/>
-						<div className='rounded-3xl overflow-hidden w-1/3'>
-							<Image
-								src='/images/third.png'
-								alt='Third'
-								width={600}
-								height={400}
-								className='rounded-3xl object-contain'
-							/>
-						</div>
-					</div>
-					<div className='w-[49%] flex items-center justify-between'>
-						<div className='w-1/3 rounded-3xl overflow-hidden'>
-							<Image
-								src='/images/first.png'
-								alt='First'
-								width={600}
-								height={400}
-								className='rounded-3xl object-contain' 
-							/>
-						</div>
-						<Image
-							src='/images/second.png'
-							alt='Second'
-							width={400}
-							height={400}
-							className='rounded-3xl max-h-[450px] object-contain w-1/3' 
-						/>
-						<div className='rounded-3xl overflow-hidden w-1/3'>
-							<Image
-								src='/images/third.png'
-								alt='Third'
-								width={600}
-								height={400}
-								className='rounded-3xl object-contain'
-							/>
-						</div>
-					</div>
-				</div>
-				<div className='flex flex-col gap-8 mt-2 overflow-hidden w-fit mx-auto'>
-                    <h3 className='text-[#D0D5DD] text-center'>
-                        Join 4,000+ startups already growing
-                    </h3>
-                    <div className='w-full items-center flex justify-center gap-20 max-md:justify-start animate-banner-full'>
-                        <Image 
-                            src='/images/boltshift.svg'
-                            alt='Boltshift'
-                            width={106}
-                            height={30}
-                        />
-                        <Image 
-                            src='/images/lightbox.svg'
-                            alt='Lightbox'
-                            width={104}
-                            height={30}
-                        />
-                        <Image 
-                            src='/images/featherdev.svg'
-                            alt='Featherdev'
-                            width={123}
-                            height={30}
-                        />
-                        <Image 
-                            src='/images/spherule.svg'
-                            alt='Spherule'
-                            width={104}
-                            height={30}
-                        />
-                        <Image 
-                            src='/images/globalbank.svg'
-                            alt='Globalbank'
-                            width={123}
-                            height={30}
-                        />
+        <section className='flex flex-col bg-black overflow-x-hidden'>
+			<section className='flex items-center justify-center px-2 max-lg:flex-wrap lg:px-40 w-full gap-12 py-32 h-full'>
+				<div className='flex flex-col items-start justify-between gap-16'>
+					<h1 className='text-left text-white text-2xl lg:text-4xl font-normal max-lg:px-4'>
+                        Fuel your growth with private credit
+					</h1>
+					<h2 className='text-[#EAECF0] text-base lg:text-lg text-left font-light max-lg:px-4'>
+						Our AI-powered platform assesses tech startups' creditworthiness, enabling private credit investors to earn secure returns while accelerating startup growth without equity dilution. ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</h2>
+                    <div className='flex flex-col gap-2'>
+                        <Link className='text-[#FF7A00] font-medium flex items-center gap-1' href='/sign-up'>
+                            Get Started{" "}<Play stroke="#FF7A00" fill="#FF7A00" size={14} />
+                        </Link>
+                        <p className='text-xs font-extralight text-white'>60 second qualification</p>
                     </div>
+				</div>
+				<div className='flex items-center justify-center bg-gray-500 min-w-[320px] h-[180px] lg:min-w-[539px] lg:h-[367px]'>
+					
 				</div>
 			</section>
 		</section>

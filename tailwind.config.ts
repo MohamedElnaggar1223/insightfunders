@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        IntegralCF: ['var(--IntegralCF)']
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -89,12 +92,75 @@ const config = {
               transform: 'translateX(-100%)'
           }
         },
+        "check-animate": {
+          '0%': {
+            left: '75%'
+          },
+          '20%': {
+            left: '2.5%',
+          },
+          '100%': {
+            left: '2.5%',
+          },
+        },
+        "match": {
+          '0%': {
+            opacity: '0',
+          },
+          '20%': {
+            opacity: '0',
+          },
+          '40%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        "change-background": {
+          '0%': {
+            backgroundColor: 'white',
+          },
+          '20%': {
+            backgroundColor: '#EBEBEB80',
+          },
+          '30%': {
+            backgroundColor: '#EBEBEB80',
+          },
+          '32%': {
+            backgroundColor: 'white',
+          },
+          '100%': {
+            backgroundColor: 'white',
+          }
+        },
+        'small-check': {
+          '0%': {
+            opacity: '0',
+          },
+          '20%': {
+            opacity: '1',
+          },
+          '30%': {
+            opacity: '1',
+          },
+          '32%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "banner": "banner 16s linear infinite",
         "banner-full": "banner-full 32s linear infinite",
+        "check-animate": "check-animate 5s ease-out infinite",
+        "match": "match 5s ease-out infinite",
+        "change-background": "change-background 8s ease-out infinite",
+        "small-check": "small-check 8s ease-out infinite",
       },
     },
   },

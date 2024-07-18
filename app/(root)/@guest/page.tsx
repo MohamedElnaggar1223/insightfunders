@@ -1,19 +1,13 @@
-import Blogs from "@/components/Home/Blogs";
-import Build from "@/components/Home/Build";
 import Features from "@/components/Home/Features";
 import Hero from "@/components/Home/Hero";
-import LearnMore from "@/components/Home/LearnMore";
-import Testimonial from "@/components/Home/Testimonial";
+import Reviews from "@/components/Home/Reviews";
 
-export default function Home() {
-	return (
-		<>
-			<Hero />
-			<Features />
-			<LearnMore />
-			<Build />
-			<Testimonial />
-			<Blogs />
-		</>
-	)
+export default function Page() {
+    return (
+        <>
+            <Hero />
+            <Features />
+            <Reviews />
+        </>
+    );
 }

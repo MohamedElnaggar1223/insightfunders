@@ -1,36 +1,18 @@
+import { Check } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Features()
 {
     return (
-        <section className='flex flex-col py-20 w-full gap-12'>
-            <div className='flex flex-col gap-6 items-center justify-center'>
-                <div className='flex gap-1.5 border border-[#E9D7FE] rounded-[10px] bg-light-purple w-fit items-center justify-center px-3 py-1'>
-                    <div className='w-1.5 h-1.5 bg-main-purple rounded-full' />
-                    <p className='text-sm text-main-purple font-medium'>Features</p>
-                </div>
-                <h4 className='text-center text-[#101828] text-3xl lg:text-4xl font-semibold max-md:px-5'>
-                    Secure, Risk-Adjusted Returns for Private <br/> Credit Investors
-                </h4>
-                <h5 className='text-main-gray text-lg lg:text-xl text-center font-normal leading-[30px] max-md:px-5'>
-                    Our AI-powered platform assesses tech startups' creditworthiness, enabling <br /> private credit investors to earn secure returns while accelerating startup growth <br /> without equity dilution.				
-                </h5>
-            </div>
-            <div className='flex items-center justify-center w-full'>
-                <Image
-                    src='/images/features.png'
-                    alt='Features'
-                    width={768}
-                    height={512}
-                />
-            </div>
-            <div className='w-full flex gap-8 items-center justify-center px-20 max-md:flex-wrap'>
+        <section className='flex flex-col py-20 lg:gap-40'>
+            <div className='w-full flex gap-8 items-center justify-center px-2 lg:px-60 max-md:flex-wrap'>
                 <div className='flex flex-col gap-4 items-center justify-center text-center'>
                     <Image
                         src='/images/secureReturns.svg'
                         alt='SecureReturns'
-                        width={48}
-                        height={48} 
+                        width={52}
+                        height={52} 
                     />
                     <p className='font-semibold text-xl text-center'>Secure Returns</p>
                     <p className='text-main-gray text-base text-center'>
@@ -41,8 +23,8 @@ export default function Features()
                     <Image
                         src='/images/accelerate.svg'
                         alt='Accelerate'
-                        width={48}
-                        height={48} 
+                        width={52}
+                        height={52} 
                     />
                     <p className='font-semibold text-xl text-center'>
                         Accelerate Startup Growth
@@ -53,15 +35,140 @@ export default function Features()
                 </div>
                 <div className='flex flex-col gap-4 items-center justify-center text-center'>
                     <Image
-                        src='/images/secureReturns.svg'
-                        alt='SecureReturns'
-                        width={48}
-                        height={48} 
+                        src='/images/aipowered.svg'
+                        alt='Aipowered'
+                        width={52}
+                        height={52} 
                     />
-                    <p className='font-semibold text-xl text-center'>AI-Powered Insights</p>
+                    <p className='font-semibold text-xl text-center'>
+                        AI-Powered Insights
+                    </p>
                     <p className='text-main-gray text-base text-center'>
                         Our advanced AI algorithms analyze startups' creditworthiness, providing investors with data-driven insights.
                     </p>
+                </div>
+            </div>
+            <div className='flex flex-col gap-4 items-center justify-center px-2 lg:px-40'>
+                <div className="flex flex-col gap-6 bg-black rounded-[10px] p-8">
+                    <p className='font-normal text-[#FFD6B0] text-sm'>For Borrowers</p>
+                    <p className='font-medium text-white text-2xl'>Save months of time and millions of fees with Insight Funders</p>
+                    <p className='font-normal text-white text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div className='flex w-full items-center justify-end'>
+                        <Link href='/sign-up'>
+                            <button className='rounded-[2px] w-32 font-light text-black text-sm h-9 bg-[#FF7A00]'>Apply now</button>
+                        </Link>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-6 bg-black rounded-[10px] p-8">
+                <p className='font-normal text-[#FFD6B0] text-sm'>For Lenders</p>
+                    <p className='font-medium text-white text-2xl'>Unlock pre-qualified deal flow from the world’s top tech companies</p>
+                    <p className='font-normal text-white text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div className='flex w-full items-center justify-end'>
+                        <Link href='/sign-up'>
+                            <button className='rounded-[2px] w-32 font-light text-white text-sm h-9 bg-[#FF7A00]'>Apply now</button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col gap-32 items-center justify-center px-2 lg:px-40">
+                <p className='text-3xl'>Easily raise the right type of debt from the best banks and credit funds.</p>
+                <div className="flex gap-12 w-full items-start justify-center 2xl:justify-between flex-wrap">
+                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                        <p className='text-[#FF7A00] text-5xl'>200+</p>
+                        <p className='text-black text-xl font-bold mt-2'>Companies Funded</p>
+                        <p className='text-black text-base font-light'>We've helped build over 400 amazing projects.</p>
+                    </div>
+                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                        <p className='text-[#FF7A00] text-5xl'>600%</p>
+                        <p className='text-black text-xl font-bold mt-2'>Average size of investments</p>
+                        <p className='text-black text-base font-light'>Our customers have reported an average of ~600% ROI.</p>
+                    </div>
+                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                        <p className='text-[#FF7A00] text-5xl'>$20M</p>
+                        <p className='text-black text-xl font-bold mt-2'>Total debt capital available</p>
+                        <p className='text-black text-base font-light'>Our free UI kit has been downloaded over 100k times.</p>
+                    </div>
+                </div>
+            </div>
+            <div className="flex gap-4 px-4 flex-wrap lg:px-32 -mb-48 z-50">
+                <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
+                    <div className='flex flex-1 items-center justify-center p-4'>
+                        <div className='relative flex max-w-[284px] w-screen pl-1 pr-12 max-h-[81px] min-h-[81px] items-center justify-end rounded-[90px] bg-white'>
+                            <div className="flex absolute animate-check-animate items-center justify-center bg-black p-1 rounded-full">
+                                <Check size={60} stroke='#fff' />
+                            </div>
+                            <div className="flex items-center animate-match justify-end text-xl">Perfect Match</div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
+                        <p className='font-bold text-[#FF7A00] text-xl'>One platform, all the right lenders.</p>
+                        <p className='font-light text-white text-sm'>Whether you're bootstrapped, venture-backed, or growth stage, get connected with dozens of pre-qualified lenders,saving months of time.</p>
+                    </div>
+                </div>
+                <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
+                    <div className='flex flex-1 items-center justify-center p-4'>
+                        <div className='bg-white rounded-[14px] w-screen max-w-[323px] flex flex-col p-1.5'>
+                            <div className='rounded-[5px] firstDelay animate-change-background py-2 px-4 transition-all text-black text-base relative'>
+                                <p>Working Capital</p>
+                                <div className="flex absolute firstDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                    <Check size={18} stroke='#fff' />
+                                </div>
+                            </div>
+                            <div className='rounded-[5px] change-background py-2 px-4 transition-all text-black text-base relative'>
+                                <p>Working Capital</p>
+                                <div className="flex absolute items-center opacity-0 animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                    <Check size={18} stroke='#fff' />
+                                </div>
+                            </div>
+                            <div className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative'>
+                                <p>Working Capital</p>
+                                <div className="flex absolute secondDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                    <Check size={18} stroke='#fff' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
+                        <p className='font-bold text-[#FF7A00] text-xl'>One platform, all the right lenders.</p>
+                        <p className='font-light text-white text-sm'>Whether you're bootstrapped, venture-backed, or growth stage, get connected with dozens of pre-qualified lenders,saving months of time.</p>
+                    </div>
+                </div>
+                <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
+                    <div className='flex flex-1 items-center justify-center p-4'>
+                        <div className='flex'>
+                            <div className='flex -mr-4'>
+                                <Image
+                                    src="/images/phoenix.jpg"
+                                    alt="phoenix"
+                                    width={250}
+                                    height={180}
+                                    className='rounded-full w-20 h-20 object-cover' 
+                                />
+                            </div>
+                            <div className='flex -mt-2'>
+                                <Image
+                                    src="/images/olivia.jpg"
+                                    alt="olivia"
+                                    width={250}
+                                    height={180}
+                                    className='rounded-full w-24 h-24 z-20 object-cover'
+                                />
+                            </div>
+                            <div className='flex -ml-4'>
+                                <Image
+                                    src="/images/lana.jpg"
+                                    alt="lana"
+                                    width={250}
+                                    height={180}
+                                    className='rounded-full w-20 h-20 object-cover'
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
+                        <p className='font-bold text-[#FF7A00] text-xl'>One team, dedicated to your success</p>
+                        <p className='font-light text-white text-sm'>Receive dedicated support from a Capital Markets expert throughout the entire process, from onboarding to funding.</p>
+                    </div>
                 </div>
             </div>
         </section>
