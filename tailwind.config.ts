@@ -121,16 +121,34 @@ const config = {
           '0%': {
             backgroundColor: 'white',
           },
-          '100%': {
+          '20%': {
             backgroundColor: '#EBEBEB80',
+          },
+          '30%': {
+            backgroundColor: '#EBEBEB80',
+          },
+          '32%': {
+            backgroundColor: 'white',
+          },
+          '100%': {
+            backgroundColor: 'white',
           }
         },
         'small-check': {
           '0%': {
             opacity: '0',
           },
-          '100%': {
+          '20%': {
             opacity: '1',
+          },
+          '30%': {
+            opacity: '1',
+          },
+          '32%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
           }
         }
       },
@@ -141,8 +159,8 @@ const config = {
         "banner-full": "banner-full 32s linear infinite",
         "check-animate": "check-animate 5s ease-out infinite",
         "match": "match 5s ease-out infinite",
-        "change-background": "change-background 1s ease-out",
-        "small-check": "small-check 1s ease-out",
+        "change-background": "change-background 8s ease-out infinite",
+        "small-check": "small-check 8s ease-out infinite",
       },
     },
   },

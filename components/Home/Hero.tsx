@@ -7,7 +7,7 @@ export default function Hero()
 {
     return (
         <section className='flex flex-col bg-black overflow-x-hidden'>
-			<section className='flex items-center justify-center px-2 lg:px-40 w-full gap-12 py-32 h-full'>
+			<section className='flex items-center justify-center px-2 max-lg:flex-wrap lg:px-40 w-full gap-12 py-32 h-full'>
 				<div className='flex flex-col items-start justify-between gap-16'>
 					<h1 className='text-left text-white text-2xl lg:text-4xl font-normal max-lg:px-4'>
                         Fuel your growth with private credit
@@ -22,7 +22,7 @@ export default function Hero()
                         <p className='text-xs font-extralight text-white'>60 second qualification</p>
                     </div>
 				</div>
-				<div className='flex items-center justify-center bg-gray-500 min-w-[539px] h-[367px]'>
+				<div className='flex items-center justify-center bg-gray-500 min-w-[320px] h-[180px] lg:min-w-[539px] lg:h-[367px]'>
 					
 				</div>
 			</section>

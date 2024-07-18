@@ -45,7 +45,7 @@ export default function Footer()
                         />
                     </div>
                 </div>
-                <div className='flex items-center justify-between pt-4 border-t border-[#98A2B3]'>
+                <div className='flex items-center justify-between pt-4 border-t border-[#98A2B3] flex-wrap'>
                     <p className='text-black text-center text-[10px]'>© 2024 Insight Funders. All rights reserved.</p>
                     <p className='text-black text-center text-[10px]'>General Disclosures</p>
                     <p className='text-black text-center text-[10px]'>Privacy Policy</p>

@@ -9,3 +9,13 @@
 .animate-banner-hover:hover {
     animation-play-state: paused;
 }
+
+.firstDelay {
+    animation-delay: 2s;
+    transition-delay: 2s;
+}
+
+.secondDelay {
+    animation-delay: 4s;
+    transition-delay: 4s;
+}

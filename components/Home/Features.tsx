@@ -104,21 +104,21 @@ export default function Features()
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
                     <div className='flex flex-1 items-center justify-center p-4'>
                         <div className='bg-white rounded-[14px] w-screen max-w-[323px] flex flex-col p-1.5'>
-                            <div className='rounded-[5px] delay-100 animate-change-background py-2 px-4 transition-all text-black text-base relative'>
+                            <div className='rounded-[5px] firstDelay animate-change-background py-2 px-4 transition-all text-black text-base relative'>
                                 <p>Working Capital</p>
-                                <div className="flex absolute items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                <div className="flex absolute firstDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                     <Check size={18} stroke='#fff' />
                                 </div>
                             </div>
                             <div className='rounded-[5px] change-background py-2 px-4 transition-all text-black text-base relative'>
                                 <p>Working Capital</p>
-                                <div className="flex absolute items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                <div className="flex absolute items-center opacity-0 animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                     <Check size={18} stroke='#fff' />
                                 </div>
                             </div>
-                            <div className='rounded-[5px] delay-200 change-background py-2 px-4 transition-all text-black text-base relative'>
+                            <div className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative'>
                                 <p>Working Capital</p>
-                                <div className="flex absolute items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
+                                <div className="flex absolute secondDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                     <Check size={18} stroke='#fff' />
                                 </div>
                             </div>
