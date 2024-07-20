@@ -19,3 +19,13 @@
     animation-delay: 4s;
     transition-delay: 4s;
 }
+
+.whiteText {
+    color: white !important;
+}
+
+.tableShadow { 
+    box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.75);
+}

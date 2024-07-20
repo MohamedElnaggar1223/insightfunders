@@ -1,11 +1,14 @@
-import SignOutBtn from "@/components/startup/SignOutBtn";
+import { Suspense } from "react";
+import DashboardLoading from "./dashboardloading";
+import Dashboard from "./dashboard";
 
-export default function InvestorPage() 
+export default async function InvestorPage() 
 {
     return (
-        <div className='w-screen h-screen flex flex-col items-center justify-center text-center gap-12 max-w-[920px] mx-auto'>
-            <p className='text-3xl font-semibold leading-[3rem]'>Thank you for your application. We will match you with our network of lenders and notify you once they express interest.</p>
-            <SignOutBtn />
-        </div>
-    ) 
+        <section className='flex flex-1 flex-col gap-6 h-screen pt-12'>
+            <Suspense fallback={<DashboardLoading />}>
+                <Dashboard />
+            </Suspense>
+        </section>
+    )
 }

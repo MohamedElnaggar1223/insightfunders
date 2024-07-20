@@ -1,7 +1,7 @@
-import { pgTable, foreignKey, pgEnum, uuid, text, unique, bigint, boolean, numeric } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, bigint, numeric, boolean, date, index, uuid, text, unique } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
-import { usersInAuth } from "@/db/auth";
 import { relations } from "drizzle-orm/relations";
+import { usersInAuth } from "@/db/auth";
 
 export const aal_level = pgEnum("aal_level", ['aal1', 'aal2', 'aal3'])
 export const code_challenge_method = pgEnum("code_challenge_method", ['s256', 'plain'])
@@ -16,11 +16,27 @@ export const geographies_served = pgEnum("geographies_served", ['United States',
 export const industry_and_sector = pgEnum("industry_and_sector", ['Technology', 'Healthcare', 'Financial Services', 'Consumer Goods', 'Industrial Goods', 'Energy', 'Real Estate', 'Retail', 'Media and Entertainment', 'Transportation', 'Telecommunications', 'Agriculture', 'Education', 'Hospitality and Leisure', 'Utilities', 'Other'])
 export const max_facility_size = pgEnum("max_facility_size", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-250M', '$250M+'])
 export const minimum_revenue_requirement = pgEnum("minimum_revenue_requirement", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-100M', '$100M+'])
+export const payment_interval = pgEnum("payment_interval", ['week', 'month', 'quarter', 'year'])
 export const products_offered = pgEnum("products_offered", ['Venture Debt', 'Asset-Based Lending', 'Warehouse Lending', 'Invoice and Contract Factoring', 'Revenue-Based Financing', 'Equipment Leasing', 'M&A', 'Recapitalizations and Refinancing', 'Buyouts', 'Bridge Loans', 'Other'])
 export const user_role = pgEnum("user_role", ['startup', 'investor'])
 export const action = pgEnum("action", ['INSERT', 'UPDATE', 'DELETE', 'TRUNCATE', 'ERROR'])
 export const equality_op = pgEnum("equality_op", ['eq', 'neq', 'lt', 'lte', 'gt', 'gte', 'in'])
 
+
+export const contracts = pgTable("contracts", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	investor_id: bigint("investor_id", { mode: "number" }).notNull().references(() => investors.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).notNull().references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	amount_invested: numeric("amount_invested").notNull(),
+	interest_rate: numeric("interest_rate"),
+	accepted: boolean("accepted").notNull(),
+	total_return_paid: numeric("total_return_paid"),
+	maturity_date: date("maturity_date"),
+	payment_interval: payment_interval("payment_interval"),
+});
 
 export const users = pgTable("users", {
 	id: uuid("id").default(sql`auth.uid()`).primaryKey().notNull(),
@@ -33,6 +49,7 @@ export const users = pgTable("users", {
 },
 (table) => {
 	return {
+		id_idx: index("users_id_idx").using("btree", table.id),
 		users_id_fkey: foreignKey({
 			columns: [table.id],
 			foreignColumns: [table.id],
@@ -110,6 +127,34 @@ export const faqs = pgTable("faqs", {
 	tab: faqs_tabs("tab"),
 });
 
+export const contractsRelations = relations(contracts, ({one}) => ({
+	investor: one(investors, {
+		fields: [contracts.investor_id],
+		references: [investors.id]
+	}),
+	startup: one(startups, {
+		fields: [contracts.startup_id],
+		references: [startups.id]
+	}),
+}));
+
+export const investorsRelations = relations(investors, ({one, many}) => ({
+	contracts: many(contracts),
+	user: one(users, {
+		fields: [investors.user_id],
+		references: [users.id]
+	}),
+}));
+
+export const startupsRelations = relations(startups, ({one, many}) => ({
+	contracts: many(contracts),
+	user: one(users, {
+		fields: [startups.user_id],
+		references: [users.id]
+	}),
+	startups_owners: many(startups_owners),
+}));
+
 export const usersRelations = relations(users, ({one, many}) => ({
 	usersInAuth: one(usersInAuth, {
 		fields: [users.id],
@@ -124,24 +169,9 @@ export const usersInAuthRelations = relations(usersInAuth, ({many}) => ({
 	users: many(users),
 }));
 
-export const startupsRelations = relations(startups, ({one, many}) => ({
-	user: one(users, {
-		fields: [startups.user_id],
-		references: [users.id]
-	}),
-	startups_owners: many(startups_owners),
-}));
-
 export const bank_accountsRelations = relations(bank_accounts, ({one}) => ({
 	user: one(users, {
 		fields: [bank_accounts.user_id],
-		references: [users.id]
-	}),
-}));
-
-export const investorsRelations = relations(investors, ({one}) => ({
-	user: one(users, {
-		fields: [investors.user_id],
 		references: [users.id]
 	}),
 }));

@@ -47,6 +47,63 @@ export type Database = {
           },
         ]
       }
+      contracts: {
+        Row: {
+          accepted: boolean
+          amount_invested: number
+          id: number
+          interest_rate: number | null
+          investor_id: number
+          maturity_date: string | null
+          payment_interval:
+            | Database["public"]["Enums"]["payment_interval"]
+            | null
+          startup_id: number
+          total_return_paid: number | null
+        }
+        Insert: {
+          accepted: boolean
+          amount_invested: number
+          id?: number
+          interest_rate?: number | null
+          investor_id: number
+          maturity_date?: string | null
+          payment_interval?:
+            | Database["public"]["Enums"]["payment_interval"]
+            | null
+          startup_id: number
+          total_return_paid?: number | null
+        }
+        Update: {
+          accepted?: boolean
+          amount_invested?: number
+          id?: number
+          interest_rate?: number | null
+          investor_id?: number
+          maturity_date?: string | null
+          payment_interval?:
+            | Database["public"]["Enums"]["payment_interval"]
+            | null
+          startup_id?: number
+          total_return_paid?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contracts_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       faqs: {
         Row: {
           answer: string | null
@@ -326,6 +383,7 @@ export type Database = {
         | "$10-50M"
         | "$50-100M"
         | "$100M+"
+      payment_interval: "week" | "month" | "quarter" | "year"
       products_offered:
         | "Venture Debt"
         | "Asset-Based Lending"

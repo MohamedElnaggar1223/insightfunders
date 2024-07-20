@@ -20,7 +20,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        IntegralCF: ['var(--IntegralCF)']
+        IntegralCF: ['var(--IntegralCF)'],
+        Montserrat: ['var(--Montserrat)'],
       },
       colors: {
         border: "hsl(var(--border))",

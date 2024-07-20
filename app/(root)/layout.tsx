@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "@/app/globals.css"; 
-import { createClient } from "@/utils/supabase/server";
 import { cn } from "@/lib/utils";
 import { getUser } from "@/lib/actions/auth";
-import { unstable_noStore } from "next/cache";
+import localFont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ 
+	subsets: ["latin"],
+	display: 'swap',
+	variable: '--Montserrat',
+	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] 
+});
 
 export const metadata: Metadata = {
   title: "Insight Funders",
   description: "Insight Funders is a platform for connecting startups with investors.",
 };
+
+const logoFont = localFont({
+    src: '../../public/fonts/Fontspring-DEMO-integralcf-medium.otf',
+    display: 'swap',
+	variable: '--IntegralCF',
+})
 
 export default async function RootLayout({
   children,
@@ -79,7 +90,7 @@ export default async function RootLayout({
 		if(user?.userStartUp?.submitted && (user?.userStartUpOwners?.length ?? 0) > 0 && user?.userStartUp?.EIN && user?.userStartUp?.industry_sector && user?.userStartUp.address && user?.userStartUp.business_structure && user?.userStartUp.company_name && user?.userStartUp.email && user?.userStartUp.phone_number) {
 			return (
 				<html lang="en">
-					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
+					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
 						{startup}
 					</body>
 				</html>
@@ -90,7 +101,7 @@ export default async function RootLayout({
 		if(user?.userInvestor?.submitted && user?.userInvestor.company_email && user?.userInvestor.company_name && user?.userInvestor.company_email && user?.userInvestor.company_website && user?.userInvestor.geographies_served && user?.userInvestor.max_facility_size && user?.userInvestor.minimum_revenue_requirement && user?.userInvestor.products_offered) {
 			return (
 				<html lang="en">
-					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
+					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
 						{investor}
 					</body>
 				</html>
