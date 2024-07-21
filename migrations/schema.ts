@@ -1,4 +1,4 @@
-import { pgTable, foreignKey, pgEnum, bigint, numeric, boolean, date, index, uuid, text, unique } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, bigint, numeric, boolean, date, timestamp, index, uuid, text, unique } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 import { relations } from "drizzle-orm/relations";
 import { usersInAuth } from "@/db/auth";
@@ -36,6 +36,7 @@ export const contracts = pgTable("contracts", {
 	total_return_paid: numeric("total_return_paid"),
 	maturity_date: date("maturity_date"),
 	payment_interval: payment_interval("payment_interval"),
+	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
 
 export const users = pgTable("users", {

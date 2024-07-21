@@ -12,3 +12,13 @@ export const getContracts = cache(async (investorId: number) => {
 
     return { allContracts, acceptedContracts }
 })
+
+export const getStartup = cache(async (startupId: number) => {
+    return await db.query.startups.findFirst({
+        columns: {
+            company_name: true,
+            industry_sector: true,
+        },
+        where: (table, { eq }) => eq(table.id, startupId),
+    })
+})

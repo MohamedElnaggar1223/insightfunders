@@ -23,3 +23,27 @@ export function extractCustomerIdFromUrl(url: string) {
 
     return customerId;
 }
+
+export function getNextDueDate(createdAt: Date, paymentInterval: 'week' | 'year' | 'quarter' | 'month'): Date {
+  const currentDate = new Date();
+  let nextDueDate = new Date(createdAt);
+
+  while (nextDueDate <= currentDate) {
+    switch (paymentInterval) {
+      case 'week':
+        nextDueDate.setDate(nextDueDate.getDate() + 7);
+        break;
+      case 'month':
+        nextDueDate.setMonth(nextDueDate.getMonth() + 1);
+        break;
+      case 'quarter':
+        nextDueDate.setMonth(nextDueDate.getMonth() + 3);
+        break;
+      case 'year':
+        nextDueDate.setFullYear(nextDueDate.getFullYear() + 1);
+        break;
+    }
+  }
+
+  return nextDueDate;
+}

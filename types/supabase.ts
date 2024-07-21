@@ -51,6 +51,7 @@ export type Database = {
         Row: {
           accepted: boolean
           amount_invested: number
+          createdAt: string | null
           id: number
           interest_rate: number | null
           investor_id: number
@@ -64,6 +65,7 @@ export type Database = {
         Insert: {
           accepted: boolean
           amount_invested: number
+          createdAt?: string | null
           id?: number
           interest_rate?: number | null
           investor_id: number
@@ -77,6 +79,7 @@ export type Database = {
         Update: {
           accepted?: boolean
           amount_invested?: number
+          createdAt?: string | null
           id?: number
           interest_rate?: number | null
           investor_id?: number
