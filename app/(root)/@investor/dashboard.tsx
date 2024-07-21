@@ -3,7 +3,7 @@ import InvestorsStartups from "@/components/investors/InvestorsStartups"
 import { getUser } from "@/lib/actions/auth"
 import { getContracts } from "@/lib/actions/investor"
 
-export default async function Dashboard()
+export default async function Dashboard({ searchParams }: { searchParams: { page?: string } })
 {
     const user = await getUser()
     const investorContracts = await getContracts(user?.userInvestor?.id!)
@@ -15,7 +15,7 @@ export default async function Dashboard()
     const totalStartups = investorContracts.acceptedContracts.length
 
     return (
-        <section className='flex flex-1 flex-col w-full gap-6 px-6'>
+        <section className='flex flex-1 flex-col w-full gap-6 px-6 overflow-auto'>
             <div className='flex flex-wrap items-center justify-between gap-4'>
                 <div className="flex bg-[#212121] min-h-20 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[4px] max-w-[283px]">
                     <p className='font-Montserrat font-light text-xs text-white'>Total amount invested</p>
@@ -31,7 +31,7 @@ export default async function Dashboard()
                 </div>
             </div>
             <InvestorsChart contracts={investorContracts.acceptedContracts} totalROI={totalROI} />
-            <InvestorsStartups contracts={investorContracts.acceptedContracts} />
+            <InvestorsStartups searchParams={searchParams} contracts={investorContracts.acceptedContracts} />
         </section>
     )
 }

@@ -2,6 +2,8 @@ import { UserType } from "@/lib/types/user";
 import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import LogOutSlider from "./LogOutSlider";
+import { cn } from "@/lib/utils";
+import InvestorSideBarLinks from "./InvestorSideBarLinks";
 
 type Props = {
     user: UserType
@@ -21,11 +23,7 @@ export default async function InvestorSideBar({ user }: Props)
                     </div>
                     <p className='font-Montserrat font-light text-white text-xs'>{user?.userInfo?.first_name} {user?.userInfo?.last_name}</p>
                 </div>
-                <div className='flex flex-col w-full'>
-                    <Link href='/' className='bg-white py-4 text-black text-sm font-Montserrat font-medium w-full'>Dashboard</Link>
-                    <Link href='/explore' className='py-4 text-white text-sm font-Montserrat w-full'>Explore</Link>
-                    <Link href='/requests' className='py-4 text-white text-sm font-Montserrat w-full'>Requests</Link>
-                </div>
+                <InvestorSideBarLinks />
             </div>
             <LogOutSlider />
         </aside>
