@@ -80,7 +80,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
     const ein = form.watch('EIN')
 
     useEffect(() => {
-        if(ein.length > 2 && ein.at(2) !== "-") {
+        if(ein?.length > 2 && ein?.at(2) !== "-") {
             form.setValue('EIN', `${ein.slice(0, 2)}-${ein.slice(2)}`)
         }
     }, [ein])

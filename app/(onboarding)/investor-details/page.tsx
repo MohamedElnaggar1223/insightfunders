@@ -6,6 +6,7 @@ import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
 import { unstable_noStore } from "next/cache";
 import InvestorDetailsContainer from "./investordetailscontainer";
+import { getBankAccount } from "@/lib/actions/user";
 
 export default async function StartUpDetailsPage()
 {
@@ -17,7 +18,10 @@ export default async function StartUpDetailsPage()
 
     if(user.userInfo.role === 'investor') {
 		if(user?.userInvestor?.company_email && user?.userInvestor.company_name && user?.userInvestor.company_email && user?.userInvestor.company_website && user?.userInvestor.geographies_served && user?.userInvestor.max_facility_size && user?.userInvestor.minimum_revenue_requirement && user?.userInvestor.products_offered) {
-            if(!user.userInvestor.submitted) return redirect('/investor-details/submit')
+            const bankConnected = await getBankAccount(user.user.id)
+
+            if(!bankConnected) return redirect('/investor-details/financial')
+            else if(!user.userInvestor.submitted) return redirect('/investor-details/submit')
             return redirect('/')
         }
     }

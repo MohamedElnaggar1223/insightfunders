@@ -20,6 +20,7 @@ export default async function SubmitStartUpDetailsPage()
         if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }
+        else if(!user.userStartUp.stage || !user.userStartUp.recent_raise) return redirect('/startup-details/financial')
         else if(user.userStartUp.submitted) return redirect('/')
     }
     else return redirect('/')

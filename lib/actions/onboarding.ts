@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache"
 import { personalDetailsSchema } from "../validations/authSchema"
 import { getUser } from "./auth"
 import { db } from "@/db"
-import { users } from "@/migrations/schema"
+import { startups, users } from "@/migrations/schema"
 import { createDwollaCustomer } from "./dwolla"
 import { extractCustomerIdFromUrl } from "../utils"
 import { eq } from "drizzle-orm"
@@ -213,5 +213,17 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
 }
 
 export const updateFinancialDetails = async (data: z.infer<typeof startUpFinancialDetailsSchema>) => {
+    const user = await getUser()
 
+    if(!user || !user.userStartUp?.id) return { error: 'User not found' }
+
+    const { stage, recentRaise } = data
+
+    if(!stage || !recentRaise) return { error: 'Please fill out all fields' }
+
+    await db.update(startups)
+            .set({ stage: data.stage, recent_raise: data.recentRaise.toString()})
+            .where(eq(startups.id, user.userStartUp.id!))
+
+    revalidatePath('/startup-details/financial')
 }

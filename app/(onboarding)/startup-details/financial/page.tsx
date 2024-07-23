@@ -21,6 +21,7 @@ export default async function StartUpFinancialDetails()
             return redirect('/startup-details')
         }
         else if(user.userStartUp.stage && user.userStartUp.recent_raise) {
+            console.log(user.userStartUp)
             if(!user.userStartUp.submitted) return redirect('/startup-details/submit')
             return redirect('/')
         }
@@ -79,7 +80,7 @@ export default async function StartUpFinancialDetails()
                 <h1 className='text-3xl font-semibold text-center'>Financial information</h1>
                 <h2 className='text-base text-center text-main-gray'>Give us detailed information about your finance</h2>
                 </div>
-                <StartUpFinancialDetailsContainer />
+                <StartUpFinancialDetailsContainer user={user} />
             </div>
         </section>
     )
