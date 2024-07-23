@@ -218,6 +218,8 @@ export type Database = {
             | null
           other_industry_and_sector: string | null
           phone_number: string | null
+          recent_raise: number | null
+          stage: Database["public"]["Enums"]["company_stage"] | null
           submitted: boolean
           user_id: string
         }
@@ -236,6 +238,8 @@ export type Database = {
             | null
           other_industry_and_sector?: string | null
           phone_number?: string | null
+          recent_raise?: number | null
+          stage?: Database["public"]["Enums"]["company_stage"] | null
           submitted?: boolean
           user_id?: string
         }
@@ -254,6 +258,8 @@ export type Database = {
             | null
           other_industry_and_sector?: string | null
           phone_number?: string | null
+          recent_raise?: number | null
+          stage?: Database["public"]["Enums"]["company_stage"] | null
           submitted?: boolean
           user_id?: string
         }
@@ -348,6 +354,16 @@ export type Database = {
         | "Corporation"
         | "S Corporation"
         | "Limited Liability Company"
+      company_stage:
+        | "Pre-seed"
+        | "Seed"
+        | "Series A"
+        | "Series B"
+        | "Series C"
+        | "Series D"
+        | "Series E"
+        | "Series F"
+        | "Public"
       faqs_tabs: "General Questions" | "For Startups" | "For Investors"
       geographies_served:
         | "United States"

@@ -18,15 +18,6 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover"
-import { Button } from "../ui/button"
 
 export default function SignIn()
 {
@@ -42,18 +33,10 @@ export default function SignIn()
             email: "",
             password: "",
             role: 'startup',
-            address1: "",
-            city: "",
-            state: "",
-            postalCode: "",
-            ssn: "",
-            dateOfBirth: "",
         },
     })
 
-    form.watch('dateOfBirth')
-
-    console.log(form.getValues().dateOfBirth)
+    // form.watch('dateOfBirth')
 
     const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
         setIsPending(true)
@@ -267,90 +250,6 @@ export default function SignIn()
                                 </FormItem>
                             )}
                         /> */}
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="address1"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Address</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 55 st name." {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="city"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>City</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. New York" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="state"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>State</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. NY" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="postalCode"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Postal Code</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 50314" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="ssn"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>SSN</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. AAA-GG-SSSS" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={isPending}
-                            name="dateOfBirth"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Date of Birth</FormLabel>
-                                    <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 2000-01-01" {...field} />
-                                    </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
-                                </FormItem>
-                            )}
-                        />
                         <FormField
                             control={form.control}
                             disabled={isPending}

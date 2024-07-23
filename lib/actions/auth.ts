@@ -14,7 +14,7 @@ import { nanoid } from 'nanoid';
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     const supabase = createClient()
 
-    const { email, password, firstName, lastName, role, address1, city, postalCode, dateOfBirth, ssn, state } = values
+    const { email, password, firstName, lastName, role } = values
 
     const { error, data } = await supabase.auth.signUp({
         email,
@@ -26,30 +26,11 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
       return redirect(`/sign-up?error=${error.message}`)
     }
 
-    const dwollaCustomerUrl = await createDwollaCustomer({
-        email,
-        firstName,
-        lastName,
-        address1,
-        city,
-        state,
-        postalCode,
-        dateOfBirth,
-        ssn,
-        type: 'personal'
-    })
-
-    if(!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
-
-    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
-
     const { error: insertError } = await supabase.from('users').insert({
         id: data.user?.id,
         first_name: firstName,
         last_name: lastName,
         role,
-        dwolla_customer_id: dwollaCustomerId,
-        dwolla_customer_url: dwollaCustomerUrl,
         plaid_id: nanoid(30)
     })
 

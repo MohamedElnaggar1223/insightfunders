@@ -93,7 +93,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
         if(error) setError(error)
         else setSaveSuccess(true)
 
-        router.push('/startup-details/submit')
+        router.push('/startup-details/financial')
 
         setIsPending(false)
     }

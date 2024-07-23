@@ -11,6 +11,7 @@ export const one_time_token_type = pgEnum("one_time_token_type", ['confirmation_
 export const key_status = pgEnum("key_status", ['default', 'valid', 'invalid', 'expired'])
 export const key_type = pgEnum("key_type", ['aead-ietf', 'aead-det', 'hmacsha512', 'hmacsha256', 'auth', 'shorthash', 'generichash', 'kdf', 'secretbox', 'secretstream', 'stream_xchacha20'])
 export const business_structure = pgEnum("business_structure", ['Sole Proprietorship', 'Partnership', 'Corporation', 'S Corporation', 'Limited Liability Company'])
+export const company_stage = pgEnum("company_stage", ['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public'])
 export const faqs_tabs = pgEnum("faqs_tabs", ['General Questions', 'For Startups', 'For Investors'])
 export const geographies_served = pgEnum("geographies_served", ['United States', 'Canada', 'Mexico', 'United Kingdom', 'Other'])
 export const industry_and_sector = pgEnum("industry_and_sector", ['Technology', 'Healthcare', 'Financial Services', 'Consumer Goods', 'Industrial Goods', 'Energy', 'Real Estate', 'Retail', 'Media and Entertainment', 'Transportation', 'Telecommunications', 'Agriculture', 'Education', 'Hospitality and Leisure', 'Utilities', 'Other'])
@@ -73,6 +74,8 @@ export const startups = pgTable("startups", {
 	industry_sector: industry_and_sector("industry_sector"),
 	other_industry_and_sector: text("other_industry_and_sector"),
 	submitted: boolean("submitted").default(false).notNull(),
+	recent_raise: numeric("recent_raise"),
+	stage: company_stage("stage"),
 },
 (table) => {
 	return {

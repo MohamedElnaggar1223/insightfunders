@@ -17,6 +17,13 @@ export const signUpSchema = z.object({
     email: z.string().email({
         message: 'Please enter a valid email address'
     }),
+    password: z.string().min(8, {
+        message: 'Password must be at least 8 characters long'
+    }),
+    role: z.enum(['startup', 'investor']),
+})
+
+export const personalDetailsSchema = z.object({
     address1: z.string({
         message: 'Please enter a valid address'
     }).max(50),
@@ -25,9 +32,6 @@ export const signUpSchema = z.object({
     }).max(50),
     state: z.string().min(2).max(2),
     postalCode: z.string().min(3).max(5),
-    password: z.string().min(8, {
-        message: 'Password must be at least 8 characters long'
-    }),
     dateOfBirth: z.string().min(10).refine((value) => {
         const regex = /^\d{4}-\d{2}-\d{2}$/;
         return regex.test(value);
@@ -43,5 +47,4 @@ export const signUpSchema = z.object({
     }).max(9, {
         message: 'Please enter a valid SSN'
     }),
-    role: z.enum(['startup', 'investor']),
 })

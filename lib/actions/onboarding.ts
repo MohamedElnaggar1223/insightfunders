@@ -1,10 +1,17 @@
 'use server'
 
 import { z } from "zod"
-import { investorDetailsSchema, startUpDetailsSchema } from "../validations/onBoardingSchema"
+import { investorDetailsSchema, startUpDetailsSchema, startUpFinancialDetailsSchema } from "../validations/onBoardingSchema"
 import { createClient } from "@/utils/supabase/server"
 import { countryDialingCodes } from "@/constants"
 import { revalidatePath } from "next/cache"
+import { personalDetailsSchema } from "../validations/authSchema"
+import { getUser } from "./auth"
+import { db } from "@/db"
+import { users } from "@/migrations/schema"
+import { createDwollaCustomer } from "./dwolla"
+import { extractCustomerIdFromUrl } from "../utils"
+import { eq } from "drizzle-orm"
 
 export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeof startUpDetailsSchema>) => {
     const supabase = createClient()
@@ -166,4 +173,45 @@ export const submitInvestorApplication = async () => {
 
     revalidatePath('/')
     return { success: true }
+}
+
+export const updatePersonalDetails = async (data: z.infer<typeof personalDetailsSchema>) => {
+    const user = await getUser()
+
+    if(!user) return { error: 'User not found' }
+
+    const { first_name: firstName, last_name: lastName } = user.userInfo
+    const { email } = user.user
+    const { address1, city, dateOfBirth, postalCode, ssn, state } = data
+
+    if(!firstName || !lastName) return { error: 'User not found' }
+    if(!email) return { error: 'Email not found' }
+    if(!address1 || !city || !dateOfBirth || !postalCode || !ssn || !state) return { error: 'Please fill out all fields' }
+
+    const dwollaCustomerUrl = await createDwollaCustomer({
+        email,
+        firstName,
+        lastName,
+        address1,
+        city,
+        state,
+        postalCode,
+        dateOfBirth,
+        ssn,
+        type: 'personal'
+    })
+
+    if(!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
+
+    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
+
+    await db.update(users)
+            .set({ dwolla_customer_id: dwollaCustomerId, dwolla_customer_url: dwollaCustomerUrl })
+            .where(eq(users.id, user.user.id!))
+
+    revalidatePath('/personal-details')
+}
+
+export const updateFinancialDetails = async (data: z.infer<typeof startUpFinancialDetailsSchema>) => {
+
 }

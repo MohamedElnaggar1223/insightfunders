@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import StartUpSubmitApplication from "./submitapplication";
 import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
 import { unstable_noStore } from "next/cache";
+import StartUpFinancialDetailsContainer from "@/components/onboarding/StartUpFinancialDetails";
 
-export default async function SubmitStartUpDetailsPage()
+export default async function StartUpFinancialDetails()
 {
     // unstable_noStore()
 
@@ -20,7 +20,10 @@ export default async function SubmitStartUpDetailsPage()
         if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }
-        else if(user.userStartUp.submitted) return redirect('/')
+        else if(user.userStartUp.stage && user.userStartUp.recent_raise) {
+            if(!user.userStartUp.submitted) return redirect('/startup-details/submit')
+            return redirect('/')
+        }
     }
     else return redirect('/')
 
@@ -73,10 +76,10 @@ export default async function SubmitStartUpDetailsPage()
                     </div>
                 </div>
                 <div className='flex flex-col items-center justify-center gap-4 mt-8 max-w-[640px]'>
-                    <h1 className='text-3xl font-semibold text-center'>Submit your initial application for InsightFunder's review</h1>
-                    <h2 className='text-base text-center text-main-gray'>Following this step, your initial application will be submitted, and you'll have access to InsightFunder's secure Dashboard to connect your financials</h2>
+                <h1 className='text-3xl font-semibold text-center'>Financial information</h1>
+                <h2 className='text-base text-center text-main-gray'>Give us detailed information about your finance</h2>
                 </div>
-                <StartUpSubmitApplication />
+                <StartUpFinancialDetailsContainer />
             </div>
         </section>
     )

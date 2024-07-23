@@ -12,6 +12,8 @@ export default async function SubmitStartUpDetailsPage()
     const user = await getUser()
 
     if(!user) return redirect('/')
+        
+    if(!user.userInfo.dwolla_customer_id && !user.userInfo.dwolla_customer_url && !user.userInfo.plaid_id) return redirect('/personal-details')
 
     if(user.userInfo.role === 'investor') {
         if(!user?.userInvestor?.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
@@ -56,16 +58,16 @@ export default async function SubmitStartUpDetailsPage()
                     </div>
                     <div className='flex w-full items-center justify-between text-center'>
                         <div className='flex flex-col gap-1 items-center justify-center text-center w-1/3'>
-                            <p className='font-semibold text-[#7F56D9]'>Sign up</p>
-                            <p className='text-[rgba(158,119,237,0.75)] font-medium'>Create Your Account</p>
+                            <p className='font-semibold text-[#7F56D9]'>Personal Information</p>
+                            <p className='text-[rgba(158,119,237,0.75)] font-medium'>Add your personal information</p>
                         </div>
                         <div className='flex flex-col gap-1 items-center justify-center text-center w-1/3'>
                             <p className='font-semibold text-[#7F56D9]'>Company Information</p>
                             <p className='text-[rgba(158,119,237,0.75)] font-medium'>Set up your company's information</p>
                         </div>
                         <div className='flex flex-col gap-1 items-center justify-center text-center w-1/3'>
-                            <p className='font-semibold text-[#7F56D9]'>Submit</p>
-                            <p className='text-[rgba(158,119,237,0.75)] font-medium'>Submit you application for review</p>
+                            <p className='font-semibold text-[#7F56D9]'>Financial Information</p>
+                            <p className='text-[rgba(158,119,237,0.75)] font-medium'>Submit your financial information</p>
                         </div>
                     </div>
                 </div>

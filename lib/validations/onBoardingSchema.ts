@@ -69,3 +69,10 @@ export const investorDetailsSchema = z.object({
         message: 'Please select an option'
     }).array(),
 })
+
+export const startUpFinancialDetailsSchema = z.object({
+    stage: z.enum(['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public']),
+    recentRaise: z.number().min(0, {
+        message: 'Please enter a valid amount'
+    }),
+})
