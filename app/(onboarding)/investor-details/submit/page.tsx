@@ -4,6 +4,7 @@ import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
 import InvestorSubmitApplication from "./submitapplication";
+import { getBankAccount } from "@/lib/actions/user";
 
 export default async function SubmitStartUpDetailsPage()
 {
@@ -16,9 +17,12 @@ export default async function SubmitStartUpDetailsPage()
     if(!user.userInfo.dwolla_customer_id && !user.userInfo.dwolla_customer_url && !user.userInfo.plaid_id) return redirect('/personal-details')
 
     if(user.userInfo.role === 'investor') {
+        const bankConnected = await getBankAccount(user.user.id)
+        
         if(!user?.userInvestor?.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
             return redirect('/investor-details')
         }
+        else if(!bankConnected) return redirect('/investor-details/financial')
         else if(user?.userInvestor?.submitted) return redirect('/')
     }
     else return redirect('/')

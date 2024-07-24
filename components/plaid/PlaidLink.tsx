@@ -21,8 +21,6 @@ export default function PlaidLink({ user }: Props)
         const getLinkToken = async () => {
             const data = await createLinkToken(user)
 
-            console.log(data)
-
             setToken(data?.linkToken)
         }
 
@@ -42,15 +40,13 @@ export default function PlaidLink({ user }: Props)
         onSuccess
     }
 
-    const { open, ready, error } = usePlaidLink(config)
-
-    console.log(error)
+    const { open, ready } = usePlaidLink(config)
 
     return (
         <button 
             onClick={() => open()}
             disabled={!ready}
-            className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4 max-w-[320px] disabled:opacity-65'
+            className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4 disabled:opacity-65'
         >
             Connect Bank
         </button>
