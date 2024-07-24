@@ -13,7 +13,7 @@ export default async function ExplorePage()
     return (
         <section className='flex flex-1 items-start justify-center gap-6 max-h-screen pt-12 flex-wrap px-4 mb-auto'>
             {exploreStartups.map(({ startup }) => (
-                <div className="flex bg-white max-h-36 min-w-[35vw] flex-1 cursor-pointer">
+                <div key={startup.id} className="flex bg-white max-h-36 min-w-[35vw] flex-1 cursor-pointer">
                     <div className="flex items-center justify-center w-36 h-36 border-r border-2 border-[#00000050]">
                         <Image
                             src='/images/placehodler.jpg'
@@ -32,7 +32,7 @@ export default async function ExplorePage()
                             </p>
                         </div>
                         <div className="flex gap-2 flex-col items-start justify-center">
-                            <div className="flex gap-0.5 items-center justify-center text-xs">
+                            <div className="flex gap-1 items-center justify-center text-xs">
                                 <Image
                                     src='/images/location.svg'
                                     alt='location'
@@ -41,23 +41,23 @@ export default async function ExplorePage()
                                 />
                                 {startup?.address}
                             </div>
-                            <div className="flex gap-0.5 items-center justify-center text-xs">
+                            <div className="flex gap-1 items-center justify-center text-xs">
                                 <Image
                                     src='/images/series.svg'
                                     alt='series'
                                     width={10}
                                     height={12}
                                 />
-                                {startup?.business_structure}
+                                {startup?.stage}
                             </div>
-                            <div className="flex gap-0.5 items-center justify-center text-xs">
+                            <div className="flex gap-1 items-center justify-center text-xs">
                                 <Image
                                     src='/images/series.svg'
                                     alt='series'
                                     width={10}
                                     height={12}
                                 />
-                                $ 57,908
+                                ${startup.recent_raise}
                             </div>
                         </div>
                     </div>
