@@ -2,6 +2,7 @@ import { getStartup } from "@/lib/actions/investor";
 import { cn, getNextDueDate } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, Search, Settings2 } from "lucide-react";
 import Link from "next/link";
+import SearchStartupsBar from "./SearchStartupsBar";
 
 type Props = {
     contracts: {
@@ -177,11 +178,7 @@ export default async function InvestorsStartups({ contracts, searchParams }: Pro
 
     return (
         <div className='flex flex-1 flex-col gap-4'>
-            <div className="h-[40px] bg-white w-full flex items-center gap-4 px-2">
-                <Search size={28} stroke='#000' />
-                <input type="text" placeholder='Search for startups' className='bg-transparent text-xs w-full h-full outline-none border-none' />
-                <Settings2 size={28} stroke='#000' className='ml-auto' />
-            </div>
+            <SearchStartupsBar />
             <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
                 <div className='flex w-full items-center justify-between px-4 py-8 tableShadow'>
                     <p className='text-xs font-medium flex-1'>Name & Startup Details</p>
