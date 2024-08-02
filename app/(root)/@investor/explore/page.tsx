@@ -2,25 +2,33 @@ import SearchStartupsBar from "@/components/investors/SearchStartupsBar"
 import { getUser } from "@/lib/actions/auth"
 import { getExploreStartups } from "@/lib/actions/investor"
 import Image from "next/image"
+import Link from "next/link"
 
-export default async function ExplorePage()
+type Props = {
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function ExplorePage({ searchParams }: Props)
 {
     const user = await getUser()
 
     if(!user?.userInvestor?.accepted) return null
 
-    const exploreStartups = await getExploreStartups(user?.userInvestor?.id!)
+    const search = typeof searchParams.search === 'string' ? searchParams.search : undefined
+    const industry = typeof searchParams.industry === 'string' ? searchParams.industry : undefined
+    const stage = typeof searchParams.stage === 'string' ? searchParams.stage : undefined
 
-    const exploreStartUps = [...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups, ...exploreStartups]
+    const exploreStartups = await getExploreStartups(user?.userInvestor?.id!, { search, industry, stage })
+
 
     return (
         <section className='relative flex flex-col flex-1 items-center justify-start gap-6 h-screen max-h-screen px-4 overflow-auto'>
             <div className='bg-[#1A1A1A] pt-12 flex items-center justify-center w-full sticky top-0 pb-2'>
                 <SearchStartupsBar />
             </div>
-            <div className='flex flex-1 items-start justify-center gap-6 flex-wrap mb-auto'>
-                {exploreStartUps.map(({ startup }) => (
-                    <div key={startup.id} className="flex bg-white max-h-36 min-w-[35vw] flex-1 cursor-pointer">
+            <div className='flex flex-1 items-start justify-center gap-6 flex-wrap mb-auto w-full'>
+                {exploreStartups.map(({ startup }) => (
+                    <Link href={`/explore/${startup.id}`} key={startup.id} className="flex bg-white max-h-36 min-w-[35vw] flex-1 cursor-pointer">
                         <div className="flex items-center justify-center w-36 h-36 border-r border-2 border-[#00000050]">
                             <Image
                                 src='/images/placehodler.jpg'
@@ -68,7 +76,7 @@ export default async function ExplorePage()
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

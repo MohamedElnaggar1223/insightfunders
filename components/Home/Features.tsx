@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import FeaturesApply from "./FeaturesApply";
 
 export default function Features()
 {
@@ -48,28 +49,7 @@ export default function Features()
                     </p>
                 </div>
             </div>
-            <div className='flex flex-col gap-4 items-center justify-center px-2 lg:px-40'>
-                <div className="flex flex-col gap-6 bg-black rounded-[10px] p-8">
-                    <p className='font-normal text-[#FFD6B0] text-sm'>For Borrowers</p>
-                    <p className='font-medium text-white text-2xl'>Save months of time and millions of fees with Insight Funders</p>
-                    <p className='font-normal text-white text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div className='flex w-full items-center justify-end'>
-                        <Link href='/sign-up'>
-                            <button className='rounded-[2px] w-32 font-light text-black text-sm h-9 bg-[#FF7A00]'>Apply now</button>
-                        </Link>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-6 bg-black rounded-[10px] p-8">
-                <p className='font-normal text-[#FFD6B0] text-sm'>For Lenders</p>
-                    <p className='font-medium text-white text-2xl'>Unlock pre-qualified deal flow from the world’s top tech companies</p>
-                    <p className='font-normal text-white text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div className='flex w-full items-center justify-end'>
-                        <Link href='/sign-up'>
-                            <button className='rounded-[2px] w-32 font-light text-white text-sm h-9 bg-[#FF7A00]'>Apply now</button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <FeaturesApply />
             <div className="flex flex-col gap-32 items-center justify-center px-2 lg:px-40">
                 <p className='text-3xl'>Easily raise the right type of debt from the best banks and credit funds.</p>
                 <div className="flex gap-12 w-full items-start justify-center 2xl:justify-between flex-wrap">
@@ -115,13 +95,13 @@ export default function Features()
                                 </div>
                             </div>
                             <div className='rounded-[5px] change-background py-2 px-4 transition-all text-black text-base relative'>
-                                <p>Working Capital</p>
+                                <p>Venture Debt</p>
                                 <div className="flex absolute items-center opacity-0 animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                     <Check size={18} stroke='#fff' />
                                 </div>
                             </div>
                             <div className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative'>
-                                <p>Working Capital</p>
+                                <p>Warehouse Facility</p>
                                 <div className="flex absolute secondDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                     <Check size={18} stroke='#fff' />
                                 </div>

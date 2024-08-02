@@ -1,4 +1,4 @@
-import { pgTable, foreignKey, pgEnum, bigint, numeric, boolean, date, timestamp, index, uuid, text, unique } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, bigint, text, date, numeric, boolean, timestamp, index, uuid, unique } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 import { relations } from "drizzle-orm/relations";
 import { usersInAuth } from "@/db/auth";
@@ -24,6 +24,18 @@ export const action = pgEnum("action", ['INSERT', 'UPDATE', 'DELETE', 'TRUNCATE'
 export const equality_op = pgEnum("equality_op", ['eq', 'neq', 'lt', 'lte', 'gt', 'gte', 'in'])
 
 
+export const financial_rounds = pgTable("financial_rounds", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	investor: text("investor").notNull(),
+	round: company_stage("round"),
+	date: date("date"),
+	amount: numeric("amount"),
+	equity: numeric("equity"),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+});
+
 export const contracts = pgTable("contracts", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -38,6 +50,16 @@ export const contracts = pgTable("contracts", {
 	maturity_date: date("maturity_date"),
 	payment_interval: payment_interval("payment_interval"),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
+export const financial_details_requests = pgTable("financial_details_requests", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).notNull().references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	investor_id: bigint("investor_id", { mode: "number" }).references(() => investors.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	accepted: boolean("accepted").default(false),
 });
 
 export const users = pgTable("users", {
@@ -131,6 +153,24 @@ export const faqs = pgTable("faqs", {
 	tab: faqs_tabs("tab"),
 });
 
+export const financial_roundsRelations = relations(financial_rounds, ({one}) => ({
+	startup: one(startups, {
+		fields: [financial_rounds.startup_id],
+		references: [startups.id]
+	}),
+}));
+
+export const startupsRelations = relations(startups, ({one, many}) => ({
+	financial_rounds: many(financial_rounds),
+	contracts: many(contracts),
+	financial_details_requests: many(financial_details_requests),
+	user: one(users, {
+		fields: [startups.user_id],
+		references: [users.id]
+	}),
+	startups_owners: many(startups_owners),
+}));
+
 export const contractsRelations = relations(contracts, ({one}) => ({
 	investor: one(investors, {
 		fields: [contracts.investor_id],
@@ -144,19 +184,22 @@ export const contractsRelations = relations(contracts, ({one}) => ({
 
 export const investorsRelations = relations(investors, ({one, many}) => ({
 	contracts: many(contracts),
+	financial_details_requests: many(financial_details_requests),
 	user: one(users, {
 		fields: [investors.user_id],
 		references: [users.id]
 	}),
 }));
 
-export const startupsRelations = relations(startups, ({one, many}) => ({
-	contracts: many(contracts),
-	user: one(users, {
-		fields: [startups.user_id],
-		references: [users.id]
+export const financial_details_requestsRelations = relations(financial_details_requests, ({one}) => ({
+	investor: one(investors, {
+		fields: [financial_details_requests.investor_id],
+		references: [investors.id]
 	}),
-	startups_owners: many(startups_owners),
+	startup: one(startups, {
+		fields: [financial_details_requests.startup_id],
+		references: [startups.id]
+	}),
 }));
 
 export const usersRelations = relations(users, ({one, many}) => ({

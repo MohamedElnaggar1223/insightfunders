@@ -2,6 +2,6 @@
 
 import { revalidatePath } from "next/cache"
 
-export const updatePage = (url: string) => {
+export const updatePage = async (url: string) => {
     revalidatePath(url)
 }

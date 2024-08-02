@@ -128,6 +128,80 @@ export type Database = {
         }
         Relationships: []
       }
+      financial_details_requests: {
+        Row: {
+          accepted: boolean | null
+          id: number
+          investor_id: number | null
+          startup_id: number
+        }
+        Insert: {
+          accepted?: boolean | null
+          id?: number
+          investor_id?: number | null
+          startup_id: number
+        }
+        Update: {
+          accepted?: boolean | null
+          id?: number
+          investor_id?: number | null
+          startup_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_details_requests_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "financial_details_requests_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      financial_rounds: {
+        Row: {
+          amount: number | null
+          date: string | null
+          equity: number | null
+          id: number
+          investor: string
+          round: Database["public"]["Enums"]["company_stage"] | null
+          startup_id: number | null
+        }
+        Insert: {
+          amount?: number | null
+          date?: string | null
+          equity?: number | null
+          id?: number
+          investor: string
+          round?: Database["public"]["Enums"]["company_stage"] | null
+          startup_id?: number | null
+        }
+        Update: {
+          amount?: number | null
+          date?: string | null
+          equity?: number | null
+          id?: number
+          investor?: string
+          round?: Database["public"]["Enums"]["company_stage"] | null
+          startup_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_rounds_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       investors: {
         Row: {
           accepted: boolean

@@ -68,6 +68,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      width: {
+        'zero': '0px',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

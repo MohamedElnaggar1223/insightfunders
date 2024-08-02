@@ -1,5 +1,23 @@
 // import { relations } from "drizzle-orm/relations";
-// import { investors, contracts, startups, usersInAuth, users, bank_accounts, startups_owners } from "./schema";
+// import { startups, financial_rounds, investors, contracts, financial_details_requests, usersInAuth, users, bank_accounts, startups_owners } from "./schema";
+
+// export const financial_roundsRelations = relations(financial_rounds, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [financial_rounds.startup_id],
+// 		references: [startups.id]
+// 	}),
+// }));
+
+// export const startupsRelations = relations(startups, ({one, many}) => ({
+// 	financial_rounds: many(financial_rounds),
+// 	contracts: many(contracts),
+// 	financial_details_requests: many(financial_details_requests),
+// 	user: one(users, {
+// 		fields: [startups.user_id],
+// 		references: [users.id]
+// 	}),
+// 	startups_owners: many(startups_owners),
+// }));
 
 // export const contractsRelations = relations(contracts, ({one}) => ({
 // 	investor: one(investors, {
@@ -14,19 +32,22 @@
 
 // export const investorsRelations = relations(investors, ({one, many}) => ({
 // 	contracts: many(contracts),
+// 	financial_details_requests: many(financial_details_requests),
 // 	user: one(users, {
 // 		fields: [investors.user_id],
 // 		references: [users.id]
 // 	}),
 // }));
 
-// export const startupsRelations = relations(startups, ({one, many}) => ({
-// 	contracts: many(contracts),
-// 	user: one(users, {
-// 		fields: [startups.user_id],
-// 		references: [users.id]
+// export const financial_details_requestsRelations = relations(financial_details_requests, ({one}) => ({
+// 	investor: one(investors, {
+// 		fields: [financial_details_requests.investor_id],
+// 		references: [investors.id]
 // 	}),
-// 	startups_owners: many(startups_owners),
+// 	startup: one(startups, {
+// 		fields: [financial_details_requests.startup_id],
+// 		references: [startups.id]
+// 	}),
 // }));
 
 // export const usersRelations = relations(users, ({one, many}) => ({
