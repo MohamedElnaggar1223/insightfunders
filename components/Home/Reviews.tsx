@@ -4,7 +4,7 @@ export default function Reviews()
 {
     return (
         <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-52 gap-40'>
-            <div className='flex flex-col py-12 gap-8 px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
+            <div className='flex flex-col py-12 gap-8 px-4 lg:px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
                 <p className='text-white text-3xl'>100% free to receive terms</p>
                 <p className='text-[#FFFFFF80] text-xl'>
                 There is no cost to receive terms through Capital Markets. A nominal platform fee will only apply 
