@@ -13,13 +13,13 @@ export default function Hero()
                 </div>
                 <div className="flex flex-col items-center justify-center gap-8">
                     <div className="flex flex-col items-center justify-center gap-4">
-                        <h1 className='font-bold text-3xl text-black text-center'>Outsource your next debt raise with Insight Funders private credit markets</h1>
-                        <h3 className='font-light text-base text-center'>Leverage Insight Funders Capital Markets to secure a customized debt solution. Save months of time and hundreds of <br /> thousands in fees through one frictionless application and Insight Funders integrated lender network.</h3>
+                        <h1 className='font-bold max-lg:text-xl text-3xl text-black text-center'>Outsource your next debt raise with Insight Funders private credit markets</h1>
+                        <h3 className='font-light max-lg:text-xs text-base text-center'>Leverage Insight Funders Capital Markets to secure a customized debt solution. Save months of time and hundreds of <br /> thousands in fees through one frictionless application and Insight Funders integrated lender network.</h3>
                     </div>
                     <div className='flex w-full items-center justify-center'>
                         <Link href='/sign-up'>
                             <div className='flex gap-2'>
-                                <div className='text-[#FF7A00] font-medium flex items-center gap-1'>
+                                <div className='text-[#FF7A00] max-lg:text-xs font-medium flex items-center gap-1'>
                                     Apply Now{" "}<Play stroke="#FF7A00" fill="#FF7A00" size={14} />
                                 </div>
                             </div>
@@ -32,7 +32,7 @@ export default function Hero()
                 width={1090}
                 height={708}
                 alt='Borrowers Dashboard'
-                className='-mb-48 mx-auto shadow-xl'
+                className='-mb-48 mx-auto shadow-xl max-lg:max-w-[620px] max-md:max-w-[320px] max-md:-mb-32'
                 quality={100}
             />
         </section>

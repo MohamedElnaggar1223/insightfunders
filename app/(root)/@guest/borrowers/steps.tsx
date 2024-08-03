@@ -24,9 +24,9 @@ export default function Steps()
     return (
         <section className='flex flex-col pt-72 z-[5] pb-32 bg-[#1A1A1A] gap-32'>
             <p className='text-white font-bold leading-[2rem] !text-[1.75rem] text-center'>3 steps away to get funded</p>
-            <div className='flex gap-4 w-full items-center justify-between px-24 max-lg:flex-wrap'>
-                <div className={cn("flex flex-col items-center justify-between gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step1' ? 'bg-black scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white', steps[0] === 'step1' ? 'text-2xl' : 'text-xs')}>Step 1: Sync your data</p>
+            <div className='flex gap-4 w-full items-center justify-between max-md:flex-col px-4 md:px-24 max-lg:flex-wrap'>
+                <div className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step1' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
+                    <p className={cn('text-white text-center', steps[0] === 'step1' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 1: Sync your data</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
                             src='/images/plaidStep.png' 
@@ -34,7 +34,7 @@ export default function Steps()
                             height={151}
                             alt='Plaid Step'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-xs text-center", steps[0] === 'step1' ? 'opacity-100' : 'opacity-0')}>
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps[0] === 'step1' ? 'opacity-100' : 'opacity-0')}>
                             We integrate with your bank and accounting system so you 
                             can easily and securely connect your data.
                             <ul>
@@ -54,8 +54,8 @@ export default function Steps()
                         </div>
                     </div>
                 </div>
-                <div className={cn("flex flex-col items-center justify-between gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step2' ? 'bg-black scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white', steps[0] === 'step2' ? 'text-2xl' : 'text-xs')}>Step 2: Approve who you wish to share your data with</p>
+                <div className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step2' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
+                    <p className={cn('text-white text-center', steps[0] === 'step2' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 2: Approve who you wish to share your data with</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
                             src='/images/approveStep.png' 
@@ -63,7 +63,7 @@ export default function Steps()
                             height={89}
                             alt='Plaid Step'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-xs text-center", steps[0] === 'step2' ? 'opacity-100' : 'opacity-0')}>
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps[0] === 'step2' ? 'opacity-100' : 'opacity-0')}>
                             Once approved, you can easily manage what financial data you 
                             share with lenders through our intuitive platform. Track activity, and 
                             access detailed reports. This platform empowers businesses with:
@@ -80,8 +80,8 @@ export default function Steps()
                         </div>
                     </div>
                 </div>
-                <div className={cn("flex flex-col items-center justify-between gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step3' ? 'bg-black scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white', steps[0] === 'step3' ? 'text-2xl' : 'text-xs')}>Step 3: Access your capital</p>
+                <div className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps[0] === 'step3' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
+                    <p className={cn('text-white text-center', steps[0] === 'step3' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 3: Access your capital</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
                             src='/images/accessStep.png' 
@@ -89,7 +89,7 @@ export default function Steps()
                             height={51}
                             alt='Plaid Step'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-xs text-center", steps[0] === 'step3' ? 'opacity-100' : 'opacity-0')}>
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps[0] === 'step3' ? 'opacity-100' : 'opacity-0')}>
                             Once approved, you can immediately make draws in our 
                             intuitive platform, track activity and pull data for financial reporting. 
                             Draw additional funds as you need
