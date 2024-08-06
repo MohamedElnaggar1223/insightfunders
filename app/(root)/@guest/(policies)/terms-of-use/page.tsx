@@ -5,7 +5,7 @@ export default function TermsOfUse()
     return (
         <section className='flex flex-col flex-1 items-start text-left gap-8'>
             <div className='flex flex-col gap-4'>
-                <h1 className='text-3xl font-semibold'>Privacy Policy</h1>
+                <h1 className='text-3xl font-semibold'>Terms of Use</h1>
                 <p>Last Updated: July 24th, 2024</p>
             </div>
             <p className='text-sm'>

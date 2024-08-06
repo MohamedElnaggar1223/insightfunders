@@ -5,7 +5,7 @@ export default function ReferralAgreement()
     return (
         <section className='flex flex-col flex-1 items-start text-left gap-8'>
             <div className='flex flex-col gap-4'>
-                <h1 className='text-3xl font-semibold'>Privacy Policy</h1>
+                <h1 className='text-3xl font-semibold'>Referral Agreement</h1>
                 <p>Last Updated: 22 Jan 2024</p>
             </div>
             <p className='text-sm'>Earning rewards for making referrals or as a referee is governed by this Insight Funders Referral Agreement, which also lays out the requirements that must be met in order for you to be eligible for, earn, redeem, or receive monetary prizes (“Referral Credits”). "You" refers to the person with an Insight Funders login for an Insight Funders customer in good standing who is making a referral; or to a person who was sent an Insight Funders referral and is signing up for an Insight Funders account. Only if you agree to all of these referral terms may you take part in the Insight Funders Referral Program. By sending a Referral Link or by applying for an Insight Funders account using a Referral Link, you will be deemed to have accepted and be bound by this Referral Agreement.

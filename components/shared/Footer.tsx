@@ -12,12 +12,12 @@ export default function Footer()
                 </p>
             </div>
             <div className='flex flex-col gap-4'>
-                <div className='flex justify-between text-sm lg:text-base items-center bg-white text-black gap-2 lg:gap-4 font-semibold'>
+                <div className='flex justify-between text-sm lg:text-base items-center bg-white text-black gap-2 lg:gap-4 font-semibold max-lg:flex-col'>
                     <Link href='/' className='font-IntegralCF font-medium uppercase text-xs'>
                         Insight Funders
                     </Link>
 
-                    <div className='gap-12 font-light flex text-sm items-center max-lg:hidden'>
+                    <div className='gap-12 font-light flex text-xs max-lg:my-4 text-nowrap max-w-full lg:text-sm items-center flex-wrap'>
                         <Link href='/'>Contact Us</Link>
                         <Link href='#'>Career Page</Link>
                         <Link href='/faq'>FAQ</Link>
@@ -47,7 +47,7 @@ export default function Footer()
                         />
                     </div>
                 </div>
-                <div className='flex items-center justify-between pt-4 border-t border-[#98A2B3] flex-wrap'>
+                <div className='flex items-center justify-between pt-4 max-w-full overflow-auto border-t border-[#98A2B3] flex-wrap max-lg:pb-12 gap-6'>
                     <p className='text-black text-center text-[10px]'>© 2024 Insight Funders. All rights reserved.</p>
                     <Link href='/privacy-policy' className='text-black text-center text-[10px]'>Privacy Policy</Link>
                     <Link href='/referral-agreement' className='text-black text-center text-[10px]'>Referral Agreement</Link>

@@ -7,31 +7,31 @@ export default function Faq()
             <h1 className='text-3xl font-semibold'>Frequently Asked Questions</h1>
             <Accordion type="multiple" className="w-full">
                 <AccordionItem value="item-1" className='bg-black text-white py-0.5'>
-                    <AccordionTrigger className='font-medium text-xl px-10'>How much Venture Debt does my startup qualify for?</AccordionTrigger>
+                    <AccordionTrigger className='font-medium text-base lg:text-xl px-2 lg:px-10'>How much Venture Debt does my startup qualify for?</AccordionTrigger>
                     <AccordionContent className='flex flex-col text-black bg-[#D2D2D2] p-8 text-sm'>
                         {"Insight Funders Venture Debt term sheets range from $1 million for early stage startups to $100M for Growth stage companies. If you're a startup that has either raised venture capital and / or is revenue generating, we have a growth capital solution for you. Insight Funders pre-qualification questionnaire takes <1 minute to complete. Get started today."}
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2" className='bg-black text-white py-0.5'>
-                    <AccordionTrigger className='font-medium text-xl px-10'>What does Venture Debt cost?</AccordionTrigger>
+                    <AccordionTrigger className='font-medium text-base lg:text-xl px-2 lg:px-10'>What does Venture Debt cost?</AccordionTrigger>
                     <AccordionContent className='flex flex-col text-black bg-[#D2D2D2] p-8 text-sm'>
                         {"Insight Funders Venture Debt term sheets range from $1 million for early stage startups to $100M for Growth stage companies. If you're a startup that has either raised venture capital and / or is revenue generating, we have a growth capital solution for you. Insight Funders pre-qualification questionnaire takes <1 minute to complete. Get started today."}
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3" className='bg-black text-white py-0.5'>
-                    <AccordionTrigger className='font-medium text-xl px-10'>Do I need to be venture-backed to raise venture debt?</AccordionTrigger>
+                    <AccordionTrigger className='font-medium text-base lg:text-xl px-2 lg:px-10'>Do I need to be venture-backed to raise venture debt?</AccordionTrigger>
                     <AccordionContent className='flex flex-col text-black bg-[#D2D2D2] p-8 text-sm'>
                         {"Insight Funders Venture Debt term sheets range from $1 million for early stage startups to $100M for Growth stage companies. If you're a startup that has either raised venture capital and / or is revenue generating, we have a growth capital solution for you. Insight Funders pre-qualification questionnaire takes <1 minute to complete. Get started today."}
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4" className='bg-black text-white py-0.5'>
-                    <AccordionTrigger className='font-medium text-xl px-10'>What if I don’t qualify for Venture Debt?</AccordionTrigger>
+                    <AccordionTrigger className='font-medium text-base lg:text-xl px-2 lg:px-10'>What if I don’t qualify for Venture Debt?</AccordionTrigger>
                     <AccordionContent className='flex flex-col text-black bg-[#D2D2D2] p-8 text-sm'>
                         {"Insight Funders Venture Debt term sheets range from $1 million for early stage startups to $100M for Growth stage companies. If you're a startup that has either raised venture capital and / or is revenue generating, we have a growth capital solution for you. Insight Funders pre-qualification questionnaire takes <1 minute to complete. Get started today."}
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-5" className='bg-black text-white py-0.5'>
-                    <AccordionTrigger className='font-medium text-xl px-10'>What should I know about raising venture debt?</AccordionTrigger>
+                    <AccordionTrigger className='font-medium text-base lg:text-xl px-2 lg:px-10'>What should I know about raising venture debt?</AccordionTrigger>
                     <AccordionContent className='flex flex-col text-black bg-[#D2D2D2] p-8 text-sm'>
                         {"Insight Funders Venture Debt term sheets range from $1 million for early stage startups to $100M for Growth stage companies. If you're a startup that has either raised venture capital and / or is revenue generating, we have a growth capital solution for you. Insight Funders pre-qualification questionnaire takes <1 minute to complete. Get started today."}
                     </AccordionContent>
