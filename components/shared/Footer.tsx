@@ -18,10 +18,12 @@ export default function Footer()
                     </Link>
 
                     <div className='gap-12 font-light flex text-sm items-center max-lg:hidden'>
-                        <Link href='/'>Home</Link>
-                        <Link href='#'>Borrowers</Link>
-                        <Link href='#'>Lenders</Link>
-                        <Link href='/about-us'>About</Link>
+                        <Link href='/'>Contact Us</Link>
+                        <Link href='#'>Career Page</Link>
+                        <Link href='/faq'>FAQ</Link>
+                        <Link href='#'>Blog</Link>
+                        <Link href='#'>Referral Program</Link>
+                        <Link href='#'>Learning Center</Link>
                     </div>
 
                     <div className='flex gap-6'>
@@ -47,11 +49,10 @@ export default function Footer()
                 </div>
                 <div className='flex items-center justify-between pt-4 border-t border-[#98A2B3] flex-wrap'>
                     <p className='text-black text-center text-[10px]'>© 2024 Insight Funders. All rights reserved.</p>
-                    <p className='text-black text-center text-[10px]'>General Disclosures</p>
-                    <p className='text-black text-center text-[10px]'>Privacy Policy</p>
-                    <p className='text-black text-center text-[10px]'>Referral Agreement</p>
-                    <p className='text-black text-center text-[10px]'>Terms of Use</p>
-                    <p className='text-black text-center text-[10px]'>Cookies</p>
+                    <Link href='/privacy-policy' className='text-black text-center text-[10px]'>Privacy Policy</Link>
+                    <Link href='/referral-agreement' className='text-black text-center text-[10px]'>Referral Agreement</Link>
+                    <Link href='/terms-of-use' className='text-black text-center text-[10px]'>Terms of Use</Link>
+                    <Link href='#' className='text-black text-center text-[10px]'>Cookies</Link>
                 </div>
             </div>
         </footer>

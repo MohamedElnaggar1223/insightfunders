@@ -47,3 +47,27 @@ export function getNextDueDate(createdAt: Date, paymentInterval: 'week' | 'year'
 
   return nextDueDate;
 }
+
+function getOrdinalSuffix(day: number) {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1:  return "st";
+    case 2:  return "nd";
+    case 3:  return "rd";
+    default: return "th";
+  }
+}
+
+export function formatDate(date: Date) {
+  const formattedDate = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
+  // Add the ordinal suffix to the day
+  const day = date.getDate();
+  const suffix = getOrdinalSuffix(day);
+  
+  return formattedDate.replace(/\d+/, `${day}${suffix}`);
+}
