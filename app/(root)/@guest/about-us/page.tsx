@@ -135,9 +135,9 @@ export default function AboutUsPage()
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col px-4 md:px-12 gap-2 py-24 bg-[#1A1A1A]">
+            <div className="flex flex-col px-8 md:px-12 gap-2 py-24 bg-[#1A1A1A]">
                 <p className='text-white font-medium text-2xl text-center'>Meet our team</p>
-                <div className='flex space-x-4 flex-wrap items-center justify-center'>
+                <div className='flex gap-4 flex-wrap items-center justify-center'>
                     <div className='flex flex-col gap-2 mt-12'>
                         <Image
                             src='/images/woman1.png'
@@ -149,7 +149,7 @@ export default function AboutUsPage()
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
                                 <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-extralight'>Position</p>
+                                <p className='text-white text-lg font-light'>Position</p>
                             </div>
                             <Image
                                 src='/images/in.svg'
