@@ -17,10 +17,10 @@ const transporter = nodemailer.createTransport({
 export const sendMail = async (values: z.infer<typeof getInTouchSchema>) => {
     try {
         await transporter.sendMail({
-            from: values.email,
+            from: values.business_email,
             to: ['maelnaggar1223@gmail.com', 'yizou@insightfunders.com'],
             subject: 'Contact Us',
-            text: `First name: ${values.firstname}\nLast name: ${values.lastname}\nEmail: ${values.email}\nMobile: ${values.mobile}\nCountry code: ${values.countryCode}\nMessage: ${values.message}`
+            text: `First name: ${values.firstname}\nLast name: ${values.lastname}\nCompany Name: ${values.company_name}\nEmail: ${values.business_email}\nAnnual Recurring: ${values.annual_recurring}\nRunway: ${values.runway}\nDescription: ${values.description}`
         })
     }
     catch(e) {

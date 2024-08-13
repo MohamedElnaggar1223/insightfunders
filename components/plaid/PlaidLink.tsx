@@ -46,7 +46,7 @@ export default function PlaidLink({ user }: Props)
         <button 
             onClick={() => open()}
             disabled={!ready}
-            className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4 disabled:opacity-65'
+            className='w-full bg-[#FF7A00] text-white font-semibold rounded-[8px] py-2 px-4 disabled:opacity-65'
         >
             Connect Bank
         </button>

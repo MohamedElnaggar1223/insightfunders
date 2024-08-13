@@ -12,6 +12,7 @@ import { startups, users } from "@/migrations/schema"
 import { createDwollaCustomer } from "./dwolla"
 import { extractCustomerIdFromUrl } from "../utils"
 import { eq } from "drizzle-orm"
+import { format, parse } from "date-fns"
 
 export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeof startUpDetailsSchema>) => {
     const supabase = createClient()
@@ -188,6 +189,9 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
     if(!email) return { error: 'Email not found' }
     if(!address1 || !city || !dateOfBirth || !postalCode || !ssn || !state) return { error: 'Please fill out all fields' }
 
+    const parsedDate = parse(dateOfBirth, 'MM/dd/yyyy', new Date());
+    const formattedDate = format(parsedDate, 'yyyy-MM-dd');
+
     const dwollaCustomerUrl = await createDwollaCustomer({
         email,
         firstName,
@@ -196,7 +200,7 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
         city,
         state,
         postalCode,
-        dateOfBirth,
+        dateOfBirth: formattedDate,
         ssn,
         type: 'personal'
     })

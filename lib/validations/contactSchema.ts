@@ -8,14 +8,13 @@ export const getInTouchSchema = z.object({
     lastname: z.string().min(2, {
         message: 'Invalid job title'
     }),
-    email: z.string().email(),
-    mobile: z.string().min(6, {
-        message: 'Invalid mobile number'
-    }).refine(value => {
-        return /^\d+$/.test(value)
+    company_name: z.string().min(2, {
+        message: 'Invalid company name'
     }),
-    countryCode: z.enum(Object.keys(countryDialingCodes) as [string, ...string[]]),
-    message: z.string().min(10, {
+    business_email: z.string().email(),
+    annual_recurring: z.enum(['', '0-$120k', '$120k-$1M', '$1M-$5M', '$5M or more']).refine(data => !data ? false: true, { message: 'Please Select an option' }),
+    runway: z.enum(['', '0-6 months', '6-12 months', '12+ months', 'Profitable']).refine(data => !data ? false: true, { message: 'Please Select an option' }),
+    description: z.string().min(10, {
         message: 'Message must be at least 10 characters long'
     }),
 })

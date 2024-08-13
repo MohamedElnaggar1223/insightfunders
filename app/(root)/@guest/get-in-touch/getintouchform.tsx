@@ -22,17 +22,17 @@ import { cn } from "@/lib/utils"
 export default function GetInTouchForm()
 {
     const [pending, setPending] = useState(false)
-    const [checked, setChecked] = useState(false)
 
     const form = useForm<z.infer<typeof getInTouchSchema>>({
         resolver: zodResolver(getInTouchSchema),
         defaultValues: {
             firstname: "",
             lastname: "",
-            email: "",
-            mobile: "",
-            countryCode: "US",
-            message: "",
+            annual_recurring: '',
+            runway: '',
+            description: '',
+            company_name: '',
+            business_email: '',
         },
     })
 
@@ -45,19 +45,18 @@ export default function GetInTouchForm()
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw]">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className='flex gap-8 w-full items-center justify-between max-lg:flex-wrap'>
                     <FormField
                         control={form.control}
                         disabled={pending}
                         name="firstname"
                         render={({ field }) => (
-                            <FormItem className='flex flex-col gap-1 max-lg:flex-1'>
-                                <FormLabel>First name</FormLabel>
+                            <FormItem className='flex gap-1 flex-1 relative'>
                                 <FormControl>
-                                    <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="First name" {...field} />
+                                    <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="First name" {...field} />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
                             </FormItem>
                         )}
                     />
@@ -66,12 +65,75 @@ export default function GetInTouchForm()
                         disabled={pending}
                         name="lastname"
                         render={({ field }) => (
-                            <FormItem className='flex flex-col gap-1 max-lg:flex-1'>
-                                <FormLabel>Last name</FormLabel>
+                            <FormItem className='flex gap-1 flex-1 relative'>
                                 <FormControl>
-                                    <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="Last name" {...field} />
+                                    <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Last name" {...field} />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        disabled={pending}
+                        name="company_name"
+                        render={({ field }) => (
+                            <FormItem className='flex gap-1 flex-1 relative'>
+                                <FormControl>
+                                    <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Company Name" {...field} />
+                                </FormControl>
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <div className='flex gap-8 w-full items-center justify-between max-lg:flex-wrap'>
+                    <FormField
+                        control={form.control}
+                        disabled={pending}
+                        name="business_email"
+                        render={({ field }) => (
+                            <FormItem className='flex gap-1 flex-1 relative'>
+                                <FormControl>
+                                    <input type='email' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Business Email" {...field} />
+                                </FormControl>
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        disabled={pending}
+                        name="annual_recurring"
+                        render={({ field }) => (
+                            <FormItem className='flex gap-1 flex-1 relative'>
+                                <FormControl>
+                                    <select defaultValue='' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
+                                        <option value='' disabled>Annual Recurring</option>
+                                        {['0-$120k', '$120k-$1M', '$1M-$5M', '$5M or more'].map((item, index) => (
+                                            <option key={index} value={item}>{item}</option>
+                                        ))}
+                                    </select>
+                                </FormControl>
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        disabled={pending}
+                        name="runway"
+                        render={({ field }) => (
+                            <FormItem className='flex gap-1 flex-1 relative'>
+                                <FormControl>
+                                    <select defaultValue='' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
+                                        <option value='' disabled>Runway</option>
+                                        {['0-6 months', '6-12 months', '12+ months', 'Profitable'].map((item, index) => (
+                                            <option key={index} value={item}>{item}</option>
+                                        ))}
+                                    </select>
+                                </FormControl>
+                                <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
                             </FormItem>
                         )}
                     />
@@ -79,71 +141,17 @@ export default function GetInTouchForm()
                 <FormField
                     control={form.control}
                     disabled={pending}
-                    name="email"
+                    name="description"
                     render={({ field }) => (
-                        <FormItem className='flex flex-col gap-1 flex-1'>
-                            <FormLabel>Email</FormLabel>
+                        <FormItem className='flex gap-1 flex-1 relative'>
                             <FormControl>
-                                <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="you@company.com" {...field} />
+                                <Textarea rows={5} className='flex flex-1 px-12 placeholder:font-light placeholder:text-[#999] py-5 bg-white rounded-[2px] outline-none' placeholder="Description" {...field} />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className='absolute text-red-700 font-semibold -bottom-6' />
                         </FormItem>
                     )}
                 />
-                <FormItem>
-                    <FormLabel>Phone number</FormLabel>
-                    <div className='flex flex-1 overflow-hidden'>
-                        <FormField
-                            control={form.control}
-                            disabled={pending}
-                            name="countryCode"
-                            render={({ field }) => (
-                                <FormItem className='flex'>
-                                    <FormControl>
-                                        <select className='flex border-y border-l border-[#D0D5DD] rounded-tl-[8px] rounded-bl-[8px] px-4 py-2 outline-none' defaultValue='US' {...field}>
-                                            {Object.entries(countryDialingCodes).map(([code, country]) => (
-                                                <option key={code} value={code}>{code} {country}</option>
-                                            ))}
-                                        </select>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            disabled={pending}
-                            name="mobile"
-                            render={({ field }) => (
-                                <FormItem className='flex flex-col gap-1 flex-1'>
-                                    <FormControl>
-                                        <input className='flex border-y border-r border-[#D0D5DD] rounded-tr-[8px] rounded-br-[8px] flex-1 px-4 py-2 outline-none' placeholder="(555) 000 0000" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                </FormItem>
-                <FormField
-                    control={form.control}
-                    disabled={pending}
-                    name="message"
-                    render={({ field }) => (
-                        <FormItem className='flex flex-col gap-1 flex-1'>
-                            <FormLabel>Message</FormLabel>
-                            <FormControl>
-                                <Textarea rows={6} className='flex flex-1 border bg-white border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none placeholder:text-[#9CA3AF] text-base' placeholder="Leave us a message..." {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className='flex items-center justify-start gap-2'>
-                    <input checked={checked} onChange={() => setChecked(prev => !prev)} type="checkbox" className='rounded-[2px]' />
-                    <p className='text-main-gray text-sm'>You agree to our friendly <Link href='/' className='underline'>privacy policy</Link>.</p>
-                </div>
-                <button disabled={pending || !checked} className={cn('w-full bg-main-purple text-white font-semibold rounded-full py-3 px-4', (pending || !checked) && 'text-gray-500')} type="submit">Send message</button>
+                <button disabled={pending} className={cn('w-full !mt-12 max-w-[241px] bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4', (pending) && 'opacity-65')} type="submit">Submit</button>
             </form>
         </Form>
     )

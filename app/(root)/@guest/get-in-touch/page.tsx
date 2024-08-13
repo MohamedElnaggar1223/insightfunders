@@ -4,25 +4,33 @@ import GetInTouchForm from "./getintouchform";
 export default function GetInTouch()
 {
     return (
-        <section className='flex flex-col'>
-            <div className='bg-strong-gray w-full p-16 lg:p-24 flex flex-col items-start justify-center gap-4'>
-                <h1 className='text-[#EAECF0] font-semibold'>Contact Us</h1>
-                <h2 className='text-[#EAECF0] font-semibold text-3xl lg:text-5xl'>Get in touch</h2>
-            </div>
-            <div className='p-4 lg:p-16 flex items-center justify-between gap-12 max-lg:flex-col'>
-                <div className='flex flex-col items-center justify-start gap-12 flex-1 p-4 lg:p-12 max-lg:max-w-[90vw]'>
-                    <p className='text-main-gray text-xl'>Reach out to us directly for any inquiries or support. Our customer service team is here to assist you every step of the way.</p>
-                    <GetInTouchForm />
+        <section className='flex flex-col items-center justify-stretch p-12'>
+            <div className="flex flex-col gap-16 text-center bg-[#1A1A1A] p-12 w-screen max-w-[1400px] rounded-[12px]">
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-2xl font-medium text-white">Get In Touch</h1>
+                    <div className='flex gap-6 mx-auto'>
+                        <Image
+                            src='/images/in.svg'
+                            alt='linkedin'
+                            width={15}
+                            height={15} 
+                        />
+                        <Image
+                            src='/images/instagramWhite.svg'
+                            alt='instagram'
+                            width={15}
+                            height={15} 
+                        />
+                        <Image
+                            src='/images/xWhite.svg'
+                            alt='x'
+                            width={15}
+                            height={15} 
+                        />
+                    </div>
+                    <p className="text-white text-xs font-light max-w-[500px] mx-auto">Raising startup capital is not easy. Don’t waste time and energy raising capital when you could be building your business. Get the friendly financing alternative you deserve</p>
                 </div>
-                <div className='flex flex-1'>
-                    <Image
-                        src='/images/getInTouch.png'
-                        alt='ContactUs'
-                        width={800}
-                        height={800}
-                        className='w-full object-contain' 
-                    />
-                </div>
+                <GetInTouchForm />
             </div>
         </section>
     )

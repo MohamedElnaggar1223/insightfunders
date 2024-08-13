@@ -69,9 +69,9 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                     name="stage"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Stage</FormLabel>
+                            <FormLabel className='text-white'>Stage</FormLabel>
                             <FormControl>
-                                <select className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' {...field}>
+                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
                                     {['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public'].map(option => (
                                         <option key={option} value={option}>{option}</option>
                                     ))}
@@ -87,15 +87,15 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                     name="recentRaise"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Recent Raise (in USD)</FormLabel>
+                            <FormLabel className='text-white'>Recent Raise (in USD)</FormLabel>
                             <FormControl>
-                                <input type='text' className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="e.g. 15000" {...field} onChange={(e) => (/^\d+$/.test(e.target.value) || e.target.value === '') && form.setValue('recentRaise', e.target.value === '' ? 0 : parseFloat(e.target.value))} />
+                                <input type='text' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="e.g. 15000" {...field} onChange={(e) => (/^\d+$/.test(e.target.value) || e.target.value === '') && form.setValue('recentRaise', e.target.value === '' ? 0 : parseFloat(e.target.value))} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
                     )}
                 />
-                <button disabled={isPending} className='w-full bg-main-purple disabled:opacity-70 text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
                 {error && (
                     <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6'>
                         <X size={24} className='text-[#F86C6C]' />

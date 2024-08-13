@@ -16,8 +16,9 @@ import { useState } from "react"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { ArrowLeft, Eye, EyeOff } from "lucide-react"
+import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
+import Link from "next/link"
 
 export default function SignIn()
 {
@@ -49,55 +50,43 @@ export default function SignIn()
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col pb-8">
                 {rolePage ? (
                     <>
+                        <p className='font-light text-white text-center'>Select an option from below</p>
                         <FormField
                             control={form.control}
                             disabled={isPending}
                             name="role"
                             render={({ field }) => (
                                 <FormItem className="space-y-3">
-                                    <FormLabel>Select an option from below</FormLabel>
                                     <FormControl>
                                         <RadioGroup
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
                                             className="flex flex-col space-y-1"
                                         >
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-xl", form.getValues().role === 'startup' ? 'border-main-purple' : 'border-[#EAECF0]')}>
+                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[4px]", form.getValues().role === 'startup' ? 'bg-[#FFD6B0]' : 'bg-white')}>
                                                 <FormLabel className="font-normal">
-                                                    <div className='flex gap-4 items-start justify-between cursor-pointer'>
-                                                        <Image
-                                                            src='/images/startup.svg'
-                                                            alt='Startup'
-                                                            width={48}
-                                                            height={48} 
-                                                        />
-                                                        <div className='flex flex-col gap-2'>
-                                                            <p className='text-[#344054] font-medium'>Startup</p>
-                                                            <p className='text-main-gray leading-5'>I am a startup, looking for investors.</p>
+                                                    <div className='flex gap-4 pl-8 items-start justify-between cursor-pointer'>
+                                                        <div className='flex flex-col gap-3'>
+                                                            <p className='text-black font-semibold'>Borrower</p>
+                                                            <p className='text-black leading-5'>I am a borrower, looking for funding.</p>
                                                         </div>
                                                     </div>
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <RadioGroupItem defaultChecked={true} value="startup" className={cn("mt-0imp", form.getValues().role === 'startup' ? 'bg-main-purple' : 'bg-white')} />
+                                                    <RadioGroupItem defaultChecked={true} value="startup" className={cn("mt-0imp opacity-0", form.getValues().role === 'startup' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-xl", form.getValues().role === 'investor' ? 'border-main-purple' : 'border-[#EAECF0]')}>
+                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[4px]", form.getValues().role === 'investor' ? 'bg-[#FFD6B0]' : 'bg-white')}>
                                                 <FormLabel className="font-normal">
-                                                <div className='flex gap-4 items-start justify-between cursor-pointer'>
-                                                        <Image
-                                                            src='/images/investor.svg'
-                                                            alt='Investor'
-                                                            width={48}
-                                                            height={48} 
-                                                        />
-                                                        <div className='flex flex-col gap-2'>
-                                                            <p className='text-[#344054] font-medium'>Investor</p>
-                                                            <p className='text-main-gray leading-5'>I am an investor, looking for startups.</p>
+                                                    <div className='flex gap-4 pl-8 items-start justify-between cursor-pointer'>
+                                                        <div className='flex flex-col gap-3'>
+                                                            <p className='text-black font-semibold'>Lender</p>
+                                                            <p className='text-black leading-5'>I am a lender, looking for deals.</p>
                                                         </div>
                                                     </div>
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <RadioGroupItem value="investor" className={cn("mt-0imp", form.getValues().role === 'investor' ? 'bg-main-purple' : 'bg-white')} />
+                                                    <RadioGroupItem value="investor" className={cn("mt-0imp opacity-0", form.getValues().role === 'investor' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
                                         </RadioGroup>
@@ -106,7 +95,8 @@ export default function SignIn()
                                 </FormItem>
                             )}
                             />
-                            <button className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="button" onClick={() => setRolePage(false)}>Continue</button>
+                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4'>Continue</button>
+                            <p className='text-white font-medium text-sm font-Montserrat mx-auto'>Already have an account? <Link href='/sign-in' className='text-[#FFD6B0] font-bold'>Sign in</Link></p>
                     </>
                 ) : (
                     <>
@@ -173,9 +163,8 @@ export default function SignIn()
                             name="firstName"
                             render={({ field }) => (
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>First name</FormLabel>
                                     <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="First name" {...field} />
+                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="First name" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -187,9 +176,8 @@ export default function SignIn()
                             name="lastName"
                             render={({ field }) => (
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Last name</FormLabel>
                                     <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="Last name" {...field} />
+                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Last name" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -201,9 +189,8 @@ export default function SignIn()
                             name="email"
                             render={({ field }) => (
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="you@company.com" {...field} />
+                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="you@company.com" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -256,13 +243,12 @@ export default function SignIn()
                             name="password"
                             render={({ field }) => (
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                    <FormLabel>Password</FormLabel>
                                     <FormControl>
                                         <div className='relative'>
-                                            <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none w-full' placeholder="Password" {...field} />
+                                            <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none w-full' placeholder="Password" {...field} />
                                             {passwordVisible ? (
                                                 <Eye
-                                                    className={cn('absolute top-[32%] z-50 cursor-pointer left-[92%]')} 
+                                                    className={cn('absolute top-[36%] z-50 cursor-pointer left-[92%]')} 
                                                     onClick={(e) => {
                                                         e.stopPropagation()
                                                         setPasswordVisible(prev => !prev)
@@ -271,7 +257,7 @@ export default function SignIn()
                                                 />
                                             ) : (
                                                 <EyeOff
-                                                    className={cn('absolute top-[32%] z-50 cursor-pointer left-[92%]')} 
+                                                    className={cn('absolute top-[36%] z-50 cursor-pointer left-[92%]')} 
                                                     onClick={(e) => {
                                                         e.stopPropagation()
                                                         setPasswordVisible(prev => !prev)
@@ -285,8 +271,8 @@ export default function SignIn()
                                 </FormItem>
                             )}
                         />
-                        <button disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? 'Signing up...' : 'Sign up'}</button>
-                        <p onClick={() => {if(!isPending) setRolePage(true)}} className='text-main-purple text-sm flex items-center justify-start gap-1 cursor-pointer'><ArrowLeft size={16} /> <span className='font-semibold'>Back</span></p>
+                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
+                        <p onClick={() => {if(!isPending) setRolePage(true)}} className='text-white text-sm flex items-center justify-start gap-1 cursor-pointer'><ArrowLeft size={16} /> <span className='font-semibold'>Back</span></p>
                     </>
                 )}
             </form>

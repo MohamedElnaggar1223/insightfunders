@@ -18,7 +18,7 @@ export default function Footer()
                     </Link>
 
                     <div className='gap-12 font-light flex text-xs max-lg:my-4 text-nowrap max-w-full lg:text-sm items-center flex-wrap'>
-                        <Link href='/'>Contact Us</Link>
+                        <Link href='/get-in-touch'>Contact Us</Link>
                         <Link href='#'>Career Page</Link>
                         <Link href='/faq'>FAQ</Link>
                         <Link href='#'>Blog</Link>
@@ -28,7 +28,7 @@ export default function Footer()
 
                     <div className='flex gap-6'>
                         <Image
-                            src='/images/linkedin.svg'
+                            src='/images/in.svg'
                             alt='linkedin'
                             width={15}
                             height={15} 

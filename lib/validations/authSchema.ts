@@ -33,9 +33,9 @@ export const personalDetailsSchema = z.object({
     state: z.string().min(2).max(2),
     postalCode: z.string().min(3).max(5),
     dateOfBirth: z.string().min(10).refine((value) => {
-        const regex = /^\d{4}-\d{2}-\d{2}$/;
+        const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d{2}$/;
         return regex.test(value);
-    }, { message: 'Date must be in the format YYYY-MM-DD' })
+    }, { message: 'Date must be in the format MM/DD/YYYY' })
     .refine((value) => {
         const eighteenYearsAgo = new Date();
         eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
