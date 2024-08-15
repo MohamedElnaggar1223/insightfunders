@@ -191,7 +191,7 @@ export default function PersonalDetails()
                         </FormItem>
                     )}
                 />
-                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
             </form>
         </Form>
     )

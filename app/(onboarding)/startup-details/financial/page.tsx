@@ -21,7 +21,6 @@ export default async function StartUpFinancialDetails()
             return redirect('/startup-details')
         }
         else if(user.userStartUp.stage && user.userStartUp.recent_raise) {
-            console.log(user.userStartUp)
             if(!user.userStartUp.submitted) return redirect('/startup-details/submit')
             return redirect('/')
         }

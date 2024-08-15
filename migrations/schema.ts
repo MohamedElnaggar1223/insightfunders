@@ -6,7 +6,7 @@ import { usersInAuth } from "@/db/auth";
 export const aal_level = pgEnum("aal_level", ['aal1', 'aal2', 'aal3'])
 export const code_challenge_method = pgEnum("code_challenge_method", ['s256', 'plain'])
 export const factor_status = pgEnum("factor_status", ['unverified', 'verified'])
-export const factor_type = pgEnum("factor_type", ['totp', 'webauthn'])
+export const factor_type = pgEnum("factor_type", ['totp', 'webauthn', 'phone'])
 export const one_time_token_type = pgEnum("one_time_token_type", ['confirmation_token', 'reauthentication_token', 'recovery_token', 'email_change_token_new', 'email_change_token_current', 'phone_change_token'])
 export const key_status = pgEnum("key_status", ['default', 'valid', 'invalid', 'expired'])
 export const key_type = pgEnum("key_type", ['aead-ietf', 'aead-det', 'hmacsha512', 'hmacsha256', 'auth', 'shorthash', 'generichash', 'kdf', 'secretbox', 'secretstream', 'stream_xchacha20'])
@@ -17,7 +17,9 @@ export const geographies_served = pgEnum("geographies_served", ['United States',
 export const industry_and_sector = pgEnum("industry_and_sector", ['Technology', 'Healthcare', 'Financial Services', 'Consumer Goods', 'Industrial Goods', 'Energy', 'Real Estate', 'Retail', 'Media and Entertainment', 'Transportation', 'Telecommunications', 'Agriculture', 'Education', 'Hospitality and Leisure', 'Utilities', 'Other'])
 export const max_facility_size = pgEnum("max_facility_size", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-250M', '$250M+'])
 export const minimum_revenue_requirement = pgEnum("minimum_revenue_requirement", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-100M', '$100M+'])
+export const notification_type = pgEnum("notification_type", ['Contract', 'Request', 'Payment'])
 export const payment_interval = pgEnum("payment_interval", ['week', 'month', 'quarter', 'year'])
+export const payment_status = pgEnum("payment_status", ['Paid', 'Due', 'Pending'])
 export const products_offered = pgEnum("products_offered", ['Venture Debt', 'Asset-Based Lending', 'Warehouse Lending', 'Invoice and Contract Factoring', 'Revenue-Based Financing', 'Equipment Leasing', 'M&A', 'Recapitalizations and Refinancing', 'Buyouts', 'Bridge Loans', 'Other'])
 export const user_role = pgEnum("user_role", ['startup', 'investor'])
 export const action = pgEnum("action", ['INSERT', 'UPDATE', 'DELETE', 'TRUNCATE', 'ERROR'])
@@ -105,6 +107,16 @@ export const startups = pgTable("startups", {
 	}
 });
 
+export const notifications = pgTable("notifications", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	user_id: uuid("user_id").references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	type: notification_type("type"),
+	content: text("content"),
+	is_read: boolean("is_read"),
+});
+
 export const bank_accounts = pgTable("bank_accounts", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -145,6 +157,17 @@ export const startups_owners = pgTable("startups_owners", {
 	share: numeric("share"),
 });
 
+export const payments = pgTable("payments", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	due_date: timestamp("due_date", { withTimezone: true, mode: 'string' }),
+	status: payment_status("status"),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	contract_id: bigint("contract_id", { mode: "number" }).references(() => contracts.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	amount: numeric("amount"),
+});
+
 export const faqs = pgTable("faqs", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -171,7 +194,7 @@ export const startupsRelations = relations(startups, ({one, many}) => ({
 	startups_owners: many(startups_owners),
 }));
 
-export const contractsRelations = relations(contracts, ({one}) => ({
+export const contractsRelations = relations(contracts, ({one, many}) => ({
 	investor: one(investors, {
 		fields: [contracts.investor_id],
 		references: [investors.id]
@@ -180,6 +203,7 @@ export const contractsRelations = relations(contracts, ({one}) => ({
 		fields: [contracts.startup_id],
 		references: [startups.id]
 	}),
+	payments: many(payments),
 }));
 
 export const investorsRelations = relations(investors, ({one, many}) => ({
@@ -208,12 +232,20 @@ export const usersRelations = relations(users, ({one, many}) => ({
 		references: [usersInAuth.id]
 	}),
 	startups: many(startups),
+	notifications: many(notifications),
 	bank_accounts: many(bank_accounts),
 	investors: many(investors),
 }));
 
 export const usersInAuthRelations = relations(usersInAuth, ({many}) => ({
 	users: many(users),
+}));
+
+export const notificationsRelations = relations(notifications, ({one}) => ({
+	user: one(users, {
+		fields: [notifications.user_id],
+		references: [users.id]
+	}),
 }));
 
 export const bank_accountsRelations = relations(bank_accounts, ({one}) => ({
@@ -227,5 +259,12 @@ export const startups_ownersRelations = relations(startups_owners, ({one}) => ({
 	startup: one(startups, {
 		fields: [startups_owners.startup_id],
 		references: [startups.id]
+	}),
+}));
+
+export const paymentsRelations = relations(payments, ({one}) => ({
+	contract: one(contracts, {
+		fields: [payments.contract_id],
+		references: [contracts.id]
 	}),
 }));

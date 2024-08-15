@@ -1,5 +1,6 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutUsPage() 
 {
@@ -39,7 +40,7 @@ export default function AboutUsPage()
                         </p>
                     </div>
                 </div>
-                <button className="bg-[#FF7A00] text-white px-4 max-w-[241px] w-full py-4 rounded-lg mx-auto">Contact Us</button>
+                <Link href='/get-in-touch' className="bg-[#FF7A00] text-white px-4 max-w-[241px] w-full py-4 text-center rounded-lg mx-auto">Contact Us</Link>
             </div>
             <div className="flex flex-col gap-12 px-8 text-center py-32 items-center justify-center">
                 <div className="flex flex-col gap-6 items-center justify-center">

@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Suspense } from "react"
 import FinancialRounds from "./financialrounds"
 import RequestMoreFinancialDetailsContainer from "./requestmorefinancialdetails"
+import ContractContainer from "./contractcontainer"
 
 type Props = {
     params: {
@@ -121,10 +122,12 @@ export default async function SingleStartUpPage({ params }: Props)
                         </Suspense>
                     </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="request" className='bg-white px-12 py-1'>
-                    <AccordionTrigger className='font-bold'>Contract</AccordionTrigger>
-                    <AccordionContent>
-                        Yes. It adheres to the WAI-ARIA design pattern.
+                <AccordionItem value="request" className='bg-white'>
+                    <AccordionTrigger className='font-bold px-12'>Contract</AccordionTrigger>
+                    <AccordionContent className='flex flex-col bg-[#313131] px-24 py-12'>
+                        <Suspense fallback={<Loader2 className='w-6 h-6 animate-spin' />}>
+                            <ContractContainer startupId={startup.id} />
+                        </Suspense>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

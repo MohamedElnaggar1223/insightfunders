@@ -95,9 +95,9 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                         </FormItem>
                     )}
                 />
-                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
                 {error && (
-                    <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6'>
+                    <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-4 py-6'>
                         <X size={24} className='text-[#F86C6C]' />
                         <p className='text-black font-semibold'>{error}</p>
                     </div>

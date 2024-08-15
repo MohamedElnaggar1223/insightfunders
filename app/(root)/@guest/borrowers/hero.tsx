@@ -1,3 +1,4 @@
+import AnimatedDashboard from "@/components/shared/AnimatedDasboard";
 import { Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +6,7 @@ import Link from "next/link";
 export default function Hero()
 {
     return (
-        <section className='flex flex-col gap-12 pt-20 z-10'>
+        <section className='flex flex-col gap-12 pt-20 z-10 min-h-screen'>
             <div className="flex flex-col items-center justify-between gap-12">
                 <div className="flex gap-2 items-center justify-center">
                     <div className='rounded-full w-2 h-2 bg-[#FF7A0080]' />
@@ -27,14 +28,7 @@ export default function Hero()
                     </div>
                 </div>
             </div>
-            <Image
-                src='/images/borrowersDashboard.png'
-                width={1090}
-                height={708}
-                alt='Borrowers Dashboard'
-                className='-mb-48 mx-auto shadow-xl max-lg:max-w-[620px] max-md:max-w-[320px] max-md:-mb-32'
-                quality={100}
-            />
+            <AnimatedDashboard />
         </section>
     )
 }

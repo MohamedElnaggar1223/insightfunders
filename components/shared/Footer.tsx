@@ -27,12 +27,14 @@ export default function Footer()
                     </div>
 
                     <div className='flex gap-6'>
-                        <Image
-                            src='/images/in.svg'
-                            alt='linkedin'
-                            width={15}
-                            height={15} 
-                        />
+                        <Link href='https://www.linkedin.com/in/yizou-zoe/' target="_blank">
+                            <Image
+                                src='/images/in.svg'
+                                alt='linkedin'
+                                width={15}
+                                height={15} 
+                            />
+                        </Link>
                         <Image
                             src='/images/instagram.svg'
                             alt='instagram'

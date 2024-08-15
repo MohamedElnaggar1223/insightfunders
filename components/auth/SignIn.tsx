@@ -89,7 +89,7 @@ export default function SignIn()
                     )}
                 />
                 <Link href='/forgot-password' className='text-white font-light !mt-8 text-sm ml-auto'>Forgot password?</Link>
-                <button disabled={loading} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{loading ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign in'}</button>
+                <button disabled={loading} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{loading ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign in'}</button>
             </form>
             <p className='text-white font-medium text-sm font-Montserrat mx-auto'>Don't have an account? <Link href='/sign-up' className='text-[#FFD6B0] font-bold'>Sign up</Link></p>
         </Form>

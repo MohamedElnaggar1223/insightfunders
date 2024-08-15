@@ -102,7 +102,7 @@ export default function Features()
                         <div className='flex'>
                             <div className='flex -mr-4'>
                                 <Image
-                                    src="/images/phoenix.jpg"
+                                    src="/images/phoenix.png"
                                     alt="phoenix"
                                     width={250}
                                     height={180}
@@ -120,7 +120,7 @@ export default function Features()
                             </div>
                             <div className='flex -ml-4'>
                                 <Image
-                                    src="/images/lana.jpg"
+                                    src="/images/lana.png"
                                     alt="lana"
                                     width={250}
                                     height={180}

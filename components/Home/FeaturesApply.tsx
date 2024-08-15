@@ -10,7 +10,7 @@ export default function FeaturesApply()
 
     return (
         <div className='flex gap-4 items-center justify-center max-md:px-4 px-20 lg:px-40 max-xl:flex-wrap max-xl:gap-12'>
-            <div onMouseEnter={() => setHovered('Borrowers')} onMouseLeave={() => setHovered('')} className={cn("flex flex-col gap-6 items-center justify-center transition-all duration-200", hovered === 'Borrowers' && 'max-lg:scale-110 scale-125', hovered === 'Lenders' && 'scale-75')}>
+            <div onMouseEnter={() => setHovered('Borrowers')} onMouseLeave={() => setTimeout(() => setHovered(''), 1000)} className={cn("flex flex-col gap-6 items-center justify-center lg:w-1/2 transition-all max-h-[336px] min-h-[336px] h-[336px]", hovered === 'Borrowers' && 'lg:animate-fullWidth', hovered === 'Lenders' && 'lg:animate-shrinkToZero')}>
                 <div className="flex gap-2 items-center justify-center">
                     <div className='rounded-full w-3 h-3 bg-[#FF7A0080]' />
                     <p className='font-bold text-[#FF7A00] text-base'>For Borrowers</p>
@@ -29,7 +29,7 @@ export default function FeaturesApply()
                     </div>
                 </div>
             </div>
-            <div onMouseEnter={() => setHovered('Lenders')} onMouseLeave={() => setHovered('')} className={cn("flex flex-col gap-6 items-center justify-center transition-all duration-200", hovered === 'Lenders' && 'max-lg:scale-110 scale-125', hovered === 'Borrowers' && 'scale-75')}>
+            <div onMouseEnter={() => setHovered('Lenders')} onMouseLeave={() => setTimeout(() => setHovered(''), 1000)} className={cn("flex flex-col gap-6 items-center justify-center lg:w-1/2 transition-all max-h-[336px] min-h-[336px] h-[336px]", hovered === 'Lenders' && 'lg:animate-fullWidth', hovered === 'Borrowers' && 'lg:animate-shrinkToZero')}>
                 <div className="flex gap-2 items-center justify-center">
                     <div className='rounded-full w-3 h-3 bg-[#FF7A0080]' />
                     <p className='font-bold text-[#FF7A00] text-base'>For Lenders</p>

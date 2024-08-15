@@ -154,6 +154,18 @@ const config = {
           '100%': {
             opacity: '0',
           }
+        },
+        'expandToFullWidth': {
+          'from': {
+            width: '50%',
+          },
+          'to': {
+            width: '100%',
+          }
+        },
+        "shrinkToZero": {
+          'from': { opacity: '0' },
+          'to': { width: '0%', opacity: '0', display: 'none' }
         }
       },
       animation: {
@@ -165,6 +177,8 @@ const config = {
         "match": "match 5s ease-out infinite",
         "change-background": "change-background 8s ease-out infinite",
         "small-check": "small-check 8s ease-out infinite",
+        "expandToFullWidth": "expandToFullWidth 0.5s forwards",
+        "shrinkToZero": "shrinkToZero 0.5s forwards",
       },
     },
   },

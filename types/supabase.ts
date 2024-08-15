@@ -276,6 +276,76 @@ export type Database = {
           },
         ]
       }
+      notifications: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: number
+          is_read: boolean | null
+          type: Database["public"]["Enums"]["notification_type"] | null
+          user_id: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: number
+          is_read?: boolean | null
+          type?: Database["public"]["Enums"]["notification_type"] | null
+          user_id?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: number
+          is_read?: boolean | null
+          type?: Database["public"]["Enums"]["notification_type"] | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount: number | null
+          contract_id: number | null
+          created_at: string
+          due_date: string | null
+          id: number
+          status: Database["public"]["Enums"]["payment_status"] | null
+        }
+        Insert: {
+          amount?: number | null
+          contract_id?: number | null
+          created_at?: string
+          due_date?: string | null
+          id?: number
+          status?: Database["public"]["Enums"]["payment_status"] | null
+        }
+        Update: {
+          amount?: number | null
+          contract_id?: number | null
+          created_at?: string
+          due_date?: string | null
+          id?: number
+          status?: Database["public"]["Enums"]["payment_status"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       startups: {
         Row: {
           accepted: boolean
@@ -476,7 +546,9 @@ export type Database = {
         | "$10-50M"
         | "$50-100M"
         | "$100M+"
+      notification_type: "Contract" | "Request" | "Payment"
       payment_interval: "week" | "month" | "quarter" | "year"
+      payment_status: "Paid" | "Due" | "Pending"
       products_offered:
         | "Venture Debt"
         | "Asset-Based Lending"

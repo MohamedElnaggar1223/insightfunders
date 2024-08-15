@@ -100,9 +100,6 @@ export default function InvestorDetails({ investorDetails }: Props)
         if(error) setTimeout(() => setError(null), 5000)
     }, [error])
 
-    console.log(form.getValues('productsOffered'))
-    console.log(form.getValues('geographiesServed'))
-    
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col">
@@ -112,9 +109,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     name="companyName"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Company name</FormLabel>
                             <FormControl>
-                                <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="Company name" {...field} />
+                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Company name" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -126,9 +122,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     name="companyEmail"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Company email</FormLabel>
                             <FormControl>
-                                <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="Company email" {...field} />
+                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Company email" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -140,9 +135,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     name="companyWebsite"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Company website</FormLabel>
                             <FormControl>
-                                <input className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' placeholder="Company website" {...field} />
+                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Company website" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -154,9 +148,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     name="minimumRevenueRequirement"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Minimum Revenue Requirement</FormLabel>
                             <FormControl>
-                                <select className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' {...field}>
+                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
                                     <option value="N/A">N/A</option>
                                     <option value="<$1M">{"<$1M"}</option>
                                     <option value="$1-10M">$1-10M</option>
@@ -175,9 +168,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     name="maxFacilitySize"
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <FormLabel>Max Facility Size</FormLabel>
                             <FormControl>
-                                <select className='flex flex-1 border border-[#D0D5DD] rounded-[8px] px-4 py-2 outline-none' {...field}>
+                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
                                     <option value="N/A">N/A</option>
                                     <option value="<$1M">{"<$1M"}</option>
                                     <option value="$1-10M">$1-10M</option>
@@ -199,13 +191,13 @@ export default function InvestorDetails({ investorDetails }: Props)
                             <FormControl>
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="item-1">
-                                        <AccordionTrigger className="rounded-[8px] border border-[rgba(0,0,0,0.5)] py-2 px-4">Products offered</AccordionTrigger>
+                                        <AccordionTrigger className="py-5 border border-white bg-white px-12">Products offered</AccordionTrigger>
                                         <AccordionContent className='text-main-gray flex flex-col gap-4 items-start justify-center py-4'>
                                             {['Venture Debt', 'Asset-Based Lending', 'Warehouse Lending', 'Invoice and Contract Factoring', 'Revenue-Based Financing', 'Equipment Leasing', 'M&A', 'Recapitalizations and Refinancing', 'Buyouts', 'Bridge Loans', 'Other'].map((product, index) => (
                                                 <div className='flex gap-2 items-center justify-start w-full'>
                                                     <Checkbox 
                                                         key={index} 
-                                                        className='rounded-[4px]' 
+                                                        className='rounded-[4px] border-white' 
                                                         checked={form.getValues('productsOffered')?.includes(product as 'Venture Debt' | 'Asset-Based Lending' | 'Warehouse Lending' | 'Invoice and Contract Factoring' | 'Revenue-Based Financing' | 'Equipment Leasing' | 'M&A' | 'Recapitalizations and Refinancing' | 'Buyouts' | 'Bridge Loans' | 'Other')} 
                                                         onCheckedChange={(value) => {
                                                             if(value) form.getValues('productsOffered')?.includes(product as 'Venture Debt' | 'Asset-Based Lending' | 'Warehouse Lending' | 'Invoice and Contract Factoring' | 'Revenue-Based Financing' | 'Equipment Leasing' | 'M&A' | 'Recapitalizations and Refinancing' | 'Buyouts' | 'Bridge Loans' | 'Other') ? form.setValue('productsOffered', form.getValues('productsOffered')?.filter((item) => item !== product)) : form.setValue('productsOffered', [...form.getValues('productsOffered') ?? [], product as 'Venture Debt' | 'Asset-Based Lending' | 'Warehouse Lending' | 'Invoice and Contract Factoring' | 'Revenue-Based Financing' | 'Equipment Leasing' | 'M&A' | 'Recapitalizations and Refinancing' | 'Buyouts' | 'Bridge Loans' | 'Other'])
@@ -215,7 +207,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     />
                                                     <label
                                                         htmlFor={product}
-                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        className="text-sm font-medium leading-none text-white/90 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                     >
                                                         {product}
                                                     </label>
@@ -238,7 +230,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                             <FormControl>
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="item-1">
-                                        <AccordionTrigger className="rounded-[8px] border border-[rgba(0,0,0,0.5)] py-2 px-4">Geographies Served</AccordionTrigger>
+                                        <AccordionTrigger className="rounded-[2px] bg-white border border-white py-5 px-12">Geographies Served</AccordionTrigger>
                                         <AccordionContent className='text-main-gray flex flex-col gap-4 items-start justify-center py-4'>
                                             {['United States', 'Canada', 'Mexico', 'United Kingdom', 'Other'].map((product, index) => (
                                                 <div className='flex gap-2 items-center justify-start w-full'>
@@ -254,7 +246,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     />
                                                     <label
                                                         htmlFor={product}
-                                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        className="text-sm font-medium leading-none text-white/90 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                     >
                                                         {product}
                                                     </label>
@@ -269,8 +261,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                     )}
                 />
                 <div className='flex items-center justify-center gap-2 w-full'>
-                    <button onClick={handleSaveInvestorDetails} disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
-                    <button disabled={isPending} className='w-full bg-main-purple text-white font-semibold rounded-[8px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
+                    <button onClick={handleSaveInvestorDetails} disabled={isPending} className='w-full bg-[#FF7A00] text-white font-semibold rounded-[2px] py-2 px-4' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
+                    <button disabled={isPending} className='w-full bg-[#FF7A00] text-white font-semibold rounded-[2px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
                 </div>
             </form>
             {saveSuccess && (

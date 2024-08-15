@@ -33,3 +33,12 @@
 .radioBlack * {
     border-color: black !important;
 }
+
+@media (min-width: 1024px) {
+    .perspective {
+        perspective: 1400px;
+        perspective-origin: center;
+        position: relative;
+    }
+}
+

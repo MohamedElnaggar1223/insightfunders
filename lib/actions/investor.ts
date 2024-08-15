@@ -6,14 +6,23 @@ import { eq, ne, sql, and, isNull, ilike } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
 
-export const getContracts = cache(async (investorId: number) => {
-    const allContracts = await db.query.contracts.findMany({
-        where: (table, { eq }) => eq(table.investor_id, investorId)
-    })
+export const getContracts = cache(async (investorId: number, startupId?: number) => {
+    if(!startupId) {
+        const allContracts = await db.query.contracts.findMany({
+            where: (table, { eq }) => eq(table.investor_id, investorId)
+        })
+    
+        const acceptedContracts = allContracts.filter(contract => contract.accepted)
+    
+        return { allContracts, acceptedContracts }
+    }
+    else {
+        const contract = await db.query.contracts.findFirst({
+            where: (table, { eq, and }) => and(eq(table.startup_id, startupId), eq(table.investor_id, investorId))
+        })
 
-    const acceptedContracts = allContracts.filter(contract => contract.accepted)
-
-    return { allContracts, acceptedContracts }
+        return { contract }
+    }
 })
 
 export const getStartup = cache(async (startupId: number) => {

@@ -95,7 +95,7 @@ export default function SignIn()
                                 </FormItem>
                             )}
                             />
-                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4'>Continue</button>
+                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70'>Continue</button>
                             <p className='text-white font-medium text-sm font-Montserrat mx-auto'>Already have an account? <Link href='/sign-in' className='text-[#FFD6B0] font-bold'>Sign in</Link></p>
                     </>
                 ) : (
@@ -271,7 +271,7 @@ export default function SignIn()
                                 </FormItem>
                             )}
                         />
-                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
+                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
                         <p onClick={() => {if(!isPending) setRolePage(true)}} className='text-white text-sm flex items-center justify-start gap-1 cursor-pointer'><ArrowLeft size={16} /> <span className='font-semibold'>Back</span></p>
                     </>
                 )}
