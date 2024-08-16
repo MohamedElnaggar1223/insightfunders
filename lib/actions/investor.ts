@@ -2,7 +2,7 @@
 
 import { db } from "@/db"
 import { contracts, financial_details_requests, startups } from "@/migrations/schema"
-import { eq, ne, sql, and, isNull, ilike } from "drizzle-orm"
+import { eq, ne, sql, and, isNull, ilike, or, isNotNull } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
 import { z } from "zod"
@@ -47,7 +47,7 @@ export const getExploreStartups = cache(async (investorId: number, params?: { se
     
     return await db.select({ startup: startups })
                     .from(startups)
-                    .leftJoin(contracts, and(eq(contracts.startup_id, startups.id), eq(contracts.investor_id, investorId)))
+                    .leftJoin(contracts, and(eq(contracts.startup_id, startups.id), eq(contracts.investor_id, investorId), eq(contracts.accepted, true)))
                     .where(and(isNull(contracts.id), eq(startups.accepted, true), params?.id ? eq(startups.id, params.id) : sql`true`, params?.search ? ilike(startups.company_name, `%${params?.search}%`) : sql`true`, decodedStage ? eq(startups.stage, decodedStage) : sql`true`, decodedIndustry ? eq(startups.industry_sector, decodedIndustry) : sql`true`))
 })
 
@@ -55,6 +55,23 @@ export const getFinancialDetailsRequests = cache(async (investorId: number) => {
     return await db.query.financial_details_requests.findMany({
         where: (table, { eq }) => eq(table.investor_id, investorId)
     })
+})
+
+export const getAllRequests = cache(async (investorId: number, select: 'startups' | 'contracts' | 'financial_details_requests' | 'all' = 'all') => {
+    
+    return await db
+                .select({
+                    ...(select === 'all' || select === 'startups' ? { startups } : {}),
+                    ...(select === 'all' || select === 'contracts' ? { contracts } : {}),
+                    ...(select === 'all' || select === 'financial_details_requests' ? { financial_details_requests } : {})
+                })
+                .from(startups)
+                .leftJoin(contracts, and(eq(contracts.investor_id, investorId), eq(contracts.startup_id, startups.id), or(eq(contracts.accepted, false), isNull(contracts.accepted))))
+                .leftJoin(financial_details_requests, and(eq(financial_details_requests.investor_id, investorId), eq(financial_details_requests.startup_id, startups.id), or(eq(financial_details_requests.accepted, false), isNull(financial_details_requests.accepted))))
+                .where(or(
+                    isNotNull(contracts.startup_id),
+                    isNotNull(financial_details_requests.startup_id)
+                ))
 })
 
 export const addFinancialDetailsRequest = async (investorId: number, startupId: number) => {
