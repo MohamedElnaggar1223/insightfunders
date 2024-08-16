@@ -52,6 +52,7 @@ export const contracts = pgTable("contracts", {
 	maturity_date: date("maturity_date"),
 	payment_interval: payment_interval("payment_interval"),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
+	term_sheet: text("term_sheet"),
 });
 
 export const financial_details_requests = pgTable("financial_details_requests", {

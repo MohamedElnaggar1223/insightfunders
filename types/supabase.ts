@@ -60,6 +60,7 @@ export type Database = {
             | Database["public"]["Enums"]["payment_interval"]
             | null
           startup_id: number
+          term_sheet: string | null
           total_return_paid: number | null
         }
         Insert: {
@@ -74,6 +75,7 @@ export type Database = {
             | Database["public"]["Enums"]["payment_interval"]
             | null
           startup_id: number
+          term_sheet?: string | null
           total_return_paid?: number | null
         }
         Update: {
@@ -88,6 +90,7 @@ export type Database = {
             | Database["public"]["Enums"]["payment_interval"]
             | null
           startup_id?: number
+          term_sheet?: string | null
           total_return_paid?: number | null
         }
         Relationships: [

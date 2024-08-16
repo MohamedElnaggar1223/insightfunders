@@ -5,6 +5,11 @@ import { contracts, financial_details_requests, startups } from "@/migrations/sc
 import { eq, ne, sql, and, isNull, ilike } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
+import { z } from "zod"
+import { contractSchema } from "../validations/investorsSchema"
+import { getUser } from "./auth"
+import { nanoid } from 'nanoid';
+import { createClient } from "@/utils/supabase/server"
 
 export const getContracts = cache(async (investorId: number, startupId?: number) => {
     if(!startupId) {
@@ -67,4 +72,34 @@ export const addFinancialDetailsRequest = async (investorId: number, startupId: 
 
     if(length === 1) return { success: true }
     return { error: 'Failed to add financial details request' }
+}
+
+export const createContract = async (data: { amountInvested: number, interestRate: number, investorId: number, maturityDate: Date, paymentInterval: string, startupId: number, termSheet: string }) => {
+    const { amountInvested, interestRate, investorId, maturityDate, paymentInterval, startupId, termSheet } = data
+
+    if(!amountInvested || !interestRate || !investorId || !maturityDate || !paymentInterval || !startupId || !termSheet) return { error: 'All fields are required' }
+    
+    const user = await getUser()
+
+    if(user?.userInvestor?.id !== data.investorId) return { error: 'You are not authorized to create a contract for this startup' }
+
+    const contractId = await db.insert(contracts).values({
+        id: sql`DEFAULT`,
+        startup_id: startupId,
+        investor_id: investorId,
+        amount_invested: amountInvested.toString(),
+        interest_rate: interestRate.toString(),
+        maturity_date: maturityDate.toISOString().split('T')[0],
+        payment_interval: paymentInterval.toString() as 'week' | 'month' | 'quarter' | 'year',
+        total_return_paid: "0",
+        accepted: false,
+        createdAt: sql`DEFAULT`,
+        term_sheet: termSheet
+    }).returning({
+        id: contracts.id
+    })
+
+    if(contractId.length !== 1) return { error: 'Failed to create contract' }
+
+    return { success: true }
 }
