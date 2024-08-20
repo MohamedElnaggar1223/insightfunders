@@ -53,6 +53,7 @@ export const contracts = pgTable("contracts", {
 	payment_interval: payment_interval("payment_interval"),
 	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 	term_sheet: text("term_sheet"),
+	investment_amount_paid: boolean("investment_amount_paid").default(false),
 });
 
 export const financial_details_requests = pgTable("financial_details_requests", {
@@ -63,6 +64,7 @@ export const financial_details_requests = pgTable("financial_details_requests", 
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	investor_id: bigint("investor_id", { mode: "number" }).references(() => investors.id, { onDelete: "cascade", onUpdate: "cascade" } ),
 	accepted: boolean("accepted").default(false),
+	createdAt: timestamp("createdAt", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
 
 export const users = pgTable("users", {

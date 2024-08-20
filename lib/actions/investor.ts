@@ -2,14 +2,10 @@
 
 import { db } from "@/db"
 import { contracts, financial_details_requests, startups } from "@/migrations/schema"
-import { eq, ne, sql, and, isNull, ilike, or, isNotNull } from "drizzle-orm"
+import { eq, sql, and, isNull, ilike, or, isNotNull } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
-import { z } from "zod"
-import { contractSchema } from "../validations/investorsSchema"
 import { getUser } from "./auth"
-import { nanoid } from 'nanoid';
-import { createClient } from "@/utils/supabase/server"
 
 export const getContracts = cache(async (investorId: number, startupId?: number) => {
     if(!startupId) {
@@ -111,7 +107,8 @@ export const createContract = async (data: { amountInvested: number, interestRat
         total_return_paid: "0",
         accepted: false,
         createdAt: sql`DEFAULT`,
-        term_sheet: termSheet
+        term_sheet: termSheet,
+        investment_amount_paid: false
     }).returning({
         id: contracts.id
     })

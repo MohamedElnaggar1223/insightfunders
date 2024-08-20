@@ -54,6 +54,7 @@ export type Database = {
           createdAt: string | null
           id: number
           interest_rate: number | null
+          investment_amount_paid: boolean | null
           investor_id: number
           maturity_date: string | null
           payment_interval:
@@ -69,6 +70,7 @@ export type Database = {
           createdAt?: string | null
           id?: number
           interest_rate?: number | null
+          investment_amount_paid?: boolean | null
           investor_id: number
           maturity_date?: string | null
           payment_interval?:
@@ -84,6 +86,7 @@ export type Database = {
           createdAt?: string | null
           id?: number
           interest_rate?: number | null
+          investment_amount_paid?: boolean | null
           investor_id?: number
           maturity_date?: string | null
           payment_interval?:
@@ -134,18 +137,21 @@ export type Database = {
       financial_details_requests: {
         Row: {
           accepted: boolean | null
+          createdAt: string | null
           id: number
           investor_id: number | null
           startup_id: number
         }
         Insert: {
           accepted?: boolean | null
+          createdAt?: string | null
           id?: number
           investor_id?: number | null
           startup_id: number
         }
         Update: {
           accepted?: boolean | null
+          createdAt?: string | null
           id?: number
           investor_id?: number | null
           startup_id?: number

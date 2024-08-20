@@ -81,7 +81,7 @@ export default async function RootLayout({
 	if(!user) return (
 		<html lang="en">
 	 		<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
-	 			{guest}
+	 			{/* {guest} */}
 	 		</body>
 	 	</html>
 	)
@@ -91,7 +91,7 @@ export default async function RootLayout({
 			return (
 				<html lang="en">
 					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
-						{startup}
+						{/* {startup} */}
 					</body>
 				</html>
 			)
@@ -102,7 +102,7 @@ export default async function RootLayout({
 			return (
 				<html lang="en">
 					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
-						{investor}
+						{/* {investor} */}
 					</body>
 				</html>
 			)
@@ -112,7 +112,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
-				{guest}
+				{/* {guest} */}
 			</body>
 		</html>
 	)

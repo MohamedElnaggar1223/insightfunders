@@ -1,5 +1,7 @@
+import Notifications from "@/components/shared/Notifications"
 import { getUser } from "@/lib/actions/auth"
 import { getAllRequests } from "@/lib/actions/investor"
+import { getNotifications } from "@/lib/actions/user"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -7,9 +9,13 @@ export default async function Requests()
 {
     const user = await getUser()
     const requests = await getAllRequests(user?.userInvestor?.id!, 'startups')
+    const notifications = await getNotifications(user?.user.id!)
 
     return (
-        <section className='relative flex flex-col flex-1 items-center justify-start gap-6 h-screen max-h-screen px-4 overflow-auto pt-12'>
+        <section className='relative flex flex-col flex-1 items-center justify-start gap-6 h-screen max-h-screen px-4 overflow-auto pt-8'>
+            <div className='flex w-full items-center justify-end'>
+                <Notifications user={user!} notifications={notifications} />
+            </div>
             <div className='flex flex-1 items-start justify-center gap-6 flex-wrap mb-auto w-full'>
                 {requests.map(({ startups }) => (
                     <Link href={`/explore/${startups?.id}`} key={startups?.id} className="flex bg-white max-h-36 min-w-[35vw] flex-1 cursor-pointer">
