@@ -68,6 +68,18 @@ export const investorDetailsSchema = z.object({
     geographiesServed: z.enum(["United States", "Canada", "Mexico", "United Kingdom", "Other"], {
         message: 'Please select an option'
     }).array(),
+    investorType: z.enum(["Individual", "Institution"], {
+        message: 'Please select an option'
+    }),
+    accreditation: z.string().min(2, {
+        message: 'Accreditation must be at least 2 characters long'
+    }).optional(),
+    futureInvestmentAmount: z.enum(['Less than $250K', '$250K - $1M', 'S1M - $5M', '$5M+', 'Not sure', ""], {
+        message: 'Please select an option'
+    }).refine(value => !value ? false: true, { message: 'Please select an option' }),
+    institutionType: z.enum(["Other", "Corporation", "Family Office", "Fund", "Registered Investment Advisor (RIA)", ""], {
+        message: 'Please select an option'
+    })
 })
 
 export const startUpFinancialDetailsSchema = z.object({

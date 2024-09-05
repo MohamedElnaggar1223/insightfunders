@@ -3,6 +3,7 @@ import { cn, getNextDueDate } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, Search, Settings2 } from "lucide-react";
 import Link from "next/link";
 import SearchStartupsBar from "./SearchStartupsBar";
+import PayNow from "./PayNow";
 
 type Props = {
     contracts: {
@@ -15,6 +16,7 @@ type Props = {
         interest_rate: string | null;
         total_return_paid: string | null;
         maturity_date: string | null;
+        investment_amount_paid: boolean | null;
         createdAt: string | null;
     }[],
     searchParams: { 
@@ -195,7 +197,10 @@ export default async function InvestorsStartups({ contracts, searchParams }: Pro
                             </Link>
                             <p className='text-xs font-light'>{contract.startup?.industry_sector}</p>
                         </div>
-                        <div className='flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6'>${contract.amount_invested}</div>
+                        <div className='flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6 gap-2'>
+                            <span>${contract.amount_invested}</span>
+                            {!contract.investment_amount_paid && <PayNow contractId={contract.id} />}
+                        </div>
                         <div className='flex-1 flex items-center justify-center py-6'>{contract.interest_rate}%</div>
                         <div className='flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6'>{contract.maturity_date}</div>
                         <div className='flex-1 flex items-center justify-center py-6'>{getNextDueDate(new Date(contract.createdAt!), contract.payment_interval!).toDateString()}</div>

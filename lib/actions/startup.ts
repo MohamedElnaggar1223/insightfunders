@@ -1,10 +1,13 @@
 'use server'
 
+import 'server-only'
 import { db } from "@/db"
-import { financial_details_requests } from "@/migrations/schema"
-import { and, eq } from "drizzle-orm"
+import { contracts, financial_details_requests, notifications } from "@/migrations/schema"
+import { and, eq, sql } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
+import { getUser } from "./auth"
+import { redirect } from "next/navigation"
 
 export const getFinancialRounds = cache(async (startupId: number) => {
     return await db.query.financial_rounds.findMany({
@@ -110,4 +113,51 @@ export const acceptRequest = async (startupId: number, requestId: number) => {
 export const rejectRequest = async (startupId: number, requestId: number) => {
     await db.delete(financial_details_requests).where(and(eq(financial_details_requests.id, requestId), eq(financial_details_requests.startup_id, startupId)))
     revalidatePath('/offers')
+}
+
+export const agreeToContract = async (contractId: number) => {
+    const user = await getUser()
+
+    const contract = await db.query.contracts.findFirst({
+        where: (table, { eq }) => eq(table.id, contractId),
+        columns: {
+            startup_id: true,
+        },
+        with: {
+            investor: {
+                with: {
+                    user: {
+                        columns: {
+                            id: true,
+                        }
+                    }
+                },
+                columns: {
+                    id: true,
+                }
+            },
+            startup: {
+                columns: {
+                    company_name: true
+                }
+            }
+        }
+    })
+
+    if(user?.userStartUp?.id !== contract?.startup_id) return { error: 'You are not authorized to accept this contract' }
+
+    await Promise.all([
+        db.update(contracts).set({ accepted: true }).where(eq(contracts.id, contractId)),
+        db.insert(notifications).values({
+            id: sql`DEFAULT`,
+            user_id: contract?.investor?.user?.id!,
+            created_at: sql`DEFAULT`,
+            type: 'Contract',
+            is_read: false,
+            content: `Congratulations! ${contract?.startup.company_name} has accepted your offer. 🎉`
+        })
+    ])
+
+    revalidatePath('/contracts')
+    redirect('/')
 }

@@ -1,11 +1,13 @@
 'use server'
 
+import 'server-only'
 import { db } from "@/db"
-import { contracts, financial_details_requests, startups } from "@/migrations/schema"
+import { contracts, financial_details_requests, notifications, startups, transactions } from "@/migrations/schema"
 import { eq, sql, and, isNull, ilike, or, isNotNull } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
 import { getUser } from "./auth"
+import { createTransfer } from "./dwolla"
 
 export const getContracts = cache(async (investorId: number, startupId?: number) => {
     if(!startupId) {
@@ -71,13 +73,30 @@ export const getAllRequests = cache(async (investorId: number, select: 'startups
 })
 
 export const addFinancialDetailsRequest = async (investorId: number, startupId: number) => {
-    const { length } = await db.insert(financial_details_requests).values({
+    const [{ length }, startUpUser] = await Promise.all([
+        db.insert(financial_details_requests).values({
+            id: sql`DEFAULT`,
+            startup_id: startupId,
+            investor_id: investorId,
+            accepted: false,
+        }).returning({
+            id: financial_details_requests.id
+        }),
+        db.query.startups.findFirst({
+            where: (table, { eq }) => eq(table.id, startupId),
+            columns: {
+                user_id: true
+            }
+        })
+    ])
+
+    await db.insert(notifications).values({
         id: sql`DEFAULT`,
-        startup_id: startupId,
-        investor_id: investorId,
-        accepted: false,
-    }).returning({
-        id: financial_details_requests.id
+        user_id: startUpUser?.user_id!,
+        content: 'You have received a new request for financial details.',
+        created_at: sql`DEFAULT`,
+        is_read: false,
+        type: 'Request'
     })
 
     revalidatePath(`/explore/${startupId}`)
@@ -96,24 +115,102 @@ export const createContract = async (data: { amountInvested: number, interestRat
 
     if(user?.userInvestor?.id !== data.investorId) return { error: 'You are not authorized to create a contract for this startup' }
 
-    const contractId = await db.insert(contracts).values({
-        id: sql`DEFAULT`,
-        startup_id: startupId,
-        investor_id: investorId,
-        amount_invested: amountInvested.toString(),
-        interest_rate: interestRate.toString(),
-        maturity_date: maturityDate.toISOString().split('T')[0],
-        payment_interval: paymentInterval.toString() as 'week' | 'month' | 'quarter' | 'year',
-        total_return_paid: "0",
-        accepted: false,
-        createdAt: sql`DEFAULT`,
-        term_sheet: termSheet,
-        investment_amount_paid: false
-    }).returning({
-        id: contracts.id
-    })
+    const [contractId, startUpUser] = await Promise.all([
+        db.insert(contracts).values({
+            id: sql`DEFAULT`,
+            startup_id: startupId,
+            investor_id: investorId,
+            amount_invested: amountInvested.toString(),
+            interest_rate: interestRate.toString(),
+            maturity_date: maturityDate.toISOString().split('T')[0],
+            payment_interval: paymentInterval.toString() as 'week' | 'month' | 'quarter' | 'year',
+            total_return_paid: "0",
+            accepted: false,
+            createdAt: sql`DEFAULT`,
+            term_sheet: termSheet,
+            investment_amount_paid: false
+        }).returning({
+            id: contracts.id
+        }),
+        db.query.startups.findFirst({
+            where: (table, { eq }) => eq(table.id, startupId),
+            columns: {
+                user_id: true
+            }
+        })
+    ])
 
     if(contractId.length !== 1) return { error: 'Failed to create contract' }
 
+    await db.insert(notifications).values({
+        id: sql`DEFAULT`,
+        user_id: startUpUser?.user_id!,
+        content: 'Congratulations! You have received a new contract.',
+        created_at: sql`DEFAULT`,
+        is_read: false,
+        type: 'Contract'
+    })
+
     return { success: true }
+}
+
+export const payContractAmount = async (contractId: number) => {
+    const user = await getUser()
+
+    await db.transaction(async (trx) => {
+        const contract = await trx.query.contracts.findFirst({
+            where: (table, { eq }) => eq(table.id, contractId),
+            columns: {
+                id: true,
+                investor_id: true,
+                amount_invested: true
+            },
+            with: {
+                startup: {
+                    columns: {
+                        id: true,
+                        user_id: true
+                    }
+                }
+            }
+        })
+    
+        if(!contract) return { error: 'Contract not found' }
+    
+        if(contract.investor_id !== user?.userInvestor?.id) return { error: 'You are not authorized to pay this contract' }
+        
+        const [startupBankAccount, investorBankAccount] = await Promise.all([
+            trx.query.bank_accounts.findFirst({
+                where: (table, { eq }) => eq(table.user_id, contract.startup.user_id),
+                columns: {
+                    funding_source_url: true
+                }
+            }),
+            trx.query.bank_accounts.findFirst({
+                where: (table, { eq }) => eq(table.user_id, user?.user.id),
+                columns: {
+                    funding_source_url: true
+                }
+            })
+        ])
+    
+        const transfer = await createTransfer({
+            amount: contract.amount_invested,
+            sourceFundingSourceUrl: startupBankAccount?.funding_source_url!,
+            destinationFundingSourceUrl: investorBankAccount?.funding_source_url!
+        })
+    
+        if(!transfer) return { error: 'Failed to transfer funds' }
+    
+        await trx.insert(transactions).values({
+            id: sql`DEFAULT`,
+            sender_id: user?.user?.id!,
+            receiver_id: contract.startup.user_id,
+            amount: contract.amount_invested
+        })
+    
+        await trx.update(contracts).set({ investment_amount_paid: true }).where(eq(contracts.id, contractId))
+    })
+
+    revalidatePath('/')
 }

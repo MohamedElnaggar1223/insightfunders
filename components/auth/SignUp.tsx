@@ -16,7 +16,7 @@ import { useState } from "react"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { ArrowLeft, Eye, EyeOff, Loader2 } from "lucide-react"
+import { ArrowLeft, CheckCircle2, Circle, Eye, EyeOff, Loader2 } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
 import Link from "next/link"
 
@@ -36,8 +36,6 @@ export default function SignIn()
             role: 'startup',
         },
     })
-
-    // form.watch('dateOfBirth')
 
     const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
         setIsPending(true)
@@ -63,12 +61,13 @@ export default function SignIn()
                                             defaultValue={field.value}
                                             className="flex flex-col space-y-1"
                                         >
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[4px]", form.getValues().role === 'startup' ? 'bg-[#FFD6B0]' : 'bg-white')}>
+                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[12px] bg-white", form.getValues().role === 'startup' ? 'border-[#FF7A00]' : 'border-white')}>
                                                 <FormLabel className="font-normal">
-                                                    <div className='flex gap-4 pl-8 items-start justify-between cursor-pointer'>
-                                                        <div className='flex flex-col gap-3'>
-                                                            <p className='text-black font-semibold'>Borrower</p>
-                                                            <p className='text-black leading-5'>I am a borrower, looking for funding.</p>
+                                                    <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
+                                                        {form.getValues().role !== 'startup' ? (<Circle size={24} fill="#fff" stroke="#00000080" />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" />)}
+                                                        <div className='flex flex-col gap-1'>
+                                                            <p className='text-black font-semibold text-base font-Montserrat'>Borrower</p>
+                                                            <p className='text-black text-xs leading-5 font-Montserrat'>I am a borrower, looking for funding.</p>
                                                         </div>
                                                     </div>
                                                 </FormLabel>
@@ -76,12 +75,13 @@ export default function SignIn()
                                                     <RadioGroupItem defaultChecked={true} value="startup" className={cn("mt-0imp opacity-0", form.getValues().role === 'startup' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[4px]", form.getValues().role === 'investor' ? 'bg-[#FFD6B0]' : 'bg-white')}>
+                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[12px] bg-white", form.getValues().role === 'investor' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
-                                                    <div className='flex gap-4 pl-8 items-start justify-between cursor-pointer'>
-                                                        <div className='flex flex-col gap-3'>
-                                                            <p className='text-black font-semibold'>Lender</p>
-                                                            <p className='text-black leading-5'>I am a lender, looking for deals.</p>
+                                                    <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
+                                                        {form.getValues().role !== 'investor' ? (<Circle size={24} fill="#fff" stroke="#00000080" />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" />)}
+                                                        <div className='flex flex-col gap-1'>
+                                                            <p className='text-black font-semibold text-base font-Montserrat'>Lender</p>
+                                                            <p className='text-black text-xs leading-5 font-Montserrat'>I am a lender, looking for deals.</p>
                                                         </div>
                                                     </div>
                                                 </FormLabel>
@@ -95,8 +95,8 @@ export default function SignIn()
                                 </FormItem>
                             )}
                             />
-                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70'>Continue</button>
-                            <p className='text-white font-medium text-sm font-Montserrat mx-auto'>Already have an account? <Link href='/sign-in' className='text-[#FFD6B0] font-bold'>Sign in</Link></p>
+                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70'>Continue</button>
+                            <Link href='/sign-in' className='text-white font-normal text-sm font-Montserrat mx-auto'>Back to login</Link>
                     </>
                 ) : (
                     <>
@@ -162,9 +162,9 @@ export default function SignIn()
                             disabled={isPending}
                             name="firstName"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                     <FormControl>
-                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="First name" {...field} />
+                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="First name" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -175,9 +175,9 @@ export default function SignIn()
                             disabled={isPending}
                             name="lastName"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                     <FormControl>
-                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Last name" {...field} />
+                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last name" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -188,9 +188,9 @@ export default function SignIn()
                             disabled={isPending}
                             name="email"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                     <FormControl>
-                                        <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="you@company.com" {...field} />
+                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="you@company.com" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -242,10 +242,10 @@ export default function SignIn()
                             disabled={isPending}
                             name="password"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                     <FormControl>
                                         <div className='relative'>
-                                            <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none w-full' placeholder="Password" {...field} />
+                                            <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 w-full px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Password" {...field} />
                                             {passwordVisible ? (
                                                 <Eye
                                                     className={cn('absolute top-[36%] z-50 cursor-pointer left-[92%]')} 
@@ -271,7 +271,7 @@ export default function SignIn()
                                 </FormItem>
                             )}
                         />
-                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
+                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
                         <p onClick={() => {if(!isPending) setRolePage(true)}} className='text-white text-sm flex items-center justify-start gap-1 cursor-pointer'><ArrowLeft size={16} /> <span className='font-semibold'>Back</span></p>
                     </>
                 )}

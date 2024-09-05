@@ -13,8 +13,8 @@ export default function SignInPage()
             </header>
             <div className='flex flex-col items-center justify-center gap-8 mt-24'>
                 <div className='flex flex-col items-center justify-center gap-4'>
-                    <h1 className='text-lg font-semibold text-white text-center'>Log in to your account</h1>
-                    <h2 className='text-base text-center font-light text-white'>Welcome back! Please enter your details.</h2>
+                    <h1 className='text-2xl font-bold font-Montserrat text-white text-center'>Log in to your account</h1>
+                    <h2 className='text-base text-center font-normal text-white'>Welcome back! Please enter your details.</h2>
                 </div>
                 <SignIn />
             </div>

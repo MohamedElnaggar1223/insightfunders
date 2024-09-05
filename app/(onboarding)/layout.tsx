@@ -49,7 +49,7 @@ export default async function RootLayout({
 		}
 	}
 	else if(user.userInfo.role === 'investor') {
-		if(user?.userInvestor?.submitted && user?.userInvestor.company_email && user?.userInvestor.company_name && user?.userInvestor.company_email && user?.userInvestor.company_website && user?.userInvestor.geographies_served && user?.userInvestor.max_facility_size && user?.userInvestor.minimum_revenue_requirement && user?.userInvestor.products_offered) {
+		if((user?.userInvestor?.investor_type === 'Institution' && user?.userInvestor?.submitted && user?.userInvestor.company_email && user?.userInvestor.company_name && user?.userInvestor.company_email && user?.userInvestor.company_website && user?.userInvestor.geographies_served && user?.userInvestor.max_facility_size && user?.userInvestor.minimum_revenue_requirement && user?.userInvestor.products_offered && user?.userInvestor.future_investment_amount && user?.userInvestor.institution_type) || (user?.userInvestor?.investor_type === 'Individual' && user?.userInvestor.future_investment_amount && user?.userInvestor.accreditation && user?.userInvestor?.submitted)) {
 			return redirect('/')
 		}
 	}
@@ -58,7 +58,7 @@ export default async function RootLayout({
 	return (
 	<html lang="en">
 		<body className={inter.className}>
-			{/* {children} */}
+			{children}
 		</body>
 	</html>
 	)

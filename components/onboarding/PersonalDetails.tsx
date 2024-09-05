@@ -68,7 +68,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Address" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Address" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -81,7 +81,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="City" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="City" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -94,7 +94,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <select defaultValue='' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none'  {...field}>
+                                <select defaultValue='' className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none'  {...field}>
                                     <option disabled value=''>State</option>
                                     <option value="AL">AL</option>
                                     <option value="AK">AK</option>
@@ -159,7 +159,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Postal Code" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Postal Code" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -172,7 +172,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Last 4 of SSN" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last 4 of SSN" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -185,13 +185,13 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="DOF e.g. MM/DD/YYYY" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="DOF e.g. MM/DD/YYYY" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
                     )}
                 />
-                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
             </form>
         </Form>
     )

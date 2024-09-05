@@ -214,13 +214,21 @@ export type Database = {
       investors: {
         Row: {
           accepted: boolean
+          accreditation: string | null
           company_email: string | null
           company_name: string | null
           company_website: string | null
+          future_investment_amount:
+            | Database["public"]["Enums"]["future_investment_amounts"]
+            | null
           geographies_served:
             | Database["public"]["Enums"]["geographies_served"][]
             | null
           id: number
+          institution_type:
+            | Database["public"]["Enums"]["institution_types"]
+            | null
+          investor_type: Database["public"]["Enums"]["investor_type"] | null
           max_facility_size:
             | Database["public"]["Enums"]["max_facility_size"]
             | null
@@ -235,13 +243,21 @@ export type Database = {
         }
         Insert: {
           accepted?: boolean
+          accreditation?: string | null
           company_email?: string | null
           company_name?: string | null
           company_website?: string | null
+          future_investment_amount?:
+            | Database["public"]["Enums"]["future_investment_amounts"]
+            | null
           geographies_served?:
             | Database["public"]["Enums"]["geographies_served"][]
             | null
           id?: number
+          institution_type?:
+            | Database["public"]["Enums"]["institution_types"]
+            | null
+          investor_type?: Database["public"]["Enums"]["investor_type"] | null
           max_facility_size?:
             | Database["public"]["Enums"]["max_facility_size"]
             | null
@@ -256,13 +272,21 @@ export type Database = {
         }
         Update: {
           accepted?: boolean
+          accreditation?: string | null
           company_email?: string | null
           company_name?: string | null
           company_website?: string | null
+          future_investment_amount?:
+            | Database["public"]["Enums"]["future_investment_amounts"]
+            | null
           geographies_served?:
             | Database["public"]["Enums"]["geographies_served"][]
             | null
           id?: number
+          institution_type?:
+            | Database["public"]["Enums"]["institution_types"]
+            | null
+          investor_type?: Database["public"]["Enums"]["investor_type"] | null
           max_facility_size?:
             | Database["public"]["Enums"]["max_facility_size"]
             | null
@@ -455,6 +479,45 @@ export type Database = {
           },
         ]
       }
+      transactions: {
+        Row: {
+          amount: number | null
+          created_at: string
+          id: number
+          receiver_id: string | null
+          sender_id: string | null
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          id?: number
+          receiver_id?: string | null
+          sender_id?: string | null
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          id?: number
+          receiver_id?: string | null
+          sender_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_receiverId_fkey"
+            columns: ["receiver_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_senderId_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           dwolla_customer_id: string | null
@@ -518,6 +581,12 @@ export type Database = {
         | "Series F"
         | "Public"
       faqs_tabs: "General Questions" | "For Startups" | "For Investors"
+      future_investment_amounts:
+        | "Less than $250K"
+        | "$250K - $1M"
+        | "S1M - $5M"
+        | "$5M+"
+        | "Not sure"
       geographies_served:
         | "United States"
         | "Canada"
@@ -541,6 +610,13 @@ export type Database = {
         | "Hospitality and Leisure"
         | "Utilities"
         | "Other"
+      institution_types:
+        | "Corporation"
+        | "Family Office"
+        | "Fund"
+        | "Registered Investment Advisor (RIA)"
+        | "Other"
+      investor_type: "Individual" | "Institution"
       max_facility_size:
         | "N/A"
         | "<$1M"

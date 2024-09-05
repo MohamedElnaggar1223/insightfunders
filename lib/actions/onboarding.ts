@@ -1,5 +1,6 @@
 'use server'
 
+import 'server-only'
 import { z } from "zod"
 import { investorDetailsSchema, startUpDetailsSchema, startUpFinancialDetailsSchema } from "../validations/onBoardingSchema"
 import { createClient } from "@/utils/supabase/server"
@@ -115,6 +116,9 @@ export const saveInvestorDetails = async (investor_id: number, data: z.infer<typ
     revalidatePath('/')
     if(partialError) return { error: partialError?.errors[0].message }
 
+    const futureInvestmentAmount = data.futureInvestmentAmount as "Less than $250K" | "$250K - $1M" | "S1M - $5M" | "$5M+" | "Not sure" | null | undefined
+    const institutionType = data.institutionType as "Corporation" | "Family Office" | "Fund" | "Registered Investment Advisor (RIA)" | "Other" | null | undefined
+
     const { error } = await supabase.from('investors').update({
         company_email: data.companyEmail ?? null,
         company_name: data.companyName ?? null,
@@ -123,9 +127,12 @@ export const saveInvestorDetails = async (investor_id: number, data: z.infer<typ
         max_facility_size: data.maxFacilitySize ?? null,
         minimum_revenue_requirement: data.minimumRevenueRequirement ?? null,
         products_offered: data.productsOffered ?? null,
+        accreditation: data.accreditation ?? null,
+        future_investment_amount: !!futureInvestmentAmount ? futureInvestmentAmount : null,
+        institution_type: !!institutionType ? institutionType : null,
+        investor_type: data.investorType ?? null,
     })
     .eq('id', investor_id)
-    
     
     revalidatePath('/')
     if(error) return { error: error.message}

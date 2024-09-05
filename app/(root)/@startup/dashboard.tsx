@@ -13,8 +13,8 @@ export default async function Dashboard({ searchParams }: { searchParams: { page
 
     // await new Promise(resolve => setTimeout(resolve, 10000))
 
-    const totalAmountInvested = startupContracts.acceptedContracts?.reduce((acc, contract) => acc + parseFloat(contract.amount_invested), 0)
-    const totalInvestors = startupContracts.acceptedContracts?.length
+    const totalAmountInvested = startupContracts.acceptedContracts?.reduce((acc, contract) => acc + (contract.investment_amount_paid ? parseFloat(contract.amount_invested) : 0), 0)
+    const totalInvestors = startupContracts.acceptedContracts?.filter(contract => contract.investment_amount_paid).length
 
     return (
         <section className='flex flex-1 flex-col w-full gap-6 px-6 overflow-auto'>

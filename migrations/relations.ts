@@ -1,5 +1,5 @@
 // import { relations } from "drizzle-orm/relations";
-// import { startups, financial_rounds, investors, contracts, financial_details_requests, usersInAuth, users, notifications, bank_accounts, startups_owners, payments } from "./schema";
+// import { startups, financial_rounds, investors, contracts, financial_details_requests, usersInAuth, users, notifications, bank_accounts, startups_owners, payments, transactions } from "./schema";
 
 // export const financial_roundsRelations = relations(financial_rounds, ({one}) => ({
 // 	startup: one(startups, {
@@ -60,6 +60,12 @@
 // 	notifications: many(notifications),
 // 	bank_accounts: many(bank_accounts),
 // 	investors: many(investors),
+// 	transactions_receiver_id: many(transactions, {
+// 		relationName: "transactions_receiver_id_users_id"
+// 	}),
+// 	transactions_sender_id: many(transactions, {
+// 		relationName: "transactions_sender_id_users_id"
+// 	}),
 // }));
 
 // export const usersInAuthRelations = relations(usersInAuth, ({many}) => ({
@@ -91,5 +97,18 @@
 // 	contract: one(contracts, {
 // 		fields: [payments.contract_id],
 // 		references: [contracts.id]
+// 	}),
+// }));
+
+// export const transactionsRelations = relations(transactions, ({one}) => ({
+// 	user_receiver_id: one(users, {
+// 		fields: [transactions.receiver_id],
+// 		references: [users.id],
+// 		relationName: "transactions_receiver_id_users_id"
+// 	}),
+// 	user_sender_id: one(users, {
+// 		fields: [transactions.sender_id],
+// 		references: [users.id],
+// 		relationName: "transactions_sender_id_users_id"
 // 	}),
 // }));

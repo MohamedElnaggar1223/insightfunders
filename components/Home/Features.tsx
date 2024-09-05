@@ -8,20 +8,20 @@ export default function Features()
 {
     return (
         <section className='flex flex-col py-20 lg:gap-40 max-lg:gap-20'>
-            <div className='w-full flex gap-8 items-center justify-center px-2 lg:px-60 max-lg:flex-wrap'>
-                <div className='flex flex-col gap-4 items-center justify-center text-center'>
+            <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 max-lg:flex-wrap'>
+                <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
                     <Image
                         src='/images/secureReturns.svg'
                         alt='SecureReturns'
                         width={52}
                         height={52} 
                     />
-                    <p className='font-semibold max-xl:text-lg text-xl text-center'>Secure Returns</p>
+                    <p className='font-semibold max-xl:text-lg text-xl text-center'>Fast and Flexible</p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Our AI-powered credit assessment ensures secure, risk-adjusted returns for private credit investors.
+                        Choose to receive flexible, bespoke terms from multiple lenders
                     </p>
                 </div>
-                <div className='flex flex-col gap-4 items-center justify-center text-center'>
+                <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
                     <Image
                         src='/images/accelerate.svg'
                         alt='Accelerate'
@@ -29,13 +29,13 @@ export default function Features()
                         height={52} 
                     />
                     <p className='font-semibold max-xl:text-lg text-xl text-center'>
-                        Accelerate Startup Growth
+                        Accelerate Growth
                     </p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Our platform enables startups to access growth capital without equity dilution, fueling their expansion.
+                        Our platform enables companies to access growth capital without equity dilution, fueling their expansion.
                     </p>
                 </div>
-                <div className='flex flex-col gap-4 items-center justify-center text-center'>
+                <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
                     <Image
                         src='/images/aipowered.svg'
                         alt='Aipowered'
@@ -46,7 +46,7 @@ export default function Features()
                         AI-Powered Insights
                     </p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Our advanced AI algorithms analyze startups' creditworthiness, providing investors with data-driven insights.
+                        Proprietary ML algorithm analyzes borrowers' creditworthiness, completing due diligence in minutes and delivering data-driven insights to lenders.
                     </p>
                 </div>
             </div>
@@ -57,17 +57,17 @@ export default function Features()
                     <div className='flex flex-col items-center justify-center gap-4 text-center'>
                         <p className='text-[#FF7A00] text-5xl'>200+</p>
                         <p className='text-black text-xl font-bold mt-2'>Companies Funded</p>
-                        <p className='text-black text-base font-light'>We've helped build over 400 amazing projects.</p>
+                        <p className='text-black text-base font-light'>We've helped fund 200+ amazing businesses</p>
                     </div>
                     <div className='flex flex-col items-center justify-center gap-4 text-center'>
-                        <p className='text-[#FF7A00] text-5xl'>600%</p>
+                        <p className='text-[#FF7A00] text-5xl'>$12M</p>
                         <p className='text-black text-xl font-bold mt-2'>Average size of investments</p>
-                        <p className='text-black text-base font-light'>Our customers have reported an average of ~600% ROI.</p>
+                        <p className='text-black text-base font-light'>Average credit facility that qualified companies receive through Insight Funders</p>
                     </div>
                     <div className='flex flex-col items-center justify-center gap-4 text-center'>
-                        <p className='text-[#FF7A00] text-5xl'>$20M</p>
-                        <p className='text-black text-xl font-bold mt-2'>Total debt capital available</p>
-                        <p className='text-black text-base font-light'>Our free UI kit has been downloaded over 100k times.</p>
+                        <p className='text-[#FF7A00] text-5xl'>$20B</p>
+                        <p className='text-black text-xl font-bold mt-2'>Total credit available</p>
+                        <p className='text-black text-base font-light'>Total credit available through our integrated lender ecosystem.</p>
                     </div>
                 </div>
             </div>
@@ -82,8 +82,8 @@ export default function Features()
                         </div>
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
-                        <p className='font-bold text-[#FF7A00] text-xl'>One platform, all the right lenders.</p>
-                        <p className='font-light text-white text-sm'>Whether you're bootstrapped, venture-backed, or growth stage, get connected with dozens of pre-qualified lenders,saving months of time.</p>
+                        <p className='font-bold text-[#FF7A00] text-xl'>Compare lenders all in one place</p>
+                        <p className='font-light text-white text-sm'>Whether you’re self-funded, venture-backed, or in growth mode, easily connect with private  lenders in one place, saving you both time and effort.</p>
                     </div>
                 </div>
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
@@ -93,45 +93,22 @@ export default function Features()
                         </div>
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
-                        <p className='font-bold text-[#FF7A00] text-xl'>One platform, all the right lenders.</p>
-                        <p className='font-light text-white text-sm'>Whether you're bootstrapped, venture-backed, or growth stage, get connected with dozens of pre-qualified lenders,saving months of time.</p>
+                        <p className='font-bold text-[#FF7A00] text-xl'>One application, bespoke capital solutions.</p>
+                        <p className='font-light text-white text-sm'>Strengthen your balance sheet by combining flexible working capital, helping you reach your next funding round or profitability.</p>
                     </div>
                 </div>
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[339px] max-h-[339px] h-[339px] bg-[#2F2F2F] items-center justify-center">
                     <div className='flex flex-1 items-center justify-center p-4'>
-                        <div className='flex'>
-                            <div className='flex -mr-4'>
-                                <Image
-                                    src="/images/phoenix.png"
-                                    alt="phoenix"
-                                    width={250}
-                                    height={180}
-                                    className='rounded-full w-20 h-20 object-cover' 
-                                />
-                            </div>
-                            <div className='flex -mt-2'>
-                                <Image
-                                    src="/images/olivia.jpg"
-                                    alt="olivia"
-                                    width={250}
-                                    height={180}
-                                    className='rounded-full w-24 h-24 z-20 object-cover'
-                                />
-                            </div>
-                            <div className='flex -ml-4'>
-                                <Image
-                                    src="/images/lana.png"
-                                    alt="lana"
-                                    width={250}
-                                    height={180}
-                                    className='rounded-full w-20 h-20 object-cover'
-                                />
-                            </div>
-                        </div>
+                        <Image
+                            src="/images/secured.png"
+                            width={131}
+                            height={119} 
+                            alt="secured"
+                        />
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
-                        <p className='font-bold text-[#FF7A00] text-xl'>One team, dedicated to your success</p>
-                        <p className='font-light text-white text-sm'>Receive dedicated support from a Capital Markets expert throughout the entire process, from onboarding to funding.</p>
+                        <p className='font-bold text-[#FF7A00] text-xl'>Secure your data</p>
+                        <p className='font-light text-white text-sm'>We use bank-level security and blockchain technology to ensure your data is encrypted and secure. Your data will only be shared with lenders if you give explicit consent.</p>
                     </div>
                 </div>
             </div>

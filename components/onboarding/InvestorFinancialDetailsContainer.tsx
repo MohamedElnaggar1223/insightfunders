@@ -42,7 +42,7 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
     return (
         <div className='space-y-8 w-screen max-w-[384px] flex flex-col pb-8'>
             <PlaidLink user={user} />
-            <button onClick={onSubmit} disabled={isPending} className='w-full !mt-12 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+            <button onClick={onSubmit} disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
             {error && (
                 <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6'>
                     <X size={24} className='text-[#F86C6C]' />

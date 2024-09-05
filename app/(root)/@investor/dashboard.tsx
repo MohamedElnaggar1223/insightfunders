@@ -10,9 +10,9 @@ export default async function Dashboard({ searchParams }: { searchParams: { page
 
     // await new Promise(resolve => setTimeout(resolve, 10000))
 
-    const totalAmountInvested = investorContracts.acceptedContracts?.reduce((acc, contract) => acc + parseFloat(contract.amount_invested), 0)
-    const totalROI = investorContracts.acceptedContracts?.reduce((acc, contract) => acc + (parseFloat(contract.amount_invested) * ((parseFloat(contract.interest_rate ?? '0') + 100) / 100)), 0)
-    const totalStartups = investorContracts.acceptedContracts?.length
+    const totalAmountInvested = investorContracts.acceptedContracts?.reduce((acc, contract) => acc + (contract.investment_amount_paid ? parseFloat(contract.amount_invested) : 0), 0)
+    const totalROI = investorContracts.acceptedContracts?.reduce((acc, contract) => acc + (contract.investment_amount_paid ? (parseFloat(contract.amount_invested) * ((parseFloat(contract.interest_rate ?? '0') + 100) / 100)) : 0), 0)
+    const totalStartups = investorContracts.acceptedContracts?.filter(contract => contract.investment_amount_paid).length
 
     return (
         <section className='flex flex-1 flex-col w-full gap-6 px-6 overflow-auto'>

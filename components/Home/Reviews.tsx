@@ -5,10 +5,9 @@ export default function Reviews()
     return (
         <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-52 gap-40'>
             <div className='flex flex-col py-12 gap-8 px-4 lg:px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
-                <p className='text-white text-3xl'>100% free to receive terms</p>
+                <p className='text-white text-3xl'>Receive terms at no cost!</p>
                 <p className='text-[#FFFFFF80] text-xl'>
-                There is no cost to receive terms through Capital Markets. A nominal platform fee will only apply 
-                once you move forward with funding (discounted for Insight Funders Platinum members).
+                Receiving terms through Private Credit Markets is completely free. A small facilitation fee applies only if you proceed with funding. We ensure 100% transparency throughout the process.
                 </p>
             </div>
             <div className='flex flex-col gap-8'>
@@ -18,7 +17,7 @@ export default function Reviews()
                         <div className='flex flex-1 h-1/2 items-center justify-start gap-3'>
                             <div className="flex items-center justify-center rounded-full w-[5.5rem] h-[5.5rem] overflow-hidden">
                                 <Image
-                                    src='/images/image-man.png'
+                                    src='/images/review-man.png'
                                     width={88}
                                     height={88}
                                     alt='man'
@@ -26,15 +25,15 @@ export default function Reviews()
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <p className='text-white font-medium text-sm'>Vivas Kumar</p>
-                                <p className='text-white font-extralight text-sm'>Founder & CEO of Mitra Chem</p>
+                                <p className='text-white font-medium text-sm'>Connor McCarthy</p>
+                                <p className='text-white font-extralight text-sm'>Co-Founder at Rize Education</p>
                             </div>
                         </div>
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-light text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p className='text-white font-light text-sm'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
                                 <div className="flex w-full items-center justify-end">
-                                    <p className='text-white font-extralight text-sm'>May, 14, 2024</p>
+                                    <p className='text-white font-extralight text-sm'>August, 9, 2024</p>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +42,7 @@ export default function Reviews()
                         <div className='flex flex-1 h-1/2 items-center justify-start gap-3'>
                             <div className="flex items-center justify-center rounded-full w-[5.5rem] h-[5.5rem] overflow-hidden">
                                 <Image
-                                    src='/images/image.png'
+                                    src='/images/review-man2.png'
                                     width={88}
                                     height={88}
                                     alt='man'
@@ -51,13 +50,13 @@ export default function Reviews()
                                 />
                             </div>
                             <div className="flex flex-col gap-1">
-                                <p className='text-white font-medium text-sm'>Raya Silvister</p>
-                                <p className='text-white font-extralight text-sm'>Founder & CEO of Mitra Chem</p>
+                                <p className='text-white font-medium text-sm'>Sheridan Clayborne</p>
+                                <p className='text-white font-extralight text-sm'>Co-Founder of Lendtable</p>
                             </div>
                         </div>
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-light text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p className='text-white font-light text-sm'>Securing funding used to be a time-consuming and stressful process, but Insight Funders made it seamless. The ability to compare offers from multiple lenders in one place saved us months of work. Plus, knowing that my data was secure and only shared with lenders when I agreed gave me peace of mind. We were able to secure flexible working capital that aligned with our growth strategy, all without sacrificing equity. It’s the perfect solution for startups wanting to maintain control while accessing the funds they need to grow</p>
                                 <div className="flex w-full items-center justify-end">
                                     <p className='text-white font-extralight text-sm'>May, 14, 2024</p>
                                 </div>

@@ -1,4 +1,5 @@
 'use server'
+import 'server-only'
 import { CountryCode, ProcessorTokenCreateRequest, ProcessorTokenCreateRequestProcessorEnum, Products } from "plaid";
 import { UserType } from "../types/user";
 import { plaidClient } from "../plaid";

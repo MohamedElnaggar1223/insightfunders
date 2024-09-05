@@ -1,5 +1,6 @@
 'use server'
 
+import 'server-only'
 import { z } from "zod"
 import { signInSchema, signUpSchema } from "../validations/authSchema"
 import { createClient } from "@/utils/supabase/server"
@@ -49,11 +50,11 @@ export const signIn = async (values: z.infer<typeof signInSchema>) => {
     })
 
     if (error) {
-        console.error("error", error)
+        return { error: { message: error.message, code: error.code } }
     }
-
+    
     revalidatePath('/')
-    return redirect("/")
+    return { error: null }
 }
 
 export const signOut = async () => {

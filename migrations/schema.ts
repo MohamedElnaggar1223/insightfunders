@@ -13,8 +13,11 @@ export const key_type = pgEnum("key_type", ['aead-ietf', 'aead-det', 'hmacsha512
 export const business_structure = pgEnum("business_structure", ['Sole Proprietorship', 'Partnership', 'Corporation', 'S Corporation', 'Limited Liability Company'])
 export const company_stage = pgEnum("company_stage", ['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public'])
 export const faqs_tabs = pgEnum("faqs_tabs", ['General Questions', 'For Startups', 'For Investors'])
+export const future_investment_amounts = pgEnum("future_investment_amounts", ['Less than $250K', '$250K - $1M', 'S1M - $5M', '$5M+', 'Not sure'])
 export const geographies_served = pgEnum("geographies_served", ['United States', 'Canada', 'Mexico', 'United Kingdom', 'Other'])
 export const industry_and_sector = pgEnum("industry_and_sector", ['Technology', 'Healthcare', 'Financial Services', 'Consumer Goods', 'Industrial Goods', 'Energy', 'Real Estate', 'Retail', 'Media and Entertainment', 'Transportation', 'Telecommunications', 'Agriculture', 'Education', 'Hospitality and Leisure', 'Utilities', 'Other'])
+export const institution_types = pgEnum("institution_types", ['Corporation', 'Family Office', 'Fund', 'Registered Investment Advisor (RIA)', 'Other'])
+export const investor_type = pgEnum("investor_type", ['Individual', 'Institution'])
 export const max_facility_size = pgEnum("max_facility_size", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-250M', '$250M+'])
 export const minimum_revenue_requirement = pgEnum("minimum_revenue_requirement", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-100M', '$100M+'])
 export const notification_type = pgEnum("notification_type", ['Contract', 'Request', 'Payment'])
@@ -144,6 +147,10 @@ export const investors = pgTable("investors", {
 	max_facility_size: max_facility_size("max_facility_size"),
 	products_offered: products_offered("products_offered").array(),
 	geographies_served: geographies_served("geographies_served").array(),
+	investor_type: investor_type("investor_type"),
+	future_investment_amount: future_investment_amounts("future_investment_amount"),
+	institution_type: institution_types("institution_type"),
+	accreditation: text("accreditation"),
 },
 (table) => {
 	return {
@@ -168,6 +175,15 @@ export const payments = pgTable("payments", {
 	status: payment_status("status"),
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	contract_id: bigint("contract_id", { mode: "number" }).references(() => contracts.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	amount: numeric("amount"),
+});
+
+export const transactions = pgTable("transactions", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	sender_id: uuid("sender_id").references(() => users.id, { onDelete: "restrict", onUpdate: "restrict" } ),
+	receiver_id: uuid("receiver_id").references(() => users.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	amount: numeric("amount"),
 });
 
@@ -238,6 +254,12 @@ export const usersRelations = relations(users, ({one, many}) => ({
 	notifications: many(notifications),
 	bank_accounts: many(bank_accounts),
 	investors: many(investors),
+	transactions_receiver_id: many(transactions, {
+		relationName: "transactions_receiver_id_users_id"
+	}),
+	transactions_sender_id: many(transactions, {
+		relationName: "transactions_sender_id_users_id"
+	}),
 }));
 
 export const usersInAuthRelations = relations(usersInAuth, ({many}) => ({
@@ -269,5 +291,18 @@ export const paymentsRelations = relations(payments, ({one}) => ({
 	contract: one(contracts, {
 		fields: [payments.contract_id],
 		references: [contracts.id]
+	}),
+}));
+
+export const transactionsRelations = relations(transactions, ({one}) => ({
+	user_receiver_id: one(users, {
+		fields: [transactions.receiver_id],
+		references: [users.id],
+		relationName: "transactions_receiver_id_users_id"
+	}),
+	user_sender_id: one(users, {
+		fields: [transactions.sender_id],
+		references: [users.id],
+		relationName: "transactions_sender_id_users_id"
 	}),
 }));

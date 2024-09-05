@@ -19,7 +19,7 @@ export default async function SubmitStartUpDetailsPage()
     if(user.userInfo.role === 'investor') {
         const bankConnected = await getBankAccount(user.user.id)
         
-        if(!user?.userInvestor?.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered) {
+        if(!user?.userInvestor?.investor_type || (user?.userInvestor?.investor_type === 'Institution' && (!user?.userInvestor.company_email || !user?.userInvestor.company_name || !user?.userInvestor.company_email || !user?.userInvestor.company_website || !user?.userInvestor.geographies_served || !user?.userInvestor.max_facility_size || !user?.userInvestor.minimum_revenue_requirement || !user?.userInvestor.products_offered || !user.userInvestor.future_investment_amount || !user.userInvestor.institution_type)) || (user?.userInvestor?.investor_type === 'Individual' && (!user?.userInvestor.future_investment_amount || !user?.userInvestor.accreditation))) {            
             return redirect('/investor-details')
         }
         else if(!bankConnected) return redirect('/investor-details/financial')

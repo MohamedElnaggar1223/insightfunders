@@ -40,6 +40,7 @@
     "react-hook-form": "^7.52.0",
     "react-plaid-link": "^3.5.2",
     "recharts": "^2.12.7",
+    "server-only": "^0.0.1",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
