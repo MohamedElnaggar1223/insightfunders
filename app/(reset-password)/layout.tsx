@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import '../globals.css'
 import { Inter } from "next/font/google";
 
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
 			<body className={inter.className}>
         <section className='w-full flex flex-col bg-[#1A1A1A] min-h-screen'>
-          {children}
+          <Suspense>
+            {children}
+          </Suspense>
         </section>
 			</body>
 		</html>
