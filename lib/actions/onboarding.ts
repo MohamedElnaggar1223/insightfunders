@@ -153,7 +153,8 @@ export const submitApplication = async () => {
     if(!data) return { error: 'Startup not found' }
 
     const { error: submitError } = await supabase.from('startups').update({
-        submitted: true
+        submitted: true,
+        accepted: true
     }).eq('id', data.id)
 
     if(submitError) return { error: submitError.message }
@@ -174,7 +175,8 @@ export const submitInvestorApplication = async () => {
     if(!data) return { error: 'Investor not found' }
 
     const { error: submitError } = await supabase.from('investors').update({
-        submitted: true
+        submitted: true,
+        accepted: true
     }).eq('id', data.id)
 
     if(submitError) return { error: submitError.message }

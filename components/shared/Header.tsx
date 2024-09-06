@@ -18,7 +18,7 @@ export default function Header()
             <div className='gap-12 font-light flex text-sm items-center max-lg:hidden'>
                 <Link href='/'>Home</Link>
                 <Link href='/borrowers'>Borrowers</Link>
-                <Link href='#'>Lenders</Link>
+                <Link href='/lenders'>Lenders</Link>
                 <Link href='/about-us'>About</Link>
             </div>
 

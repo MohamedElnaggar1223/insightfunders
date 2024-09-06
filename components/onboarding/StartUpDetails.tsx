@@ -127,7 +127,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Company name" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Company name" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -140,7 +140,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
+                                <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
                                     <option value="Sole Proprietorship">Sole Proprietorship</option>
                                     <option value="Partnership">Partnership</option>
                                     <option value="Corporation">Corporation</option>
@@ -216,7 +216,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="XX-XXXXXX" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="XX-XXXXXX" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -230,7 +230,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                             render={({ field }) => (
                                 <FormItem className='flex'>
                                     <FormControl>
-                                        <select className='flex border-y border-l border-[#D0D5DD] rounded-tl-[2px] rounded-bl-[2px] px-4 py-2 outline-none' {...field}>
+                                        <select className='flex border-y border-l border-[#D0D5DD] rounded-tl-[8px] rounded-bl-[8px] px-4 py-2 outline-none' {...field}>
                                             {Object.entries(countryDialingCodes).map(([code, country]) => (
                                                 <option key={code} value={code}>{code} {country}</option>
                                             ))}
@@ -246,7 +246,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-1 flex-1'>
                                     <FormControl>
-                                        <input className='flex border-y border-r border-[#D0D5DD] rounded-tr-[2px] rounded-br-[2px] flex-1 px-4 py-5 outline-none' placeholder="(555) 000 0000" {...field} />
+                                        <input className='flex border-y border-r border-[#D0D5DD] rounded-tr-[8px] rounded-br-[8px] flex-1 px-4 py-3 outline-none' placeholder="(555) 000 0000" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -261,7 +261,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="you@company.com" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="you@company.com" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -274,7 +274,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="3517 W. Gray St. Utica, Pennsylvania 57867" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="3517 W. Gray St. Utica, Pennsylvania 57867" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -287,7 +287,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
+                                <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
                                     <option value="Technology">Technology</option>
                                     <option value="Healthcare">Healthcare</option>
                                     <option value="Financial Services">Financial Services</option>
@@ -318,7 +318,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                                 <FormControl>
-                                    <input className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="Other sector" {...field} />
+                                    <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Other sector" {...field} />
                                 </FormControl>
                                 <FormMessage className='absolute text-red-600 -bottom-6' />
                             </FormItem>
@@ -326,16 +326,16 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     />
                 )}
                 <div className='flex items-center justify-center gap-2 w-full'>
-                    <button onClick={handleSaveStartUpDetails} disabled={isPending} className='w-full bg-[#FF7A00] text-white font-semibold rounded-[2px] py-2 px-4' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
-                    <button disabled={isPending || (form.getValues('businessOwners')?.length ?? 0) === 0} className='w-full bg-[#FF7A00] text-white font-semibold rounded-[2px] py-2 px-4' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
+                    <button onClick={handleSaveStartUpDetails} disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
+                    <button disabled={isPending || (form.getValues('businessOwners')?.length ?? 0) === 0} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
                 </div>
             </form>
-            {saveSuccess && (
+            {/* {saveSuccess && (
                 <div className='border-2 border-[#00AE6E] gap-4 rounded-[2px] bg-[#ECFDF5] flex items-center justify-center px-12 py-6'>
                     <Check size={24} className='text-[#00AE6E]' />
                     <p className='text-black font-semibold'>Startup details saved successfully</p>
                 </div>
-            )}
+            )} */}
             {error && (
                 <div className='border-2 border-[#F86C6C] gap-4 rounded-[2px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6'>
                     <X size={24} className='text-[#F86C6C]' />

@@ -66,7 +66,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="address1"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Address" {...field} />
                             </FormControl>
@@ -79,7 +79,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="city"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="City" {...field} />
                             </FormControl>
@@ -92,7 +92,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="state"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <select defaultValue='' className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none'  {...field}>
                                     <option disabled value=''>State</option>
@@ -157,7 +157,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="postalCode"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Postal Code" {...field} />
                             </FormControl>
@@ -170,7 +170,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="ssn"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last 4 of SSN" {...field} />
                             </FormControl>
@@ -183,7 +183,7 @@ export default function PersonalDetails()
                     disabled={isPending}
                     name="dateOfBirth"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="DOF e.g. MM/DD/YYYY" {...field} />
                             </FormControl>

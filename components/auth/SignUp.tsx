@@ -12,7 +12,7 @@ import {
     FormMessage,
   } from "@/components/ui/form"
 import { signUpSchema } from "@/lib/validations/authSchema"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -42,6 +42,10 @@ export default function SignIn()
         await signUp(values)
         setIsPending(false)
     }
+
+    useEffect(() => {
+        if(!rolePage) form.setValue('firstName', '')
+    }, [rolePage])
 
     return (
         <Form {...form}>

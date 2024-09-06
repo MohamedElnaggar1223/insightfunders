@@ -53,18 +53,18 @@ export default function Features()
             <FeaturesApply />
             <div className="flex flex-col gap-32 items-center justify-center px-2 lg:px-40">
                 <p className='max-md:px-6 text-3xl'>Easily raise the right type of debt from the best banks and credit funds.</p>
-                <div className="flex gap-12 w-full items-start justify-center 2xl:justify-between flex-wrap">
-                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                <div className="flex gap-4 w-full items-start justify-center 2xl:justify-between flex-wrap">
+                    <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>200+</p>
                         <p className='text-black text-xl font-bold mt-2'>Companies Funded</p>
                         <p className='text-black text-base font-light'>We've helped fund 200+ amazing businesses</p>
                     </div>
-                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                    <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>$12M</p>
                         <p className='text-black text-xl font-bold mt-2'>Average size of investments</p>
                         <p className='text-black text-base font-light'>Average credit facility that qualified companies receive through Insight Funders</p>
                     </div>
-                    <div className='flex flex-col items-center justify-center gap-4 text-center'>
+                    <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>$20B</p>
                         <p className='text-black text-xl font-bold mt-2'>Total credit available</p>
                         <p className='text-black text-base font-light'>Total credit available through our integrated lender ecosystem.</p>

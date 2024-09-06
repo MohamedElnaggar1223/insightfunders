@@ -71,7 +71,7 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormLabel className='text-white'>Stage</FormLabel>
                             <FormControl>
-                                <select className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' {...field}>
+                                <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
                                     {['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public'].map(option => (
                                         <option key={option} value={option}>{option}</option>
                                     ))}
@@ -89,13 +89,16 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormLabel className='text-white'>Recent Raise (in USD)</FormLabel>
                             <FormControl>
-                                <input type='text' className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' placeholder="e.g. 15000" {...field} onChange={(e) => (/^\d+$/.test(e.target.value) || e.target.value === '') && form.setValue('recentRaise', e.target.value === '' ? 0 : parseFloat(e.target.value))} />
+                                <div className='flex flex-1 relative'>
+                                    <p className='text-black absolute top-[0.975rem] left-[1rem] text-xs'>$</p>
+                                    <input type='text' className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="e.g. 15000" {...field} onChange={(e) => (/^\d+$/.test(e.target.value) || e.target.value === '') && form.setValue('recentRaise', e.target.value === '' ? 0 : parseFloat(e.target.value))} />
+                                </div>
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
                     )}
                 />
-                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[2px] py-5 text-sm px-4 disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
+                <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? 'Submitting...' : 'Submit'}</button>
                 {error && (
                     <div className='border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-4 py-6'>
                         <X size={24} className='text-[#F86C6C]' />

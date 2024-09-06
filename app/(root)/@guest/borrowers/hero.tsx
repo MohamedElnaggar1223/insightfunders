@@ -10,12 +10,12 @@ export default function Hero()
             <div className="flex flex-col items-center justify-between gap-12">
                 <div className="flex gap-2 items-center justify-center">
                     <div className='rounded-full w-2 h-2 bg-[#FF7A0080]' />
-                    <p className='font-bold text-[#FF7A00] text-sm'>Capital Markets</p>
+                    <p className='font-bold text-[#FF7A00] text-sm'>Private Credit Markets</p>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-8">
                     <div className="flex flex-col items-center justify-center gap-4">
-                        <h1 className='font-bold max-lg:text-xl text-3xl text-black text-center'>Outsource your next debt raise with Insight Funders private credit markets</h1>
-                        <h3 className='font-light max-lg:text-xs text-base text-center'>Leverage Insight Funders Capital Markets to secure a customized debt solution. Save months of time and hundreds of <br /> thousands in fees through one frictionless application and Insight Funders integrated lender network.</h3>
+                        <h1 className='font-bold max-lg:text-xl text-3xl text-black text-center'>Let Insight Funders manage your private credit needs with ease.</h1>
+                        <h3 className='font-light max-lg:text-xs text-base text-center'>Leverage Insight Funders' Credit Markets to secure a tailored capital solution. Access fast, flexible credit with a seamless application process through our integrated lender network.</h3>
                     </div>
                     <div className='flex w-full items-center justify-center'>
                         <Link href='/sign-up'>
