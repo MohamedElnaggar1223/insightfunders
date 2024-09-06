@@ -8,8 +8,8 @@ export default function AboutUsPage()
         <section className="flex flex-col gap-12 w-full pt-24 pb-4">
             <div className="flex flex-col items-center justify-center gap-4">
                 <h1 className="text-3xl font-bold">Built by Founders, for Founders</h1>
-                <h2 className="text-center">
-                    Insight Funders is the future of finance for startups, providing software companies with the customized financial products they deserve.
+                <h2 className="text-center max-w-[800px]">
+                    Insight Funders is revolutionizing business financing by delivering customized private credit solutions tailored to the unique needs of high-growth companies
                 </h2>
                 <div className='text-[#FF7A00] font-semibold flex items-center gap-1'>
                     We're hiring{" "}<Play stroke="#FF7A00" fill="#FF7A00" size={14} />
@@ -17,7 +17,7 @@ export default function AboutUsPage()
             </div>
             <div className="flex flex-col bg-[#1A1A1A] pb-20">
                 <Image
-                    src='/images/about.png' 
+                    src='/images/about-us.png' 
                     alt="About"
                     width={1538}
                     height={800}
@@ -35,8 +35,8 @@ export default function AboutUsPage()
                     <div className="flex flex-col gap-4 flex-1">
                         <p className='text-white font-bold leading-[2rem] text-[28px]'>Our Mission</p>
                         <p className='text-white'>
-                        At Insight Founders, our mission is to revolutionize the way startups access funding by making the process transparent, supportive, and empowering. We aim to bridge the gap between lenders and entrepreneurs, offering a platform where founders can secure venture debt without sacrificing equity. Our goal is to demystify the funding process, providing not just capital but also invaluable feedback and resources to help startups enhance their financial health and business strategies.<br/> <br/>
-                        We are dedicated to building a community where founders can grow and thrive, equipped with the knowledge and tools they need to succeed. By offering complimentary due diligence checks and clear, actionable insights, we strive to make the journey to funding not only more accessible but also educational. Insight Founders is here to support you every step of the way, transforming challenges into opportunities and helping you unlock the full potential of your business.
+                            At Insight Founders, our mission is to revolutionize the way startups access funding by making the process transparent, supportive, and empowering. We aim to bridge the gap between lenders and entrepreneurs, offering a platform where founders can secure venture debt without sacrificing equity. Our goal is to demystify the funding process, providing not just capital but also invaluable feedback and resources to help startups enhance their financial health and business strategies.<br/> <br/>
+                            We are dedicated to building a community where founders can grow and thrive, equipped with the knowledge and tools they need to succeed. By offering complimentary due diligence checks and clear, actionable insights, we strive to make the journey to funding not only more accessible but also educational. Insight Founders is here to support you every step of the way, transforming challenges into opportunities and helping you unlock the full potential of your business.
                         </p>
                     </div>
                 </div>
@@ -141,11 +141,12 @@ export default function AboutUsPage()
                 <div className='flex gap-4 flex-wrap items-center justify-center'>
                     <div className='flex flex-col gap-2 mt-12'>
                         <Image
-                            src='/images/woman1.png'
-                            alt="woman1"
+                            src='/images/zoe.png'
+                            alt="zoe"
                             width={384}
                             height={389}
                             quality={100}
+                            className='rounded-[8px]'
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
@@ -164,11 +165,12 @@ export default function AboutUsPage()
                     </div>
                     <div className='flex flex-col gap-2 mt-12'>
                         <Image
-                            src='/images/man1.png'
-                            alt="man1"
+                            src='/images/yazan.png'
+                            alt="yazan"
                             width={384}
                             height={389}
                             quality={100}
+                            className='rounded-[8px]'
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
@@ -187,11 +189,12 @@ export default function AboutUsPage()
                     </div>
                     <div className='flex flex-col gap-2 mt-12'>
                         <Image
-                            src='/images/man2.png'
-                            alt="man2"
+                            src='/images/hubert.png'
+                            alt="hubert"
                             width={384}
                             height={389}
                             quality={100}
+                            className='rounded-[8px]'
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
@@ -210,34 +213,12 @@ export default function AboutUsPage()
                     </div>
                     <div className='flex flex-col gap-2 mt-12'>
                         <Image
-                            src='/images/woman1.png'
-                            alt="woman1"
+                            src='/images/weiyee.png'
+                            alt="weiyee"
                             width={384}
                             height={389}
                             quality={100}
-                        />
-                        <div className='flex items-start justify-between gap-1 pr-2'>
-                            <div className="flex flex-col">
-                                <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-light'>Position</p>
-                            </div>
-                            <Image
-                                src='/images/in.svg'
-                                alt="linkedin"
-                                width={26}
-                                height={26}
-                                quality={100}
-                            />
-                        </div>
-                        <p className='text-white text-sm font-light max-w-[370px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                    <div className='flex flex-col gap-2 mt-12'>
-                        <Image
-                            src='/images/man1.png'
-                            alt="man1"
-                            width={384}
-                            height={389}
-                            quality={100}
+                            className='rounded-[8px]'
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
