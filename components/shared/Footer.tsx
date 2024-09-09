@@ -19,7 +19,7 @@ export default function Footer()
 
                     <div className='gap-12 font-light flex text-xs max-lg:my-4 text-nowrap max-w-full lg:text-sm items-center flex-wrap'>
                         <Link href='/get-in-touch'>Contact Us</Link>
-                        <Link href='#'>Career Page</Link>
+                        <Link href='/career'>Career Page</Link>
                         <Link href='/faq'>FAQ</Link>
                         <Link href='#'>Blog</Link>
                         <Link href='#'>Referral Program</Link>

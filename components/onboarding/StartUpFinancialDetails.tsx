@@ -18,6 +18,8 @@ import PlaidLink from "../plaid/PlaidLink"
 import { UserType } from "@/lib/types/user"
 import { getBankAccount } from "@/lib/actions/user"
 import { X } from "lucide-react"
+import { updatePage } from "@/lib/server"
+import { useRouter } from "next/navigation"
 
 type Props = {
     user: UserType
@@ -25,6 +27,8 @@ type Props = {
 
 export default function StartUpFinancialDetailsContainer({ user }: Props)
 {
+    const router = useRouter()
+
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState('')
 
@@ -56,6 +60,11 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
 
         await updateFinancialDetails(values)
         setIsPending(false)
+        await updatePage('/investor-details/financial')
+        await updatePage('/investor-details')
+        await updatePage('/investor-details/submit')
+
+        router.replace('/investor-details/submit')
     }
 
 

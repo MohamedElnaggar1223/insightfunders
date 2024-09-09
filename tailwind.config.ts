@@ -166,6 +166,10 @@ const config = {
         "shrinkToZero": {
           'from': { opacity: '0' },
           'to': { width: '0%', opacity: '0', display: 'none' }
+        },
+        "slide": {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         }
       },
       animation: {
@@ -179,6 +183,7 @@ const config = {
         "small-check": "small-check 8s ease-out infinite",
         "expandToFullWidth": "expandToFullWidth 0.5s forwards",
         "shrinkToZero": "shrinkToZero 0.5s forwards",
+        "slide": 'slide 20s linear infinite',
       },
     },
   },
