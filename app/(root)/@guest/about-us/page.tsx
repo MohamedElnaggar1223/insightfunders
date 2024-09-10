@@ -139,7 +139,7 @@ export default function AboutUsPage()
             <div className="flex flex-col px-8 md:px-12 gap-2 py-24 bg-[#1A1A1A]">
                 <p className='text-white font-medium text-2xl text-center'>Meet our team</p>
                 <div className='flex gap-4 flex-wrap items-center justify-center'>
-                    <div className='flex flex-col gap-2 mt-12'>
+                    <div className='flex flex-col gap-2 mt-12 h-[480px]'>
                         <Image
                             src='/images/zoe.png'
                             alt="zoe"
@@ -150,8 +150,8 @@ export default function AboutUsPage()
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
-                                <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-light'>Position</p>
+                                <p className='text-white text-lg font-medium'>Zoe Zou</p>
+                                <p className='text-white text-lg font-light'>Founder & CEO</p>
                             </div>
                             <Image
                                 src='/images/in.svg'
@@ -161,9 +161,9 @@ export default function AboutUsPage()
                                 quality={100}
                             />
                         </div>
-                        <p className='text-white text-sm font-light max-w-[370px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className='text-white text-sm font-light max-w-[370px]'>Serial entrepreneur and finance professional, passionate about advancing finance through AI and dedicated to helping founders succeed.</p>
                     </div>
-                    <div className='flex flex-col gap-2 mt-12'>
+                    <div className='flex flex-col gap-2 mt-12 h-[480px]'>
                         <Image
                             src='/images/yazan.png'
                             alt="yazan"
@@ -174,8 +174,8 @@ export default function AboutUsPage()
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
-                                <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-light'>Position</p>
+                                <p className='text-white text-lg font-medium'>Yazan Zeeshan Ali</p>
+                                <p className='text-white text-lg font-light'>CTO</p>
                             </div>
                             <Image
                                 src='/images/in.svg'
@@ -185,9 +185,9 @@ export default function AboutUsPage()
                                 quality={100}
                             />
                         </div>
-                        <p className='text-white text-sm font-light max-w-[370px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className='text-white text-sm font-light max-w-[370px]'>Serial entrepreneur with experience leading technical teams and an early adopter of emerging technologies.</p>
                     </div>
-                    <div className='flex flex-col gap-2 mt-12'>
+                    <div className='flex flex-col gap-2 mt-12 h-[480px]'>
                         <Image
                             src='/images/hubert.png'
                             alt="hubert"
@@ -198,8 +198,8 @@ export default function AboutUsPage()
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
-                                <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-light'>Position</p>
+                                <p className='text-white text-lg font-medium'>Hubert Dzieciol</p>
+                                <p className='text-white text-lg font-light'>Senior Engineer</p>
                             </div>
                             <Image
                                 src='/images/in.svg'
@@ -209,9 +209,9 @@ export default function AboutUsPage()
                                 quality={100}
                             />
                         </div>
-                        <p className='text-white text-sm font-light max-w-[370px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className='text-white text-sm font-light max-w-[370px]'>Technologist with a passion for solving complex problems and building innovative ML solutions.</p>
                     </div>
-                    <div className='flex flex-col gap-2 mt-12'>
+                    <div className='flex flex-col gap-2 mt-12 h-[480px]'>
                         <Image
                             src='/images/weiyee.png'
                             alt="weiyee"
@@ -222,8 +222,8 @@ export default function AboutUsPage()
                         />
                         <div className='flex items-start justify-between gap-1 pr-2'>
                             <div className="flex flex-col">
-                                <p className='text-white text-lg font-medium'>Name Here</p>
-                                <p className='text-white text-lg font-light'>Position</p>
+                                <p className='text-white text-lg font-medium'>Weiyee In</p>
+                                <p className='text-white text-lg font-light'>CIO</p>
                             </div>
                             <Image
                                 src='/images/in.svg'
@@ -233,7 +233,7 @@ export default function AboutUsPage()
                                 quality={100}
                             />
                         </div>
-                        <p className='text-white text-sm font-light max-w-[370px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className='text-white text-sm font-light max-w-[370px]'>With over 30 years on Wall Street and as a venture investor, passionate about strategic leadership and innovative tech solutions.</p>
                     </div>
                 </div>
             </div>
@@ -304,7 +304,9 @@ export default function AboutUsPage()
                         />
                     </div>
                 </div>
-                <p className='text-[#00000099] max-w-[889px] text-left mt-16'>
+            </div>
+            <div className="flex w-full bg-[#1A1A1A] items-center justify-center p-24">
+                <p className='text-[#ffffff99] max-w-[889px] text-left'>
                     Insight Funders INC is a financial technology company focused on providing data analytics and financial insights to startups and potential lenders. We facilitate connections and information sharing through our platform.
                     Our platform offers the following services:<br/>
                     Connection Services: We connect startups with potential lenders based on data analytics and other financial insights.
@@ -314,7 +316,7 @@ export default function AboutUsPage()
                     Users of our platform are responsible for ensuring that their use complies with all applicable laws and regulations. Insight Funders INC is not responsible for any decisions made based on the information provided through our services.<br />
                     We are committed to protecting the privacy and confidentiality of our users. For detailed information on how we handle data, please refer to our Privacy Policy.<br />
                     Insight Funders INC reserves the right to update or modify these Terms of Use at any time. Users will be notified of any significant changes through our platform.<br />
-                    For any inquiries or concerns regarding these Terms of Use, please contact us at Team@insightfunders.com.
+                    For any inquiries or concerns regarding these Terms of Use, please contact us at <span className='font-semibold text-[#FF7A00]'>Team@insightfunders.com</span>.
                 </p>
             </div>
         </section>
