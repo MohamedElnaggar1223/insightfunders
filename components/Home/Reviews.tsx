@@ -3,17 +3,17 @@ import Image from "next/image";
 export default function Reviews()
 {
     return (
-        <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-52 gap-40'>
-            <div className='flex flex-col py-12 gap-8 px-4 lg:px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
-                <p className='text-[#FF7A00] text-3xl'>Receive terms at no cost!</p>
-                <p className='text-[#FFF] text-xl'>
-                Receiving terms through Private Credit Markets is completely free. A small facilitation fee applies only if you proceed with funding. We ensure 100% transparency throughout the process.
+        <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-40 gap-40'>
+            <div className='flex flex-col py-4 gap-4 px-4 lg:px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
+                <p className='text-[#FF7A00] text-xl'>Receive terms at no cost!</p>
+                <p className='text-[#FFF] text-base'>
+                Receiving terms through Private Credit Markets is completely free. A small facilitation fee applies only if you proceed with funding.<br /> We ensure 100% transparency throughout the process.
                 </p>
             </div>
             <div className='flex flex-col gap-8'>
                 <p className='text-white text-2xl text-center'>Our client's reviews</p>
-                <div className='flex w-full gap-8 flex-wrap'>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 lg:h-[356px]">
+                <div className='flex w-full gap-8 flex-wrap max-lg:flex-col'>
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 lg:min-h-[356px]">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -41,7 +41,7 @@ export default function Reviews()
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 lg:h-[356px]">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 lg:min-h-[356px]">
                         <Image
                             src='/images/quote.svg'
                             width={33}

@@ -98,13 +98,13 @@ const config = {
         },
         "check-animate": {
           '0%': {
-            left: '75%'
+            left: '2.5%'
           },
           '20%': {
-            left: '2.5%',
+            left: '75%',
           },
           '100%': {
-            left: '2.5%',
+            left: '75%',
           },
         },
         "match": {
@@ -170,7 +170,17 @@ const config = {
         "slide": {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
-        }
+        },
+        "dashboard-bounce": {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+          '25%': { transform: 'translate(5px, 5px) rotate(1deg)' },
+          '50%': { transform: 'translate(-5px, 10px) rotate(-1deg)' },
+          '75%': { transform: 'translate(-10px, 5px) rotate(0deg)' },
+        },
+        "scrollY": {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-50%)' }, // Adjust this based on the content height
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -184,6 +194,8 @@ const config = {
         "expandToFullWidth": "expandToFullWidth 0.5s forwards",
         "shrinkToZero": "shrinkToZero 0.5s forwards",
         "slide": 'slide 20s linear infinite',
+        "dashboard-bounce": 'dashboard-bounce 20s ease-in-out infinite',
+        "scrollY": 'scrollY 10s linear infinite',
       },
     },
   },

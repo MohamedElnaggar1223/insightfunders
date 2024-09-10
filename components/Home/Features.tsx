@@ -17,8 +17,8 @@ export default function Features()
                         height={52} 
                     />
                     <p className='font-semibold max-xl:text-lg text-xl text-center'>Fast and Flexible</p>
-                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Choose to receive flexible, bespoke terms from multiple lenders
+                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
+                    Choose to receive flexible, bespoke terms from multiple lenders within days.
                     </p>
                 </div>
                 <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
@@ -31,8 +31,8 @@ export default function Features()
                     <p className='font-semibold max-xl:text-lg text-xl text-center'>
                         Accelerate Growth
                     </p>
-                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Our platform enables companies to access growth capital without equity dilution, fueling their expansion.
+                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
+                    Access growth capital without equity dilution, fueling expansion.
                     </p>
                 </div>
                 <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
@@ -45,8 +45,8 @@ export default function Features()
                     <p className='font-semibold max-xl:text-lg text-xl text-center'>
                         AI-Powered Insights
                     </p>
-                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] text-base text-center'>
-                        Proprietary ML algorithm analyzes borrowers' creditworthiness, completing due diligence in minutes and delivering data-driven insights to lenders.
+                    <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
+                    Proprietary ML algorithm generates instant credit scores, completing due diligence in minutes.
                     </p>
                 </div>
             </div>
@@ -57,24 +57,24 @@ export default function Features()
                     <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>100+</p>
                         <p className='text-black text-xl font-bold mt-2'>Companies Funded</p>
-                        <p className='text-black text-base font-light'>We've helped fund 200+ amazing businesses</p>
+                        <p className='text-black text-base font-light max-w-[268px]'>We've helped fund 100+ amazing businesses.</p>
                     </div>
                     <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>$12M</p>
                         <p className='text-black text-xl font-bold mt-2'>Average size of investments</p>
-                        <p className='text-black text-base font-light'>Average credit facility that qualified companies receive through Insight Funders</p>
+                        <p className='text-black text-base font-light max-w-[268px]'>Average credit facility received by qualified companies.</p>
                     </div>
                     <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>$20B</p>
                         <p className='text-black text-xl font-bold mt-2'>Total credit available</p>
-                        <p className='text-black text-base font-light'>Total credit available through our integrated lender ecosystem.</p>
+                        <p className='text-black text-base font-light max-w-[268px]'>Total credit available through our lender ecosystem.</p>
                     </div>
                 </div>
             </div>
             <div className="flex gap-4 px-4 max-xl:flex-col flex-wrap lg:px-32 -mb-48 z-50">
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[375px] max-h-[375px] h-[375px] bg-[#2F2F2F] items-center justify-center">
                     <div className='flex flex-1 items-center justify-center p-4'>
-                        <div className='relative flex max-w-[284px] w-screen pl-1 pr-12 max-h-[81px] min-h-[81px] items-center justify-end rounded-[90px] bg-white'>
+                        <div className='relative flex max-w-[284px] w-screen pl-12 max-h-[81px] min-h-[81px] items-center justify-start rounded-[90px] bg-white'>
                             <div className="flex absolute animate-check-animate items-center justify-center bg-[#FF7A00] p-1 rounded-full">
                                 <Check size={60} stroke='#fff' />
                             </div>

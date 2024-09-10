@@ -12,11 +12,11 @@ export default function FeaturesApply()
                 <div className={cn("flex group-hover:bg-white flex-col gap-6 items-center justify-center w-full border group-hover:border-[#EAEAEA] border-black bg-black rounded-[10px] max-w-[586px] lg:ml-auto")}>
                     <div className="flex items-center max-h-96 min-h-96 justify-center text-center flex-col gap-4 px-8 py-6">
                         <div className="flex gap-2 items-center justify-center border border-[#FF7A00] w-[121px] rounded-3xl py-0.5">
-                            <div className='rounded-full w-2.5 h-2.5 bg-[#FF7A0080]' />
+                            <div className='rounded-full w-2.5 h-2.5 bg-[#FF7A0080] group-hover:animate-pulse' />
                             <p className='font-normal text-[#FF7A00] text-sm'>For Borrowers</p>
                         </div>
                         <p className='font-normal text-white group-hover:text-black max-md:text-lg text-2xl'>Empower Your Growth with Flexible, Non-Dilutive Capital</p>
-                        <p className='font-normal text-white group-hover:text-black max-md:text-[10px] text-base flex-1'>Secure the capital you need without sacrificing equity, ensuring you retain full control of your business. Our marketplace allows you to rate shop in one place, connecting you with the best lenders and terms tailored to your unique needs. Beyond just funding, we support your long-term growth with flexible financing options that evolve with your company, from Seed through IPO. Focus on scaling your business, knowing you have a reliable, efficient source of capital at every stage.</p>
+                        <p className='font-normal text-white group-hover:text-black max-md:text-[10px] text-base flex-1'>Secure the capital you need without giving up equity, keeping full control of your business. Our marketplace lets you compare lenders and terms in one place, tailored to your needs. We support your growth with flexible financing options that evolve from Seed to IPO, so you can focus on scaling with a reliable source of capital at every stage.</p>
                         <div className='flex w-full items-center justify-center'>
                             <Link href='/sign-up'>
                                 <div className='flex gap-2 bg-[#FF7A00] py-2 px-8'>
@@ -33,7 +33,7 @@ export default function FeaturesApply()
                 <div className={cn("flex group-hover:bg-white flex-col gap-6 items-center justify-center w-full border group-hover:border-[#EAEAEA] border-black bg-black rounded-[10px] max-w-[586px] lg:mr-auto")}>
                     <div className="flex items-center max-h-96 min-h-96 justify-center text-center flex-col gap-4 px-8 py-6">
                         <div className="flex gap-2 items-center justify-center border border-[#FF7A00] w-[108px] rounded-3xl py-0.5">
-                            <div className='rounded-full w-2.5 h-2.5 bg-[#FF7A0080]' />
+                            <div className='rounded-full w-2.5 h-2.5 bg-[#FF7A0080] group-hover:animate-pulse' />
                             <p className='font-normal text-[#FF7A00] text-sm'>For Lenders</p>
                         </div>
                         <p className='font-normal text-white group-hover:text-black max-md:text-lg text-2xl'>Unlock pre-qualified deal flow from the world’s top companies</p>

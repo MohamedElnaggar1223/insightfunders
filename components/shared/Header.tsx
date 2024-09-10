@@ -5,7 +5,7 @@ import HeadersButtons from "./HeaderButtons";
 export default function Header() 
 {
     return (
-        <header className='flex justify-between text-sm lg:text-base items-center py-4 bg-black px-2 lg:px-40 text-white gap-2 lg:gap-4 font-semibold'>
+        <header className='flex justify-between text-sm lg:text-base items-center py-4 bg-black px-2 lg:px-40 text-white gap-2 lg:gap-4 font-semibold absolute top-0 w-full'>
             <Link href='/' className='font-IntegralCF font-medium uppercase text-xs'>
                 <Image
                     src='/images/logo.png'
