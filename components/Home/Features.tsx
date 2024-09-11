@@ -7,7 +7,7 @@ import FeaturesBatches from "./FeaturesBatches";
 export default function Features()
 {
     return (
-        <section className='flex flex-col py-20 lg:gap-40 max-lg:gap-20 bg-[#FAFAFA]'>
+        <section className='flex flex-col py-20 lg:gap-20 max-lg:gap-20 bg-[#FAFAFA]'>
             <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 max-lg:flex-wrap'>
                 <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
                     <Image
@@ -51,8 +51,8 @@ export default function Features()
                 </div>
             </div>
             <FeaturesApply />
-            <div className="flex flex-col gap-32 items-center justify-center px-2 lg:px-40">
-                <p className='max-md:px-6 text-3xl'>Easily raise the right type of debt from the best banks and credit funds.</p>
+            <div className="flex flex-col gap-20 items-center justify-center px-2 lg:px-40">
+                <p className='max-md:px-6 text-4xl max-w-[924px] text-center'>Easily raise the right type of debt from the best lending partners</p>
                 <div className="flex gap-4 w-full items-start justify-center 2xl:justify-between flex-wrap">
                     <div className='flex flex-col items-center justify-center gap-4 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>100+</p>

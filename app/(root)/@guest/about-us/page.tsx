@@ -24,7 +24,7 @@ export default function AboutUsPage()
                     quality={100}
                     className='max-h-[800px] w-full object-cover'
                 />
-                <div className="flex p-4 md:p-12 lg:p-32 gap-16 lg:gap-4 max-lg:flex-col">
+                <div className="flex p-4 md:px-12 md:pt-12 pb-8 lg:pt-32 lg:px-32 gap-16 lg:gap-4 max-lg:flex-col">
                     <div className='flex-1 flex items-center justify-center'>
                         <Image
                             src='/images/ourstoryabout.png'
@@ -42,7 +42,7 @@ export default function AboutUsPage()
                         </p>
                     </div>
                 </div>
-                <div className="flex p-4 md:p-12 lg:p-32 gap-16 lg:gap-4 max-lg:flex-col">
+                <div className="flex p-4 md:px-12 md:pb-12 pt-8 lg:pb-32 lg:px-32 gap-16 lg:gap-4 max-lg:flex-col">
                     <div className="flex items-center justify-center text-left flex-col gap-4 flex-1">
                         <p className='text-white font-bold leading-[2rem] text-[28px] md:w-[394px]'>Our Mission</p>
                         <p className='text-white md:max-w-[394px]'>
@@ -157,7 +157,7 @@ export default function AboutUsPage()
             </div>
             <div className="flex flex-col px-8 md:px-12 gap-2 py-24 bg-[#1A1A1A]">
                 <p className='text-white font-medium text-2xl text-center'>Meet our team</p>
-                <div className='flex gap-4 flex-wrap items-center justify-center'>
+                <div className='flex gap-4 max-md:flex-wrap items-center justify-center'>
                     <div className='flex flex-col gap-2 mt-12 h-[480px]'>
                         <Image
                             src='/images/zoe.png'
