@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.scroll-jump {
+    scroll-snap-type: y mandatory;
+}
+
+.scroll-align {
+    scroll-snap-align: start;
+    height: 100vh;
+}
+
+.scroll-none {
+    scroll-snap-align: none;
+    height: auto;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }

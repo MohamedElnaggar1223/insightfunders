@@ -32,7 +32,7 @@ export default function Features()
                         Accelerate Growth
                     </p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
-                    Access growth capital without equity dilution, fueling expansion.
+                        Access growth capital without equity dilution, fueling expansion.
                     </p>
                 </div>
                 <div className='flex flex-col gap-4 items-center justify-center text-center lg:flex-1'>
@@ -46,7 +46,7 @@ export default function Features()
                         AI-Powered Insights
                     </p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
-                    Proprietary ML algorithm generates instant credit scores, completing due diligence in minutes.
+                        Proprietary ML algorithm generates instant credit scores, completing due diligence in minutes.
                     </p>
                 </div>
             </div>

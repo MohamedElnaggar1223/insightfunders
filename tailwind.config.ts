@@ -195,7 +195,7 @@ const config = {
         "shrinkToZero": "shrinkToZero 0.5s forwards",
         "slide": 'slide 20s linear infinite',
         "dashboard-bounce": 'dashboard-bounce 20s ease-in-out infinite',
-        "scrollY": 'scrollY 10s linear infinite',
+        "scrollY": 'scrollY 3s linear infinite',
       },
     },
   },

@@ -24,9 +24,9 @@ export default function Steps()
     return (
         <section className='flex flex-col pt-72 z-[5] pb-32 bg-[#1A1A1A] gap-32'>
             <p className='text-white font-bold leading-[2rem] !text-[1.75rem] text-center'>3 steps away to get funded</p>
-            <div className='flex gap-4 w-full items-center justify-between max-md:flex-col px-4 md:px-24 max-lg:flex-wrap'>
-                <div onMouseEnter={() => setSteps('step1')} className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps === 'step1' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white text-center', steps === 'step1' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 1: Sync your data</p>
+            <div className='flex gap-4 w-full items-center justify-center max-md:flex-col px-4 md:px-24 max-lg:flex-wrap'>
+                <div onMouseEnter={() => setSteps('step1')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border w-[396px] max-w-[396px] h-[450px] rounded-[12px]", steps === 'step1' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                    <p className={cn('text-white text-center max-lg:text-lg text-xl')}>Step 1: Sync your data</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
                             src='/images/plaidStep.png' 
@@ -34,77 +34,42 @@ export default function Steps()
                             height={151}
                             alt='Plaid Step'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps === 'step1' ? 'opacity-100' : 'opacity-0')}>
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-base text-center")}>
                             We integrate with your bank and accounting system so you 
-                            can easily and securely connect your data.
-                            <ul>
-                                <li>
-                                • Robust security measures
-                                </li>
-                                <li>
-                                • Capchase is SOC 2 Type II certified
-                                </li>
-                                <li>
-                                • Compliant with financial services regulatory requirements
-                                </li>
-                                <li>
-                                • Pre-configured integrations
-                                </li>
-                            </ul>
+                            can easily and securely connect your data.<br />
+                            Robust security measures<br />
+                            Capchase is SOC 2 Type II certified<br />
+                            Compliant with financial services regulatory requirements<br />
+                            Pre-configured integrations
                         </div>
                     </div>
                 </div>
-                <div onMouseEnter={() => setSteps('step2')} className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps === 'step2' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white text-center', steps === 'step2' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 2: Approve who you wish to share your data with</p>
+                <div onMouseEnter={() => setSteps('step2')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border w-[396px] max-w-[396px] h-[450px] rounded-[12px]", steps === 'step2' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                    <p className={cn('text-white text-center max-lg:text-lg text-xl')}>Step 2: Approve who you wish to share your data with</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
-                            src='/images/approveStep.png' 
+                            src='/images/step2borrowers.png' 
                             width={284}
                             height={89}
                             alt='Plaid Step'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps === 'step2' ? 'opacity-100' : 'opacity-0')}>
-                            Once approved, you can easily manage what financial data you 
-                            share with lenders through our intuitive platform. Track activity, and 
-                            access detailed reports. This platform empowers businesses with:
-                            <ul>
-                                <li>
-                                    • Customizable data sharing options
-                                </li>
-                                <li>
-                                • Advanced underwriting technology licensed for banks
-                                </li>
-                            </ul>
-                            Maintain control over your financial information and ensure secure, 
-                            transparent transactions with our comprehensive tools and support.
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-base text-center")}>
+                        You have full control over your data—choose which lender to share it with. Your data is securely encrypted and will only be shared with a lender upon your approval
                         </div>
                     </div>
                 </div>
-                <div onMouseEnter={() => setSteps('step3')} className={cn("flex flex-col items-center justify-between gap-4 lg:gap-16 rounded-[4px] w-fit transition-all duration-300 p-6 flex-1", steps === 'step3' ? 'bg-black scale-105 md:scale-110' : 'bg-transparent scale-75')}>
-                    <p className={cn('text-white text-center', steps === 'step3' ? 'max-lg:text-lg text-2xl' : 'max-lg:text-sm text-xs')}>Step 3: Access your capital</p>
+                <div onMouseEnter={() => setSteps('step3')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border w-[396px] max-w-[396px] h-[450px] rounded-[12px]", steps === 'step3' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                    <p className={cn('text-white text-center max-lg:text-lg text-xl')}>Step 3: Access your capital</p>
                     <div className="flex flex-col items-center justify-start">
                         <Image
                             src='/images/accessStep.png' 
                             width={181}
-                            height={51}
+                            height={60}
                             alt='Plaid Step'
+                            className='rounded-[12px]'
                         />
-                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-[10px] lg:text-xs text-center", steps === 'step3' ? 'opacity-100' : 'opacity-0')}>
-                            Once approved, you can immediately make draws in our 
-                            intuitive platform, track activity and pull data for financial reporting. 
-                            Draw additional funds as you need
-                            <ul>
-                                <li>
-                                • Dashboard for clear visibility into your financing
-                                </li>
-                                <li>
-                                • Dedicated Growth Advisor providing expertise and support along 
-                                your journey
-                                </li>
-                                <li>
-                                • Credit cap increases with your ARR!
-                                </li>
-                            </ul>
+                        <div className={cn("flex flex-col items-center justify-center gap-1 text-white mt-4 text-base text-center")}>
+                        Access fast, flexible, and patient capital with Insight Funders. Easily increase your credit line and refinance as needed. Our commitment is to be your lifelong debt partner, supporting the growth and success of your company
                         </div>
                     </div>
                 </div>

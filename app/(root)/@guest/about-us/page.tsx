@@ -25,28 +25,47 @@ export default function AboutUsPage()
                     className='max-h-[800px] w-full object-cover'
                 />
                 <div className="flex p-4 md:p-12 lg:p-32 gap-16 lg:gap-4 max-lg:flex-col">
-                    <div className="flex flex-col gap-4 flex-1">
-                        <p className='text-white font-bold leading-[2rem] text-[28px]'>Our Story</p>
-                        <p className='text-white'>
-                            Insight Founders was established by a team of experienced entrepreneurs with backgrounds in finance and technology, who have firsthand knowledge of the challenges involved in securing funding while preserving equity. Witnessing the struggles of fellow founders with the opaque and often frustrating traditional financing processes—and experiencing their own challenges with the lack of transparency and feedback from lenders—they identified a critical gap in the market. Founders often find themselves in a vulnerable position when raising capital, unsure of where to turn, spending months in meetings, and submitting documents to various lenders, only to face uncertain rejections or receive no responses at all.<br/> <br/>
-                            Driven by a passion to transform this landscape, Insight Founders was created as a venture debt platform specifically designed to support early-stage startups from Seed to Series C. Our platform not only provides access to essential funding but also ensures transparency and guidance throughout the entire process. We believe that every founder deserves clear feedback and constructive insights, even if they are not initially approved for funding. This commitment to transparency and support distinguishes Insight Founders, making us a trusted partner in the startup ecosystem.
-                        </p>
+                    <div className='flex-1 flex items-center justify-center'>
+                        <Image
+                            src='/images/ourstoryabout.png'
+                            alt="About"
+                            width={484}
+                            height={600}
+                            quality={100}
+                        />
                     </div>
-                    <div className="flex flex-col gap-4 flex-1">
-                        <p className='text-white font-bold leading-[2rem] text-[28px]'>Our Mission</p>
-                        <p className='text-white'>
-                            At Insight Founders, our mission is to revolutionize the way startups access funding by making the process transparent, supportive, and empowering. We aim to bridge the gap between lenders and entrepreneurs, offering a platform where founders can secure venture debt without sacrificing equity. Our goal is to demystify the funding process, providing not just capital but also invaluable feedback and resources to help startups enhance their financial health and business strategies.<br/> <br/>
-                            We are dedicated to building a community where founders can grow and thrive, equipped with the knowledge and tools they need to succeed. By offering complimentary due diligence checks and clear, actionable insights, we strive to make the journey to funding not only more accessible but also educational. Insight Founders is here to support you every step of the way, transforming challenges into opportunities and helping you unlock the full potential of your business.
+                    <div className="flex items-center justify-center text-left flex-col gap-4 flex-1">
+                        <p className='text-white font-bold leading-[2rem] text-[28px] md:w-[394px]'>Our Story</p>
+                        <p className='text-white md:max-w-[394px]'>
+                            Insight Funders was built by experienced entrepreneurs with deep roots in finance and technology, who understand the challenges of securing funding while preserving equity. We’ve experienced the frustrations firsthand—months of meetings, endless paperwork, and the uncertainty of opaque, costly, and time-consuming processes.
+                            We knew there had to be a better way. That’s why we created Insight Funders, a platform designed to provide growing startups with fast, transparent access to the funding they need to grow.
                         </p>
                     </div>
                 </div>
-                <Link href='/get-in-touch' className="bg-[#FF7A00] text-white px-4 max-w-[241px] w-full py-4 text-center rounded-lg mx-auto">Contact Us</Link>
+                <div className="flex p-4 md:p-12 lg:p-32 gap-16 lg:gap-4 max-lg:flex-col">
+                    <div className="flex items-center justify-center text-left flex-col gap-4 flex-1">
+                        <p className='text-white font-bold leading-[2rem] text-[28px] md:w-[394px]'>Our Mission</p>
+                        <p className='text-white md:max-w-[394px]'>
+                            At Insight Funders, our mission is to revolutionize how companies access credit. We bridge the gap between private lenders and entrepreneurs, offering a platform where founders can secure funding without sacrificing equity. By outsourcing your credit needs to us, we streamline the process and make it easier to access the capital you need.
+                            We aim to be your lifelong credit partner, supporting you at every stage of your business’s growth. When banks turn you away, we make funding more accessible, helping you unlock your business’s full potential.
+                        </p>
+                    </div>
+                    <div className='flex-1 flex items-center justify-center'>
+                        <Image
+                            src='/images/ourmissionabout.png'
+                            alt="About"
+                            width={484}
+                            height={600}
+                            quality={100}
+                        />
+                    </div>
+                </div>
             </div>
             <div className="flex flex-col gap-12 px-8 text-center py-32 items-center justify-center">
                 <div className="flex flex-col gap-6 items-center justify-center">
                     <p className='font-medium text-[25px] leading-[2rem]'>Our customers are backed by the best</p>
                     <p className='max-w-[708px] text-center'>
-                        Top VCs from both coasts trust Arc to manage the finances of their portfolio companies. We’re proud to provide a friendlier way for startups to extend their runway, accelerate their growth and maximize their capital stack. We help founders scale sooner, on their terms, and without restriction.
+                        Top investors trust Insight Funders to manage the private credit needs of their portfolio companies. We’re proud to offer startups a smarter way to extend their runway, accelerate growth, and optimize their capital structure. We empower founders to scale on their terms, with the flexibility they need to succeed.
                     </p>
                 </div>
                 <div className='flex flex-col gap-2 w-full'>
