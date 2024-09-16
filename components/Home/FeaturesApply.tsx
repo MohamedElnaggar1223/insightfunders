@@ -1,11 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Play } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function FeaturesApply()
 {
-
     return (
         <div className='flex gap-4 items-center justify-center max-md:px-4 px-20 lg:px-40 max-xl:flex-wrap max-xl:gap-12'>
             <div className='flex group lg:w-1/2 transition-all max-h-[386px] min-h-[386px] h-[386px]'>

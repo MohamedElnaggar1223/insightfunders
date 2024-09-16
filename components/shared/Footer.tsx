@@ -23,7 +23,7 @@ export default function Footer()
                         <Link href='/faq'>FAQ</Link>
                         <Link href='#'>Blog</Link>
                         <Link href='#'>Referral Program</Link>
-                        <Link href='#'>Learning Center</Link>
+                        <Link href='/learning-center'>Learning Center</Link>
                     </div>
 
                     <div className='flex gap-6'>
