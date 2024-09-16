@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FeaturesApply()
 {
     return (
-        <div className='flex gap-4 items-center justify-center max-md:px-4 px-20 lg:px-40 max-xl:flex-wrap max-xl:gap-12'>
+        <div className='flex gap-8 items-center justify-center max-md:px-4 px-20 lg:px-40 max-xl:flex-wrap max-xl:gap-12 mt-20'>
             <div className='flex group lg:w-1/2 transition-all max-h-[386px] min-h-[386px] h-[386px]'>
                 <div className={cn("flex group-hover:bg-white flex-col gap-6 items-center justify-center w-full border group-hover:border-[#EAEAEA] border-black bg-black rounded-[10px] max-w-[586px] lg:ml-auto")}>
                     <div className="flex items-center max-h-96 min-h-96 justify-center text-center flex-col gap-4 px-8 py-6">

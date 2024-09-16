@@ -179,7 +179,8 @@ const config = {
         },
         "scrollY": {
           '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(-50%)' }, // Adjust this based on the content height
+          '50%': { transform: 'translateY(-50%)' }, // Adjust this based on the content height
+          '100%': { transform: 'translateY(0%)' },
         },
       },
       animation: {
@@ -195,7 +196,7 @@ const config = {
         "shrinkToZero": "shrinkToZero 0.5s forwards",
         "slide": 'slide 20s linear infinite',
         "dashboard-bounce": 'dashboard-bounce 20s ease-in-out infinite',
-        "scrollY": 'scrollY 3s linear infinite',
+        "scrollY": 'scrollY 8s linear infinite',
       },
     },
   },

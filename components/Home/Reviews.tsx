@@ -11,9 +11,9 @@ export default function Reviews()
                 </p>
             </div>
             <div className='flex flex-col gap-8'>
-                <p className='text-white text-2xl text-center'>Our client's reviews</p>
+                <p className='text-white font-normal text-2xl text-center'>Our clients' reviews</p>
                 <div className='flex w-full gap-8 flex-wrap max-lg:flex-col'>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[403px]">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[380px]">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -22,7 +22,7 @@ export default function Reviews()
                         />
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-light text-base'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
+                                <p className='text-white font-normal text-base'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
                             </div>
                         </div>
                         <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[88px]'>
@@ -41,7 +41,7 @@ export default function Reviews()
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[403px]">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[380px]">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -50,7 +50,7 @@ export default function Reviews()
                         />
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-light text-base'>Securing funding used to be a time-consuming and stressful process, but Insight Funders made it seamless. The ability to compare offers from multiple lenders in one place saved us months of work. Plus, knowing that my data was secure and only shared with lenders when I agreed gave me peace of mind. We were able to secure flexible working capital that aligned with our growth strategy, all without sacrificing equity. It’s the perfect solution for startups wanting to maintain control while accessing the funds they need to grow</p>
+                                <p className='text-white font-normal text-base'>Getting funding used to be stressful and time-consuming, but Insight Funders made it easy. Comparing offers from multiple lenders in one place saved us months of work. I also loved knowing my data was secure and only shared when I gave the okay. We got flexible capital that fit our growth plans without giving up equity—perfect for startups looking to stay in control while getting the funds they need to grow.</p>
                             </div>
                         </div>
                         <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[88px]'>
