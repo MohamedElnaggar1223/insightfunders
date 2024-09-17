@@ -18,7 +18,7 @@ export default function Features()
                     />
                     <p className='font-normal max-xl:text-lg text-2xl text-center'>Fast and Flexible</p>
                     <p className='text-main-gray max-xl:text-sm max-lg:max-w-[580px] max-w-[362px] text-base text-center'>
-                    Choose to receive flexible, bespoke terms from multiple lenders within days.
+                        Choose to receive flexible, bespoke terms from multiple lenders within days.
                     </p>
                 </div>
                 <div className='flex flex-col gap-3 items-center justify-center text-center lg:flex-1'>
@@ -52,7 +52,7 @@ export default function Features()
             </div>
             <FeaturesApply />
             <div className="flex flex-col gap-20 items-center justify-center px-2 lg:px-40">
-                <p className='max-md:px-6 text-4xl max-w-[924px] text-center'>Easily raise the right type of debt from the best lending partners</p>
+                <p className='max-md:px-6 text-4xl max-w-[824px] text-center'>Easily raise the right type of debt from the best lending partners</p>
                 <div className="flex gap-4 w-full items-start justify-center 2xl:justify-between flex-wrap">
                     <div className='flex flex-col items-center justify-center gap-3 text-center flex-1'>
                         <p className='text-[#FF7A00] text-5xl'>100+</p>

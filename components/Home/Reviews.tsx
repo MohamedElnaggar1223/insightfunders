@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Reviews()
 {
     return (
-        <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-40 gap-20'>
+        <section className='flex flex-col bg-black px-4 lg:px-40 pb-20 pt-40 gap-32'>
             <div className='flex flex-col py-4 gap-4 px-4 lg:px-24 rounded-[10px] bg-[#2F2F2F] items-center justify-center text-center'>
                 <p className='text-[#FF7A00] text-xl'>Receive terms at no cost</p>
                 <p className='text-[#FFF] text-base'>
