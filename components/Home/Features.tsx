@@ -71,7 +71,7 @@ export default function Features()
                     </div>
                 </div>
             </div>
-            <div className="flex gap-4 px-4 max-xl:flex-col flex-wrap lg:px-32 -mb-48 z-50">
+            <div className="flex gap-4 px-2 max-xl:flex-col flex-wrap lg:px-32 -mb-48 z-50">
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[375px] max-h-[375px] h-[375px] bg-[#2F2F2F] items-center justify-center">
                     <div className='flex flex-1 items-center justify-center p-4'>
                         <div className='relative flex max-w-[284px] w-screen pl-12 max-h-[81px] min-h-[81px] items-center justify-start rounded-[90px] bg-white'>
