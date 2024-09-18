@@ -8,7 +8,7 @@ export default function Features()
 {
     return (
         <section className='flex flex-col py-20 lg:gap-20 max-lg:gap-20 bg-[#FAFAFA]'>
-            <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 max-lg:flex-wrap'>
+            <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 mb-12 max-lg:flex-wrap bg-[#FAFAFA]'>
                 <div className='flex flex-col gap-3 items-center justify-center text-center lg:flex-1'>
                     <Image
                         src='/images/accelerate.svg'
@@ -51,7 +51,7 @@ export default function Features()
                 </div>
             </div>
             <FeaturesApply />
-            <div className="flex flex-col gap-20 items-center justify-center px-2 lg:px-40">
+            <div className="flex flex-col gap-20 items-center justify-center px-2 lg:px-40 bg-[#F7F7F7]">
                 <p className='max-md:px-6 text-4xl max-w-[824px] text-center'>Easily raise the right type of debt from the best lending partners</p>
                 <div className="flex gap-4 w-full items-start justify-center 2xl:justify-between flex-wrap">
                     <div className='flex flex-col items-center justify-center gap-3 text-center flex-1'>

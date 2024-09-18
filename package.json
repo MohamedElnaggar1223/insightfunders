@@ -29,6 +29,7 @@
     "dwolla-v2": "^3.4.0",
     "embla-carousel-react": "^8.2.1",
     "framer-motion": "^11.3.28",
+    "lenis": "^1.1.13",
     "lucide-react": "^0.395.0",
     "nanoid": "^5.0.7",
     "next": "14.2.4",

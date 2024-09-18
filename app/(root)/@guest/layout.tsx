@@ -32,7 +32,7 @@ export default async function GuestLayout({
         <main className={cn('p-0 m-0 flex flex-col', roboto.className, logoFont.variable)}>
             <Header />
             {children}
-            <BottomBar />
+            {/* <BottomBar /> */}
             <Footer />
         </main>
 	);

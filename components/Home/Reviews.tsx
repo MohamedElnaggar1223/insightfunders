@@ -13,7 +13,7 @@ export default function Reviews()
             <div className='flex flex-col gap-8'>
                 <p className='text-white font-normal text-2xl text-center'>Our clients' reviews</p>
                 <div className='flex w-full gap-8 flex-wrap max-lg:flex-col'>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[380px]">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-6 max-h-[340px] max-2xl:gap-4">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -22,15 +22,15 @@ export default function Reviews()
                         />
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-normal text-base'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
+                                <p className='text-white font-normal text-base text-clip'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
                             </div>
                         </div>
-                        <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[88px]'>
-                            <div className="flex items-center justify-center rounded-full w-[5.5rem] h-[5.5rem] overflow-hidden">
+                        <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[60px]'>
+                            <div className="flex items-center justify-center rounded-full w-[3.75rem] h-[3.75rem] overflow-hidden">
                                 <Image
                                     src='/images/review-man.png'
-                                    width={88}
-                                    height={88}
+                                    width={60}
+                                    height={60}
                                     alt='man'
                                     className='rounded-full object-contain' 
                                 />
@@ -41,7 +41,7 @@ export default function Reviews()
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-4 xl:min-h-[427px] 2xl:min-h-[380px]">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] p-8 gap-6 max-h-[340px] max-2xl:gap-4">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -53,12 +53,12 @@ export default function Reviews()
                                 <p className='text-white font-normal text-base'>Getting funding used to be stressful and time-consuming, but Insight Funders made it easy. Comparing offers from multiple lenders in one place saved us months of work. I also loved knowing my data was secure and only shared when I gave the okay. We got flexible capital that fit our growth plans without giving up equity—perfect for startups looking to stay in control while getting the funds they need to grow.</p>
                             </div>
                         </div>
-                        <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[88px]'>
-                            <div className="flex items-center justify-center rounded-full w-[5.5rem] h-[5.5rem] overflow-hidden">
+                        <div className='flex flex-1 items-center justify-start gap-3 mt-auto max-h-[60px]'>
+                            <div className="flex items-center justify-center rounded-full w-[3.75rem] h-[3.75rem] overflow-hidden">
                                 <Image
                                     src='/images/review-man2.png'
-                                    width={88}
-                                    height={88}
+                                    width={60}
+                                    height={60}
                                     alt='man'
                                     className='rounded-full object-contain' 
                                 />

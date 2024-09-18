@@ -3,7 +3,7 @@ import { motion, useInView, useMotionValueEvent, useScroll, useTransform } from 
 import { Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero()
 {
@@ -17,12 +17,57 @@ export default function Hero()
     const secondSectionInView = useInView(secondTargetRef, { amount: 'all' })
     const thirdSectionInView = useInView(thirdTargetRef, { amount: 'all' })
 
-    console.log(parentInView)
+    const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let isScrolling = false;
+    let startY = 0;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) return;
+      isScrolling = true;
+
+      const direction = e.deltaY > 0 ? 1 : -1;
+      const nextSection = container.scrollTop + direction * window.innerHeight;
+      container.scrollTo({ top: nextSection, behavior: 'smooth' });
+
+      setTimeout(() => { isScrolling = false; }, 1000);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isScrolling) return;
+      isScrolling = true;
+
+      const currentY = e.touches[0].clientY;
+      const direction = startY > currentY ? 1 : -1;
+      const nextSection = container.scrollTop + direction * window.innerHeight;
+      container.scrollTo({ top: nextSection, behavior: 'smooth' });
+
+      setTimeout(() => { isScrolling = false; }, 1000);
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
 
     return (
         <>
             <section className='max-h-screen overflow-auto scroll-jump hide-scrollbar'>
-                <section className='scroll-jump'>
+                <section ref={containerRef} className='scroll-jump'>
                     <section ref={firstTargetRef} className='scroll-align flex gap-4 max-lg:gap-12 pt-24 pb-10 z-10 max-lg:flex-col max-lg:pb-12 max-lg:pt-24 min-h-screen'>
                         <motion.div animate={firstSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
                             <div className="flex flex-col items-start max-lg:items-center justify-center gap-6">
