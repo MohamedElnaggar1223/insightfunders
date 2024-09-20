@@ -29,11 +29,11 @@ export default async function GuestLayout({
   children: React.ReactNode;
 }>) {
 	return (
-        <main className={cn('p-0 m-0 flex flex-col', roboto.className, logoFont.variable)}>
-            <Header />
-            {children}
-            {/* <BottomBar /> */}
-            <Footer />
-        </main>
+      <main className={cn('p-0 m-0 flex flex-col', roboto.className, logoFont.variable)}>
+          <Header />
+          {children}
+          {/* <BottomBar /> */}
+          <Footer />
+      </main>
 	);
 }

@@ -69,7 +69,7 @@ export default function Hero()
             <section className='max-h-screen overflow-auto scroll-jump hide-scrollbar'>
                 <section ref={containerRef} className='scroll-jump'>
                     <section ref={firstTargetRef} className='scroll-align flex gap-4 max-lg:gap-12 pt-24 pb-10 z-10 max-lg:flex-col max-lg:pb-12 max-lg:pt-24 min-h-screen'>
-                        <motion.div animate={firstSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
+                        <motion.div animate={firstSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
                             <div className="flex flex-col items-start max-lg:items-center justify-center gap-6">
                                 <h1 className='font-normal max-lg:text-2xl text-4xl text-black text-left max-lg:text-center'>Explore the Marketplace</h1>
                                 <h3 className='font-light max-lg:text-lg text-2xl text-left max-lg:text-center'>Insight Funders offers a diverse range of credit investments. Explore our marketplace to discover opportunities in creditworthy companies</h3>
@@ -84,7 +84,7 @@ export default function Hero()
                                 </Link>
                             </div>
                         </motion.div>
-                        <motion.div animate={firstSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
+                        <motion.div animate={firstSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
                             <Image
                                 src='/images/lenders.png'
                                 alt='Hero'
@@ -94,7 +94,7 @@ export default function Hero()
                         </motion.div>
                     </section>
                     <section ref={secondTargetRef} className='scroll-align flex gap-4 max-lg:gap-12 pt-24 pb-10 z-10 max-lg:flex-col max-lg:pb-12 max-lg:pt-24 min-h-screen'>
-                        <motion.div animate={secondSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
+                        <motion.div animate={secondSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
                             <div className="flex flex-col items-start max-lg:items-center justify-center gap-6">
                                 <h1 className='font-normal max-lg:text-2xl text-4xl text-black text-left max-lg:text-center'>Browse companies with complete data transparency.</h1>
                                 <h3 className='font-light max-lg:text-lg text-2xl text-left max-lg:text-center'>Unlock exclusive deals with complete financial visibility. Join Insight Funders to connect with top-tier companies and make informed investment decisions with confidence.</h3>
@@ -109,7 +109,7 @@ export default function Hero()
                                 </Link>
                             </div>
                         </motion.div>
-                        <motion.div animate={secondSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
+                        <motion.div animate={secondSectionInView ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
                             <Image
                                 src='/images/dashboard2.png'
                                 alt='Hero'
@@ -119,7 +119,7 @@ export default function Hero()
                         </motion.div>
                     </section>
                     <section ref={thirdTargetRef} className='scroll-align flex gap-4 max-lg:gap-12 pt-24 pb-10 z-10 max-lg:flex-col max-lg:pb-12 max-lg:pt-24 min-h-screen'>
-                        <motion.div animate={(thirdSectionInView || parentInView) ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
+                        <motion.div animate={(thirdSectionInView || parentInView) ? "enter" : "exit"} variants={{ enter: { opacity: 1, y: 0 }, exit: { y: 50 } }} className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
                             <div className="flex flex-col items-start max-lg:items-center justify-center gap-6">
                                 <h1 className='font-normal max-lg:text-2xl text-4xl text-black text-left max-lg:text-center'>Manage your investments</h1>
                                 <h3 className='font-light max-lg:text-lg text-2xl text-left max-lg:text-center'>The Insight Funders lender dashboard is your hub for viewing, managing, and receiving payouts, giving you full control over your investments.</h3>
@@ -134,7 +134,7 @@ export default function Hero()
                                 </Link>
                             </div>
                         </motion.div>
-                        <motion.div animate={(thirdSectionInView || parentInView) ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
+                        <motion.div animate={(thirdSectionInView || parentInView) ? "enter" : "exit"} variants={{ enter: { opacity: 1, x: 0 }, exit: { x: 150 } }} className='flex items-center justify-center flex-1 max-lg:px-4'>
                             <Image
                                 src='/images/dashboard3.png'
                                 alt='Hero'

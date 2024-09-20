@@ -26,7 +26,7 @@ export default function Steps()
         <section className='flex flex-col py-24 z-[5] bg-[#1A1A1A] gap-32 scroll-none'>
             <p className='text-white font-bold leading-[2rem] !text-[1.75rem] text-center'>Get started easily</p>
             <div className='flex gap-4 w-full items-center justify-center max-md:flex-col px-4 md:px-24 max-lg:flex-wrap'>
-                <div onMouseEnter={() => setSteps('step1')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step1' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                <div onMouseEnter={() => setSteps('step1')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step1' ? 'bg-black border-black scale-105 md:scale-110' : 'bg-transparent border-[#212121] scale-95 md:scale-90')}>
                     <motion.p layoutId='step1' key='step1' className={cn('text-white text-center max-lg:text-lg', steps === 'step1' ? 'text-xl' : 'text-base')}>Step 1: Sync your data</motion.p>
                     <div className="flex flex-col items-center justify-start">
                         <motion.div layoutId='step1image' key='step1image'>
@@ -44,7 +44,7 @@ export default function Steps()
                         </div>
                     </div>
                 </div>
-                <div onMouseEnter={() => setSteps('step2')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step2' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                <div onMouseEnter={() => setSteps('step2')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step2' ? 'bg-black border-black scale-105 md:scale-110' : 'bg-transparent border-[#212121] scale-95 md:scale-90')}>
                     <motion.p layoutId='step2' key='step2' className={cn('text-white text-center max-lg:text-lg', steps === 'step2' ? 'text-xl' : 'text-base')}>Step 2: Approve who you wish to share your data with</motion.p>
                     <div className="flex flex-col items-center justify-start">
                         <motion.div layoutId='step2image' key='step2image'>
@@ -61,7 +61,7 @@ export default function Steps()
                         </div>
                     </div>
                 </div>
-                <div onMouseEnter={() => setSteps('step3')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step3' ? 'bg-black border-black' : 'bg-transparent border-[#212121]')}>
+                <div onMouseEnter={() => setSteps('step3')} className={cn("flex flex-col items-center justify-center gap-8 transition-all duration-300 p-6 flex-1 border max-w-full md:w-[396px] md:max-w-[396px] h-[450px] rounded-[12px]", steps === 'step3' ? 'bg-black border-black scale-105 md:scale-110' : 'bg-transparent border-[#212121] scale-95 md:scale-90')}>
                     <motion.p layoutId='step3' key='step3' className={cn('text-white text-center max-lg:text-lg', steps === 'step3' ? 'text-xl' : 'text-base')}>Step 3: Access your capital</motion.p>
                     <div className="flex flex-col items-center justify-start">
                         <motion.div layoutId='step3image' key='step3image' className='flex items-center justify-center relative'>

@@ -8,7 +8,7 @@ export default function Features()
 {
     return (
         <section className='flex flex-col py-20 lg:gap-20 max-lg:gap-20 bg-[#FAFAFA]'>
-            <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 mb-12 max-lg:flex-wrap bg-[#FAFAFA]'>
+            <div className='w-full flex gap-8 items-start justify-center px-2 lg:px-60 mb-7 max-lg:flex-wrap bg-[#FAFAFA]'>
                 <div className='flex flex-col gap-3 items-center justify-center text-center lg:flex-1'>
                     <Image
                         src='/images/accelerate.svg'
