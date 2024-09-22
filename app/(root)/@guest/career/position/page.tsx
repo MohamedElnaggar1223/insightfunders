@@ -3,12 +3,12 @@ import Link from "next/link";
 export default function PositionPage() 
 {
     return (
-        <section className='flex flex-col px-36 py-8'>
+        <section className='flex flex-col px-36 pb-8 pt-16'>
             <Link href="/career" className='cursor-pointer mr-auto text-nowrap font-light font-Montserrat text-black text-xs my-6 flex items-center justify-center gap-2'><span className='text-xl'>{"< "}</span> Back</Link>
             <section className='flex flex-col pl-12 gap-12'>
                 <div className='flex flex-col gap-4'>
                     <div className="flex flex-col gap-2">
-                        <h1 className='text-3xl text-black font-bold'>Position/Title</h1>
+                        <h1 className='text-3xl text-black font-bold'>Backend Engineer</h1>
                         <p className='text-xs text-black/50 font-light'>Full time - Remote - Engineering</p>
                     </div>
                     <div className="flex flex-col gap-2">

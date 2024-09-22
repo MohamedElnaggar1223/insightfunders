@@ -13,7 +13,7 @@ export default function Reviews()
             <div className='flex flex-col gap-8'>
                 <p className='text-white font-normal text-2xl text-center'>Our clients' reviews</p>
                 <div className='flex w-full gap-8 flex-wrap max-lg:flex-col'>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] px-8 py-6 gap-4 md:max-h-[320px] md:min-h-[320px] max-2xl:gap-4">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] px-8 py-6 gap-4 md:max-h-[360px] 2xl:max-h-[340px] md:min-h-[360px] 2xl:min-h-[340px] max-2xl:gap-4">
                         <Image
                             src='/images/quote.svg'
                             width={33}
@@ -41,7 +41,7 @@ export default function Reviews()
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] px-8 py-6 gap-4 md:max-h-[320px] md:min-h-[320px] max-2xl:gap-4">
+                    <div className="flex flex-col flex-1 h-fit lg:min-w-[535px] bg-[#2F2F2F] rounded-[10px] px-8 py-6 gap-4 md:max-h-[360px] 2xl:max-h-[340px] md:min-h-[360px] 2xl:min-h-[340px] max-2xl:gap-4">
                         <Image
                             src='/images/quote.svg'
                             width={33}

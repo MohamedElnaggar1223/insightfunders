@@ -194,7 +194,7 @@ export default function SignIn()
                             render={({ field }) => (
                                 <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                     <FormControl>
-                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="you@company.com" {...field} />
+                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Email" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>

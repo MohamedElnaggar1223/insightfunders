@@ -1,5 +1,6 @@
 import Image from "next/image";
 import GetInTouchForm from "./getintouchform";
+import Link from "next/link";
 
 export default function GetInTouch()
 {
@@ -9,12 +10,14 @@ export default function GetInTouch()
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-medium text-white">Get In Touch</h1>
                     <div className='flex gap-6 mx-auto'>
-                        <Image
-                            src='/images/in.svg'
-                            alt='linkedin'
-                            width={15}
-                            height={15} 
-                        />
+                        <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                            <Image
+                                src='/images/in.svg'
+                                alt='linkedin'
+                                width={15}
+                                height={15} 
+                            />
+                        </Link>
                         <Image
                             src='/images/instagramWhite.svg'
                             alt='instagram'

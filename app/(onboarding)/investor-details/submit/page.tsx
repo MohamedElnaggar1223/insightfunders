@@ -43,7 +43,7 @@ export default async function SubmitStartUpDetailsPage()
             <div className='flex flex-col items-center justify-center gap-16 my-12'>
                 <div className='flex flex-col items-center justify-center gap-4 mt-8 max-w-[640px]'>
                     <h1 className='text-3xl text-white font-semibold text-center'>Submit your initial application for InsightFunders' review</h1>
-                    <h2 className='text-base text-center text-white'>Following this step, your initial application will be submitted, and you'll have access to Insight Funders' secure dashboard to upload your financials.</h2>
+                    <h2 className='text-base text-center text-white'>Following this step, your initial application will be submitted, and you'll have access to Insight Funders' secure dashboard.</h2>
                 </div>
                 <InvestorSubmitApplication />
             </div>

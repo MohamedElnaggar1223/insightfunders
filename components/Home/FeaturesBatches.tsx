@@ -46,7 +46,7 @@ export default function FeaturesBatches()
     useEffect(() => {
         const interval = setInterval(() => {
             setItems((prev) => [...prev.slice(1), prev[0]]);
-          }, 4500); // Change item every 3 seconds
+          }, 2000); // Change item every 3 seconds
       
           return () => clearInterval(interval);
     }, [])
@@ -65,7 +65,7 @@ export default function FeaturesBatches()
                             <motion.div layoutId='container' className='flex flex-1 flex-col w-full min-h-[132px]'>
                                 {items.map((item, index) => (
                                     <motion.div key={item} className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative flex-1 flex items-center'>
-                                        <motion.p transition={{ duration: 0.5 }} key={item} layoutId={item} className={cn(index === (items.length - 1) && 'hidden')}>{item}</motion.p>
+                                        <motion.p transition={{ duration: 0.4 }} key={item} layoutId={item} className={cn(index === (items.length - 1) && 'hidden')}>{item}</motion.p>
                                         {/* <div className="flex absolute secondDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                             <Check size={18} stroke='#fff' />
                                         </div> */}

@@ -21,13 +21,13 @@ export default function Footer()
                         <Link href='/get-in-touch'>Contact Us</Link>
                         <Link href='/career'>Career Page</Link>
                         <Link href='/faq'>FAQ</Link>
-                        <Link href='#'>Blog</Link>
-                        <Link href='#'>Referral Program</Link>
+                        <Link href='/blog'>Blog</Link>
+                        <Link href='/referral-program'>Referral Program</Link>
                         <Link href='/learning-center'>Learning Center</Link>
                     </div>
 
                     <div className='flex gap-6'>
-                        <Link href='https://www.linkedin.com/in/yizou-zoe/' target="_blank">
+                        <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
                             <Image
                                 src='/images/in.svg'
                                 alt='linkedin'

@@ -131,6 +131,8 @@ export default function InvestorDetails({ investorDetails }: Props)
         form.setValue('accreditation', accreditation)
     }, [accreditation, investorTypeWatch])
 
+    console.log(form.getValues())
+
     return (
         <>
             <div className='flex flex-col items-center justify-center gap-4 mt-8'>
@@ -345,7 +347,8 @@ export default function InvestorDetails({ investorDetails }: Props)
                                 render={({ field }) => form.getValues('investorType') === 'Institution' ? (
                                     <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                         <FormControl>
-                                            <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
+                                            <select defaultValue={field.value} className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
+                                                <option disabled value="">Minimum revenue requirement</option>
                                                 <option value="N/A">N/A</option>
                                                 <option value="<$1M">{"<$1M"}</option>
                                                 <option value="$1-10M">$1-10M</option>
@@ -384,6 +387,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                     <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                                         <FormControl>
                                             <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
+                                                <option disabled value="">Maximum facility size</option>
                                                 <option value="N/A">N/A</option>
                                                 <option value="<$1M">{"<$1M"}</option>
                                                 <option value="$1-10M">$1-10M</option>

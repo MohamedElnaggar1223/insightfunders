@@ -216,7 +216,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="XX-XXXXXX" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="EIN" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -261,7 +261,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="you@company.com" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Business email" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>
@@ -274,7 +274,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="3517 W. Gray St. Utica, Pennsylvania 57867" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Business address" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>

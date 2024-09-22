@@ -172,13 +172,15 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Zoe Zou</p>
                                 <p className='text-white text-lg font-light'>Founder & CEO</p>
                             </div>
-                            <Image
-                                src='/images/in.svg'
-                                alt="linkedin"
-                                width={26}
-                                height={26}
-                                quality={100}
-                            />
+                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                                <Image
+                                    src='/images/in.svg'
+                                    alt="linkedin"
+                                    width={26}
+                                    height={26}
+                                    quality={100}
+                                />
+                            </Link>
                         </div>
                         <p className='text-white text-sm font-light max-w-[370px]'>Serial entrepreneur and finance professional, passionate about advancing finance through AI and dedicated to helping founders succeed.</p>
                     </div>
@@ -196,13 +198,15 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Yazan Zeeshan Ali</p>
                                 <p className='text-white text-lg font-light'>CTO</p>
                             </div>
-                            <Image
-                                src='/images/in.svg'
-                                alt="linkedin"
-                                width={26}
-                                height={26}
-                                quality={100}
-                            />
+                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                                <Image
+                                    src='/images/in.svg'
+                                    alt="linkedin"
+                                    width={26}
+                                    height={26}
+                                    quality={100}
+                                />
+                            </Link>
                         </div>
                         <p className='text-white text-sm font-light max-w-[370px]'>Serial entrepreneur with experience leading technical teams and an early adopter of emerging technologies.</p>
                     </div>
@@ -220,13 +224,15 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Hubert Dzieciol</p>
                                 <p className='text-white text-lg font-light'>Senior Engineer</p>
                             </div>
-                            <Image
-                                src='/images/in.svg'
-                                alt="linkedin"
-                                width={26}
-                                height={26}
-                                quality={100}
-                            />
+                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                                <Image
+                                    src='/images/in.svg'
+                                    alt="linkedin"
+                                    width={26}
+                                    height={26}
+                                    quality={100}
+                                />
+                            </Link>
                         </div>
                         <p className='text-white text-sm font-light max-w-[370px]'>Technologist with a passion for solving complex problems and building innovative ML solutions.</p>
                     </div>
@@ -244,13 +250,15 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Weiyee In</p>
                                 <p className='text-white text-lg font-light'>CIO</p>
                             </div>
-                            <Image
-                                src='/images/in.svg'
-                                alt="linkedin"
-                                width={26}
-                                height={26}
-                                quality={100}
-                            />
+                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                                <Image
+                                    src='/images/in.svg'
+                                    alt="linkedin"
+                                    width={26}
+                                    height={26}
+                                    quality={100}
+                                />
+                            </Link>
                         </div>
                         <p className='text-white text-sm font-light max-w-[370px]'>With over 30 years on Wall Street and as a venture investor, passionate about strategic leadership and innovative tech solutions.</p>
                     </div>

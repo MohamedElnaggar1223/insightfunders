@@ -185,7 +185,7 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="DOF e.g. MM/DD/YYYY" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="DOB e.g. MM/DD/YYYY" {...field} />
                             </FormControl>
                             <FormMessage className='absolute text-red-600 -bottom-6' />
                         </FormItem>

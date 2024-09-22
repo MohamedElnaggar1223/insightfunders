@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function CareerPage() 
 {
     return (
-        <section className='flex flex-col text-center items-center'>
+        <section className='flex flex-col text-center items-center pt-16'>
             <div className='flex flex-col items-center justify-between gap-10 w-full py-20'>
-                <h1 className='font-bold text-3xl max-w-[1100px] px-4'>
+                <h1 className='font-nomral text-3xl max-w-[1100px] px-4'>
                     Our creative, global team is passionate about building tools that make business growth easier. If you're driven by innovation and eager to make an impact, come join us and help shape the future of business finance!
                 </h1>
                 <button className='bg-[#FF7A00] text-white font-bold rounded-[2px] lg:w-[241px] px-4 py-4 text-sm'> 
@@ -59,99 +59,99 @@ export default function CareerPage()
             <div className="flex flex-col bg-[#1A1A1A] p-24 gap-12 w-full">
                 <p className='text-3xl text-white'>Perks</p>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 w-full text-white'>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/home.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Remote first, flexibility is key
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             Work from where you want and meet up with your colleagues somewhere new each quarter.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/money.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Competitive equity & compensation
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             Join a team that values your contribution and own a piece of the fastest growing fintech company in history. (Seriously.)
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/health.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Health, dental, vision benefits
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             For you and your dependents, so you can all feel your best without worry.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/parental.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Parental leave, fertility, & family planning benefits
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             We're proud to offer meaningful programs that help you put your family first.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/calendar.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Unlimited PTO
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             We really mean it when we say we want you to take time off when you need it—and we love a good company holiday.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
-                        <div className="flex gap-2 items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-6 mb-auto">
+                        <div className="flex gap-2 flex-col text-center items-center justify-center">
                             <Image
                                 src='/images/workstation.svg'
                                 alt='home'
                                 width={26}
                                 height={18} 
                             />
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl text-center'>
                                 Customized workstations
                             </p>
                         </div>
-                        <p className='text-sm text-white/80 text-left max-w-[362px]'>
+                        <p className='text-sm text-white/80 text-center max-w-[362px]'>
                             Choose a comfortable work-from-home set up that makes sense for you.
                         </p>
                     </div>
@@ -160,9 +160,9 @@ export default function CareerPage()
             <div className="flex flex-col p-24 gap-12 w-full">
                 <p className='text-3xl'>Shared Values</p>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 w-full'>
-                    <div className="flex flex-col items-start justify-center gap-6">
+                    <div className="flex flex-col items-start justify-center gap-3 mb-auto">
                         <div className="flex gap-2 items-center justify-center">
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl'>
                                 Customer-first
                             </p>
                         </div>
@@ -170,9 +170,9 @@ export default function CareerPage()
                             Insight Funders values its customers and strives to provide them with the best possible experience. We're committed to understanding and meeting the needs of our customers, and delivering products and services that exceed their expectations.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
+                    <div className="flex flex-col items-start justify-center gap-3 mb-auto">
                         <div className="flex gap-2 items-center justify-center">
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl'>
                             Teamwork
                             </p>
                         </div>
@@ -180,9 +180,9 @@ export default function CareerPage()
                         Collaboration is essential to success. We encourage everyone to work together, share knowledge and expertise, and support each other in achieving common goals.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
+                    <div className="flex flex-col items-start justify-center gap-3 mb-auto">
                         <div className="flex gap-2 items-center justify-center">
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl'>
                             Innovation
                             </p>
                         </div>
@@ -190,9 +190,9 @@ export default function CareerPage()
                         We're constantly looking for new ideas and approaches, and encourage everyone to be innovative and take creative ownership in their work.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
+                    <div className="flex flex-col items-start justify-center gap-3 mb-auto">
                         <div className="flex gap-2 items-center justify-center">
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl'>
                             Excellence
                             </p>
                         </div>
@@ -200,9 +200,9 @@ export default function CareerPage()
                         We're committed to achieving the highest standard of quality in all aspects of the business. And we're dedicated to continuous improvement, striving to be the best for all of our customers.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-6">
+                    <div className="flex flex-col items-start justify-center gap-3 mb-auto">
                         <div className="flex gap-2 items-center justify-center">
-                            <p className='font-normal'>
+                            <p className='font-normal text-xl'>
                             Accountability
                             </p>
                         </div>
@@ -221,7 +221,7 @@ export default function CareerPage()
                     <div className='flex flex-col gap-8'>
                         <p className='text-white/60 text-sm text-left'>Department</p>
                         <div className="flex items-center justify-between">
-                            <p className='text-white text-sm'>Position/Title</p>
+                            <p className='text-white text-sm'>Backend Engineer</p>
                             <Link href='/career/position'>
                                 <button className='bg-white text-black rounded-3xl w-[137px] h-[40px]'>Details</button>
                             </Link>
