@@ -230,9 +230,9 @@ export const updateFinancialDetails = async (data: z.infer<typeof startUpFinanci
 
     if(!user || !user.userStartUp?.id) return { error: 'User not found' }
 
-    const { stage, recentRaise } = data
+    const { stage } = data
 
-    if(!stage || !recentRaise) return { error: 'Please fill out all fields' }
+    if(!stage) return { error: 'Please fill out all fields' }
 
     await db.update(startups)
             .set({ stage: data.stage, recent_raise: data.recentRaise.toString()})

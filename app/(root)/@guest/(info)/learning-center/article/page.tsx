@@ -18,8 +18,8 @@ export default function Article()
                 <h1 className='text-3xl font-bold text-center mt-4'>The Founders’ Guide to Incorporating in Delaware in 2024</h1>
             </div>
             <div className='flex w-full relative items-start justify-center mt-12 gap-8'>
-                <div className='flex-1 max-w-[295px]' />
-                <p className='max-w-[788px] flex-1'>
+                {/* <div className='flex-1 max-w-[295px]' /> */}
+                <p className='flex-1'>
                     Capital marketplaces have quickly taken over the conversation in Finance teams across the board in recent times. They promise to streamline the process and bring competitive terms with minimal effort, but do they deliver? That depends.
                     Having spoken with hundreds of founders and lenders over the past year, most providers over-promise and under-deliver. The single biggest complaint from lenders: the deal-flow quality is poor and inconsistently presented; the biggest complaint from founders: the terms they receive come with a much higher cost of capital and warrant coverage than they expected, the process is lengthy, and the term sheets are riddled with restrictive covenants. To say that both parties were unhappy is an understatement.
                     What separates a “good” capital marketplace from a “not-so-good” one?

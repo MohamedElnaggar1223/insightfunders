@@ -219,7 +219,7 @@ export default function CareerPage()
                 </select>
                 <div className='flex flex-col gap-16 w-full max-w-[1512px]'>
                     <div className='flex flex-col gap-8'>
-                        <p className='text-white/60 text-sm text-left'>Department</p>
+                        <p className='text-white/60 text-sm text-left'>Engineering</p>
                         <div className="flex items-center justify-between">
                             <p className='text-white text-sm'>Backend Engineer</p>
                             <Link href='/career/position'>
@@ -228,7 +228,7 @@ export default function CareerPage()
                         </div>
                     </div>
                     <div className='flex flex-col gap-8'>
-                        <p className='text-white/60 text-sm text-left'>Department</p>
+                        <p className='text-white/60 text-sm text-left'>Business development</p>
                         <div className="flex items-center justify-between">
                             <p className='text-white text-sm'>Position/Title</p>
                             <Link href='/career/position'>

@@ -83,7 +83,7 @@ export default function Features()
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
                         <p className='font-normal text-[#FF7A00] text-xl'>Compare lenders all in one place</p>
-                        <p className='font-normal max-w-[323px] text-white text-base'>Whether you’re self-funded, venture-backed, or in growth mode, easily connect with private  lenders in one place, saving you both time and effort.</p>
+                        <p className='font-normal max-w-[323px] text-white text-base'>Whether self-funded, venture-backed, or in growth mode, effortlessly connect with lenders in one place, saving time and money.</p>
                     </div>
                 </div>
                 <div className="flex flex-col flex-1 rounded-[10px] min-h-[375px] max-h-[375px] h-[375px] bg-[#2F2F2F] items-center justify-center">
@@ -93,7 +93,7 @@ export default function Features()
                         </div>
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
-                        <p className='font-normal text-[#FF7A00] text-xl'>One application, bespoke capital solutions.</p>
+                        <p className='font-normal text-[#FF7A00] text-xl'>Bespoke capital solutions</p>
                         <p className='font-normal max-w-[323px] text-white text-base'>Strengthen your balance sheet by combining flexible working capital, helping you reach your next funding round or profitability.</p>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ export default function Features()
                     </div>
                     <div className='flex flex-col text-center flex-1 items-center justify-start gap-4 px-4'>
                         <p className='font-normal text-[#FF7A00] text-xl'>Secure your data</p>
-                        <p className='font-normal max-w-[323px] text-white text-base'>We use bank-level security and blockchain technology to ensure your data is encrypted and secure. Your data will only be shared with lenders if you give explicit consent.</p>
+                        <p className='font-normal max-w-[323px] text-white text-base'>We use bank-level security to encrypt and protect your data. It will only be shared with lenders when you give explicit consent.</p>
                     </div>
                 </div>
             </div>

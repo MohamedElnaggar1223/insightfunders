@@ -22,7 +22,7 @@ export default function Reviews()
                         />
                         <div className='flex flex-col h-1/2 justify-between'>
                             <div className="flex flex-col w-full gap-4">
-                                <p className='text-white font-normal text-base mt-2'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches</p>
+                                <p className='text-white font-normal text-base mt-2'>Insight Funders was a game-changer for our post-Series B funding. We needed capital to scale without giving up equity, and the platform made it incredibly easy to connect with multiple lenders. Within days, we had offers tailored to our exact needs. The transparency and efficiency were impressive—no hidden fees, no surprises. When we decided to move forward, the process was straightforward, saving our CFO a lot of headaches.</p>
                             </div>
                         </div>
                         <div className='flex flex-1 items-center justify-start gap-3 mt-auto min-h-[60px] max-h-[60px]'>

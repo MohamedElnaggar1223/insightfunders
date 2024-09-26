@@ -11,9 +11,9 @@ export default function AboutUsPage()
                 <h2 className="text-center max-w-[800px]">
                     Insight Funders is revolutionizing business financing by delivering customized private credit solutions tailored to the unique needs of high-growth companies
                 </h2>
-                <div className='text-[#FF7A00] font-semibold flex items-center gap-1'>
+                <Link href='/career' className='text-[#FF7A00] font-semibold flex items-center gap-1'>
                     We're hiring{" "}<Play stroke="#FF7A00" fill="#FF7A00" size={14} />
-                </div>
+                </Link>
             </div>
             <div className="flex flex-col bg-[#1A1A1A] pb-20">
                 <Image
@@ -23,6 +23,7 @@ export default function AboutUsPage()
                     height={800}
                     quality={100}
                     className='max-h-[800px] w-full object-cover'
+                    loading="lazy"
                 />
                 <div className="flex p-4 md:px-12 md:pt-12 pb-8 lg:pt-32 lg:px-32 gap-16 lg:gap-4 max-lg:flex-col">
                     <div className='flex-1 flex items-center justify-center'>

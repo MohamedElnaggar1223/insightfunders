@@ -5,6 +5,7 @@ import { getUser } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
 import { unstable_noStore } from "next/cache";
 import StartUpFinancialDetailsContainer from "@/components/onboarding/StartUpFinancialDetails";
+import { getBankAccount } from "@/lib/actions/user";
 
 export default async function StartUpFinancialDetails()
 {
@@ -17,10 +18,11 @@ export default async function StartUpFinancialDetails()
     if(!user.userInfo.dwolla_customer_id && !user.userInfo.dwolla_customer_url && !user.userInfo.plaid_id) return redirect('/personal-details')
 
     if(user.userInfo.role === 'startup') {
+        const bankConnected = await getBankAccount(user.user.id)
         if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }
-        else if(user.userStartUp.stage && user.userStartUp.recent_raise) {
+        else if(user.userStartUp.stage && bankConnected) {
             if(!user.userStartUp.submitted) return redirect('/startup-details/submit')
             else return redirect('/')
         }
