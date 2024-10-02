@@ -79,7 +79,7 @@ export default async function RootLayout({
 	const user = await getUser()
 
 	if(!user) return (
-		<html lang="en">
+		<html lang="en" className="antialiased">
 	 		<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
 	 			{guest}
 	 		</body>
@@ -89,7 +89,7 @@ export default async function RootLayout({
 	if(user?.userInfo && user?.userInfo.role === 'startup') {
 		if(user?.userStartUp?.submitted && (user?.userStartUpOwners?.length ?? 0) > 0 && user?.userStartUp?.EIN && user?.userStartUp?.industry_sector && user?.userStartUp.address && user?.userStartUp.business_structure && user?.userStartUp.company_name && user?.userStartUp.email && user?.userStartUp.phone_number) {
 			return (
-				<html lang="en">
+				<html lang="en" className="antialiased">
 					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
 						{startup}
 					</body>
@@ -100,7 +100,7 @@ export default async function RootLayout({
 	else if(user?.userInfo && user?.userInfo.role === 'investor') {
 		if(user?.userInvestor?.submitted && user?.userInvestor.company_email && user?.userInvestor.company_name && user?.userInvestor.company_email && user?.userInvestor.company_website && user?.userInvestor.geographies_served && user?.userInvestor.max_facility_size && user?.userInvestor.minimum_revenue_requirement && user?.userInvestor.products_offered) {
 			return (
-				<html lang="en">
+				<html lang="en" className="antialiased">
 					<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden', logoFont.variable, montserrat.variable)}>
 						{investor}
 					</body>
@@ -110,7 +110,7 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang="en">
+		<html lang="en" className="antialiased">
 			<body className={cn(inter.className, 'bg-[#F9FAFB] overflow-x-hidden')}>
 				{guest}
 			</body>
