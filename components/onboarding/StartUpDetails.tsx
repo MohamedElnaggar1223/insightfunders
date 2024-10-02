@@ -223,7 +223,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     )}
                 />
                 <FormItem className="relative">
-                    <div className='flex flex-1 overflow-hidden'>
+                    <div className='flex flex-1 overflow-hidden max-w-[384px] rounded-tr-[8px] rounded-br-[8px]'>
                         <FormField
                             control={form.control}
                             name="countryCode"
