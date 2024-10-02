@@ -34,6 +34,25 @@ export const getContracts = cache(async (startupId: number, investorId?: number)
     }
 })
 
+export const getInvestor = cache(async (investorId: number) => {
+    return await db.query.investors.findFirst({
+        columns: {
+            id: true,
+            investor_type: true,
+            institution_type: true,
+        },
+        with: {
+            user: {
+                columns: {
+                    first_name: true,
+                    last_name: true,
+                }
+            }
+        },
+        where: (table, { eq }) => eq(table.id, investorId),
+    })
+})
+
 export const getPendingContractsWithInvestors = cache(async (startupId: number) => {
     return await db.query.contracts.findMany({
         with: {

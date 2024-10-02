@@ -37,7 +37,7 @@ export default function Reviews()
                             </div>
                             <div className="flex flex-col gap-1">
                                 <p className='text-white font-medium text-lg'>Connor McCarthy</p>
-                                <p className='text-white font-extralight text-sm'>Co-Founder at Rize Education</p>
+                                <p className='text-white font-extralight text-sm'>Co-Founder of Rize Education</p>
                             </div>
                         </div>
                     </div>

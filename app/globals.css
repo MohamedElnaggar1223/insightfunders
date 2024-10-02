@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+input {
+    outline: none !important;
+    outline-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
 .scroll-jump {
     scroll-snap-type: y mandatory;
 }
