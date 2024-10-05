@@ -7,8 +7,8 @@ type Props = {
     name: string
     investor: {
         id: number;
-        investor_type: string;
-        institution_type: string;
+        investor_type: "Individual" | "Institution" | null;
+        institution_type: "Corporation" | "Other" | "Family Office" | "Fund" | "Registered Investment Advisor (RIA)" | null;
         user: {
             first_name: string;
             last_name: string | null;
@@ -37,7 +37,7 @@ export default function InvestorNameDialog({ name, investor }: Props)
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-base'>Investor Type</p>
-                            <p className='text-base font-bold'>{investor.investor_type === 'individual' ? 'Individual' : (investor.institution_type ?? 'Individual')}</p>
+                            <p className='text-base font-bold'>{investor.investor_type === 'Individual' ? 'Individual' : (investor.institution_type ?? 'Individual')}</p>
                         </div>
                     </div>
                 </DialogContent>
