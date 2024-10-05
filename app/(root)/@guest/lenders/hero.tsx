@@ -17,7 +17,7 @@ export default function Hero()
         offset: ['start start', 'end end']
     })
     
-    const x = useTransform(scrollYProgress, [0, 0.25, 0.45, 0.5, 0.70, 0.75, 1], ['0vw', '50vw', '0vw', '0vw', '50vw', '0vw', '0vw']);
+    const x = useTransform(scrollYProgress, [0, 0.25, 0.45, 0.5, 0.70, 0.75, 1], ['0vw', '50vw', '0vw', '0vw', '50vw', '50vw', '0vw']);
 
     useMotionValueEvent(scrollYProgress, 'change', (progress) => {
         if(progress < 0.25 && image !== 'lenders.png') setImage('lenders.png')
@@ -170,7 +170,7 @@ export default function Hero()
         //     </motion.section>
         //     <div className='min-h-[1px]' ref={parentRef} />
         // </>
-        <section ref={parentRef} className="h-[600vh] relative">
+        <section ref={parentRef} className="h-[800vh] relative">
             <div className="flex w-full sticky top-0">
                 <motion.div className="flex flex-col items-start max-lg:items-center justify-center gap-4 pl-12 xl:pl-32 pr-4 flex-1">
                     <div className="flex flex-col items-start max-lg:items-center justify-center gap-6">

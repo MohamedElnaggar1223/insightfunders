@@ -64,7 +64,7 @@ export default function FeaturesBatches()
                         <AnimatePresence initial={false} mode="sync">
                             <motion.div layoutId='container' className='flex flex-1 flex-col w-full min-h-[132px]'>
                                 {items.map((item, index) => (
-                                    <motion.div key={item} className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative flex-1 flex items-center'>
+                                    <motion.div key={index ? item : undefined} className='rounded-[5px] secondDelay change-background py-2 px-4 transition-all text-black text-base relative flex-1 flex items-center'>
                                         <motion.p transition={{ duration: 0.4 }} key={item} layoutId={item} className={cn(index === (items.length - 1) && 'hidden')}>{item}</motion.p>
                                         {/* <div className="flex absolute secondDelay opacity-0 items-center animate-small-check justify-center bg-black p-0.5 rounded-full top-[25%] right-2">
                                             <Check size={18} stroke='#fff' />
