@@ -3,6 +3,7 @@ import PlaidLink from "@/components/plaid/PlaidLink";
 import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
 import { getBankAccount } from "@/lib/actions/user";
+import HeaderStartUp from "./header";
 
 export default async function StartupLayout({
   children,
@@ -33,9 +34,12 @@ export default async function StartupLayout({
     }
 	
     return (
-        <section className='min-w-screen min-h-screen flex items-center justify-center text-center bg-[#1A1A1A] gap-1'>
-			<StartupSideBar user={user} />
-			{children}
+        <section className='min-w-screen min-h-screen flex items-center justify-center text-center bg-[#1A1A1A]'>
+			<StartupSideBar />
+            <section className='flex flex-1 flex-col h-screen'>
+                <HeaderStartUp />
+			    {children}
+            </section>
         </section>
     )
 }

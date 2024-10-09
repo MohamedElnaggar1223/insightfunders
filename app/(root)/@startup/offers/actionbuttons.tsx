@@ -27,11 +27,11 @@ export default function ActionButtons({ user, requestId }: Props)
 
     return (
         <div className={cn("flex gap-4", loading && 'opacity-50')}>
-            <button onMouseDown={handleAccept} disabled={loading} className='bg-black rounded-[4px] text-[10px] w-32 font-extralight text-white text-sm h-8'>
-                Accept
+            <button onMouseDown={handleReject} disabled={loading} className='bg-black rounded-[8px] w-24 h-10 text-white font-semibold text-sm'>
+                Decline
             </button>
-            <button onMouseDown={handleReject} disabled={loading} className='border-[#FF4040] border rounded-[4px] bg-[#FF8080] text-[10px] w-32 font-extralight text-black text-sm h-8'>
-                Reject
+            <button onMouseDown={handleAccept} disabled={loading} className='bg-[#FF7A00] rounded-[8px] w-24 h-10 text-white font-semibold text-sm'>
+                Accept
             </button>
         </div>
     )

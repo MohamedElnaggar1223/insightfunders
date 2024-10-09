@@ -37,7 +37,7 @@ export default function AboutUsPage()
                     </div>
                     <div className="flex items-center justify-center text-left flex-col gap-4 flex-1">
                         <p className='text-white font-bold leading-[2rem] text-[28px] md:w-[394px]'>Our Story</p>
-                        <p className='text-white md:max-w-[394px]'>
+                        <p className='text-white text-xl md:max-w-[394px]'>
                             Insight Funders was built by experienced entrepreneurs with deep roots in finance and technology, who understand the challenges of securing funding while preserving equity. We’ve experienced the frustrations firsthand—months of meetings, endless paperwork, and the uncertainty of opaque, costly, and time-consuming processes.
                             We knew there had to be a better way. That’s why we created Insight Funders, a platform designed to provide growing startups with fast, transparent access to the funding they need to grow.
                         </p>
@@ -46,7 +46,7 @@ export default function AboutUsPage()
                 <div className="flex p-4 md:px-12 md:pb-12 pt-8 lg:pb-32 lg:px-32 gap-16 lg:gap-4 max-lg:flex-col">
                     <div className="flex items-center justify-center text-left flex-col gap-4 flex-1">
                         <p className='text-white font-bold leading-[2rem] text-[28px] md:w-[394px]'>Our Mission</p>
-                        <p className='text-white md:max-w-[394px]'>
+                        <p className='text-white text-xl md:max-w-[394px]'>
                             At Insight Funders, our mission is to revolutionize how companies access credit. We bridge the gap between private lenders and entrepreneurs, offering a platform where founders can secure funding without sacrificing equity. By outsourcing your credit needs to us, we streamline the process and make it easier to access the capital you need.
                             We aim to be your lifelong credit partner, supporting you at every stage of your business’s growth. When banks turn you away, we make funding more accessible, helping you unlock your business’s full potential.
                         </p>
@@ -173,7 +173,7 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Zoe Zou</p>
                                 <p className='text-white text-lg font-light'>Founder & CEO</p>
                             </div>
-                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                            <Link href='https://www.linkedin.com/in/yizou-zoe/' target="_blank">
                                 <Image
                                     src='/images/in.svg'
                                     alt="linkedin"
@@ -199,7 +199,7 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Yazan Zeeshan Ali</p>
                                 <p className='text-white text-lg font-light'>CTO</p>
                             </div>
-                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                            <Link href='https://www.linkedin.com/in/yazan-data-scientist/' target="_blank">
                                 <Image
                                     src='/images/in.svg'
                                     alt="linkedin"
@@ -225,7 +225,7 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Hubert Dzieciol</p>
                                 <p className='text-white text-lg font-light'>Senior Engineer</p>
                             </div>
-                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                            <Link href='https://www.linkedin.com/in/hubertdz/' target="_blank">
                                 <Image
                                     src='/images/in.svg'
                                     alt="linkedin"
@@ -251,7 +251,7 @@ export default function AboutUsPage()
                                 <p className='text-white text-lg font-medium'>Weiyee In</p>
                                 <p className='text-white text-lg font-light'>CIO</p>
                             </div>
-                            <Link href='https://www.linkedin.com/company/insight-funders/' target="_blank">
+                            <Link href='https://www.linkedin.com/in/weiyee/' target="_blank">
                                 <Image
                                     src='/images/in.svg'
                                     alt="linkedin"

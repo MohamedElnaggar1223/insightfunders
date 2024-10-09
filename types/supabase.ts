@@ -47,6 +47,41 @@ export type Database = {
           },
         ]
       }
+      cap_tables: {
+        Row: {
+          created_at: string
+          document_link: string | null
+          id: number
+          name: string | null
+          startup_id: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cap_tables_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contracts: {
         Row: {
           accepted: boolean
@@ -211,6 +246,41 @@ export type Database = {
           },
         ]
       }
+      financial_statements: {
+        Row: {
+          created_at: string
+          document_link: string | null
+          id: number
+          name: string | null
+          startup_id: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_statements_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       investors: {
         Row: {
           accepted: boolean
@@ -309,6 +379,41 @@ export type Database = {
           },
         ]
       }
+      legal_documents: {
+        Row: {
+          created_at: string
+          document_link: string | null
+          id: number
+          name: string | null
+          startup_id: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_documents_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           content: string | null
@@ -375,6 +480,41 @@ export type Database = {
             columns: ["contract_id"]
             isOneToOne: false
             referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pitch_decks: {
+        Row: {
+          created_at: string
+          document_link: string | null
+          id: number
+          name: string | null
+          startup_id: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pitch_decks_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
             referencedColumns: ["id"]
           },
         ]
@@ -472,6 +612,41 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "startups_owners_startup_id_fkey"
+            columns: ["startup_id"]
+            isOneToOne: false
+            referencedRelation: "startups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tax_returns: {
+        Row: {
+          created_at: string
+          document_link: string | null
+          id: number
+          name: string | null
+          startup_id: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_link?: string | null
+          id?: number
+          name?: string | null
+          startup_id?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tax_returns_startup_id_fkey"
             columns: ["startup_id"]
             isOneToOne: false
             referencedRelation: "startups"

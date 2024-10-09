@@ -9,7 +9,6 @@ export default async function Dashboard({ searchParams }: { searchParams: { page
 {
     const user = await getUser()
     const startupContracts = await getContracts(user?.userStartUp?.id!)
-    const notifications = await getNotifications(user?.user.id!)
 
     // await new Promise(resolve => setTimeout(resolve, 10000))
 
@@ -17,10 +16,7 @@ export default async function Dashboard({ searchParams }: { searchParams: { page
     const totalInvestors = startupContracts.acceptedContracts?.filter(contract => contract.investment_amount_paid).length
 
     return (
-        <section className='flex flex-1 flex-col w-full gap-6 px-6 overflow-auto'>
-            <div className='ml-auto flex items-start justify-center h-fit pt-2'>
-                <Notifications user={user!} notifications={notifications!} />
-            </div>
+        <section className='flex flex-1 flex-col w-full gap-6 px-6 overflow-auto pt-6'>
             <div className='flex flex-wrap items-center justify-center gap-4 min-h-[295px]'>
                 <div className='flex flex-col gap-4 h-full'>
                     <div className="flex bg-[#212121] min-h-32 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] w-screen max-w-[332px]">

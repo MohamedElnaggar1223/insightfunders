@@ -31,7 +31,7 @@ export default function GetInTouch()
                             height={15} 
                         />
                     </div>
-                    <p className="text-white text-xs font-light max-w-[500px] mx-auto">Raising startup capital is not easy. Don’t waste time and energy raising capital when you could be building your business. Get the friendly financing alternative you deserve</p>
+                    <p className="text-white text-xs font-light max-w-[442px] mx-auto">Securing startup financing can be tough. Don’t waste valuable time and energy on fundraising when you could be focusing on growing your business. With Insight Funders, you get the smart, flexible financing solution you deserve.</p>
                 </div>
                 <GetInTouchForm />
             </div>

@@ -90,6 +90,17 @@ export const users = pgTable("users", {
 	}
 });
 
+export const cap_tables = pgTable("cap_tables", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	name: text("name"),
+	document_link: text("document_link"),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	updated_at: timestamp("updated_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
 export const startups = pgTable("startups", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -134,6 +145,28 @@ export const bank_accounts = pgTable("bank_accounts", {
 	shareable_id: text("shareable_id"),
 });
 
+export const pitch_decks = pgTable("pitch_decks", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	name: text("name"),
+	document_link: text("document_link"),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	updated_at: timestamp("updated_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
+export const tax_returns = pgTable("tax_returns", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	name: text("name"),
+	document_link: text("document_link"),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	updated_at: timestamp("updated_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
 export const investors = pgTable("investors", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -156,6 +189,28 @@ export const investors = pgTable("investors", {
 	return {
 		investors_id_key: unique("investors_id_key").on(table.id),
 	}
+});
+
+export const financial_statements = pgTable("financial_statements", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	name: text("name"),
+	document_link: text("document_link"),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	updated_at: timestamp("updated_at", { withTimezone: true, mode: 'string' }).defaultNow(),
+});
+
+export const legal_documents = pgTable("legal_documents", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
+	name: text("name"),
+	document_link: text("document_link"),
+	created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	updated_at: timestamp("updated_at", { withTimezone: true, mode: 'string' }).defaultNow(),
 });
 
 export const startups_owners = pgTable("startups_owners", {
@@ -206,10 +261,15 @@ export const startupsRelations = relations(startups, ({one, many}) => ({
 	financial_rounds: many(financial_rounds),
 	contracts: many(contracts),
 	financial_details_requests: many(financial_details_requests),
+	cap_tables: many(cap_tables),
 	user: one(users, {
 		fields: [startups.user_id],
 		references: [users.id]
 	}),
+	pitch_decks: many(pitch_decks),
+	tax_returns: many(tax_returns),
+	financial_statements: many(financial_statements),
+	legal_documents: many(legal_documents),
 	startups_owners: many(startups_owners),
 }));
 
@@ -266,6 +326,13 @@ export const usersInAuthRelations = relations(usersInAuth, ({many}) => ({
 	users: many(users),
 }));
 
+export const cap_tablesRelations = relations(cap_tables, ({one}) => ({
+	startup: one(startups, {
+		fields: [cap_tables.startup_id],
+		references: [startups.id]
+	}),
+}));
+
 export const notificationsRelations = relations(notifications, ({one}) => ({
 	user: one(users, {
 		fields: [notifications.user_id],
@@ -277,6 +344,34 @@ export const bank_accountsRelations = relations(bank_accounts, ({one}) => ({
 	user: one(users, {
 		fields: [bank_accounts.user_id],
 		references: [users.id]
+	}),
+}));
+
+export const pitch_decksRelations = relations(pitch_decks, ({one}) => ({
+	startup: one(startups, {
+		fields: [pitch_decks.startup_id],
+		references: [startups.id]
+	}),
+}));
+
+export const tax_returnsRelations = relations(tax_returns, ({one}) => ({
+	startup: one(startups, {
+		fields: [tax_returns.startup_id],
+		references: [startups.id]
+	}),
+}));
+
+export const financial_statementsRelations = relations(financial_statements, ({one}) => ({
+	startup: one(startups, {
+		fields: [financial_statements.startup_id],
+		references: [startups.id]
+	}),
+}));
+
+export const legal_documentsRelations = relations(legal_documents, ({one}) => ({
+	startup: one(startups, {
+		fields: [legal_documents.startup_id],
+		references: [startups.id]
 	}),
 }));
 

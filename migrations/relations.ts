@@ -1,5 +1,5 @@
 // import { relations } from "drizzle-orm/relations";
-// import { startups, financial_rounds, investors, contracts, financial_details_requests, usersInAuth, users, notifications, bank_accounts, startups_owners, payments, transactions } from "./schema";
+// import { startups, financial_rounds, investors, contracts, financial_details_requests, usersInAuth, users, cap_tables, notifications, bank_accounts, pitch_decks, tax_returns, financial_statements, legal_documents, startups_owners, payments, transactions } from "./schema";
 
 // export const financial_roundsRelations = relations(financial_rounds, ({one}) => ({
 // 	startup: one(startups, {
@@ -12,10 +12,15 @@
 // 	financial_rounds: many(financial_rounds),
 // 	contracts: many(contracts),
 // 	financial_details_requests: many(financial_details_requests),
+// 	cap_tables: many(cap_tables),
 // 	user: one(users, {
 // 		fields: [startups.user_id],
 // 		references: [users.id]
 // 	}),
+// 	pitch_decks: many(pitch_decks),
+// 	tax_returns: many(tax_returns),
+// 	financial_statements: many(financial_statements),
+// 	legal_documents: many(legal_documents),
 // 	startups_owners: many(startups_owners),
 // }));
 
@@ -72,6 +77,13 @@
 // 	users: many(users),
 // }));
 
+// export const cap_tablesRelations = relations(cap_tables, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [cap_tables.startup_id],
+// 		references: [startups.id]
+// 	}),
+// }));
+
 // export const notificationsRelations = relations(notifications, ({one}) => ({
 // 	user: one(users, {
 // 		fields: [notifications.user_id],
@@ -83,6 +95,34 @@
 // 	user: one(users, {
 // 		fields: [bank_accounts.user_id],
 // 		references: [users.id]
+// 	}),
+// }));
+
+// export const pitch_decksRelations = relations(pitch_decks, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [pitch_decks.startup_id],
+// 		references: [startups.id]
+// 	}),
+// }));
+
+// export const tax_returnsRelations = relations(tax_returns, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [tax_returns.startup_id],
+// 		references: [startups.id]
+// 	}),
+// }));
+
+// export const financial_statementsRelations = relations(financial_statements, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [financial_statements.startup_id],
+// 		references: [startups.id]
+// 	}),
+// }));
+
+// export const legal_documentsRelations = relations(legal_documents, ({one}) => ({
+// 	startup: one(startups, {
+// 		fields: [legal_documents.startup_id],
+// 		references: [startups.id]
 // 	}),
 // }));
 

@@ -8,8 +8,6 @@ import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { cache } from "react"
 import { db } from "@/db"
-import { extractCustomerIdFromUrl } from "../utils"
-import { createDwollaCustomer } from "./dwolla"
 import { nanoid } from 'nanoid';
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
@@ -80,7 +78,7 @@ export const getUser = cache(async () => {
             last_name: true,
             plaid_id: true,
             dwolla_customer_id: true,
-            dwolla_customer_url: true
+            dwolla_customer_url: true,
         },
         where: (table, { eq }) => eq(table.id, user?.id!)
     })
