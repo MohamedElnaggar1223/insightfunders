@@ -20,10 +20,6 @@ export default async function FinancialRounds({ startupId }: { startupId: number
                     <div className='flex-1 flex items-center justify-center py-6'>{financialRound.date}</div>
                     <div className='flex-1 flex flex-col items-center justify-center gap-1 py-6 bg-[#B4B4B4CC] max-h-[4.125rem]'>
                         <div className='flex-1 flex items-center justify-center'>${financialRound.amount}</div>
-                        <div className='flex-1 flex items-center justify-center gap-1'>
-                            <p className='text-xs'>{financialRound.equity}% Equity</p>
-                            <p className='text-xs'>{100 - parseFloat(financialRound?.equity ?? '0')}% Debt</p>
-                        </div>
                     </div>
                 </div>
             )) : (
