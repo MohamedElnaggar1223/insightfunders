@@ -212,27 +212,24 @@ export type Database = {
         Row: {
           amount: number | null
           date: string | null
-          equity: number | null
           id: number
-          investor: string
+          investor: string[]
           round: Database["public"]["Enums"]["company_stage"] | null
           startup_id: number | null
         }
         Insert: {
           amount?: number | null
           date?: string | null
-          equity?: number | null
           id?: number
-          investor: string
+          investor: string[]
           round?: Database["public"]["Enums"]["company_stage"] | null
           startup_id?: number | null
         }
         Update: {
           amount?: number | null
           date?: string | null
-          equity?: number | null
           id?: number
-          investor?: string
+          investor?: string[]
           round?: Database["public"]["Enums"]["company_stage"] | null
           startup_id?: number | null
         }

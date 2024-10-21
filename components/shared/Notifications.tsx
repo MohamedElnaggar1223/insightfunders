@@ -62,9 +62,14 @@ export default function Notifications({ user, notifications }: Props)
                 </div>
             </PopoverTrigger>
             <PopoverContent className='w-[520px] gap-8 bg-black text-white rounded-[12px] max-h-[400px] !py-0 overflow-auto px-4 border-none divide-y notifications' align="end">
-                {notificationsData.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((notification) => (
+                {notificationsData.length ? 
+                notificationsData.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((notification) => (
                     <NotificationItem notification={notification} key={notification.id} />
-                ))}
+                )) : (
+                    <div className='flex gap-6 items-center justify-center w-full py-8'>
+                        No Notifications Yet!
+                    </div>
+                )}
             </PopoverContent>
         </Popover>
     )

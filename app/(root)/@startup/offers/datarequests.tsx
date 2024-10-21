@@ -11,7 +11,8 @@ export default async function DataRequests()
 
     return (
         <section className='flex flex-1 items-start justify-between gap-6 h-screen py-12 px-12 flex-wrap'>
-            {requests.map(({ investor, id }) => (
+            {requests.length ? 
+            requests.map(({ investor, id }) => (
                 <div className='flex flex-col gap-4 px-6 items-start justify-center bg-white w-[310px] rounded-[8px] h-[150px] py-4'>
                     <div className="flex gap-2">
                         <Image
@@ -31,7 +32,11 @@ export default async function DataRequests()
                     </div>
                     <ActionButtons user={user!} requestId={id!} />
                 </div>
-            ))}
+            )) : (
+                <p className='mb-auto flex items-center justify-center mt-12 text-white w-full'>
+                    There are no requests at the moment, but you’ll be notified if an interested lender requests to review your data
+                </p>
+            )}
         </section>
     )
 }

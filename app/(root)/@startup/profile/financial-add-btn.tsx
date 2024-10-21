@@ -29,16 +29,13 @@ import { createFinancialRound } from "@/lib/actions/startup"
 import { useRouter } from "next/navigation"
 
 const financialRoundSchema = z.object({
-    investor: z.string().min(2, {
+    investor: z.string().array().min(2, {
         message: 'Investor name must be at least 2 characters long'
     }),
     round: z.enum(['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public', '']),
     date: z.date(),
     amount: z.number().min(1, {
         message: 'Amount must be greater than 1'
-    }),
-    equity: z.number().min(0, {
-        message: 'Equity must be greater than 0'
     }),
 })
 
@@ -53,11 +50,10 @@ export default function FinancialAddBtn({ user }: { user: UserType })
     const form = useForm<z.infer<typeof financialRoundSchema>>({
         resolver: zodResolver(financialRoundSchema),
         defaultValues: {
-            investor: '',
+            investor: [''],
             round: '',
             date: new Date(),
             amount: 0,
-            equity: 0
         },
     })
 
@@ -72,7 +68,15 @@ export default function FinancialAddBtn({ user }: { user: UserType })
             return
         }
 
-        const response = await createFinancialRound({...values, date: values.date.toISOString(), amount: values.amount.toString(), equity: values.equity.toString(), round: values.round as "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public"})
+        if(values.investor.find(investor => investor === '') !== undefined) {
+            form.setError('investor', {
+                message: "Please add investors' names"
+            })
+            setIsLoading(false)
+            return
+        }
+
+        const response = await createFinancialRound({...values, date: values.date.toISOString(), amount: values.amount.toString(), round: values.round as "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public"})
 
         if(response?.error) {
             setError(response.error)
@@ -97,7 +101,7 @@ export default function FinancialAddBtn({ user }: { user: UserType })
                         Add a financial round entry
                     </DialogHeader>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center justify-center gap-8'>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center justify-start gap-8 max-h-[90vh] overflow-auto'>
                             <div className="flex items-center justify-center flex-wrap gap-8">
                                 <FormField
                                     control={form.control}
@@ -107,11 +111,23 @@ export default function FinancialAddBtn({ user }: { user: UserType })
                                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                                             <FormLabel className='text-left text-white'>Investor Name</FormLabel>
                                             <FormControl>
-                                                <input 
-                                                    className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
-                                                    placeholder="Investor Name" 
-                                                    {...field} 
-                                                />
+                                                <>
+                                                    {field?.value?.map((investorField, index) => (
+                                                        <div key={index} className='flex items-center gap-2'>
+                                                            <input 
+                                                                className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
+                                                                placeholder="Investor Name" 
+                                                                value={investorField}
+                                                                onChange={(e) => field.onChange(field.value.map((investorField, i) => i === index ? e.target.value : investorField))}
+                                                            />
+                                                            {field.value.length > 1 && <X size={16} stroke='#fff' className='cursor-pointer' onClick={() => field.onChange(field.value.filter((_, i) => i !== index))} />}
+                                                        </div>
+                                                    ))}
+                                                    <button type='button' onClick={() => field.onChange([...field.value, ''])} className='flex items-center justify-center gap-2 text-white ml-auto bg-black rounded-[4px] px-4 py-2'>
+                                                        <CirclePlus size={16} />
+                                                        Add Investor
+                                                    </button>
+                                                </>
                                             </FormControl>
                                             <FormMessage className='absolute text-red-600 -bottom-6' />
                                         </FormItem>
@@ -205,32 +221,6 @@ export default function FinancialAddBtn({ user }: { user: UserType })
                                             <input  
                                                 className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
                                                 placeholder="Amount" 
-                                                {...field} 
-                                                onChange={(e) => {
-                                                    const value = e.target.value;
-                                                    const numericRegex = /^-?\d*\.?\d+(?:[eE][-+]?\d+)?$/;
-                                                    if (value === '') field.onChange(0)
-                                                    else if (numericRegex.test(value)) {
-                                                        field.onChange(parseFloat(value));
-                                                    }
-                                                }}
-                                            />
-                                            </FormControl>
-                                            <FormMessage className='absolute text-red-600 -bottom-6' />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    disabled={isLoading}
-                                    name="equity"
-                                    render={({ field }) => (
-                                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                            <FormLabel className='text-left text-white'>Equity</FormLabel>
-                                            <FormControl>
-                                            <input  
-                                                className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
-                                                placeholder="Equity" 
                                                 {...field} 
                                                 onChange={(e) => {
                                                     const value = e.target.value;

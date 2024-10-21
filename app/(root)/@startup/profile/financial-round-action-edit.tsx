@@ -21,14 +21,14 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { CalendarIcon, CheckCircleIcon, Loader2, X } from "lucide-react"
+import { CalendarIcon, CheckCircleIcon, CirclePlus, Loader2, X } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { cn } from "@/lib/utils"
 import { updateFinancialRound } from "@/lib/actions/startup"
 import { useRouter } from "next/navigation"
 
 const financialRoundSchema = z.object({
-    investor: z.string().min(2, {
+    investor: z.string().array().min(2, {
         message: 'Investor name must be at least 2 characters long'
     }),
     round: z.enum(['Pre-seed', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Public', '']),
@@ -36,12 +36,9 @@ const financialRoundSchema = z.object({
     amount: z.number().min(1, {
         message: 'Amount must be greater than 1'
     }),
-    equity: z.number().min(0, {
-        message: 'Equity must be greater than 0'
-    }),
 })
 
-export default function FinancialRoundActionEdit({ financialRound }: { financialRound: { investor: string, round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public" | null, date: string | null, amount: string | null, equity: string | null, startup_id: number | null, id: number } })
+export default function FinancialRoundActionEdit({ financialRound }: { financialRound: { investor: string[], round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public" | null, date: string | null, amount: string | null, startup_id: number | null, id: number } })
 {
     const router = useRouter()
 
@@ -52,11 +49,10 @@ export default function FinancialRoundActionEdit({ financialRound }: { financial
     const form = useForm<z.infer<typeof financialRoundSchema>>({
         resolver: zodResolver(financialRoundSchema),
         defaultValues: {
-            investor: financialRound.investor ?? '',
+            investor: financialRound.investor ?? [''],
             round: financialRound.round ?? '',
             date: new Date(financialRound.date!) ?? new Date(),
             amount: parseFloat(financialRound.amount ?? '0') ?? 0,
-            equity: parseFloat(financialRound.equity ?? '0') ?? 0,
         },
     })
 
@@ -70,7 +66,15 @@ export default function FinancialRoundActionEdit({ financialRound }: { financial
             return
         }
 
-        const response = await updateFinancialRound(financialRound.id!, values.investor, values.round, values.date, values.amount, values.equity)
+        if(values.investor.find(investor => investor === '') !== undefined) {
+            form.setError('investor', {
+                message: "Please add investors' names"
+            })
+            setIsLoading(false)
+            return
+        }
+
+        const response = await updateFinancialRound(financialRound.id!, values.investor, values.round, values.date, values.amount)
 
         if(response?.error) {
             setError(response.error)
@@ -85,7 +89,7 @@ export default function FinancialRoundActionEdit({ financialRound }: { financial
 
     return (
         <>
-            <div onClick={() => setOpen(true)} className='flex items-center justify-center gap-3 text-center border-[#EAEAEA] cursor-pointer font-Montserrat'>
+            <div onClick={() => setOpen(true)} className='flex items-center justify-center gap-3 h-full text-center border-[#EAEAEA] cursor-pointer font-Montserrat'>
                 <p className='text-black font-semibold text-center'>Edit</p>
             </div>
             <Dialog open={open} onOpenChange={setOpen}>
@@ -104,11 +108,21 @@ export default function FinancialRoundActionEdit({ financialRound }: { financial
                                         <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
                                             <FormLabel className='text-left text-white'>Investor Name</FormLabel>
                                             <FormControl>
-                                                <input 
-                                                    className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
-                                                    placeholder="Investor Name" 
-                                                    {...field} 
-                                                />
+                                                <>
+                                                    {field.value.map((investorField, index) => (
+                                                        <input 
+                                                            className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
+                                                            placeholder="Investor Name" 
+                                                            value={investorField}
+                                                            onChange={(e) => field.onChange(field.value.map((investorField, index) => index === index ? e.target.value : investorField))}
+                                                            key={index}
+                                                        />
+                                                    ))}
+                                                    <button onClick={() => field.onChange([...field.value, ''])} className='flex items-center justify-center gap-2 text-white ml-auto bg-black rounded-[4px] px-4 py-2'>
+                                                        <CirclePlus size={16} />
+                                                        Add Investor
+                                                    </button>
+                                                </>
                                             </FormControl>
                                             <FormMessage className='absolute text-red-600 -bottom-6' />
                                         </FormItem>
@@ -202,32 +216,6 @@ export default function FinancialRoundActionEdit({ financialRound }: { financial
                                             <input  
                                                 className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
                                                 placeholder="Amount" 
-                                                {...field} 
-                                                onChange={(e) => {
-                                                    const value = e.target.value;
-                                                    const numericRegex = /^-?\d*\.?\d+(?:[eE][-+]?\d+)?$/;
-                                                    if (value === '') field.onChange(0)
-                                                    else if (numericRegex.test(value)) {
-                                                        field.onChange(parseFloat(value));
-                                                    }
-                                                }}
-                                            />
-                                            </FormControl>
-                                            <FormMessage className='absolute text-red-600 -bottom-6' />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    disabled={isLoading}
-                                    name="equity"
-                                    render={({ field }) => (
-                                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                            <FormLabel className='text-left text-white'>Equity</FormLabel>
-                                            <FormControl>
-                                            <input  
-                                                className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
-                                                placeholder="Equity" 
                                                 {...field} 
                                                 onChange={(e) => {
                                                     const value = e.target.value;

@@ -1,4 +1,4 @@
-import { pgTable, foreignKey, pgEnum, bigint, text, date, numeric, boolean, timestamp, index, uuid, unique } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, bigint, date, numeric, boolean, timestamp, text, index, uuid, unique } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 import { relations } from "drizzle-orm/relations";
 import { usersInAuth } from "@/db/auth";
@@ -32,11 +32,10 @@ export const equality_op = pgEnum("equality_op", ['eq', 'neq', 'lt', 'lte', 'gt'
 export const financial_rounds = pgTable("financial_rounds", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
-	investor: text("investor").notNull(),
+	investor: text("investor").array().notNull(),
 	round: company_stage("round"),
 	date: date("date"),
 	amount: numeric("amount"),
-	equity: numeric("equity"),
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	startup_id: bigint("startup_id", { mode: "number" }).references(() => startups.id, { onDelete: "cascade", onUpdate: "cascade" } ),
 });

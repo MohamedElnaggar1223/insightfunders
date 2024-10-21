@@ -76,7 +76,7 @@ export default function UploadLegalDocuments()
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className='bg-[#1A1A1A] rounded-xl border-none space-y-4'>
                     <DialogHeader className='font-semibold text-xl text-white'>
-                        Upload a Cap Table document
+                        Upload a legal document
                     </DialogHeader>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center justify-center gap-8'>
@@ -105,7 +105,7 @@ export default function UploadLegalDocuments()
                                 name="document"
                                 render={({ field }) => (
                                     <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                        <FormLabel className='text-left text-white'>Term Sheet</FormLabel>
+                                        <FormLabel className='text-left text-white'>Document</FormLabel>
                                         <FormControl>
                                             <>
                                                 {/* <div className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] bg-white hover:bg-white outline-none cursor-pointer'>Upload Term Sheet</div> */}

@@ -60,11 +60,11 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
 
         await updateFinancialDetails(values)
         setIsPending(false)
-        await updatePage('/investor-details/financial')
-        await updatePage('/investor-details')
-        await updatePage('/investor-details/submit')
+        await updatePage('/startup-details/financial')
+        await updatePage('/startup-details')
+        await updatePage('/startup-details/submit')
 
-        router.replace('/investor-details/submit')
+        router.replace('/startup-details/submit')
     }
 
 

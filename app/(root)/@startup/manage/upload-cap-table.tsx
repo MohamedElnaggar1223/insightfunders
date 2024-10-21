@@ -105,7 +105,7 @@ export default function UploadCapTable()
                                 name="document"
                                 render={({ field }) => (
                                     <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                        <FormLabel className='text-left text-white'>Term Sheet</FormLabel>
+                                        <FormLabel className='text-left text-white'>Document</FormLabel>
                                         <FormControl>
                                             <>
                                                 {/* <div className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] bg-white hover:bg-white outline-none cursor-pointer'>Upload Term Sheet</div> */}

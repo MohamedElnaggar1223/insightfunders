@@ -235,7 +235,7 @@ export const updateFinancialDetails = async (data: z.infer<typeof startUpFinanci
     if(!stage) return { error: 'Please fill out all fields' }
 
     await db.update(startups)
-            .set({ stage: data.stage, recent_raise: data.recentRaise.toString()})
+            .set({ stage: data.stage, recent_raise: (data.recentRaise ?? 0).toString()})
             .where(eq(startups.id, user.userStartUp.id!))
 
     revalidatePath('/startup-details/financial')

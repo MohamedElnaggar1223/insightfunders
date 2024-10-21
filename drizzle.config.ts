@@ -14,5 +14,10 @@ export default defineConfig({
     // host: "aws-0-ap-south-1.pooler.supabase.com",
     // user: "postgres.user",
     // password: process.env.PW || "",
+    database: "postgres",
+    port: 6543,
+    host: "aws-0-us-east-1.pooler.supabase.com",
+    user: "postgres.zaizjasuduohwngmlxil",
+    password: process.env.DATABASE_PW || "",
   },
 });

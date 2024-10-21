@@ -70,7 +70,7 @@ export default async function StartUpsInvestors({ contracts, searchParams }: Pro
 
     return (
         <div className='flex flex-1 flex-col gap-4'>
-            <SearchInvestorsBar />
+            {/* <SearchInvestorsBar /> */}
             <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
                 <div className='flex w-full items-center justify-between px-4 py-8 tableShadow'>
                     <p className='text-xs font-medium flex-1'>Lender Name</p>

@@ -19,6 +19,8 @@ export default async function StartUpFinancialDetails()
 
     if(user.userInfo.role === 'startup') {
         const bankConnected = await getBankAccount(user.user.id)
+        console.log(bankConnected)
+        console.log(user.userStartUp)
         if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }

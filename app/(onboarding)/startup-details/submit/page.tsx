@@ -17,6 +17,7 @@ export default async function SubmitStartUpDetailsPage()
     if(!user.userInfo.dwolla_customer_id && !user.userInfo.dwolla_customer_url && !user.userInfo.plaid_id) return redirect('/personal-details')
 
     if(user.userInfo.role === 'startup') {
+        console.log(user.userStartUp?.stage)
         if(user?.userStartUpOwners?.length === 0 || !user?.userStartUp?.EIN || !user?.userStartUp?.industry_sector || !user?.userStartUp?.address || !user?.userStartUp?.business_structure || !user?.userStartUp?.company_name || !user?.userStartUp?.email || !user?.userStartUp?.phone_number) {
             return redirect('/startup-details')
         }

@@ -183,7 +183,7 @@ export const getLegalDocuments = cache(async () => {
     })
 })
 
-export const createFinancialRound = cache(async (data: { investor: string, round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public", date: string, amount: string, equity: string }) => {
+export const createFinancialRound = cache(async (data: { investor: string[], round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public", date: string, amount: string }) => {
     const user = await getUser()
 
     if(!user?.userStartUp?.id) return { error: 'User not found' }
@@ -194,7 +194,6 @@ export const createFinancialRound = cache(async (data: { investor: string, round
         round: data.round,
         date: data.date,
         amount: data.amount,
-        equity: data.equity,
         startup_id: user?.userStartUp?.id,
     }).returning({
         id: financial_rounds.id
@@ -205,12 +204,12 @@ export const createFinancialRound = cache(async (data: { investor: string, round
     return { success: true, error: undefined }
 })
 
-export const updateFinancialRound = cache(async (id: number, investor: string, round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public", date: Date, amount: number, equity: number) => {
+export const updateFinancialRound = cache(async (id: number, investor: string[], round: "Pre-seed" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Public", date: Date, amount: number) => {
     const user = await getUser()
 
     if(!user?.userStartUp?.id) return { error: 'User not found' }
 
-    const financialRoundInserted = await db.update(financial_rounds).set({ investor, round, date: date.toISOString(), amount: amount.toString(), equity: equity.toString() }).where(eq(financial_rounds.id, id)).returning({
+    const financialRoundInserted = await db.update(financial_rounds).set({ investor, round, date: date.toISOString(), amount: amount.toString() }).where(eq(financial_rounds.id, id)).returning({
         id: financial_rounds.id
     })
 

@@ -10,6 +10,8 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import CapTableActionBtns from "./cap-table-action-btns"
+import { formatDate } from "@/lib/utils"
+import ViewBtn from "./view-btn"
 
 export default async function CapTable()
 {
@@ -24,7 +26,7 @@ export default async function CapTable()
             <Table className='bg-white'>
                 <TableHeader>
                     <TableRow className=''>
-                        <TableHead className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">SN</TableHead>
+                        <TableHead className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">{" "}</TableHead>
                         <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Document Name</TableHead>
                         <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>First Update</TableHead>
                         <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Last modified</TableHead>
@@ -34,10 +36,12 @@ export default async function CapTable()
                 <TableBody>
                     {CapTable?.map((CapTable, index) => (
                     <TableRow key={CapTable.id}>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">{index}</TableCell>
+                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">
+                            <ViewBtn document_link={CapTable.document_link!} type='capTables' />
+                        </TableCell>
                         <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{CapTable.name}</TableCell>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{CapTable.created_at}</TableCell>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{CapTable.updated_at}</TableCell>
+                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{formatDate(new Date(CapTable?.created_at!))}</TableCell>
+                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{formatDate(new Date(CapTable?.updated_at!))}</TableCell>
                         <TableCell className="flex items-center justify-center gap-3 p-6 text-center border-[#EAEAEA] font-Montserrat">
                             <CapTableActionBtns document_link={CapTable.document_link!} capTableId={CapTable.id!} />
                         </TableCell>
