@@ -19,7 +19,7 @@ import Image from "next/image"
 import { ArrowLeft, CheckCircle2, Circle, Eye, EyeOff, Loader2 } from "lucide-react"
 import { signUp } from "@/lib/actions/auth"
 import Link from "next/link"
-
+import '../../app/globals.css'
 export default function SignIn()
 {
     const [rolePage, setRolePage] = useState(true)
@@ -49,7 +49,7 @@ export default function SignIn()
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col pb-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col pb-8 gap-4 ipfield ">
                 {rolePage ? (
                     <>
                         <p className='font-light text-white text-center'>Select an option from below</p>
@@ -58,28 +58,30 @@ export default function SignIn()
                             disabled={isPending}
                             name="role"
                             render={({ field }) => (
-                                <FormItem className="space-y-3">
+                                <FormItem className="space-y-3 ">
                                     <FormControl>
                                         <RadioGroup
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
+                                            className="flex flex-col space-y-1 d-flex justify-content-center m-auto selectcarddiv"
                                         >
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[12px] bg-white", form.getValues().role === 'startup' ? 'border-[#FF7A00]' : 'border-white')}>
+                                            <FormItem className={cn("m-auto  flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px]  border-2 rounded-[12px] bg-white selectcard", form.getValues().role === 'startup' ? 'border-[#FF7A00]' : 'border-white')}>
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().role !== 'startup' ? (<Circle size={24} fill="#fff" stroke="#00000080" />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" />)}
-                                                        <div className='flex flex-col gap-1'>
+
+                                                        <div className='flex flex-col gap-1 '>
                                                             <p className='text-black font-semibold text-base font-Montserrat'>Borrower</p>
                                                             <p className='text-black text-xs leading-5 font-Montserrat'>I am a borrower, looking for funding.</p>
                                                         </div>
+
                                                     </div>
                                                 </FormLabel>
                                                 <FormControl>
                                                     <RadioGroupItem defaultChecked={true} value="startup" className={cn("mt-0imp opacity-0", form.getValues().role === 'startup' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-start p-4 pb-6 gap-4 max-w-[360px] w-screen border-2 rounded-[12px] bg-white", form.getValues().role === 'investor' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex m-auto justify-between items-start p-4 pb-6 gap-4 border-2 rounded-[12px] bg-white selectcard" , form.getValues().role === 'investor' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().role !== 'investor' ? (<Circle size={24} fill="#fff" stroke="#00000080" />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" />)}
@@ -99,7 +101,7 @@ export default function SignIn()
                                 </FormItem>
                             )}
                             />
-                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70'>Continue</button>
+                            <button onMouseDown={() => setRolePage(false)} className='w-full !mt-8 bg-[#FF7A00] text-white font-medium rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70'>Continue</button>
                             <Link href='/sign-in' className='text-white font-normal text-sm font-Montserrat mx-auto'>Back to login</Link>
                     </>
                 ) : (
@@ -166,9 +168,9 @@ export default function SignIn()
                             disabled={isPending}
                             name="firstName"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
+                                <FormItem className='relative flex flex-col gap-1  max-w-[450px] '>
                                     <FormControl>
-                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="First name" {...field} />
+                                        <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] !mt-0 outline-none' placeholder="First name" {...field} />
                                     </FormControl>
                                     <FormMessage className='absolute text-red-600 -bottom-6' />
                                 </FormItem>
@@ -179,7 +181,7 @@ export default function SignIn()
                             disabled={isPending}
                             name="lastName"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
+                                <FormItem className='relative flex flex-col gap-1 !mt-0  max-w-[450px]'>
                                     <FormControl>
                                         <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last name" {...field} />
                                     </FormControl>
@@ -192,7 +194,7 @@ export default function SignIn()
                             disabled={isPending}
                             name="email"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
+                                <FormItem className='relative flex flex-col gap-1 !mt-0  max-w-[450px]'>
                                     <FormControl>
                                         <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Email" {...field} />
                                     </FormControl>
@@ -246,7 +248,7 @@ export default function SignIn()
                             disabled={isPending}
                             name="password"
                             render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-1 w-screen max-w-[450px]'>
+                                <FormItem className='relative flex flex-col gap-1 !mt-0  max-w-[450px]'>
                                     <FormControl>
                                         <div className='relative'>
                                             <input type={passwordVisible ? 'text' : "password"} className='flex flex-1 w-full px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Password" {...field} />
@@ -275,7 +277,8 @@ export default function SignIn()
                                 </FormItem>
                             )}
                         />
-                        <button disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
+                        <button disabled={isPending} className='w-full !mt-4 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Sign up'}</button>
+                        <p className='text-white font-normal !mt-4 text-sm font-Montserrat mx-auto'>Already have an account? <Link href='/sign-in' className='text-[#FF7A00] underline font-normal'>Sign in</Link></p>
                         <p onClick={() => {if(!isPending) setRolePage(true)}} className='text-white text-sm flex items-center justify-start gap-1 cursor-pointer'><ArrowLeft size={16} /> <span className='font-semibold'>Back</span></p>
                     </>
                 )}

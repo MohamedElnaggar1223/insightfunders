@@ -19,7 +19,7 @@ export default async function PitchDeck()
     return (
         <section className='flex w-full flex-col gap-4 mt-12'>
             <div className='flex items-center justify-between gap-4'>
-                <p className='font-bold font-Montserrat text-white text-xl'>Pitch Deck</p>
+                <p className='font-bold font-Montserrat text-black text-xl'>Pitch Deck</p>
                 <UploadPitchDeck />
             </div>
             <Table className='bg-white'>

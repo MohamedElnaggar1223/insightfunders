@@ -15,7 +15,7 @@ export default function OffersPage({ searchParams }: Props)
     const tab = typeof searchParams.tab === 'string' ? searchParams.tab : undefined
 
     return (
-        <section className='flex flex-1 flex-col gap-6 h-screen px-24 py-16'>
+        <section className='flex flex-1 flex-col gap-6 h-screen px-24 py-16 '>
             <div className='flex w-full'>
                 <Link
                     href='/profile?tab=basic-info'

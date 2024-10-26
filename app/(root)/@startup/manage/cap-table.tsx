@@ -20,7 +20,7 @@ export default async function CapTable()
     return (
         <section className='flex w-full flex-col gap-4 mt-12'>
             <div className='flex items-center justify-between gap-4'>
-                <p className='font-bold font-Montserrat text-white text-xl'>Cap Table</p>
+                <p className='font-bold font-Montserrat text-black text-xl'>Cap Table</p>
                 <UploadCapTable />
             </div>
             <Table className='bg-white'>

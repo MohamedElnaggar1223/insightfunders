@@ -91,3 +91,54 @@ input {
     }
 }
 
+
+/* signinipfield */
+.selectcard{
+    width: 100%;
+}
+.selectcarddiv{
+    width: 350px;
+}
+
+.ipfield{
+    width: 450px;
+}
+.ipfieldfw{
+    width: 100%;
+}
+.dashboard_dr_cards_1{
+    width: 30%;
+}
+.dashboard_dr_cards_2{
+    width: 70%;
+}
+
+.dashboardcont{
+    width: 70%;
+    margin: auto;
+}
+
+@media (max-width: 485px) {
+    .ipfield{
+        width: 100%;
+    }
+    .selectcarddiv{
+        width: 100%;
+    }
+}
+@media (max-width : 1030px)
+{
+    .sidebardashboard{
+        display: none;
+    }
+    .sidebardashboardopen{
+        position: absolute;
+    left: 0;
+    width: 50%;
+    }
+}
+@media (max-width: 1440px) {
+    .dashboardcont{
+        width: 90%;
+    }
+}

@@ -44,7 +44,7 @@ export default function Notifications({ user, notifications }: Props)
                 if(foundNotification) return prev.map(notification => notification.id === newNotification.id ? newNotification : notification)
                 return [newNotification, ...prev]
             })
-        }).subscribe()
+        }).subscribe()  
 
         return () => {
             supabase.removeChannel(channel)
@@ -56,8 +56,8 @@ export default function Notifications({ user, notifications }: Props)
     return (
         <Popover>
             <PopoverTrigger>
-                <div className='flex items-center rounded-[8px] justify-center p-1.5 bg-black relative'>
-                    <Bell stroke="#fff" size={24} />
+                <div className='flex items-center bg-[#F1F5F9] rounded-[8px] justify-center p-2.5  relative border rounded-full border-custom-gray  w-[38]'>
+                    <Bell stroke="#000" size={18} />
                     {unreadNotifications.length > 0 ? (<div className='absolute -top-1 -right-1 h-[16px] text-xs text-white text-center flex items-center justify-center p-0.5 rounded-full w-[16px] bg-[#FF7A00]' >{unreadNotifications.length}</div>) : null}
                 </div>
             </PopoverTrigger>

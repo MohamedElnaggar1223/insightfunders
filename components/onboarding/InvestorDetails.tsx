@@ -21,6 +21,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Checkbox } from "../ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { cn } from "@/lib/utils"
+import { Montserrat } from "next/font/google";
+const inter = Montserrat({ subsets: ["latin"] });
 
 type Props = {
     investorDetails: {
@@ -135,12 +137,12 @@ export default function InvestorDetails({ investorDetails }: Props)
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center gap-4 mt-8'>
-                <h1 className='text-lg font-semibold text-white text-center'>{investorType === 'Individual' ? "Individual" : "Company"} information</h1>
+            <div className={`flex flex-col items-center justify-center gap-2 mt-8 ${inter.className}`}>
+                <h1 className='text-2xl font-semibold text-white text-center'>{investorType === 'Individual' ? "Individual" : "Company"} information</h1>
                 <h2 className='text-base text-center font-light text-white'>Give us details information about {investorType === 'Individual' ? "yourself" : "your company"}</h2>
             </div>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col">
+            <Form {...form} >
+                <form onSubmit={form.handleSubmit(onSubmit)} className={`space-y-8 max-w-[90vw] flex flex-col ${inter.className}`}>
                     {typePage ? (
                         <>
                         <p className='font-light text-white text-center'>Select an option from below</p>
@@ -154,9 +156,9 @@ export default function InvestorDetails({ investorDetails }: Props)
                                         <RadioGroup
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
+                                            className="flex flex-col space-y-1 selectcarddiv"
                                         >
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] w-screen border-2 rounded-[12px] bg-white", form.getValues().investorType === 'Individual' ? 'border-[#FF7A00]' : 'border-white')}>
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4  border-2 rounded-[12px] bg-white", form.getValues().investorType === 'Individual' ? 'border-[#FF7A00]' : 'border-white')}>
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().investorType !== 'Individual' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -170,7 +172,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     <RadioGroupItem defaultChecked={true} value="Individual" className={cn("mt-0imp opacity-0", form.getValues().investorType === 'Individual' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] w-screen border-2 rounded-[12px] bg-white", form.getValues().investorType === 'Institution' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4  border-2 rounded-[12px] bg-white", form.getValues().investorType === 'Institution' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().investorType !== 'Institution' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -203,14 +205,14 @@ export default function InvestorDetails({ investorDetails }: Props)
                             disabled={isPending}
                             name="accreditation"
                             render={({ field }) => (
-                                <FormItem className="space-y-3">
+                                <FormItem className="space-y-3 max-w-[90vw]">
                                     <FormControl>
                                         <RadioGroup
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
+                                            className="flex flex-col space-y-1 "
                                         >
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] h-[80px] w-screen border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I earn $200k+ yearly (or $300k+ if filing jointly)' ? 'border-[#FF7A00]' : 'border-white')}>
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-2 pr-2 pb-4 gap-4  border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I earn $200k+ yearly (or $300k+ if filing jointly)' ? 'border-[#FF7A00]' : 'border-white')}>
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().accreditation !== 'I earn $200k+ yearly (or $300k+ if filing jointly)' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -223,7 +225,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     <RadioGroupItem defaultChecked={true} value="I earn $200k+ yearly (or $300k+ if filing jointly)" className={cn("mt-0imp opacity-0", form.getValues().accreditation === 'Individual' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] h-[80px] w-screen border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I have $1M+ in assets, excl. primary residence' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-2 pr-2 pb-4 gap-4  border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I have $1M+ in assets, excl. primary residence' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().accreditation !== 'I have $1M+ in assets, excl. primary residence' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -236,7 +238,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     <RadioGroupItem value="I have $1M+ in assets, excl. primary residence" className={cn("mt-0imp opacity-0", form.getValues().accreditation === 'I have $1M+ in assets, excl. primary residence' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] h-[80px] w-screen border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I hold a current Series 7, 65 or 82 license' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-2 pr-2 pb-4 gap-4  border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I hold a current Series 7, 65 or 82 license' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().accreditation !== 'I hold a current Series 7, 65 or 82 license' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -249,7 +251,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     <RadioGroupItem value="I hold a current Series 7, 65 or 82 license" className={cn("mt-0imp opacity-0", form.getValues().accreditation === 'I hold a current Series 7, 65 or 82 license' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] h-[80px] w-screen border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I am accredited in another way' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-2 pr-2 pb-4 gap-4  border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'I am accredited in another way' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().accreditation !== 'I am accredited in another way' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}
@@ -262,7 +264,7 @@ export default function InvestorDetails({ investorDetails }: Props)
                                                     <RadioGroupItem value="I am accredited in another way" className={cn("mt-0imp opacity-0", form.getValues().accreditation === 'I am accredited in another way' ? 'bg-main-purple' : 'bg-white')} />
                                                 </FormControl>
                                             </FormItem>
-                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-4 pr-2 pb-6 gap-4 max-w-[400px] h-[80px] w-screen border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'None of the above. I am not accredited' ? 'border-[#FF7A00]' : 'border-white')}> 
+                                            <FormItem className={cn("flex justify-between items-center pt-4 pl-2     pr-2 pb-4 gap-4  border-2 rounded-[12px] bg-white", form.getValues().accreditation === 'None of the above. I am not accredited' ? 'border-[#FF7A00]' : 'border-white')}> 
                                                 <FormLabel className="font-normal">
                                                     <div className='flex gap-4 pl-2 items-center justify-between cursor-pointer'>
                                                         {form.getValues().accreditation !== 'None of the above. I am not accredited' ? (<Circle size={24} fill="#fff" stroke="#00000080" className='min-w-6' />) : (<CheckCircle2 size={24} fill="#FF7A00" stroke="#fff" className='min-w-6' />)}

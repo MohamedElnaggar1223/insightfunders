@@ -119,13 +119,15 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
     
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-[90vw] flex flex-col ipfield">
+
+                <div className="flex gap-4   flex-col">
                 <FormField
                     control={form.control}
                     disabled={isPending}
                     name="companyName"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen  ipfieldfw'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Company name" {...field} />
                             </FormControl>
@@ -138,7 +140,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     disabled={isPending}
                     name="businessStructure"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw mt-0'>
                             <FormControl>
                                 <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
                                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -152,13 +154,19 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                         </FormItem>
                     )}
                 />
+                </div>
+
+
+
+
+                <div className="flex gap-4   flex-col">
                 <FormField
                     control={form.control}
                     disabled={isPending}
                     name="businessOwners"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                            <p className='text-white'>Provide details of any individual with an ownership stake of 25% or more in your business.</p>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw'>
+                            <p className='text-white text-sm font-thin mb-2'>Provide details of any individual with an ownership stake of 25% or more in your business.</p>
                             <FormControl>
                                 <div className='flex flex-col gap-4'>
                                     {form.getValues('businessOwners')?.length > 0 && (
@@ -214,16 +222,16 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     disabled={isPending}
                     name="EIN"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw !mt-0'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="EIN" {...field} />
                             </FormControl>
-                            <FormMessage className='absolute text-red-600 -bottom-6' />
+                            <FormMessage className=' text-red-600 -bottom-6' />
                         </FormItem>
                     )}
                 />
-                <FormItem className="relative">
-                    <div className='flex flex-1 overflow-hidden max-w-[384px] rounded-tr-[8px] rounded-br-[8px]'>
+                <FormItem className="relative !mt-0">
+                    <div className='flex flex-1 overflow-hidden ipfieldfw rounded-tr-[8px] rounded-br-[8px] '>
                         <FormField
                             control={form.control}
                             name="countryCode"
@@ -259,7 +267,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     disabled={isPending}
                     name="companyEmail"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw !mt-0'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Business email" {...field} />
                             </FormControl>
@@ -272,7 +280,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     disabled={isPending}
                     name="address"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw !mt-0'>
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Business address" {...field} />
                             </FormControl>
@@ -285,7 +293,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                     disabled={isPending}
                     name="industrySector"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw !mt-0  '>
                             <FormControl>
                                 <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
                                     <option value="Technology">Technology</option>
@@ -316,7 +324,7 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                         disabled={isPending}
                         name="otherSector"
                         render={({ field }) => (
-                            <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                            <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw'>
                                 <FormControl>
                                     <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Other sector" {...field} />
                                 </FormControl>
@@ -325,7 +333,12 @@ export default function StartUpDetails({ startUpDetails, startUpOwners }: Props)
                         )}
                     />
                 )}
-                <div className='flex items-center justify-center gap-2 w-full'>
+                </div>
+
+
+
+
+                <div className='flex items-center justify-center gap-2 w-full !mt-0'>
                     <button onClick={handleSaveStartUpDetails} disabled={isPending} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="button">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Save'}</button>
                     <button disabled={isPending || (form.getValues('businessOwners')?.length ?? 0) === 0} className='w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70' type="submit">{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Continue'}</button>
                 </div>

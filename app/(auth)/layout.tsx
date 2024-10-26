@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import '../globals.css'
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { redirect } from 'next/navigation';
 import { getUser } from '@/lib/actions/auth';
 
@@ -9,7 +10,7 @@ export const metadata = {
   description: 'Insight Funders is a platform for connecting startups with investors.',
 }
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export default async function RootLayout({
   children,

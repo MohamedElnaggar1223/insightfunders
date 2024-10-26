@@ -4,7 +4,9 @@ import Link from "next/link";
 import SearchInvestorsBar from "./SearchInvestorsBar";
 import { getInvestor } from "@/lib/actions/startup";
 import InvestorNameDialog from "./InvestorNameDialog";
-
+import { Montserrat } from "next/font/google";
+// Import Montserrat font
+const inter = Montserrat({ subsets: ["latin"] });
 type Props = {
     contracts: {
         payment_interval: "week" | "month" | "quarter" | "year" | null;
@@ -69,10 +71,10 @@ export default async function StartUpsInvestors({ contracts, searchParams }: Pro
     const prevAvailable = page > 1
 
     return (
-        <div className='flex flex-1 flex-col gap-4'>
+        <div className={`flex flex-col gap-4 ${inter.className}`}>
             {/* <SearchInvestorsBar /> */}
             <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
-                <div className='flex w-full items-center justify-between px-4 py-8 tableShadow'>
+                <div className='flex w-full items-center justify-between px-4 py-7  bg-[#FAFAFA]'>
                     <p className='text-xs font-medium flex-1'>Lender Name</p>
                     <p className='text-xs font-medium flex-1'>Total Funds</p>
                     <p className='text-xs font-medium flex-1'>Initiation Date</p>
@@ -90,11 +92,11 @@ export default async function StartUpsInvestors({ contracts, searchParams }: Pro
                         <div className='flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6'>{contract.maturity_date}</div>
                     </div>
                 )) : (
-                    <p className='mb-auto flex items-center justify-center mt-12'>
+                    <p className=' flex items-center justify-center mt-12'>
                         No Data Yet!
                     </p>
                 )}
-                <div className='h-10 flex items-center px-4 justify-between mt-auto'>
+                <div className='h-10 flex items-center px-4 justify-between '>
                     <p className='text-xs font-medium'>Showing {startIndex} - {endIndex}</p>
                     <div className='flex gap-2'>
                         <Link prefetch={true} href={prevAvailable ? `/?page=${page - 1}` : '#'}>

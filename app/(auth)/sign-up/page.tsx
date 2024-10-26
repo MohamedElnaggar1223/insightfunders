@@ -23,9 +23,9 @@ export default function SignUpPage({ searchParams }: Props)
                     />
                 </Link>
             </header>
-            <div className='flex flex-col items-center justify-center gap-8 mt-24'>
+            <div className='flex flex-col items-center justify-center gap-1 mt-24'>
                 <div className='flex flex-col items-center justify-center gap-4'>
-                    <h1 className='text-lg font-semibold text-white text-center'>Create an account</h1>
+                    <h1 className='text-2xl  font-semibold text-white text-center'>Create an account</h1>
                 </div>
                 <SignUp />
             </div>

@@ -70,14 +70,14 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 max-w-[90vw] flex flex-col pb-8'>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 max-w-[90vw] flex flex-col pb-8 ipfield'>
                 <PlaidLink user={user} />
                 <FormField
                     control={form.control}
                     disabled={isPending}
                     name="stage"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw'>
                             <FormLabel className='text-white'>Stage</FormLabel>
                             <FormControl>
                                 <select className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' {...field}>
@@ -95,7 +95,7 @@ export default function StartUpFinancialDetailsContainer({ user }: Props)
                     disabled={isPending}
                     name="recentRaise"
                     render={({ field }) => (
-                        <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
+                        <FormItem className='relative flex flex-col gap-1 w-screen ipfieldfw'>
                             <FormLabel className='text-white'>Recent Raise (in USD)</FormLabel>
                             <FormControl>
                                 <div className='flex flex-1 relative'>

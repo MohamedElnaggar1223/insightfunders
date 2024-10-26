@@ -33,7 +33,7 @@ export default async function DataRequests()
                     <ActionButtons user={user!} requestId={id!} />
                 </div>
             )) : (
-                <p className='mb-auto flex items-center justify-center mt-12 text-white w-full'>
+                <p className='mb-auto flex items-center justify-center mt-12 text-black w-full'>
                     There are no requests at the moment, but you’ll be notified if an interested lender requests to review your data
                 </p>
             )}
