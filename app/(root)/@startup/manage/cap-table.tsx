@@ -20,29 +20,29 @@ export default async function CapTable()
     return (
         <section className='flex w-full flex-col gap-4 mt-12'>
             <div className='flex items-center justify-between gap-4'>
-                <p className='font-bold font-Montserrat text-black text-xl'>Cap Table</p>
+                <p className='font-bold dashboardtablehead   text-black text-xl'>Cap Table</p>
                 <UploadCapTable />
             </div>
             <Table className='bg-white'>
                 <TableHeader>
                     <TableRow className=''>
-                        <TableHead className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">{" "}</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Document Name</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>First Update</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Last modified</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Actions</TableHead>
+                        <TableHead className="px-1 border-2 text-center border-[#EAEAEA]  chartcontenttext   w-[20px]">{" "}</TableHead>
+                        <TableHead className=' px-1 border-2 text-center border-[#EAEAEA]  chartcontenttext  '>Document Name</TableHead>
+                        <TableHead className='px-1 border-2 text-center border-[#EAEAEA]  chartcontenttext '>First Update</TableHead>
+                        <TableHead className='px-1 border-2 text-center border-[#EAEAEA]  chartcontenttext'>Last modified</TableHead>
+                        <TableHead className='px-1 border-2 text-center border-[#EAEAEA]  chartcontenttext '>Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {CapTable?.map((CapTable, index) => (
                     <TableRow key={CapTable.id}>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat w-[100px]">
+                        <TableCell className="px-1 border-2 text-center border-[#EAEAEA]    w-[100px]">
                             <ViewBtn document_link={CapTable.document_link!} type='capTables' />
                         </TableCell>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{CapTable.name}</TableCell>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{formatDate(new Date(CapTable?.created_at!))}</TableCell>
-                        <TableCell className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">{formatDate(new Date(CapTable?.updated_at!))}</TableCell>
-                        <TableCell className="flex items-center justify-center gap-3 p-6 text-center border-[#EAEAEA] font-Montserrat">
+                        <TableCell className="px-1 border-2 text-center border-[#EAEAEA]   ">{CapTable.name}</TableCell>
+                        <TableCell className="px-1 border-2 text-center border-[#EAEAEA]   ">{formatDate(new Date(CapTable?.created_at!))}</TableCell>
+                        <TableCell className="px-1 border-2 text-center border-[#EAEAEA]   ">{formatDate(new Date(CapTable?.updated_at!))}</TableCell>
+                        <TableCell className="flex items-center justify-center gap-3 p-6 text-center border-[#EAEAEA]   ">
                             <CapTableActionBtns document_link={CapTable.document_link!} capTableId={CapTable.id!} />
                         </TableCell>
                     </TableRow>

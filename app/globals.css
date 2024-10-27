@@ -1,3 +1,8 @@
+body {
+    font-family: 'SF Pro Display', sans-serif;
+  }
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -125,6 +130,18 @@ input {
     .selectcarddiv{
         width: 100%;
     }
+    .signinformipfield{
+        width: 90%;
+    }
+    .chartcontenttext{
+        font-size: 12px;
+        line-height: 140%;
+            
+    }
+    .dashboardtablehead{
+        font-size: 16px;
+     
+    }
 }
 @media (max-width : 1030px)
 {
@@ -142,3 +159,35 @@ input {
         width: 90%;
     }
 }
+
+/* styles/globals.css */
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('/fonts/sf-pro-display/SFProDisplayRegular.OTF') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: url('/fonts/sf-pro-display/SFProDisplayBold.OTF') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: url('/fonts/sf-pro-display/SFProDisplayMedium.OTF') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: url('/fonts/sf-pro-display/SFProDisplayBlackItalic.OTF') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  /* Add more weights and styles as needed */
+  

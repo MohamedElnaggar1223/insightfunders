@@ -22,13 +22,13 @@ export default async function Contracts()
     const pendingContracts = await getPendingContractsWithInvestors(user?.userStartUp?.id!)
 
     return (
-        <section className='flex flex-1 items-start justify-between gap-6 h-screen py-12 px-12 flex-wrap'>
+        <section className='flex flex-1 items-start justify-between gap-6 h-screen py-6  flex-wrap'>
             <Table className='bg-white'>
                 <TableHeader>
                     <TableRow className=''>
-                        <TableHead className="p-6 border-2 text-center border-[#EAEAEA] font-Montserrat">Lender's name</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Status</TableHead>
-                        <TableHead className='p-6 border-2 text-center border-[#EAEAEA] font-Montserrat'>Actions</TableHead>
+                        <TableHead className="p-2 border-2 text-center border-[#EAEAEA] font-Montserrat">Lender's name</TableHead>
+                        <TableHead className='p-2 border-2 text-center border-[#EAEAEA] font-Montserrat'>Status</TableHead>
+                        <TableHead className='p-2 border-2 text-center border-[#EAEAEA] font-Montserrat'>Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>

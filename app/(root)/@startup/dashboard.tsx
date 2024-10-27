@@ -33,12 +33,12 @@ export default async function Dashboard({
     //     <div className='flex flex-wrap items-center justify-center gap-4 min-h-[295px]'>
     //         <div className='flex flex-col gap-4 h-full'>
     //             <div className="flex bg-[#212121] min-h-32 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] w-screen max-w-[332px]">
-    //                 <p className='font-Montserrat font-light text-xs text-white'>Total funds</p>
-    //                 <p className='text-white font-[800] font-Montserrat text-[20px]'>${totalAmountInvested}</p>
+    //                 <p className='  font-light text-xs text-white'>Total funds</p>
+    //                 <p className='text-white font-[800]   text-[20px]'>${totalAmountInvested}</p>
     //             </div>
     //             <div className="flex bg-[#212121] min-h-32 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] w-screen max-w-[332px]">
-    //                 <p className='font-Montserrat font-light text-xs text-white'>Currently invested in by</p>
-    //                 <p className='text-white font-[800] font-Montserrat text-[20px]'>{totalInvestors} <span className='font-normal'>investors</span></p>
+    //                 <p className='  font-light text-xs text-white'>Currently invested in by</p>
+    //                 <p className='text-white font-[800]   text-[20px]'>{totalInvestors} <span className='font-normal'>investors</span></p>
     //             </div>
     //         </div>
     //         <StartUpsChart totalAmountInvested={totalAmountInvested!} />
@@ -61,10 +61,10 @@ export default async function Dashboard({
                 />
               </div>
               <div>
-                <p className="text-black text-left font-[800] font-Montserrat text-[28px]">
+                <p className="text-black text-left font-[800]  text-[28px]">
                   ${totalAmountInvested}
                 </p>
-                <p className="font-Montserrat text-left font-light text-xs text-black">
+                <p className=" text-left font-light text-xs text-black">
                   Total funds
                 </p>
               </div>
@@ -83,11 +83,11 @@ export default async function Dashboard({
                 />
               </div>
            <div>
-            <p className="text-black font-[800] text-left font-Montserrat text-[20px]">
-              {totalInvestors} <span className="font-normal">investors</span>
+            <p className="text-black font-[800] text-left  text-[28px]">
+               ${totalInvestors}
             </p>
-            <p className="font-Montserrat text-left font-light text-xs text-black">
-              Currently invested in by
+            <p className=" text-left font-light text-xs text-black">
+            Available balance
             </p>
             </div>
             </div>
@@ -101,18 +101,18 @@ export default async function Dashboard({
       {/* <div className="flex items-center justify-center gap-4 min-h-[295px] ">
         <div className="flex flex-col gap-4 h-full dashboard_dr_cards_1">
           <div className="flex bg-[#212121] min-h-32 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] ">
-            <p className="font-Montserrat font-light text-xs text-white">
+            <p className="  font-light text-xs text-white">
               Total funds
             </p>
-            <p className="text-white font-[800] font-Montserrat text-[20px]">
+            <p className="text-white font-[800]   text-[20px]">
               ${totalAmountInvested}
             </p>
           </div>
           <div className="flex bg-[#212121] min-h-32 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] ">
-            <p className="font-Montserrat font-light text-xs text-white">
+            <p className="  font-light text-xs text-white">
               Currently invested in by
             </p>    
-            <p className="text-white font-[800] font-Montserrat text-[20px]">
+            <p className="text-white font-[800]   text-[20px]">
               {totalInvestors} <span className="font-normal">investors</span>
             </p>
           </div>

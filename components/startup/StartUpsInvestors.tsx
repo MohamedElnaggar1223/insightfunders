@@ -5,8 +5,10 @@ import SearchInvestorsBar from "./SearchInvestorsBar";
 import { getInvestor } from "@/lib/actions/startup";
 import InvestorNameDialog from "./InvestorNameDialog";
 import { Montserrat } from "next/font/google";
+
+import "@/app/globals.css";
 // Import Montserrat font
-const inter = Montserrat({ subsets: ["latin"] });
+
 type Props = {
     contracts: {
         payment_interval: "week" | "month" | "quarter" | "year" | null;
@@ -71,7 +73,7 @@ export default async function StartUpsInvestors({ contracts, searchParams }: Pro
     const prevAvailable = page > 1
 
     return (
-        <div className={`flex flex-col gap-4 ${inter.className}`}>
+        <div className={`flex flex-col gap-4 `}>
             {/* <SearchInvestorsBar /> */}
             <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
                 <div className='flex w-full items-center justify-between px-4 py-7  bg-[#FAFAFA]'>

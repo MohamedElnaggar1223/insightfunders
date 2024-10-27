@@ -22,7 +22,7 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
 
     return (
         <div className='bg-white  h-full flex flex-col items-center justify-center text-left p-8 gap-12 rounded-[8px] shadow-lg'>
-            <p className='text-black font-normal font-Montserrat mr-auto'>Total Funds Available</p>
+            <p className='text-black font-normal  mr-auto'>Total Funds Available</p>
             <div className='flex w-full gap-12'>
                 <DonutChart
                     data={data}

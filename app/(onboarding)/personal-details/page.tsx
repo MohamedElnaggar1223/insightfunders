@@ -1,13 +1,13 @@
 import PersonalDetails from "@/components/onboarding/PersonalDetails";
 import SignOutBtn from "@/components/startup/SignOutBtn";
 import { getUser } from "@/lib/actions/auth";
-import { Montserrat } from "next/font/google";
+// import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 // Import Montserrat font
-const inter = Montserrat({ subsets: ["latin"] });
+// const inter = Montserrat({ subsets: ["latin"] });
 
 export default async function PersonalDetailsPage() {
   const user = await getUser();
@@ -25,7 +25,8 @@ export default async function PersonalDetailsPage() {
 
   return (
     // Apply the font class here
-    <section className={`w-full flex flex-col bg-[#1A1A1A] min-h-screen ${inter.className}`}>
+    // <section className={`w-full flex flex-col bg-[#1A1A1A] min-h-screen ${inter.className}`}>
+          <section className={`w-full flex flex-col bg-[#1A1A1A] min-h-screen `}>
       <header className="flex justify-start text-sm lg:text-base items-center py-4 px-2 lg:px-8 text-white gap-2 lg:gap-4 font-semibold">
         <Link href="/" className="font-IntegralCF font-medium uppercase text-xs text-white">
           <Image src="/images/iflogo.png" alt="logo" width={153} height={35} />

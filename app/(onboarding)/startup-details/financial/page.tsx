@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import { unstable_noStore } from "next/cache";
 import StartUpFinancialDetailsContainer from "@/components/onboarding/StartUpFinancialDetails";
 import { getBankAccount } from "@/lib/actions/user";
-import { Montserrat } from "next/font/google";
+// import { Montserrat } from "next/font/google";
 
 // Import Montserrat font
-const inter = Montserrat({ subsets: ["latin"] });
+// const inter = Montserrat({ subsets: ["latin"] });
 export default async function StartUpFinancialDetails()
 
 {
@@ -36,7 +36,7 @@ export default async function StartUpFinancialDetails()
     else return redirect('/')
 
     return (
-        <section className={`w-full flex flex-col bg-[#1A1A1A] min-h-screen ${inter.className}`}>
+        <section className={`w-full flex flex-col bg-[#1A1A1A] min-h-screen `}>
             <header className='flex justify-start text-sm lg:text-base items-center py-4 px-2 lg:px-8 text-white gap-2 lg:gap-4 font-semibold'>
                 <Link href='/' className='font-IntegralCF font-medium uppercase text-xs text-white'>
                     <Image
