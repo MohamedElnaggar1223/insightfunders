@@ -7,7 +7,7 @@ import PitchDeck from "./pitch-deck"
 import TaxReturns from "./tax-returns"
 import FinancialStatements from "./financial-statements"
 import LegalDocuments from "./legal-documents"
-import Others from "./Others"
+
 
 
 type Props = {
@@ -79,11 +79,7 @@ export default function OffersPage({ searchParams }: Props)
                     <LegalDocuments />
                 </Suspense>
             )
-            : tab === 'others' ? (
-                <Suspense fallback={<Loader2 className='animate-spin text-black' size={24} />}>
-                    <Others />
-                </Suspense>
-            )
+           
            
             : (
                 <Suspense fallback={<Loader2 className='animate-spin text-black' size={24} />}>
