@@ -17,7 +17,7 @@ export default function LogOutSlider()
 
     return (
         <>
-            <div onClick={handleLogOut} className='flex gap-1 cursor-pointer'>
+            <div onClick={handleLogOut} className='flex gap-1 cursor-pointer logoutButn'>
                 <LogOutIcon size={16} stroke='#fff' />
                 <p className='font-Montserrat text-xs text-white'>Log Out</p>
             </div>

@@ -7,6 +7,8 @@ import PitchDeck from "./pitch-deck"
 import TaxReturns from "./tax-returns"
 import FinancialStatements from "./financial-statements"
 import LegalDocuments from "./legal-documents"
+import Others from "./Others"
+
 
 type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
@@ -18,6 +20,7 @@ export default function OffersPage({ searchParams }: Props)
 
     return (
         <section className='flex flex-1 flex-col gap-6 h-screen  py-16 dashboardcont'>
+            <div className="text-[red] text-[14px] text-left">Upload the necessary documents to unlock available offers *</div>
             <div className='flex w-full'>
                 <Link
                     href='/manage?tab=cap-table'
@@ -49,6 +52,12 @@ export default function OffersPage({ searchParams }: Props)
                 >
                     Legal Documents
                 </Link>
+                <Link
+                    href='/manage?tab=others'
+                    className={cn('text-sm font-semibold  chartcontenttext  flex-1 text-center border-b-2 pb-2', (tab === 'others') ? 'text-[#FF7A00] font-semibold border-[#FF7A00]' : 'text-black border-[#FFFFFF80]')} 
+                >
+                   Others
+                </Link>
             </div>
             {tab === 'pitch-deck' ? (
                 <Suspense fallback={<Loader2 className='animate-spin  text-black' size={24} />}>
@@ -69,7 +78,14 @@ export default function OffersPage({ searchParams }: Props)
                 <Suspense fallback={<Loader2 className='animate-spin text-black' size={24} />}>
                     <LegalDocuments />
                 </Suspense>
-            ) : (
+            )
+            : tab === 'others' ? (
+                <Suspense fallback={<Loader2 className='animate-spin text-black' size={24} />}>
+                    <Others />
+                </Suspense>
+            )
+           
+            : (
                 <Suspense fallback={<Loader2 className='animate-spin text-black' size={24} />}>
                     <CapTable />
                 </Suspense>

@@ -5,6 +5,7 @@ import { getUser } from "@/lib/actions/auth";
 import { getContracts } from "@/lib/actions/startup";
 import { getNotifications } from "@/lib/actions/user";
 import Image from "next/image";
+import DashboardUpload from "./manage/dashboardupload";
 
 export default async function Dashboard({
   searchParams,
@@ -24,6 +25,7 @@ export default async function Dashboard({
         : 0),
     0
   );
+
   const totalInvestors = startupContracts.acceptedContracts?.filter(
     (contract) => contract.investment_amount_paid
   ).length;
@@ -47,6 +49,7 @@ export default async function Dashboard({
     // </section>
 
     <section className="flex flex-1 flex-col dashboardcont gap-6  overflow-auto pt-6 mx-auto mt-8">
+      <DashboardUpload />
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 w-full ">
         <div className="col-span-1 lg:col-span-3   flex flex-col gap-4 text-white text-center">
           <div className="flex bg-white min-h-32 px-2  py-4 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] shadow-lg ">

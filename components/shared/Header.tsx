@@ -18,6 +18,7 @@ export default function Header()
                         <Link href='/borrowers'>Borrowers</Link>
                         <Link href='/lenders'>Lenders</Link>
                         <Link href='/about-us'>About</Link>
+                        <Link href='/about-us'>Referal Partner</Link>
                         <HeadersButtons />
                     </PopoverContent>
                 </Popover>
@@ -25,7 +26,7 @@ export default function Header()
             <Link href='/' className='font-IntegralCF font-medium uppercase text-xs'>
                 <Image
                     src='/images/logo.png'
-                    alt='logo'
+                    alt='logo'  
                     width={153}
                     height={35}
                 />
@@ -36,6 +37,7 @@ export default function Header()
                 <Link href='/borrowers'>Borrowers</Link>
                 <Link href='/lenders'>Lenders</Link>
                 <Link href='/about-us'>About</Link>
+                <Link href='/referral'>Referal Partner</Link>
             </div>
 
             <div className='max-lg:hidden'>

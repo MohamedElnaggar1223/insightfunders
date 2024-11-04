@@ -122,8 +122,12 @@ input {
     width: 70%;
     margin: auto;
 }
+.hamburger{
+    display: none;
+}
 
 @media (max-width: 485px) {
+   
     .ipfield{
         width: 100%;
     }
@@ -145,8 +149,47 @@ input {
 }
 @media (max-width : 1030px)
 {
+    .logoutButn{
+        margin-right: 20px;
+        margin-left: auto;
+    }
+    .userName{
+        z-index: 1;
+        color: white;
+    }
+    .navbarmobilemenu{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .dashboarmaincontiner{
+        padding-bottom: 70px;
+        padding-top: 100px;
+        min-height: 100vh !important;
+    }   
+    .logoDiv{
+        position: absolute;
+        top: 30px;
+        left: 20px;
+    
+    }
+    .sidebardashboardMenuLinks{
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .hamburger{
+        display: block !important;
+    }
     .sidebardashboard{
-        display: none;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        height: 180px;
+        z-index: 0;
+    
     }
     .sidebardashboardopen{
         position: absolute;
