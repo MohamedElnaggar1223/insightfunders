@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation"
 export default function SignIn()
 {
     const router = useRouter()
- const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(false)
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -40,8 +40,8 @@ export default function SignIn()
         setLoading(true)
         const { error } = await partnerSignIn(values)
         setLoading(false)
-        if(error) {
-            if(error.message === 'Invalid login credentials') form.setError('password', { message: 'Password is incorrect' })
+        if (error) {
+            form.setError('password', { message: 'An error occurred. Please try again.' });
         }
         else router.push('/partners')
     }

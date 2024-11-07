@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache"
 import { cache } from "react"
 import { db } from "@/db"
 import { nanoid } from 'nanoid';
+import bcrypt from 'bcrypt';
 
 export const signUp = async (values: z.infer<typeof signUpSchema>) => {
     const supabase = createClient()
@@ -135,66 +136,90 @@ export const createBankAccount = async ({ userId, bankId, accountId, accessToken
 
 export const partnerSignIn = async (values: z.infer<typeof partnerSignInSchema>) => {
     const supabase = createClient()
+    const { email, password } = values;
 
-    const { data: partner, error: partnerError } = await supabase
+    const { data: partnerData, error: partnerError } = await supabase
         .from('partners')
-        .select('email')
-        .eq('email', values.email)
+        .select('*')
+        .eq('email', email)
         .single()
 
-    if (partnerError || !partner) {
-        return { error: { message: 'Email not found in partners list', code: 'email_not_found' } }
+    if (partnerError || !partnerData) {
+        return redirect(`/partner/sign-in?error=Partner not found`);
     }
 
-    const { error: authError } = await supabase.auth.signInWithPassword({
-        email: values.email,
-        password: values.password,
-    })
-
-    if (authError) {
-        return { error: { message: authError.message, code: authError.code } }
+    if (partnerData.password) {
+        const isValidPassword = await bcrypt.compare(password, partnerData.password);
+        if (!isValidPassword) {
+            console.error('Invalid password');
+            return redirect(`/partner/sign-in?error=Invalid password`);
+        }
     }
 
-    revalidatePath('/partners')
-    return { error: null }
+    const partnerSession = {
+        userId: partnerData.partner_id,
+    };
+
+    localStorage.setItem('partnerSession', JSON.stringify(partnerSession));
+
+    return redirect('/partner')
 }
 
 export const partnerSignUp = async (values: z.infer<typeof partnerSignUpSchema>) => {
     const supabase = createClient();
     const { firstName, lastName, email, password } = values;
 
-    // Sign up the user using Supabase Auth
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-    });
+    const { data: authData, error: authError } = await supabase.auth.getUser();
 
     if (authError) {
         console.error('Error during sign-up', authError);
-        return redirect(`/sign-up?error=${authError.message}`);
+        return redirect(`/partner/sign-up?error=${authError.message}`);
     }
 
-    // Check if the user is authenticated and retrieve the user ID
-    const userId = authData.user?.id;
-    if (!userId) {
-        console.error('User ID is missing after sign-up');
-        return redirect('/sign-up?error=User ID is missing');
+    const { data: partnerData, error: partnerError } = await supabase
+        .from('partners')
+        .select('*')
+        .eq('email', email)
+        .single();
+
+    if (partnerData) {
+        console.error('Partner already exists', partnerError);
+        return redirect(`/partner/sign-in?error=Partner already exists`);
     }
 
-    // Insert additional details into the partners table
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const { error: insertError } = await supabase.from('partners').insert({
-        user_id: userId,
+        user_id: authData.user.id,
         first_name: firstName || '',
         last_name: lastName,
         email: email,
+        password: hashedPassword,
         status: 'active',
     });
 
     if (insertError) {
         console.error('Error inserting partner details', insertError);
-        return redirect(`/partners?error=${insertError.message}`);
+        return redirect(`/partner/sign-up?error=${insertError.message}`);
     }
 
-    // Redirect to partners page after successful sign-up
-    return redirect('/partners');
+    return redirect('/partner');
+}
+
+export const getPartnerSession = () => {
+    const session = localStorage.getItem('partnerSession');
+    return session ? JSON.parse(session) : null;
+}
+
+export const isPartnerLoggedIn = () => {
+    const session = getPartnerSession();
+    return session ? true : false;
+}
+
+export const partnerSignOut = () => {
+
+    localStorage.removeItem('partnerSession');
+
+    revalidatePath('/')
+    return redirect("/")
 }
