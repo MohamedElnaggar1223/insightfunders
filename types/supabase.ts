@@ -9,6 +9,270 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      partners: {
+        Row: {
+          partner_id: string
+          user_id: string
+          first_name: string | null
+          last_name: string | null
+          email: string | null
+          password: string | null
+          created_at: string
+          status: string
+        }
+        Insert: {
+          partner_id?: string
+          user_id?: string
+          first_name?: string | null
+          last_name?: string | null
+          email?: string | null
+          password?: string
+          created_at?: string
+          status?: string | null
+        }
+        Update: {
+          partner_id?: string
+          user_id?: string
+          first_name?: string | null
+          last_name?: string | null
+          email?: string | null
+          password?: string
+          created_at?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partners_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      affiliate_links: {
+        Row: {
+          link_id: string
+          partner_id: string
+          link_code: string
+          created_at: string
+          expires_at: string
+          status: string
+        }
+        Insert: {
+          link_id?: string
+          partner_id?: string
+          link_code?: string
+          created_at?: string
+          expires_at?: string
+          status?: string
+        }
+        Update: {
+          link_id?: string
+          partner_id?: string
+          link_code?: string
+          created_at?: string
+          expires_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "affiliate_links_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: true
+            referencedRelation: "partners"
+            referencedColumns: ["partner_id"]
+          }
+        ]
+      }
+      referrals: {
+        Row: {
+          referral_id: string
+          link_id: string
+          partner_id: string
+          referred_user_id: string
+          status: string
+          created_at: string
+          conversion_at: string | null
+        }
+        Insert: {
+          referral_id?: string
+          link_id?: string
+          partner_id?: string
+          referred_user_id?: string
+          status?: string
+          created_at?: string
+          conversion_at?: string | null
+        }
+        Update: {
+          referral_id?: string
+          link_id?: string
+          partner_id?: string
+          referred_user_id?: string
+          status?: string
+          created_at?: string
+          conversion_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_link_id_fkey"
+            columns: ["link_id"]
+            isOneToOne: false
+            referencedRelation: "affiliate_links"
+            referencedColumns: ["link_id"]
+          },
+          {
+            foreignKeyName: "referrals_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["partner_id"]
+          }
+        ]
+      }
+      referral_clicks: {
+        Row: {
+          click_id: string
+          link_id: string
+          partner_id: string
+          clicked_at: string
+          ip_address: string | null
+          device_info: string | null
+        }
+        Insert: {
+          click_id?: string
+          link_id?: string
+          partner_id?: string
+          clicked_at?: string
+          ip_address?: string | null
+          device_info?: string | null
+        }
+        Update: {
+          click_id?: string
+          link_id?: string
+          partner_id?: string
+          clicked_at?: string
+          ip_address?: string | null
+          device_info?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referral_clicks_link_id_fkey"
+            columns: ["link_id"]
+            isOneToOne: false
+            referencedRelation: "affiliate_links"
+            referencedColumns: ["link_id"]
+          },
+          {
+            foreignKeyName: "referral_clicks_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["partner_id"]
+          }
+        ]
+      }
+      referred_user: {
+        Row: {
+          id: string
+          referral_id: string
+          first_name: string
+          last_name: string
+          email: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          referral_id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          referral_id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referred_user_referral_id_fkey"
+            columns: ["referral_id"]
+            isOneToOne: false
+            referencedRelation: "referrals"
+            referencedColumns: ["referral_id"]
+          }
+        ]
+      }
+      commissions: {
+        Row: {
+          commission_id: string
+          partner_id: string
+          referral_id: string
+          amount: number
+          status: string
+          earned_at: string
+          paid_at: string | null
+        }
+        Insert: {
+          commission_id?: string
+          partner_id?: string
+          referral_id?: string
+          amount?: number
+          status?: string
+          earned_at?: string
+          paid_at?: string | null
+        }
+        Update: {
+          commission_id?: string
+          partner_id?: string
+          referral_id?: string
+          amount?: number
+          status?: string
+          earned_at?: string
+          paid_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commissions_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["partner_id"]
+          },
+          {
+            foreignKeyName: "commissions_referral_id_fkey"
+            columns: ["referral_id"]
+            isOneToOne: true
+            referencedRelation: "referrals"
+            referencedColumns: ["referral_id"]
+          }
+        ]
+      }
+      commission_rules: {
+        Row: {
+          rule_id: string
+          action: string
+          tier: string | null
+          rate: number
+        }
+        Insert: {
+          rule_id?: string
+          action?: string
+          tier?: string | null
+          rate?: number
+        }
+        Update: {
+          rule_id?: string
+          action?: string
+          tier?: string | null
+          rate?: number
+        }
+        Relationships: []
+      }                                          
       bank_accounts: {
         Row: {
           access_token: string | null

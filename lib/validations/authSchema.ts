@@ -23,6 +23,27 @@ export const signUpSchema = z.object({
     role: z.enum(['startup', 'investor']),
 })
 
+export const partnerSignInSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8, {
+        message: 'Password must be at least 8 characters long'
+    }),
+})
+
+export const partnerSignUpSchema = z.object({
+    firstName: z.string().optional(),
+    lastName: z.string().min(2, {
+        message: 'Last name must be at least 2 characters long'
+    }),
+    email: z.string().email({
+        message: 'Please enter a valid email address'
+    }),
+    password: z.string().min(8, {
+        message: 'Password must be at least 8 characters long'
+    }),
+    status: z.enum(['active', 'inactive'])
+})
+
 export const personalDetailsSchema = z.object({
     address1: z.string({
         message: 'Please enter a valid address'

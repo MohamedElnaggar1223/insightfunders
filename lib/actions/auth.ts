@@ -2,7 +2,7 @@
 
 import 'server-only'
 import { z } from "zod"
-import { signInSchema, signUpSchema } from "../validations/authSchema"
+import { signInSchema, signUpSchema, partnerSignInSchema, partnerSignUpSchema } from "../validations/authSchema"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
@@ -131,4 +131,70 @@ export const createBankAccount = async ({ userId, bankId, accountId, accessToken
     return {
         success: true
     }
+}
+
+export const partnerSignIn = async (values: z.infer<typeof partnerSignInSchema>) => {
+    const supabase = createClient()
+
+    const { data: partner, error: partnerError } = await supabase
+        .from('partners')
+        .select('email')
+        .eq('email', values.email)
+        .single()
+
+    if (partnerError || !partner) {
+        return { error: { message: 'Email not found in partners list', code: 'email_not_found' } }
+    }
+
+    const { error: authError } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+    })
+
+    if (authError) {
+        return { error: { message: authError.message, code: authError.code } }
+    }
+
+    revalidatePath('/partners')
+    return { error: null }
+}
+
+export const partnerSignUp = async (values: z.infer<typeof partnerSignUpSchema>) => {
+    const supabase = createClient();
+    const { firstName, lastName, email, password } = values;
+
+    // Sign up the user using Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+    });
+
+    if (authError) {
+        console.error('Error during sign-up', authError);
+        return redirect(`/sign-up?error=${authError.message}`);
+    }
+
+    // Check if the user is authenticated and retrieve the user ID
+    const userId = authData.user?.id;
+    if (!userId) {
+        console.error('User ID is missing after sign-up');
+        return redirect('/sign-up?error=User ID is missing');
+    }
+
+    // Insert additional details into the partners table
+    const { error: insertError } = await supabase.from('partners').insert({
+        user_id: userId,
+        first_name: firstName || '',
+        last_name: lastName,
+        email: email,
+        status: 'active',
+    });
+
+    if (insertError) {
+        console.error('Error inserting partner details', insertError);
+        return redirect(`/partners?error=${insertError.message}`);
+    }
+
+    // Redirect to partners page after successful sign-up
+    return redirect('/partners');
 }
