@@ -16,6 +16,7 @@ export default function PlaidLink({ user }: Props)
     const router = useRouter()
 
     const [token, setToken] = useState('')
+    const [isConnected, setIsConnected] = useState(false)
 
     useEffect(() => {
         const getLinkToken = async () => {
@@ -32,7 +33,7 @@ export default function PlaidLink({ user }: Props)
             public_token,
             user
         })
-        router.push('/')
+        setIsConnected(true)
     }, [user])
 
     const config: PlaidLinkOptions = {
@@ -45,11 +46,11 @@ export default function PlaidLink({ user }: Props)
     return (
         <button 
             onClick={() => open()}
-            disabled={!ready}
+            disabled={!ready || isConnected}
             type='button'
-            className='w-full bg-[#FF7A00] text-white font-semibold rounded-[8px] py-2 px-4 disabled:opacity-65'
+            className={`w-full ${isConnected ? 'bg-[#FF5A00]' : 'bg-[#FF7A00]'} text-white font-semibold rounded-[8px] py-2 px-4 disabled:opacity-65`}
         >
-            Connect Bank
+            {isConnected ? 'Connected' : 'Connect Bank'}
         </button>
     )
 }

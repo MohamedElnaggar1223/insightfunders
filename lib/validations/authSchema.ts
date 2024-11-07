@@ -8,9 +8,7 @@ export const signInSchema = z.object({
 })
 
 export const signUpSchema = z.object({
-    firstName: z.string().min(2, {
-        message: 'First name must be at least 2 characters long'
-    }),
+    firstName: z.string().optional(),
     lastName: z.string().min(2, {
         message: 'Last name must be at least 2 characters long'
     }),

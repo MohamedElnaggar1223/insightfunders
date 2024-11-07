@@ -28,7 +28,7 @@ export const signUp = async (values: z.infer<typeof signUpSchema>) => {
 
     const { error: insertError } = await supabase.from('users').insert({
         id: data.user?.id,
-        first_name: firstName,
+        first_name: firstName || null,
         last_name: lastName,
         role,
         plaid_id: nanoid(30)
