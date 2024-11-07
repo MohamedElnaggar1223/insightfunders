@@ -171,14 +171,14 @@ export const partnerSignUp = async (values: z.infer<typeof partnerSignUpSchema>)
 
     if (authError) {
         console.error('Error during sign-up', authError);
-        return redirect(`/sign-up?error=${authError.message}`);
+        return redirect(`/partner/sign-up?error=${authError.message}`);
     }
 
     // Check if the user is authenticated and retrieve the user ID
     const userId = authData.user?.id;
     if (!userId) {
         console.error('User ID is missing after sign-up');
-        return redirect('/sign-up?error=User ID is missing');
+        return redirect('/partner/sign-up?error=User ID is missing');
     }
 
     // Insert additional details into the partners table
