@@ -694,7 +694,7 @@ export type Database = {
         Row: {
           dwolla_customer_id: string | null
           dwolla_customer_url: string | null
-          first_name: string
+          first_name: string | null
           id: string
           last_name: string | null
           plaid_id: string | null
@@ -703,7 +703,7 @@ export type Database = {
         Insert: {
           dwolla_customer_id?: string | null
           dwolla_customer_url?: string | null
-          first_name: string
+          first_name?: string | null
           id?: string
           last_name?: string | null
           plaid_id?: string | null
@@ -712,7 +712,7 @@ export type Database = {
         Update: {
           dwolla_customer_id?: string | null
           dwolla_customer_url?: string | null
-          first_name?: string
+          first_name?: string | null
           id?: string
           last_name?: string | null
           plaid_id?: string | null
