@@ -200,6 +200,10 @@ input {
 @media (max-width: 1440px) {
     .dashboardcont{
         width: 90%;
+        
+    }
+    .userinfospacingcont{
+        padding-top: 150px;
     }
 }
 

@@ -12,8 +12,8 @@ export default async function Financials()
 
     return (
         <section className='flex flex-1 flex-col gap-6'>
-            <div className='flex items-center justify-between gap-4 border-b border-white py-4'>
-                <p className='font-bold font-Montserrat text-white text-xl'>Financials</p>
+            <div className='flex items-center justify-between gap-4 border-b border-black py-4'>
+                <p className='font-bold font-Montserrat text-black text-xl'>Financials</p>
                 <FinancialAddBtn user={user!} />
             </div>
             <FinancialsDetails user={user!} startUpFinancialRounds={financialRounds} />

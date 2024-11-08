@@ -19,7 +19,7 @@ export default function OffersPage({ searchParams }: Props)
     const tab = typeof searchParams.tab === 'string' ? searchParams.tab : undefined
 
     return (
-        <section className='flex flex-1 flex-col gap-6 h-screen  py-16 dashboardcont'>
+        <section className='flex flex-1 flex-col gap-6  h-screen  py-16 dashboardcont'>
             <div className="text-[red] text-[14px] text-left">Upload the necessary documents to unlock available offers *</div>
             <div className='flex w-full'>
                 <Link
