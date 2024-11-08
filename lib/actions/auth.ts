@@ -158,6 +158,7 @@ export const partnerSignIn = async (values: z.infer<typeof partnerSignInSchema>)
 
     const partnerSession = {
         userId: partnerData.partner_id,
+        email: partnerData.email,
     };
 
     localStorage.setItem('partnerSession', JSON.stringify(partnerSession));
@@ -223,3 +224,36 @@ export const partnerSignOut = () => {
     revalidatePath('/')
     return redirect("/")
 }
+
+export const getPartnerDetails = cache(async () => {
+    const supabase = createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return null;
+
+    const partnerDetails = await db.query.partners.findFirst({
+        where: (table, { eq }) => eq(table.user_id, user?.id),
+    });
+
+    const partnerSession = getPartnerSession();
+
+    const affiliateLink = await db.query.affiliate_links.findFirst({
+        with: {
+            referral_clicks: true,
+        },
+        where: (table, { eq }) => eq(table.partner_id, user?.id),
+    })
+
+    const referrals = await db.query.referrals.findMany({
+        with: {
+            referred_user: true,
+        },
+        where: (table, { eq }) => eq(table.partner_id, user?.id),
+    })
+
+    const commission = await db.query.commissions.findFirst({
+        where: (table, { eq }) => eq(table.partner_id, user?.id),
+    })
+
+    return { user, partnerDetails, partnerSession, affiliateLink, referrals, commission };
+});

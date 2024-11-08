@@ -89,6 +89,80 @@ export const users = pgTable("users", {
 	}
 });
 
+export const partners = pgTable("partners", {
+	partner_id: uuid("partner_id").primaryKey().notNull(),
+	user_id: uuid("user_id").default(sql`auth.uid()`).references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	first_name: text("first_name").notNull(),
+	last_name: text("last_name").notNull(),
+	email: text("email").unique().notNull(),
+	created_at: timestamp("created_at").default(sql`NOW()`),
+	status: text("status").notNull(),
+},
+(table) => {
+	return {
+		users_id_idx: index("partners_user_id_idx").using("btree", table.user_id),
+		users_id_fkey: foreignKey({
+			columns: [table.user_id],
+			foreignColumns: [table.user_id],
+			name: "partners_user_id_fkey"
+		}).onUpdate("cascade").onDelete("cascade"),
+	};
+});
+
+export const affiliate_links = pgTable("affiliate_links", {
+	link_id: uuid("link_id").primaryKey().notNull(),
+	partner_id: uuid("partner_id").references(() => partners.partner_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	link_code: text("link_code").unique().notNull(),
+	created_at: timestamp("created_at").default(sql`NOW()`),
+	expires_at: timestamp("expires_at"),
+	status: text("status").notNull(),
+});
+
+export const referrals = pgTable("referrals", {
+	referral_id: bigint("referral_id", { mode: "number" }).primaryKey().notNull(),
+	link_id: uuid("link_id").references(() => affiliate_links.link_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	partner_id: uuid("partner_id").references(() => partners.partner_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	referred_user_id: uuid("referred_user_id").notNull(),
+	status: text("status").notNull(),
+	created_at: timestamp("created_at").default(sql`NOW()`),
+	conversion_at: timestamp("conversion_at"),
+});
+
+export const referral_clicks = pgTable("referral_clicks", {
+	click_id: uuid("click_id").primaryKey().notNull(),
+	link_id: uuid("link_id").references(() => affiliate_links.link_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	partner_id: uuid("partner_id").references(() => partners.partner_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	clicked_at: timestamp("clicked_at").default(sql`NOW()`),
+	ip_address: text("ip_address"),
+	device_info: text("device_info"),
+});
+
+export const referred_user = pgTable("referred_user", {
+	id: uuid("id").primaryKey().notNull(),
+	referral_id: bigint("referral_id", { mode: "number" }).references(() => referrals.referral_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	first_name: text("first_name").notNull(),
+	last_name: text("last_name").notNull(),
+	email: text("email").notNull(),
+	created_at: timestamp("created_at").default(sql`NOW()`),
+});
+
+export const commissions = pgTable("commissions", {
+	commission_id: uuid("commission_id").primaryKey().notNull(),
+	partner_id: uuid("partner_id").references(() => partners.partner_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	referral_id: bigint("referral_id", { mode: "number" }).references(() => referrals.referral_id, { onDelete: "cascade", onUpdate: "cascade" }).notNull(),
+	amount: numeric("amount").notNull(),
+	status: text("status").notNull(),
+	earned_at: timestamp("earned_at").default(sql`NOW()`),
+	paid_at: timestamp("paid_at"),
+});
+
+export const commission_rules = pgTable("commission_rules", {
+	rule_id: uuid("rule_id").primaryKey().notNull(),
+	action: text("action").notNull(),
+	tier: text("tier"),
+	rate: numeric("rate").notNull(),
+});  
+
 export const cap_tables = pgTable("cap_tables", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
@@ -400,3 +474,73 @@ export const transactionsRelations = relations(transactions, ({one}) => ({
 		relationName: "transactions_sender_id_users_id"
 	}),
 }));
+
+export const partnersRelations = relations(partners, ({ one, many }) => ({
+	usersInAuth: one(usersInAuth, {
+		fields: [partners.user_id],
+		references: [usersInAuth.id]
+	}),
+	affiliate_links: many(affiliate_links),
+	referrals: many(referrals),
+	referral_clicks: many(referral_clicks),
+	commissions: many(commissions),
+}));
+
+export const affiliateLinksRelations = relations(affiliate_links, ({ one, many }) => ({
+	partner: one(partners, {
+		fields: [affiliate_links.partner_id],
+		references: [partners.partner_id],
+	}),
+	referrals: many(referrals),
+	referral_clicks: many(referral_clicks),
+}));
+
+export const referralsRelations = relations(referrals, ({ one, many }) => ({
+	partner: one(partners, {
+		fields: [referrals.partner_id],
+		references: [partners.partner_id],
+	}),
+	link: one(affiliate_links, {
+		fields: [referrals.link_id],
+		references: [affiliate_links.link_id],
+	}),
+	referred_user: one(referred_user, {
+		fields: [referrals.referred_user_id],
+		references: [referred_user.id],
+	}),
+	commissions: many(commissions),
+}));
+
+export const referralClicksRelations = relations(referral_clicks, ({ one }) => ({
+	partner: one(partners, {
+		fields: [referral_clicks.partner_id],
+		references: [partners.partner_id],
+	}),
+	link: one(affiliate_links, {
+		fields: [referral_clicks.link_id],
+		references: [affiliate_links.link_id],
+	}),
+}));
+
+export const referredUserRelations = relations(referred_user, ({ one }) => ({
+	referral: one(referrals, {
+		fields: [referred_user.referral_id],
+		references: [referrals.referral_id],
+	}),
+}));
+
+export const commissionsRelations = relations(commissions, ({ one }) => ({
+	partner: one(partners, {
+		fields: [commissions.partner_id],
+		references: [partners.partner_id],
+	}),
+	referral: one(referrals, {
+		fields: [commissions.referral_id],
+		references: [referrals.referral_id],
+	}),
+}));
+
+export const commissionRulesRelations = relations(commission_rules, ({ many }) => ({
+	commissions: many(commissions),
+}));
+  
