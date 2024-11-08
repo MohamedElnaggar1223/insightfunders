@@ -110,7 +110,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="companyName"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Company Name</FormLabel>
+                                <FormLabel className='text-left text-black'>Company Name</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -128,7 +128,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="businessStructure"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Business Structure</FormLabel>
+                                <FormLabel className='text-left text-black'>Business Structure</FormLabel>
                                 <FormControl>
                                     <select 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -150,7 +150,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="EIN"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>EIN</FormLabel>
+                                <FormLabel className='text-left text-black'>EIN</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -168,7 +168,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="address"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Address</FormLabel>
+                                <FormLabel className='text-left text-black'>Address</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -186,7 +186,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="companyEmail"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Company Email</FormLabel>
+                                <FormLabel className='text-left text-black'>Company Email</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -204,7 +204,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                         name="industrySector"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>  
-                                <FormLabel className='text-left text-white'>Industry Sector</FormLabel>
+                                <FormLabel className='text-left text-black'>Industry Sector</FormLabel>
                                 <FormControl>
                                     <select 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -231,38 +231,50 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                 )}
                 {emailChanged && (
                     <div className='border-2 border-[#157f2f] gap-2 mt-4 rounded-[8px] min-w-[384px] max-w-[384px] mx-auto bg-[#1a5415] flex items-center justify-center px-12 py-6'>
-                        <p className='text-white font-semibold text-center'>Please check your new email's inbox for a verification email.</p>
+                        <p className='text-black font-semibold text-center'>Please check your new email's inbox for a verification email.</p>
                     </div>
                 )}
             </form>
         </Form>
     ) : (
         <div className='flex flex-col gap-8'>
-            <div className='flex flex-wrap gap-8'>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>Company Name</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.company_name}</p>
+            <div className='flex flex-col  gap-8'>
+
+            <div className="flex ">
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>  
+                    <p className='font-normal font-Montserrat text-black text-xs'>Company Name</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.company_name}</p>
                 </div>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>Business Structure</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.business_structure}</p>
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>
+                    <p className='font-normal font-Montserrat text-black text-xs'>Business Structure</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.business_structure}</p>
                 </div>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>EIN</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.EIN}</p>
                 </div>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>Company Address</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.address}</p>
+
+                <div className="flex ">
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>
+                    <p className='font-normal font-Montserrat text-black text-xs'>EIN</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.EIN}</p>
                 </div>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>Company Email</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.email}</p>
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>
+                    <p className='font-normal font-Montserrat text-black text-xs'>Company Address</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.address}</p>
                 </div>
-                <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                    <p className='font-normal font-Montserrat text-white text-xs'>Industry and Sector</p>
-                    <p className='text-white font-bold text-base font-Montserrat'>{user?.userStartUp?.industry_sector}</p>
                 </div>
+
+                <div className="flex ">
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>
+                    <p className='font-normal font-Montserrat text-black text-xs'>Company Email</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.email}</p>
+                </div>
+                <div className='flex flex-col flex-1 gap-2 items-start justify-center w-full'>
+                    <p className='font-normal font-Montserrat text-black text-xs'>Industry and Sector</p>
+                    <p className='text-black font-bold text-base font-Montserrat'>{user?.userStartUp?.industry_sector}</p>
+                </div>
+                </div>
+
+
+
             </div>
             <Tabs defaultValue={startUpOwners[0].id.toString()!} className='flex flex-col gap-8'>
                 <TabsList className='mr-auto'>
@@ -273,12 +285,12 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props)
                 {startUpOwners.map((owner) => (
                     <TabsContent key={owner.id} value={owner.id.toString()!} className='flex w-full gap-8'>
                         <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                            <p className='font-normal font-Montserrat text-white text-xs'>Name</p>
-                            <p className='text-white font-bold text-base font-Montserrat'>{owner.name}</p>
+                            <p className='font-normal font-Montserrat text-black text-xs'>Name</p>
+                            <p className='text-black font-bold text-base font-Montserrat'>{owner.name}</p>
                         </div>
                         <div className='flex flex-col flex-1 gap-2 items-start justify-center min-w-[450px]'>
-                            <p className='font-normal font-Montserrat text-white text-xs'>Share</p>
-                            <p className='text-white font-bold text-base font-Montserrat'>{owner.share}%</p>
+                            <p className='font-normal font-Montserrat text-black text-xs'>Share</p>
+                            <p className='text-black font-bold text-base font-Montserrat'>{owner.share}%</p>
                         </div>
                         <OwnerEditBtn owner={owner!} />
                     </TabsContent>
