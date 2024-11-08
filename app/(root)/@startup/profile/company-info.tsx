@@ -11,8 +11,8 @@ export default async function CompanyInfo()
 
     return (
         <section className='flex flex-1 flex-col gap-6'>
-            <div className='flex items-center justify-between gap-4 border-b border-white py-4'>
-                <p className='font-bold font-Montserrat text-white text-xl'>Company Information</p>
+            <div className='flex items-center justify-between gap-4 border-b border-black   py-4'>
+                <p className='font-bold font-Montserrat text-black text-xl'>Company Information</p>
                 <Link href='/profile?tab=company-info&edit=true' className='w-24 h-10 bg-[#FF7A00] gap-2 text-white text-sm font-semibold rounded-[8px] flex items-center justify-center'>
                     <Edit size={16} />
                     Edit

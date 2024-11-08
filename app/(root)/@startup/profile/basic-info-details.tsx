@@ -91,7 +91,7 @@ export default function BasicInfoDetails({ user }: { user: UserType })
                         name="firstName"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>First Name</FormLabel>
+                                <FormLabel className='text-left text-black'>First Name</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -109,7 +109,7 @@ export default function BasicInfoDetails({ user }: { user: UserType })
                         name="lastName"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Last Name</FormLabel>
+                                <FormLabel className='text-left text-black  '>Last Name</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -127,7 +127,7 @@ export default function BasicInfoDetails({ user }: { user: UserType })
                         name="email"
                         render={({ field }) => (
                             <FormItem className='relative flex flex-col gap-1 w-screen max-w-[384px]'>
-                                <FormLabel className='text-left text-white'>Email</FormLabel>
+                                <FormLabel className='text-left text-black '>Email</FormLabel>
                                 <FormControl>
                                     <input 
                                         className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] outline-none' 
@@ -144,7 +144,7 @@ export default function BasicInfoDetails({ user }: { user: UserType })
                     {isLoading ? <Loader2 stroke="#000" className='animate-spin mx-auto' /> : 'Submit'}
                 </button>
                 {error && (
-                    <div className='border-2 border-[#7f2315] gap-2 mt-4 rounded-[8px] min-w-[384px] max-w-[384px] mx-auto bg-[#541c15] flex items-center justify-center px-12 py-6'>
+                    <div className='border-2 border-[#7f2315] gap-2 mt-4 rounded-[8px] min-w-[384px] max-w-[384px] mx-auto bg-[#541c15] flex items-center justify-center px-12 py-6 '>
                         <p className='text-white font-semibold text-center'>{error}</p>
                     </div>
                 )}
@@ -158,12 +158,12 @@ export default function BasicInfoDetails({ user }: { user: UserType })
     ) : (
         <div className='flex flex-wrap gap-4'>
             <div className='flex flex-col flex-1 gap-2 items-start justify-center'>
-                <p className='font-normal font-Montserrat text-white text-xs'>Your Name</p>
-                <p className='text-white font-bold text-base font-Montserrat'>{user?.userInfo?.first_name} {user?.userInfo?.last_name}</p>
+                <p className='font-normal font-Montserrat text-black text-xs'>Your Name</p>
+                <p className='text-black font-bold text-base font-Montserrat'>{user?.userInfo?.first_name} {user?.userInfo?.last_name}</p>
             </div>
             <div className='flex flex-col flex-1 gap-2 items-start justify-center'>
-                <p className='font-normal font-Montserrat text-white text-xs'>Your Email</p>
-                <p className='text-white font-bold text-base font-Montserrat'>{user?.user?.email}</p>
+                <p className='font-normal font-Montserrat text-black text-xs'>Your Email</p>
+                <p className='text-black font-bold text-base font-Montserrat'>{user?.user?.email}</p>
             </div>
         </div>
     )
