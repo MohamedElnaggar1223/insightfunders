@@ -172,7 +172,7 @@ export default function SignIn()
                                     <FormControl>
                                         <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] !mt-0 outline-none' placeholder="First name" {...field} />
                                     </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                    <FormMessage className=' text-red-600  !mt-0' />
                                 </FormItem>
                             )}
                         />
@@ -185,7 +185,7 @@ export default function SignIn()
                                     <FormControl>
                                         <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last name" {...field} />
                                     </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                    <FormMessage className=' text-red-600  !mt-0' />
                                 </FormItem>
                             )}
                         />
@@ -198,7 +198,7 @@ export default function SignIn()
                                     <FormControl>
                                         <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Email" {...field} />
                                     </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                    <FormMessage className=' text-red-600  !mt-0' />
                                 </FormItem>
                             )}
                         />
@@ -273,7 +273,7 @@ export default function SignIn()
                                             )}
                                         </div>
                                     </FormControl>
-                                    <FormMessage className='absolute text-red-600 -bottom-6' />
+                                    <FormMessage className=' text-red-600 !mt-0' />
                                 </FormItem>
                             )}
                         />
