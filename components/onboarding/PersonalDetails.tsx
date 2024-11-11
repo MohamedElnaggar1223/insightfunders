@@ -20,7 +20,31 @@ import { Montserrat } from "next/font/google";
 export default function PersonalDetails()
 {
     const [isPending, setIsPending] = useState(false)
-    
+    const [ssn, setSSN] = useState<string>(''); // Explicitly define ssn type as string
+
+    // Define the type of 'value' as string
+    const formatSSN = (value: string): string => {
+        // Remove all non-numeric characters
+        value = value.replace(/\D/g, '');
+
+        // Add dashes after 3rd and 5th digits
+        if (value.length > 5) {
+            return `${value.slice(0, 3)}-${value.slice(3, 5)}-${value.slice(5, 9)}`;
+        } else if (value.length > 3) {
+            return `${value.slice(0, 3)}-${value.slice(3, 5)}`;
+        } else {
+            return value;
+        }
+    };
+
+    // Define the type of 'event' as React.ChangeEvent<HTMLInputElement>
+    const handleSSNChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const formattedSSN = formatSSN(event.target.value);
+        setSSN(formattedSSN);
+
+        // Sync the formatted value back to the form field
+        form.setValue('ssn', formattedSSN);
+    };
     const form = useForm<z.infer<typeof personalDetailsSchema>>({
         resolver: zodResolver(personalDetailsSchema),
         defaultValues: {
@@ -71,7 +95,7 @@ export default function PersonalDetails()
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none ipfield' placeholder="Address" {...field} />
                             </FormControl>
-                            <FormMessage className='absolute text-red-600 ' />
+                            <FormMessage className='!mt-0 text-red-600 ' />
                         </FormItem>
                     )}
                 />
@@ -84,7 +108,7 @@ export default function PersonalDetails()
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="City" {...field} />
                             </FormControl>
-                            <FormMessage className='absolute text-red-600 ' />
+                            <FormMessage className='!mt-0 text-red-600 ' />
                         </FormItem>
                     )}
                 />
@@ -149,7 +173,7 @@ export default function PersonalDetails()
                                     <option value="WY">WY</option>
                                 </select>
                             </FormControl>
-                            <FormMessage className=' text-red-600 ' />
+                            <FormMessage className=' text-red-600 !mt-0' />
                         </FormItem>
                     )}
                 />
@@ -162,7 +186,7 @@ export default function PersonalDetails()
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Postal Code" {...field} />
                             </FormControl>
-                            <FormMessage className=' text-red-600 ' />
+                            <FormMessage className=' text-red-600  !mt-0' />
                         </FormItem>
                     )}
                 />
@@ -173,12 +197,14 @@ export default function PersonalDetails()
                     render={({ field }) => (
                         <FormItem className='relative flex flex-col gap-1  !mt-0 max-w-[450px]'>
                             <FormControl>
-                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="Last 4 of SSN" {...field} />
+                                <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="SSN" {...field} value={ssn}
+                            onChange={handleSSNChange}
+                            maxLength={11} />
                             </FormControl>
-                            <FormMessage className=' text-red-600 ' />
+                            <FormMessage className=' text-red-600 !mt-0 ' />
                         </FormItem>
                     )}
-                />
+                />  
                 <FormField
                     control={form.control}
                     disabled={isPending}
@@ -188,7 +214,7 @@ export default function PersonalDetails()
                             <FormControl>
                                 <input className='flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none' placeholder="DOB e.g. MM/DD/YYYY" {...field} />
                             </FormControl>
-                            <FormMessage className='text-red-600 ' />
+                            <FormMessage className='text-red-600 !mt-0 ' />
                         </FormItem>
                     )}
                 />
