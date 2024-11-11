@@ -42,7 +42,7 @@ export const personalDetailsSchema = z.object({
     }, { message: 'You must be at least 18 years old' }),
     ssn: z.string().min(4, {
         message: 'Please enter a valid SSN'
-    }).max(9, {
+    }).max(11, {
         message: 'Please enter a valid SSN'
     }),
 })
