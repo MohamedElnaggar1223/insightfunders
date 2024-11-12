@@ -61,7 +61,7 @@ export const signOut = async () => {
     await supabase.auth.signOut();
 
     revalidatePath('/')
-    return redirect("/")
+    return redirect("https://insightfunders.com/")
 }
 
 export const getUser = cache(async () => {
