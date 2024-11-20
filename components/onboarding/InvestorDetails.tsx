@@ -68,6 +68,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
     investorDetails.accreditation ??
       "I earn $200k+ yearly (or $300k+ if filing jointly)"
   );
+  const [notAccredited, setNotAccredited] = useState(false);
 
   const router = useRouter();
 
@@ -140,11 +141,67 @@ export default function InvestorDetails({ investorDetails }: Props) {
   }, [investorType, accreditationWatch, accreditedInvestorPage]);
 
   useEffect(() => {
-    console.log(accreditation);
     form.setValue("accreditation", accreditation);
   }, [accreditation, investorTypeWatch]);
 
   console.log(form.getValues());
+
+  // console.log(investorType);
+  // console.log(accreditation);
+  // if accreditation === "None of the above. I am not accredited" then redirect
+
+  useEffect(() => {
+    if (accreditationWatch === "None of the above. I am not accredited") {
+      setNotAccredited(true);
+    } else {
+      setNotAccredited(false);
+    }
+  }, [accreditationWatch]);
+
+  if (notAccredited) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4">
+        <div className="max-w-[450px] mx-auto">
+          <h1 className="text-2xl font-bold text-white text-center font-Montserrat">
+            We're Sorry
+          </h1>
+          <p className="text-base text-center font-normal font-Montserrat text-white mt-3">
+            Regulations require all of Insight Funders' investors to be
+            accredited or qualified at this time. If you believe you made a
+            mistake, you can go back and amend your response. Otherwise, you can
+            close this browser tab safely.
+          </p>
+          <p className="text-[13px] text-center font-light text-white mt-3 font-Montserrat">
+            If you have any questions, please contact us at <br />
+            <a
+              className="underline text-[#FF7A00] font-Montserrat"
+              href="mailto:team@insightfunders.com"
+            >
+              Team@insightfunders.com
+            </a>
+          </p>
+          <div className="flex flex-col gap-10 mt-10">
+            <button
+              onClick={() => router.push("/")}
+              className="w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70 font-Montserrat"
+            >
+              Go to insightfunders.com
+            </button>
+
+            <button
+              onClick={() => {
+                setNotAccredited(false);
+                setAccreditation("");
+              }}
+              className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat"
+            >
+              Go back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -298,6 +355,14 @@ export default function InvestorDetails({ investorDetails }: Props) {
                 className="w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70"
               >
                 Continue
+              </button>
+              <button
+                onClick={() => {
+                  router.back();
+                }}
+                className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
+              >
+                Go back
               </button>
             </>
           ) : form.getValues("investorType") === "Individual" &&
@@ -578,6 +643,14 @@ export default function InvestorDetails({ investorDetails }: Props) {
                   "Continue"
                 )}
               </button>
+              <button
+                onClick={() => {
+                  router.back();
+                }}
+                className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
+              >
+                Go back
+              </button>
             </>
           ) : (
             <>
@@ -656,6 +729,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
                   )
                 }
               />
+
               {form.getValues("investorType") === "Institution" ? (
                 <FormField
                   control={form.control}
@@ -1106,6 +1180,14 @@ export default function InvestorDetails({ investorDetails }: Props) {
                   </button>
                 )}
               </div>
+              <button
+                onClick={() => {
+                  router.back();
+                }}
+                className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat"
+              >
+                Go back
+              </button>
             </>
           )}
         </form>

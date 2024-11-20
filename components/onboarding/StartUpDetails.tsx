@@ -481,6 +481,14 @@ export default function StartUpDetails({
             )}
           </button>
         </div>
+        <button
+          onClick={() => {
+            router.back();
+          }}
+          className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
+        >
+          Go back
+        </button>
       </form>
       {/* {saveSuccess && (
                 <div className='border-2 border-[#00AE6E] gap-4 rounded-[2px] bg-[#ECFDF5] flex items-center justify-center px-12 py-6'>

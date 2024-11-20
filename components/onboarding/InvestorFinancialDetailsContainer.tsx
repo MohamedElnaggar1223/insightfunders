@@ -47,14 +47,22 @@ export default function StartUpFinancialDetailsContainer({ user }: Props) {
   return (
     <div className="space-y-8 w-screen max-w-[384px]  pb-8">
       <PlaidLink user={user} />
-      <div className="flex flex-col !mt-0">
+      <div className="!mt-0">
         <button
           onClick={onSubmit}
           disabled={isPending}
-          className="w-full !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70"
+          className="w-full block !mt-8 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70"
           type="submit"
         >
           {isPending ? "Submitting..." : "Submit"}
+        </button>
+        <button
+          onClick={() => {
+            router.back();
+          }}
+          className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2 flex justify-center w-full"
+        >
+          Go back
         </button>
         {error && (
           <div className="border-2 border-[#F86C6C] gap-4 rounded-[8px] bg-[#FEF2F2] flex items-center justify-center px-12 py-6">

@@ -16,10 +16,13 @@ import { useEffect, useState } from "react";
 import { updatePersonalDetails } from "@/lib/actions/onboarding";
 import { format } from "date-fns";
 import { Montserrat } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 export default function PersonalDetails() {
   const [isPending, setIsPending] = useState(false);
   const [ssn, setSSN] = useState<string>(""); // Explicitly define ssn type as string
+
+  const router = useRouter();
 
   // Define the type of 'value' as string
   const formatSSN = (value: string): string => {
@@ -256,6 +259,14 @@ export default function PersonalDetails() {
           type="submit"
         >
           {isPending ? "Submitting..." : "Submit"}
+        </button>
+        <button
+          onClick={() => {
+            router.back();
+          }}
+          className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
+        >
+          Go back
         </button>
       </form>
     </Form>
