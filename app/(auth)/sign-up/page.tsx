@@ -44,11 +44,11 @@ export default function SignUpPage({ searchParams }: Props) {
         </div>
         <SignUp />
       </div>
-      {message && (
+      {/* {message && (
         <div className="flex gap-1.5 border border-[#E9D7FE] rounded-[10px] bg-light-purple w-fit items-center justify-center px-3 py-2">
           <p className="text-xl text-main-purple font-medium">{message}</p>
         </div>
-      )}
+      )} */}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent key={error} className="bg-white rounded-xl">

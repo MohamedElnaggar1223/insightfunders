@@ -43,7 +43,7 @@ export default function StartUpSubmitApplication() {
           </span>
         </label>
       </div>
-      <Dialog open={open}>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="flex items-center justify-center bg-white border-none shadow-none outline-none">
           <h2>Non Disclosure Agreement</h2>
         </DialogContent>
