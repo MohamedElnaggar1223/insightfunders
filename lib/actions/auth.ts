@@ -61,8 +61,9 @@ export const signOut = async () => {
     await supabase.auth.signOut();
 
     revalidatePath('/')
+    const redirectPath = process.env.NODE_ENV === 'production' ? "https://insightfunders.com/" : "/"
     // return redirect("https://insightfunders.com/")
-    return redirect("/")
+    return redirect(redirectPath)
 }
 
 export const getUser = cache(async () => {
