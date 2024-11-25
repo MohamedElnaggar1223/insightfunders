@@ -187,57 +187,55 @@ export const submitInvestorApplication = async () => {
 }
 
 export const updatePersonalDetails = async (data: z.infer<typeof personalDetailsSchema>) => {
-    const user = await getUser()
+  const user = await getUser();
 
-    if(!user) return { error: 'User not found' }
+  if (!user) return { error: "User not found" };
 
-    const { first_name: firstName, last_name: lastName } = user.userInfo
-    const { email } = user.user
-    const { address1, city, dateOfBirth, postalCode, ssn, state } = data
+  const { first_name: firstName, last_name: lastName } = user.userInfo;
+  const { email } = user.user;
+  const { address1, city, dateOfBirth, postalCode, ssn, state } = data;
 
-    if(!firstName || !lastName) return { error: 'User not found' }
-    if(!email) return { error: 'Email not found' }
-    if(!address1 || !city || !dateOfBirth || !postalCode || !ssn || !state) return { error: 'Please fill out all fields' }
-    // !city ||n
+  if (!firstName || !lastName) return { error: "User not found" };
+  if (!email) return { error: "Email not found" };
+  if (!address1 || !city || !dateOfBirth || !postalCode || !ssn || !state) return { error: "Please fill out all fields" };
 
-    const parsedDate = parse(dateOfBirth, 'MM/dd/yyyy', new Date());
-    const formattedDate = format(parsedDate, 'yyyy-MM-dd');
+  const parsedDate = parse(dateOfBirth, "MM/dd/yyyy", new Date());
+  const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
-    let dwollaCustomerUrl 
+  let dwollaCustomerUrl;
 
-    if (!user?.userInfo?.dwolla_customer_id && !user?.userInfo?.dwolla_customer_url) {
+  if (!user?.userInfo?.dwolla_customer_id && !user?.userInfo?.dwolla_customer_url) {
+    dwollaCustomerUrl = await createDwollaCustomer({
+      email,
+      firstName,
+      lastName,
+      address1,
+      city,
+      state,
+      postalCode,
+      dateOfBirth: formattedDate,
+      ssn,
+      type: "personal",
+    });
 
-        
-         dwollaCustomerUrl = await createDwollaCustomer({
-        email,
-        firstName,
-        lastName,
-        address1,
-        city,
-        state,
-        postalCode,
-        dateOfBirth: formattedDate,
-        ssn,
-        type: 'personal'
-    })
-    
     if (!dwollaCustomerUrl) {
-        // throw new Error('Error creating Dwolla customer')
-        return redirect(`/personal-details?error=Error creating Dwolla customer`)
+      return { error: "Error creating Dwolla customer" };
     }
-} else {
-    dwollaCustomerUrl = user.userInfo.dwolla_customer_url
-}
+  } else {
+    dwollaCustomerUrl = user.userInfo.dwolla_customer_url;
+  }
 
-    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl as string);
+  const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl as string);
 
-    await db.update(users)
-            .set({ dwolla_customer_id: dwollaCustomerId, dwolla_customer_url: dwollaCustomerUrl })
-            .where(eq(users.id, user.user.id!))
+  await db
+    .update(users)
+    .set({ dwolla_customer_id: dwollaCustomerId, dwolla_customer_url: dwollaCustomerUrl })
+    .where(eq(users.id, user.user.id!));
 
+  revalidatePath("/personal-details");
 
-    revalidatePath('/personal-details')
-}
+  return { success: true };
+};
 
 export const updateFinancialDetails = async (data: z.infer<typeof startUpFinancialDetailsSchema>) => {
     const user = await getUser()

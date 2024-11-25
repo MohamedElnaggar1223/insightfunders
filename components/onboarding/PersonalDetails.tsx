@@ -82,16 +82,23 @@ export default function PersonalDetails({ searchParams, user }: Props) {
 
   const onSubmit = async (values: z.infer<typeof personalDetailsSchema>) => {
     setIsPending(true);
-    await updatePersonalDetails(values);
+    const response = await updatePersonalDetails(values);
     setIsPending(false);
-    if (
-      user?.userInfo?.dwolla_customer_id &&
-      user?.userInfo?.dwolla_customer_url &&
-      user?.userInfo?.plaid_id
-    ) {
-      if (user.userInfo.role === "startup")
-        return router.push("/startup-details");
-      else return router.push("/investor-details");
+
+    if (response.error) {
+      setOpen(true);
+    } else {
+      if (
+        user?.userInfo?.dwolla_customer_id &&
+        user?.userInfo?.dwolla_customer_url &&
+        user?.userInfo?.plaid_id
+      ) {
+        if (user.userInfo.role === "startup") {
+          return router.push("/startup-details");
+        } else {
+          return router.push("/investor-details");
+        }
+      }
     }
   };
 
