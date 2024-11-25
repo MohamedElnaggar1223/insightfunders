@@ -1,19 +1,20 @@
 'use server'
 
-import 'server-only'
-import { z } from "zod"
-import { investorDetailsSchema, startUpDetailsSchema, startUpFinancialDetailsSchema } from "../validations/onBoardingSchema"
-import { createClient } from "@/utils/supabase/server"
 import { countryDialingCodes } from "@/constants"
-import { revalidatePath } from "next/cache"
-import { personalDetailsSchema } from "../validations/authSchema"
-import { getUser } from "./auth"
 import { db } from "@/db"
 import { startups, users } from "@/migrations/schema"
-import { createDwollaCustomer } from "./dwolla"
-import { extractCustomerIdFromUrl } from "../utils"
-import { eq } from "drizzle-orm"
+import { createClient } from "@/utils/supabase/server"
 import { format, parse } from "date-fns"
+import { eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
+import { redirect } from 'next/navigation'
+import 'server-only'
+import { z } from "zod"
+import { extractCustomerIdFromUrl } from "../utils"
+import { personalDetailsSchema } from "../validations/authSchema"
+import { investorDetailsSchema, startUpDetailsSchema, startUpFinancialDetailsSchema } from "../validations/onBoardingSchema"
+import { getUser } from "./auth"
+import { createDwollaCustomer } from "./dwolla"
 
 export const saveStartUpDetails = async (startup_id: number, data: z.infer<typeof startUpDetailsSchema>) => {
     const supabase = createClient()
@@ -197,6 +198,7 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
     if(!firstName || !lastName) return { error: 'User not found' }
     if(!email) return { error: 'Email not found' }
     if(!address1 || !city || !dateOfBirth || !postalCode || !ssn || !state) return { error: 'Please fill out all fields' }
+    // !city ||n
 
     const parsedDate = parse(dateOfBirth, 'MM/dd/yyyy', new Date());
     const formattedDate = format(parsedDate, 'yyyy-MM-dd');
@@ -214,13 +216,17 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
         type: 'personal'
     })
 
-    if(!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
+    if (!dwollaCustomerUrl) {
+        // throw new Error('Error creating Dwolla customer')
+            return redirect(`/personal-details?error=Error creating Dwolla customer`)
+    }
 
     const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
     await db.update(users)
             .set({ dwolla_customer_id: dwollaCustomerId, dwolla_customer_url: dwollaCustomerUrl })
             .where(eq(users.id, user.user.id!))
+
 
     revalidatePath('/personal-details')
 }

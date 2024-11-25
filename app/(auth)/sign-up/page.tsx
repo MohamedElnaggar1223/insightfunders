@@ -1,7 +1,6 @@
 "use client";
 import SignUp from "@/components/auth/SignUp";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";

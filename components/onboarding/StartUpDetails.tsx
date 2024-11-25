@@ -18,7 +18,10 @@ import { cn } from "@/lib/utils";
 import { startUpDetailsSchema } from "@/lib/validations/onBoardingSchema";
 import { Check, Loader2, X } from "lucide-react";
 import { countryDialingCodes } from "@/constants";
-import { saveStartUpDetails } from "@/lib/actions/onboarding";
+import {
+  saveStartUpDetails,
+  updatePersonalDetails,
+} from "@/lib/actions/onboarding";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -123,6 +126,22 @@ export default function StartUpDetails({
   useEffect(() => {
     if (error) setTimeout(() => setError(null), 5000);
   }, [error]);
+
+  const handleGoBack = async () => {
+    const values = {
+      address1: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      ssn: "",
+      dateOfBirth: "",
+    };
+
+    setIsPending(true);
+    await updatePersonalDetails(values);
+    setIsPending(false);
+    router.push("/personal-details");
+  };
 
   return (
     <Form {...form}>
@@ -481,15 +500,13 @@ export default function StartUpDetails({
             )}
           </button>
         </div>
-        <button
-          onClick={() => {
-            router.back();
-          }}
-          className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
-        >
-          Go back
-        </button>
       </form>
+      <button
+        onClick={handleGoBack}
+        className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
+      >
+        Go back
+      </button>
       {/* {saveSuccess && (
                 <div className='border-2 border-[#00AE6E] gap-4 rounded-[2px] bg-[#ECFDF5] flex items-center justify-center px-12 py-6'>
                     <Check size={24} className='text-[#00AE6E]' />
