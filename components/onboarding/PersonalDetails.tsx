@@ -16,12 +16,14 @@ import { useEffect, useState } from "react";
 import { updatePersonalDetails } from "@/lib/actions/onboarding";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { UserType } from "@/lib/types/user";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
+  user: UserType;
 };
 
-export default function PersonalDetails({ searchParams }: Props) {
+export default function PersonalDetails({ searchParams, user }: Props) {
   const [isPending, setIsPending] = useState(false);
   const [ssn, setSSN] = useState<string>(""); // Explicitly define ssn type as string
 
@@ -82,6 +84,15 @@ export default function PersonalDetails({ searchParams }: Props) {
     setIsPending(true);
     await updatePersonalDetails(values);
     setIsPending(false);
+    if (
+      user?.userInfo?.dwolla_customer_id &&
+      user?.userInfo?.dwolla_customer_url &&
+      user?.userInfo?.plaid_id
+    ) {
+      if (user.userInfo.role === "startup")
+        return router.push("/startup-details");
+      else return router.push("/investor-details");
+    }
   };
 
   const dof = form.watch("dateOfBirth");

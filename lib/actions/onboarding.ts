@@ -203,7 +203,12 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
     const parsedDate = parse(dateOfBirth, 'MM/dd/yyyy', new Date());
     const formattedDate = format(parsedDate, 'yyyy-MM-dd');
 
-    const dwollaCustomerUrl = await createDwollaCustomer({
+    let dwollaCustomerUrl 
+
+    if (!user?.userInfo?.dwolla_customer_id && !user?.userInfo?.dwolla_customer_url) {
+
+        
+         dwollaCustomerUrl = await createDwollaCustomer({
         email,
         firstName,
         lastName,
@@ -215,13 +220,16 @@ export const updatePersonalDetails = async (data: z.infer<typeof personalDetails
         ssn,
         type: 'personal'
     })
-
+    
     if (!dwollaCustomerUrl) {
         // throw new Error('Error creating Dwolla customer')
-            return redirect(`/personal-details?error=Error creating Dwolla customer`)
+        return redirect(`/personal-details?error=Error creating Dwolla customer`)
     }
+} else {
+    dwollaCustomerUrl = user.userInfo.dwolla_customer_url
+}
 
-    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
+    const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl as string);
 
     await db.update(users)
             .set({ dwolla_customer_id: dwollaCustomerId, dwolla_customer_url: dwollaCustomerUrl })

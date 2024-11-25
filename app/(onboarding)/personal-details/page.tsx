@@ -17,15 +17,16 @@ export default async function PersonalDetailsPage({ searchParams }: Props) {
   const user = await getUser();
 
   if (!user) return redirect("/");
+  console.log(user);
 
-  if (
-    user.userInfo.dwolla_customer_id &&
-    user.userInfo.dwolla_customer_url &&
-    user.userInfo.plaid_id
-  ) {
-    if (user.userInfo.role === "startup") return redirect("/startup-details");
-    else return redirect("/investor-details");
-  }
+  // if (
+  //   user.userInfo.dwolla_customer_id &&
+  //   user.userInfo.dwolla_customer_url &&
+  //   user.userInfo.plaid_id
+  // ) {
+  //   if (user.userInfo.role === "startup") return redirect("/startup-details");
+  //   else return redirect("/investor-details");
+  // }
 
   return (
     // Apply the font class here
@@ -49,7 +50,7 @@ export default async function PersonalDetailsPage({ searchParams }: Props) {
             Submit detailed information about yourself
           </h2>
         </div>
-        <PersonalDetails searchParams={searchParams} />
+        <PersonalDetails searchParams={searchParams} user={user} />
       </div>
     </section>
   );
