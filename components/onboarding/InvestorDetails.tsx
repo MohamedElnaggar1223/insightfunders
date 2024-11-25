@@ -52,6 +52,7 @@ type Props = {
       | Database["public"]["Enums"]["future_investment_amounts"]
       | null;
     institution_type: Database["public"]["Enums"]["institution_types"] | null;
+    legalEntityType: Database["public"]["Enums"]["legal_entity_type"] | null;
   };
 };
 
@@ -87,6 +88,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
       accreditation: investorDetails.accreditation ?? "",
       futureInvestmentAmount: investorDetails.future_investment_amount ?? "",
       institutionType: investorDetails.institution_type ?? "",
+      legalEntityType: investorDetails.legalEntityType ?? "",
     },
   });
 
@@ -358,7 +360,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
               </button>
               <button
                 onClick={() => {
-                  router.back();
+                  router.push("/personal-details");
                 }}
                 className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
               >
@@ -645,7 +647,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
               </button>
               <button
                 onClick={() => {
-                  router.back();
+                  setTypePage(true);
                 }}
                 className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2"
               >
@@ -708,6 +710,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
                   )
                 }
               />
+
               <FormField
                 control={form.control}
                 disabled={isPending}
@@ -729,6 +732,82 @@ export default function InvestorDetails({ investorDetails }: Props) {
                   )
                 }
               />
+
+              <FormField
+                control={form.control}
+                disabled={isPending}
+                name="institutionType"
+                render={({ field }) =>
+                  form.getValues("investorType") === "Institution" ? (
+                    <FormItem className="relative flex flex-col gap-1 w-screen max-w-[450px]">
+                      <FormControl>
+                        <select
+                          className="flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
+                          {...field}
+                        >
+                          <option disabled value="">
+                            What is the type of your institution?
+                          </option>
+                          {[
+                            "Corporation",
+                            "Family Office",
+                            "Fund",
+                            "Registered Investment Advisor (RIA)",
+                            "Other",
+                          ]
+                            .filter((item) => item !== "")
+                            .map((item, index) => (
+                              <option key={index} value={item}>
+                                {item}
+                              </option>
+                            ))}
+                        </select>
+                      </FormControl>
+                      <FormMessage className="absolute text-red-600 -bottom-6" />
+                    </FormItem>
+                  ) : (
+                    <></>
+                  )
+                }
+              />
+              {/* <FormField
+                control={form.control}
+                disabled={isPending}
+                name="legalEntityType"
+                render={({ field }) =>
+                  form.getValues("investorType") === "Institution" ? (
+                    <FormItem className="relative flex flex-col gap-1 w-screen max-w-[450px]">
+                      <FormControl>
+                        <select
+                          className="flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
+                          {...field}
+                        >
+                          <option disabled value="">
+                            Legal entity type
+                          </option>
+                          {[
+                            "Sole Proprietor / Single Member LLC",
+                            "Corporation",
+                            "Partnership",
+                            "LLC (non-single member)",
+                            "Trust/Estate",
+                            "Other",
+                          ]
+                            .filter((item) => item !== "")
+                            .map((item, index) => (
+                              <option key={index} value={item}>
+                                {item}
+                              </option>
+                            ))}
+                        </select>
+                      </FormControl>
+                      <FormMessage className="absolute text-red-600 -bottom-6" />
+                    </FormItem>
+                  ) : (
+                    <></>
+                  )
+                }
+              /> */}
 
               {form.getValues("investorType") === "Institution" ? (
                 <FormField
@@ -765,44 +844,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
               ) : (
                 <></>
               )}
-              <FormField
-                control={form.control}
-                disabled={isPending}
-                name="institutionType"
-                render={({ field }) =>
-                  form.getValues("investorType") === "Institution" ? (
-                    <FormItem className="relative flex flex-col gap-1 w-screen max-w-[450px]">
-                      <FormControl>
-                        <select
-                          className="flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
-                          {...field}
-                        >
-                          <option disabled value="">
-                            Institution Type
-                          </option>
-                          {[
-                            "Other",
-                            "Corporation",
-                            "Family Office",
-                            "Fund",
-                            "Registered Investment Advisor (RIA)",
-                            "",
-                          ]
-                            .filter((item) => item !== "")
-                            .map((item, index) => (
-                              <option key={index} value={item}>
-                                {item}
-                              </option>
-                            ))}
-                        </select>
-                      </FormControl>
-                      <FormMessage className="absolute text-red-600 -bottom-6" />
-                    </FormItem>
-                  ) : (
-                    <></>
-                  )
-                }
-              />
+
               <FormField
                 control={form.control}
                 disabled={isPending}
@@ -1182,7 +1224,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
               </div>
               <button
                 onClick={() => {
-                  router.back();
+                  setTypePage(true);
                 }}
                 className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat"
               >

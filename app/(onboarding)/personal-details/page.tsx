@@ -17,7 +17,6 @@ export default async function PersonalDetailsPage({ searchParams }: Props) {
   const user = await getUser();
 
   if (!user) return redirect("/");
-  console.log(user);
 
   // if (
   //   user.userInfo.dwolla_customer_id &&

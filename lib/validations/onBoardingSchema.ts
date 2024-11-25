@@ -79,7 +79,10 @@ export const investorDetailsSchema = z.object({
     }).refine(value => !value ? false: true, { message: 'Please select an option' }),
     institutionType: z.enum(["Other", "Corporation", "Family Office", "Fund", "Registered Investment Advisor (RIA)", ""], {
         message: 'Please select an option'
-    })
+    }),
+    legalEntityType: z.enum(["Sole Proprietor / Single Member LLC", "Corporation", "Partnership", "LLC (non-single member)", "Trust/Estate", "Other", ""], {
+        message: 'Please select an option'
+    }),
 })
 
 export const startUpFinancialDetailsSchema = z.object({

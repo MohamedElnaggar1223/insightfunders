@@ -13,6 +13,8 @@ type Props = {
 };
 
 export default function StartUpFinancialDetailsContainer({ user }: Props) {
+  console.log(user);
+
   const router = useRouter();
 
   const [isPending, setIsPending] = useState(false);
@@ -44,6 +46,14 @@ export default function StartUpFinancialDetailsContainer({ user }: Props) {
     router.replace("/investor-details/submit");
   };
 
+  const handleGoBack = () => {
+    if (user?.userInfo?.role === "startup") {
+      router.replace("/startup-details");
+    } else if (user?.userInfo?.role === "investor") {
+      router.replace("/investor-details");
+    }
+  };
+
   return (
     <div className="space-y-8 w-screen max-w-[384px]  pb-8">
       <PlaidLink user={user} />
@@ -57,9 +67,7 @@ export default function StartUpFinancialDetailsContainer({ user }: Props) {
           {isPending ? "Submitting..." : "Submit"}
         </button>
         <button
-          onClick={() => {
-            router.back();
-          }}
+          onClick={handleGoBack}
           className="text-white text-[13px py-2 px-4 bg-transparent font-Montserrat mt-2 flex justify-center w-full"
         >
           Go back

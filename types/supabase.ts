@@ -296,6 +296,7 @@ export type Database = {
             | Database["public"]["Enums"]["institution_types"]
             | null
           investor_type: Database["public"]["Enums"]["investor_type"] | null
+          legal_entity_type: Database["public"]["Enums"]["legal_entity_type"] | null
           max_facility_size:
             | Database["public"]["Enums"]["max_facility_size"]
             | null
@@ -325,9 +326,10 @@ export type Database = {
             | Database["public"]["Enums"]["institution_types"]
             | null
           investor_type?: Database["public"]["Enums"]["investor_type"] | null
+          legal_entity_type: Database["public"]["Enums"]["legal_entity_type"] | null
           max_facility_size?:
-            | Database["public"]["Enums"]["max_facility_size"]
-            | null
+          | Database["public"]["Enums"]["max_facility_size"]
+          | null
           minimum_revenue_requirement?:
             | Database["public"]["Enums"]["minimum_revenue_requirement"]
             | null
@@ -344,15 +346,16 @@ export type Database = {
           company_name?: string | null
           company_website?: string | null
           future_investment_amount?:
-            | Database["public"]["Enums"]["future_investment_amounts"]
-            | null
+          | Database["public"]["Enums"]["future_investment_amounts"]
+          | null
           geographies_served?:
-            | Database["public"]["Enums"]["geographies_served"][]
-            | null
+          | Database["public"]["Enums"]["geographies_served"][]
+          | null
           id?: number
           institution_type?:
-            | Database["public"]["Enums"]["institution_types"]
-            | null
+          | Database["public"]["Enums"]["institution_types"]
+          | null
+          // legal_entity_type: Database["public"]["Enums"]["legal_entity_type"] | null
           investor_type?: Database["public"]["Enums"]["investor_type"] | null
           max_facility_size?:
             | Database["public"]["Enums"]["max_facility_size"]
@@ -787,6 +790,13 @@ export type Database = {
         | "Family Office"
         | "Fund"
         | "Registered Investment Advisor (RIA)"
+        | "Other"
+      legal_entity_type:
+        | "Sole Proprietor / Single Member LLC"
+        | "Corporation"
+        | "Partnership"
+        | "LLC (non-single member)"
+        | "Trust/Estate"
         | "Other"
       investor_type: "Individual" | "Institution"
       max_facility_size:
