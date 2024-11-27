@@ -50,7 +50,7 @@ export default async function Dashboard({
     // </section>
 
     <section className="flex flex-1 flex-col dashboardcont gap-6  overflow-auto pt-6 mx-auto mt-8">
-      <DashboardUpload />
+      {/* <DashboardUpload /> */}
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 w-full ">
         <div className="col-span-1 lg:col-span-3   flex flex-col gap-4 text-white text-center">
           <div className="w-full  flex bg-[#212121] text-white min-h-32 px-4 lg:px-10  py-3 items-center justify-center text-center flex-col gap-3 flex-1 rounded-[8px] shadow-lg ">

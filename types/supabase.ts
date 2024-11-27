@@ -355,7 +355,7 @@ export type Database = {
           institution_type?:
           | Database["public"]["Enums"]["institution_types"]
           | null
-          // legal_entity_type: Database["public"]["Enums"]["legal_entity_type"] | null
+          legal_entity_type: Database["public"]["Enums"]["legal_entity_type"] | null
           investor_type?: Database["public"]["Enums"]["investor_type"] | null
           max_facility_size?:
             | Database["public"]["Enums"]["max_facility_size"]

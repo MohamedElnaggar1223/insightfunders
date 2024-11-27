@@ -19,9 +19,9 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
   // const availableBalance = totalAmountInvested - fundsUsed;
   // const total = totalAmountInvested;
 
+  const fundsUsed = 0;
   const total = totalAmountInvested;
   const availableBalance = totalAmountInvested;
-  const fundsUsed = 0;
 
   const data = [
     {
@@ -93,7 +93,6 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
                 innerRadius={0}
                 outerRadius={80}
                 strokeWidth={2}
-                // stroke="#121212"
                 stroke="hsl(var(--background))"
                 label={({ payload }) => `${payload.percentage}%`}
                 labelLine={false}
