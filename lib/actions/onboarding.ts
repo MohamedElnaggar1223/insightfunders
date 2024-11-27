@@ -119,12 +119,12 @@ export const saveInvestorDetails = async (investor_id: number, data: z.infer<typ
 
     const futureInvestmentAmount = data.futureInvestmentAmount as "Less than $250K" | "$250K - $1M" | "S1M - $5M" | "$5M+" | "Not sure" | null | undefined
     const institutionType = data.institutionType as "Corporation" | "Family Office" | "Fund" | "Registered Investment Advisor (RIA)" | "Other" | null | undefined
-    const legalEntityType = data.legalEntityType as   "Sole Proprietor / Single Member LLC" |
-    "Corporation" |
-    "Partnership" |
-    "LLC (non-single member)" |
-    "Trust/Estate" |
-    "Other" | null | undefined
+    // const legalEntityType = data.legalEntityType as   "Sole Proprietor / Single Member LLC" |
+    // "Corporation" |
+    // "Partnership" |
+    // "LLC (non-single member)" |
+    // "Trust/Estate" |
+    // "Other" | null | undefined
 
     const { error } = await supabase.from('investors').update({
         company_email: data.companyEmail ?? null,
@@ -138,7 +138,7 @@ export const saveInvestorDetails = async (investor_id: number, data: z.infer<typ
         future_investment_amount: !!futureInvestmentAmount ? futureInvestmentAmount : null,
         investor_type: data.investorType ?? null,
         institution_type: !!institutionType ? institutionType : null,
-        legal_entity_type: !!legalEntityType ? legalEntityType : null
+        // legal_entity_type: !!legalEntityType ? legalEntityType : null
     })
     .eq('id', investor_id)
     
