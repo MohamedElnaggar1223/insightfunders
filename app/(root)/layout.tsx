@@ -106,7 +106,7 @@ export default async function RootLayout({
           <body
             className={cn(
               inter.className,
-              "bg-[#F9FAFB] overflow-x-hidden",
+              "bg-[#1A1A1A] overflow-x-hidden",
               logoFont.variable,
               montserrat.variable
             )}
