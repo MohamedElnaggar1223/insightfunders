@@ -1,23 +1,24 @@
 "use client";
 
-import { Pie, PieChart } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DonutChart, Legend } from "@tremor/react";
-
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
 } from "@/components/ui/chart";
+import { Pie, PieChart } from "recharts";
 
 type Props = {
   totalAmountInvested: number;
 };
 
 export default function StartUpsChart({ totalAmountInvested }: Props) {
-  // Calculate percentages
+  // Calculate actual values and percentages
+  // const fundsUsed = 1500000; // Example value, replace with actual funds used
+  // const availableBalance = totalAmountInvested - fundsUsed;
+  // const total = totalAmountInvested;
+
   const total = totalAmountInvested;
   const availableBalance = totalAmountInvested;
   const fundsUsed = 0;
@@ -66,15 +67,18 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
     return `$ ${Intl.NumberFormat("us").format(value).toString()}`;
   };
 
+  const formatCurrency = (value: number) =>
+    `$${Intl.NumberFormat("us").format(value)}`;
+
   return (
     <Card className="border-none rounded-[8px] text-white">
       <CardHeader className="pb-0">
-        <CardTitle className=" font-normal  mr-auto">
+        <CardTitle className="text-base text-left font-normal font-Montserrat">
           Total Funds Available
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-8">
           <ChartContainer config={chartConfig} className="w-[200px] h-[200px]">
             <PieChart width={200} height={200}>
               <ChartTooltip
@@ -89,21 +93,52 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
                 innerRadius={0}
                 outerRadius={80}
                 strokeWidth={2}
+                // stroke="#121212"
                 stroke="hsl(var(--background))"
                 label={({ payload }) => `${payload.percentage}%`}
                 labelLine={false}
               />
             </PieChart>
           </ChartContainer>
-          <Legend
-            className="gap-3"
-            categories={["Available Balance", "Funds Used"]}
-          />
+
+          <div className="flex flex-col gap-3 pt-4">
+            <div className="flex justify-between items-center gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#FF7A00]" />
+                <span className="text-[13px] font-Montserrat">Funds Used</span>
+              </div>
+              <span className="text-[13px] font-Montserrat">
+                {formatCurrency(fundsUsed)}
+              </span>
+            </div>
+            <div className="flex justify-between items-center gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#5631CC]" />
+                <span className="text-[13px] font-Montserrat">
+                  Available Balance
+                </span>
+              </div>
+              <span className="text-[13px] font-Montserrat">
+                {formatCurrency(availableBalance)}
+              </span>
+            </div>
+            <div className="mt-2 pt-2 border-t border-gray-700">
+              <div className="flex justify-between items-center gap-2">
+                <span className="text-[13px] font-bold font-Montserrat">
+                  Total Funds Available
+                </span>
+                <span className="text-[13px] font-bold font-Montserrat">
+                  {formatCurrency(total)}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
   );
 }
+
 {
   /* <div className="bg-white  h-full flex flex-col items-center justify-center text-left p-8 gap-12 rounded-[8px] shadow-lg">
       <p className="text-black font-normal  mr-auto">Total Funds Available</p>

@@ -53,8 +53,8 @@ export default async function Dashboard({
       <DashboardUpload />
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 w-full ">
         <div className="col-span-1 lg:col-span-3   flex flex-col gap-4 text-white text-center">
-          <div className="flex bg-[#212121] text-white min-h-32 px-2  py-4 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] shadow-lg ">
-            <div className="w-[80%] flex flex-col items-start gap-2">
+          <div className="w-full  flex bg-[#212121] text-white min-h-32 px-4 lg:px-10  py-3 items-center justify-center text-center flex-col gap-3 flex-1 rounded-[8px] shadow-lg ">
+            {/* <div className=" flex flex-col items-start gap-2">
               <div className="p-3 bg-[#313C4A] rounded-full">
                 <Image
                   src="/images/funds.svg"
@@ -72,12 +72,17 @@ export default async function Dashboard({
                   Total funds
                 </p>
               </div>
-            </div>
+            </div> */}
+            <p className=" text-center font-light text-xs font-Montserrat">
+              Total funds
+            </p>
+            <h4 className="text-center font-bold text-[xl font-Montserrat">
+              ${totalAmountInvested}
+            </h4>
           </div>
 
-          <div className="flex bg-[#212121] text-white min-h-32 px-2  py-4 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] shadow-lg">
-            <div className="w-[80%] flex flex-col items-start gap-2">
-              <div className="p-3 bg-[#313C4A] rounded-full">
+          <div className="w-full flex bg-[#212121] text-white min-h-32 px-4 lg:px-10  py-3 items-center justify-center text-center flex-col gap-3 flex-1 rounded-[8px] shadow-lg">
+            {/* <div className="p-3 bg-[#313C4A] rounded-full">
                 <Image
                   src="/images/investment.svg"
                   width={20}
@@ -93,8 +98,13 @@ export default async function Dashboard({
                 <p className=" text-left font-light text-xs text-black">
                   Available balance
                 </p>
-              </div>
-            </div>
+              </div> */}
+            <p className=" text-center font-light text-xs font-Montserrat">
+              Available balance
+            </p>
+            <h4 className="text-center font-bold text-[xl font-Montserrat">
+              ${totalInvestors}
+            </h4>
           </div>
         </div>
         <div className="col-span-1 lg:col-span-7  bg-[#212121] text-white text-center">
