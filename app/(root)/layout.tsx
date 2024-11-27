@@ -78,7 +78,6 @@ export default async function RootLayout({
   // unstable_noStore()
 
   const user = await getUser();
-  console.log("user", user);
 
   if (!user)
     return (
