@@ -52,7 +52,7 @@ type Props = {
       | Database["public"]["Enums"]["future_investment_amounts"]
       | null;
     institution_type: Database["public"]["Enums"]["institution_types"] | null;
-    legalEntityType: Database["public"]["Enums"]["legal_entity_type"] | null;
+    // legalEntityType: Database["public"]["Enums"]["legal_entity_type"] | null;
   };
 };
 
@@ -88,7 +88,7 @@ export default function InvestorDetails({ investorDetails }: Props) {
       accreditation: investorDetails.accreditation ?? "",
       futureInvestmentAmount: investorDetails.future_investment_amount ?? "",
       institutionType: investorDetails.institution_type ?? "",
-      legalEntityType: investorDetails.legalEntityType ?? "",
+      // legalEntityType: investorDetails.legalEntityType ?? "",
     },
   });
 
