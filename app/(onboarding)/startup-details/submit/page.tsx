@@ -10,6 +10,7 @@ export default async function SubmitStartUpDetailsPage() {
   // unstable_noStore()
 
   const user = await getUser();
+  console.log(user);
 
   if (!user) return redirect("/");
 

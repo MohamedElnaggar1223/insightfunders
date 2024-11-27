@@ -13,6 +13,7 @@ export default async function Dashboard({
   searchParams: { page?: string };
 }) {
   const user = await getUser();
+  console.log(user);
   const startupContracts = await getContracts(user?.userStartUp?.id!);
 
   // await new Promise(resolve => setTimeout(resolve, 10000))
@@ -75,8 +76,8 @@ export default async function Dashboard({
           </div>
 
           <div className="flex bg-white min-h-32 px-2  py-4 items-center justify-center text-center flex-col gap-2 flex-1 rounded-[8px] shadow-lg">
-          <div className="w-[80%] flex flex-col items-start gap-2">
-          <div className="p-3 bg-[#313C4A] rounded-full">
+            <div className="w-[80%] flex flex-col items-start gap-2">
+              <div className="p-3 bg-[#313C4A] rounded-full">
                 <Image
                   src="/images/investment.svg"
                   width={20}
@@ -85,14 +86,14 @@ export default async function Dashboard({
                   className="filter invert  "
                 />
               </div>
-           <div>
-            <p className="text-black font-[800] text-left  text-[28px]">
-               ${totalInvestors}
-            </p>
-            <p className=" text-left font-light text-xs text-black">
-            Available balance
-            </p>
-            </div>
+              <div>
+                <p className="text-black font-[800] text-left  text-[28px]">
+                  ${totalInvestors}
+                </p>
+                <p className=" text-left font-light text-xs text-black">
+                  Available balance
+                </p>
+              </div>
             </div>
           </div>
         </div>

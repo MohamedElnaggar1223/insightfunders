@@ -42,7 +42,7 @@ export default async function StartUpFinancialDetails() {
     } else if (user.userStartUp.stage && bankConnected) {
       if (!user.userStartUp.submitted)
         return redirect("/startup-details/submit");
-      else return redirect("/");
+      // else return redirect("/");
     }
   } else return redirect("/");
 
