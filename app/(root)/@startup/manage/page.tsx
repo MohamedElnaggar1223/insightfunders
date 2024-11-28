@@ -77,7 +77,7 @@ export default function OffersPage({ searchParams }: Props) {
                 : "text-white border-[#FFFFFF80]"
             )}
           >
-            Legal Documents
+            Legal
           </Link>
           <Link
             href="/manage?tab=others"
