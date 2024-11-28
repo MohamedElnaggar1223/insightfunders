@@ -82,7 +82,7 @@ export default async function StartUpsInvestors({
 
   return (
     <div className={`flex flex-col gap-4 `}>
-      <SearchInvestorsBar />
+      {/* <SearchInvestorsBar /> */}
       <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
         <div className="flex w-full items-center justify-between px-4 py-7  bg-[#FAFAFA]">
           <p className="text-xs font-medium flex-1">Lender Name</p>
@@ -125,7 +125,7 @@ export default async function StartUpsInvestors({
             ))
         ) : (
           <p className=" flex items-center justify-center mt-12">
-            No Data Yet!
+            No data yet!
           </p>
         )}
         <div className="h-10 flex items-center px-4 justify-between ">

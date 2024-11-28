@@ -279,7 +279,7 @@ export default function CompanyInfoDetails({ user, startUpOwners }: Props) {
         </div>
         <button
           type="submit"
-          className="rounded-[2px] bg-white text-white mt-4 mx-auto text-sm px-2.5 text-nowrap py-1.5 w-16"
+          className="rounded-[2px] bg-white text-black mt-4 mx-auto text-sm px-2.5 text-nowrap py-1.5 w-16"
         >
           {isLoading ? (
             <Loader2 stroke="#000" className="animate-spin mx-auto" />

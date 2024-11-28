@@ -32,7 +32,7 @@ export default function OffersPage({ searchParams }: Props) {
             Data Requests
           </Link>
           <Link
-            href="/offers?tab=contracts"
+            href="/offers?tab=offer"
             className={cn(
               "text-sm flex-1 text-center border-b-4 pb-2",
               tab === "contracts"
@@ -40,10 +40,10 @@ export default function OffersPage({ searchParams }: Props) {
                 : "font-light text-white border-[#FFFFFF80]"
             )}
           >
-            Contracts
+            Offer
           </Link>
         </div>
-        {tab === "contracts" ? (
+        {tab === "offer" ? (
           <Suspense fallback={<DataRequestsLoading />}>
             <Contracts />
           </Suspense>
