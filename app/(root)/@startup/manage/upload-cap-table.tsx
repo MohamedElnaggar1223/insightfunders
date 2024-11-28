@@ -76,7 +76,7 @@ export default function UploadCapTable()
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className='bg-[#1A1A1A] rounded-xl border-none space-y-4'>
                     <DialogHeader className='font-semibold text-xl text-white'>
-                        Upload a Cap Table document
+                        Upload a cap table document
                     </DialogHeader>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center justify-center gap-8'>

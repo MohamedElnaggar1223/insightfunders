@@ -418,3 +418,4 @@ export const rejectContract = async (contractId: number) => {
     revalidatePath('/contracts')
     redirect('/')
 }
+

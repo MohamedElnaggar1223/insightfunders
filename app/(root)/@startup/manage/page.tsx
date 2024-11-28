@@ -7,6 +7,7 @@ import PitchDeck from "./pitch-deck";
 import TaxReturns from "./tax-returns";
 import FinancialStatements from "./financial-statements";
 import LegalDocuments from "./legal-documents";
+import Others from "./others";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -115,6 +116,12 @@ export default function OffersPage({ searchParams }: Props) {
             fallback={<Loader2 className="animate-spin text-white" size={24} />}
           >
             <LegalDocuments />
+          </Suspense>
+        ) : tab === "others" ? (
+          <Suspense
+            fallback={<Loader2 className="animate-spin text-white" size={24} />}
+          >
+            <Others />
           </Suspense>
         ) : (
           <Suspense

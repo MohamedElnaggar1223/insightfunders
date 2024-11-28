@@ -76,7 +76,7 @@ export default function UploadFinancialStatements()
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className='bg-[#1A1A1A] rounded-xl border-none space-y-4'>
                     <DialogHeader className='font-semibold text-xl text-white'>
-                        Upload a Financial document
+                        Upload a financial statement
                     </DialogHeader>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center justify-center gap-8'>
@@ -111,7 +111,7 @@ export default function UploadFinancialStatements()
                                                 {/* <div className='flex flex-1 px-12 placeholder:font-light py-5 rounded-[2px] bg-white hover:bg-white outline-none cursor-pointer'>Upload Term Sheet</div> */}
                                                 <input
                                                     type='file'
-                                                    accept='.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                                                    // accept='.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                                                     onChange={(e) => field.onChange(e.target.files?.[0] || null)}
                                                     onBlur={field.onBlur}
                                                     name={field.name}
