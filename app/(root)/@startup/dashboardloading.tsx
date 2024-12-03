@@ -1,26 +1,65 @@
-export default function DashboardLoading()
-{
-    return (
-        <section className='flex flex-1 flex-col gap-6 px-6'>
-            <div className='flex flex-wrap items-center justify-between gap-4'>
-                <div className="flex bg-[#212121] min-h-20 items-center py-2 justify-center text-center flex-col gap-2 flex-1 rounded-[4px] max-w-[283px]">
-                    <p className='font-Montserrat font-light text-xs text-white'>Total amount invested</p>
-                    <div className='w-2/5 h-[1.875rem] bg-[#575757] rounded-[4px] animate-pulse' />
-                </div>
-                <div className="flex bg-[#212121] min-h-20 items-center py-2 justify-center text-center flex-col gap-2 flex-1 rounded-[4px] max-w-[283px]">
-                    <p className='font-Montserrat font-light text-xs text-white'>Total ROI</p>
-                    <div className='w-2/5 h-[1.875rem] bg-[#575757] rounded-[4px] animate-pulse' />
-                </div>
-                <div className="flex bg-[#212121] min-h-20 items-center py-2 justify-center text-center flex-col gap-2 flex-1 rounded-[4px] max-w-[283px]">
-                    <p className='font-Montserrat font-light text-xs text-white'>Currently investing in</p>
-                    <div className='w-2/5 h-[1.875rem] bg-[#575757] rounded-[4px] animate-pulse' />
-                </div>
+export default function DashboardLoading() {
+  return (
+    <div className="w-[923px] mx-auto space-y-6 mt-8">
+      {/* Top Section Loading */}
+      <div className="grid grid-cols-3 gap-6">
+        {/* Left Stats Loading */}
+        <div className="space-y-6">
+          <div className="bg-[#212121] h-[calc(50%-12px)] rounded-lg p-4">
+            <p className="font-Montserrat font-light text-xs text-white text-center">
+              Total Funds
+            </p>
+            <div className="w-3/5 h-8 bg-[#575757] rounded-md mx-auto mt-3 animate-pulse" />
+          </div>
+          <div className="bg-[#212121] h-[calc(50%-12px)] rounded-lg p-4">
+            <p className="font-Montserrat font-light text-xs text-white text-center">
+              Available Balance
+            </p>
+            <div className="w-3/5 h-8 bg-[#575757] rounded-md mx-auto mt-3 animate-pulse" />
+          </div>
+        </div>
+
+        {/* Pie Chart Loading */}
+        <div className="col-span-2 bg-[#212121] rounded-lg animate-pulse" />
+      </div>
+
+      {/* Table Loading */}
+      <div className="overflow-x-auto bg-white rounded-lg">
+        {/* Table Header Loading */}
+        <div className="grid grid-cols-6 bg-white p-[22px]">
+          {Array(6)
+            .fill(null)
+            .map((_, index) => (
+              <div
+                key={index}
+                className="h-4 bg-[#575757] rounded animate-pulse"
+              />
+            ))}
+        </div>
+
+        {/* Table Rows Loading */}
+        {Array(6)
+          .fill(null)
+          .map((_, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="grid grid-cols-6 border-t border-gray-200"
+            >
+              {Array(6)
+                .fill(null)
+                .map((_, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`p-[22px] ${
+                      colIndex % 2 === 0 ? "bg-[#EAEAEA]" : "bg-white"
+                    }`}
+                  >
+                    <div className="h-4 bg-[#575757] rounded animate-pulse" />
+                  </div>
+                ))}
             </div>
-            <div className="w-full h-[250px] bg-[#212121] animate-pulse" />
-            <div className='flex flex-1 flex-col gap-4'>
-                <div className="h-[40px] bg-white w-full animate-pulse" />
-                <div className='flex-1 bg-[#575757] animate-pulse' />
-            </div>
-        </section>
-    )
+          ))}
+      </div>
+    </div>
+  );
 }

@@ -84,12 +84,22 @@ export default async function StartUpsInvestors({
     <div className={`flex flex-col gap-4 `}>
       {/* <SearchInvestorsBar /> */}
       <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
-        <div className="flex w-full items-center justify-between px-4 py-7  bg-[#FAFAFA]">
-          <p className="text-xs font-medium flex-1">Lender Name</p>
-          <p className="text-xs font-medium flex-1">Total Funds</p>
-          <p className="text-xs font-medium flex-1">Initiation Date</p>
-          <p className="text-xs font-medium flex-1">Loan Duration</p>
-          <p className="text-xs font-medium flex-1">Maturity Date</p>
+        <div className="flex w-full items-center justify-between px-4 py-[22.5px] bg-[#FAFAFA]">
+          <p className="text-xs font-medium flex-1 font-Montserrat">
+            Lender Name
+          </p>
+          <p className="text-xs font-medium flex-1 font-Montserrat">
+            Total Funds
+          </p>
+          <p className="text-xs font-medium flex-1 font-Montserrat">
+            Initiation Date
+          </p>
+          <p className="text-xs font-medium flex-1 font-Montserrat">
+            Loan Duration
+          </p>
+          <p className="text-xs font-medium flex-1 font-Montserrat">
+            Maturity Date
+          </p>
         </div>
         {contractsWithInvestors.length > 0 ? (
           contractsWithInvestors
@@ -124,12 +134,12 @@ export default async function StartUpsInvestors({
               </div>
             ))
         ) : (
-          <p className=" flex items-center justify-center mt-12">
+          <p className="min-h-[200px] flex items-center justify-center font-Montserrat">
             No data yet!
           </p>
         )}
         <div className="h-10 flex items-center px-4 justify-between ">
-          <p className="text-xs font-medium">
+          <p className="text-xs font-medium font-Montserrat">
             Showing {startIndex} - {endIndex}
           </p>
           <div className="flex gap-2">

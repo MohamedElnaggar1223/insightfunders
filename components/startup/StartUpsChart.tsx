@@ -1,5 +1,6 @@
 "use client";
 
+import ThreeDPieChart from "@/app/(root)/@startup/ThreeDPieChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
@@ -71,34 +72,15 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
     `$${Intl.NumberFormat("us").format(value)}`;
 
   return (
-    <Card className="border-none rounded-[8px] text-white">
-      <CardHeader className="pb-0">
+    <Card className="border-none rounded-[8px] text-white bg-[#212121]">
+      <CardHeader className="pb-0 pt-[37px]">
         <CardTitle className="text-base text-left font-normal font-Montserrat">
           Total Funds Available
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-6">
-        <div className="flex items-center gap-8">
-          <ChartContainer config={chartConfig} className="w-[200px] h-[200px]">
-            <PieChart width={200} height={200}>
-              <ChartTooltip
-                content={<ChartTooltipContent formatter={valueFormatter} />}
-              />
-              <Pie
-                data={isAllZero ? defaultData : data}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                innerRadius={0}
-                outerRadius={80}
-                strokeWidth={2}
-                stroke="hsl(var(--background))"
-                label={({ payload }) => `${payload.percentage}%`}
-                labelLine={false}
-              />
-            </PieChart>
-          </ChartContainer>
+        <div className="flex content-between items-center gap-8">
+          <ThreeDPieChart />
 
           <div className="flex flex-col gap-3 pt-4">
             <div className="flex justify-between items-center gap-2">
