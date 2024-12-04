@@ -40,7 +40,7 @@ export default async function StartupLayout({
   return (
     <section className="min-w-screen min-h-screen flex items-center justify-center text-center bg-[#1A1A1A]">
       <StartupSideBar />
-      <section className="flex flex-1 flex-col h-screen bg-[#F1F5F9]">
+      <section className="flex flex-1 flex-col h-screen overflow-x-auto">
         <HeaderStartUp />
 
         {children}

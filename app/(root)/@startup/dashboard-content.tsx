@@ -102,7 +102,7 @@ export default async function DashboardContent({
       {/* Top Section */}
       <div className="flex gap-[21px]">
         {/* Left Stats */}
-        <div className="flex flex-col justify-between space-y-[20px] w-[332px]">
+        <div className="flex flex-col justify-between space-y-[20px] min-w-[332px]">
           <DashboardCard
             title="Total Funds"
             value={`$${totalAmountInvested}`}

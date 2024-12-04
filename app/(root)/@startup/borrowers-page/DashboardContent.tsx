@@ -75,7 +75,15 @@ export default function FundsDashboard() {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-68px)] bg-black p-8 mt-[68px]">
+    <div
+      className="w-full mx-auto space-y-6 mt-8
+    max-w-[800px]                     
+    lg:max-w-[850px]                 
+    xl:max-w-[923px]                  
+    2xl:max-w-[1200px]               
+    3xl:max-w-[1700px]              
+    4xl:max-w-[1800px]"
+    >
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Top Section */}
         <div className="grid grid-cols-3 gap-6">
