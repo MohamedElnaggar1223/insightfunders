@@ -19,9 +19,9 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
   // const availableBalance = totalAmountInvested - fundsUsed;
   // const total = totalAmountInvested;
 
-  const fundsUsed = 70;
-  const total = 80;
-  const availableBalance = 40;
+  const fundsUsed = 800000;
+  const total = 4000000;
+  const availableBalance = 3200000;
 
   const data = [
     {
@@ -73,13 +73,13 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
   return (
     <Card className="bg-[#212121] border-none rounded-[8px] text-white">
       <CardHeader className="pb-0">
-        <CardTitle className="text-base text-left font-normal font-Montserrat">
-          Total Funds Available
+        <CardTitle className="text-base text-left leading-[20px] font-normal font-Montserrat">
+          Total return on Investment
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-6">
-        <div className="flex items-center gap-8">
-          <ChartContainer config={chartConfig} className="w-[200px] h-[200px]">
+        <div className="flex items-center gap-12 z-50">
+          <ChartContainer config={chartConfig} className="w-[212px] h-[200px]">
             <PieChart width={200} height={200}>
               <ChartTooltip
                 content={<ChartTooltipContent formatter={valueFormatter} />}
@@ -101,30 +101,34 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
           </ChartContainer>
 
           <div className="flex flex-col gap-3 pt-4">
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex justify-between items-center gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#FF7A00]" />
-                <span className="text-[13px] font-Montserrat">Funds Used</span>
+                <span className="text-[13px] font-Montserrat leading-[15px]">
+                  Realized Return
+                </span>
               </div>
-              <span className="text-[13px] font-Montserrat">
+              <span className="text-[13px] font-Montserrat leading-[15px]">
                 {formatCurrency(fundsUsed)}
               </span>
             </div>
-            <div className="flex justify-between items-center gap-2">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#5631CC]" />
-                <span className="text-[13px] font-Montserrat">
-                  Available Balance
+            <div className="flex justify-between items-center gap-4">
+              <div className="flex items-center gap-2  break-words">
+                <div className="w-3 h-3 rounded-full bg-[#EAEAEA]" />
+                <span className="text-[13px] font-Montserra text-left leading-[15px]">
+                  Remaining
+                  <br />
+                  Return Expected
                 </span>
               </div>
-              <span className="text-[13px] font-Montserrat">
+              <span className="text-[13px] font-Montserrat leading-[15px]">
                 {formatCurrency(availableBalance)}
               </span>
             </div>
             <div className="mt-2 pt-2 border-t border-gray-700">
-              <div className="flex justify-between items-center gap-2">
+              <div className="flex justify-between items-center gap-4">
                 <span className="text-[13px] font-bold font-Montserrat">
-                  Total Funds Available
+                  Total ROI
                 </span>
                 <span className="text-[13px] font-bold font-Montserrat">
                   {formatCurrency(total)}
