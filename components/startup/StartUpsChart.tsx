@@ -19,9 +19,9 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
   // const availableBalance = totalAmountInvested - fundsUsed;
   // const total = totalAmountInvested;
 
-  const fundsUsed = 0;
-  const total = totalAmountInvested;
-  const availableBalance = totalAmountInvested;
+  const fundsUsed = 70;
+  const total = 80;
+  const availableBalance = 40;
 
   const data = [
     {
@@ -47,7 +47,7 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
     },
   ];
 
-  const isAllZero = total === 0;
+  // const isAllZero = total === 0;
 
   const chartConfig = {
     availableBalance: {
@@ -85,7 +85,7 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
                 content={<ChartTooltipContent formatter={valueFormatter} />}
               />
               <Pie
-                data={isAllZero ? defaultData : data}
+                data={data}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"

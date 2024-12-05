@@ -108,7 +108,7 @@ export default async function Dashboard({
           </div>
         </div>
         <div className="col-span-1 lg:col-span-7  bg-[#212121] text-white text-center">
-          <StartUpsChart totalAmountInvested={totalAmountInvested!} />
+          <StartUpsChart totalAmountInvested={12} />
         </div>
       </div>
 
