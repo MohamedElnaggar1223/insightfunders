@@ -11,7 +11,7 @@ export default async function HeaderStartUp() {
   const notifications = await getNotifications(user?.user.id!);
 
   return (
-    <div className="ml-auto flex  items-center justify-end h-fit px-12 py-6 bg-[#212121] text-white w-full gap-3 shadow-lg navbarmobilemenu">
+    <div className="ml-auto flex sticky items-center top-0 z-30 justify-end h-fit px-12 py-6 bg-[#212121] text-white w-full gap-3 shadow-lg navbarmobilemenu">
       <div className="flex gap-3">
         <Notifications user={user!} notifications={notifications!} />
         <Link

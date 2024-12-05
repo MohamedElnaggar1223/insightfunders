@@ -4,7 +4,7 @@ import React from "react";
 import { Search } from "lucide-react";
 import { SearchInput } from "@/components/lenders/SearchInput";
 import DashboardCard from "./dashboard-card";
-import StartUpsChart from "../StartUpsChart";
+import StartUpsChart from "@/components/startup/StartUpsChart";
 
 export default function DashboardContent() {
   const investmentData = [

@@ -6,7 +6,7 @@ import ThreeDPieChart from "./ThreeDPieChart";
 import StartUpsInvestors from "@/components/startup/StartUpsInvestors";
 import { getUser } from "@/lib/actions/auth";
 import { getContracts } from "@/lib/actions/startup";
-import StartUpsChart from "./StartUpsChart";
+import StartUpsChart from "@/components/startup/StartUpsChart";
 
 interface LenderData {
   name: string;
@@ -91,7 +91,7 @@ export default async function DashboardContent({
 
   return (
     <div
-      className="w-full mx-auto space-y-6 mt-8
+      className="w-full mx-auto space-y-6 my-8
       max-w-[800px]                     
       lg:max-w-[850px]                 
       xl:max-w-[923px]                  
