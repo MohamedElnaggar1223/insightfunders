@@ -6,7 +6,7 @@ import ThreeDPieChart from "./ThreeDPieChart";
 import StartUpsInvestors from "@/components/startup/StartUpsInvestors";
 import { getUser } from "@/lib/actions/auth";
 import { getContracts } from "@/lib/actions/startup";
-import StartUpsChart from "@/components/startup/StartUpsChart";
+import StartUpsChart from "./StartUpsChart";
 
 interface LenderData {
   name: string;
@@ -105,12 +105,12 @@ export default async function DashboardContent({
         <div className="flex flex-col justify-between space-y-[20px] min-w-[332px]">
           <DashboardCard
             title="Total Funds"
-            value={`$${totalAmountInvested}`}
+            value={`$6,500,000`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
           <DashboardCard
             title="Available Balance"
-            value={`$${totalInvestors}`}
+            value={`$5,000,000`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
         </div>
