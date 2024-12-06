@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import { Search } from "lucide-react";
-import { SearchInput } from "@/components/lenders/SearchInput";
 import DashboardCard from "./dashboard-card";
 import StartUpsChart from "@/components/startup/StartUpsChart";
+import { CustomSearch } from "@/components/lenders/CustomSearch";
 
 export default function DashboardContent() {
   const investmentData = [
@@ -85,33 +84,32 @@ export default function DashboardContent() {
 
       {/* Search and Table */}
       <div className="relative">
-        <Search className="absolute left-3 top-3 h-4 w-4 text-gray-500 font-Montserrat" />
-        <SearchInput
+        <CustomSearch
           placeholder="Search startups"
           className="pl-10 bg-white border-gray-800 text-white font-Montserrat"
         />
       </div>
 
-      <div className="overflow-x-auto bg-white rounded-lg">
+      <div className="overflow-x-auto bg-[#FAFAFA] rounded-lg">
         <table className="w-full">
           <thead>
-            <tr className="text-gray-600 text-sm">
-              <th className=" text-[12px] text-center p-4 font-medium font-Montserrat">
+            <tr className="text-[#1A1A1A] text-sm leading-[15px] text-[12px]">
+              <th className=" text-[12px] text-center p-6 font-medium font-Montserrat">
                 Company Name
               </th>
-              <th className="text-[12px] text-center p-4 font-medium font-Montserrat">
+              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
                 Amount Invested
               </th>
-              <th className="text-[12px] text-center p-4 font-medium font-Montserrat">
+              <th className="text-[12px] text-center p-6 px-12 font-medium font-Montserrat">
                 APY
               </th>
-              <th className="text-[12px] text-center p-4 font-medium font-Montserrat">
+              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
                 Term
               </th>
-              <th className="text-[12px] text-center p-4 font-medium font-Montserrat">
+              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
                 Maturity Date
               </th>
-              <th className="text-[12px] text-center p-4 font-medium font-Montserrat">
+              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
                 Due Payment Date
               </th>
             </tr>
@@ -121,7 +119,7 @@ export default function DashboardContent() {
               <tr key={index}>
                 <td className={`p-4 bg-[#EAEAEA] font-Montserrat`}>
                   <div>
-                    <div className="font-medium font-Montserrat text-[13px]">
+                    <div className="font-medium font-Montserrat text-[13px] leading-[15px]">
                       {company.name}
                     </div>
                     <div className="text-sm text-gray-500 font-Montserrat text-[13px]">
@@ -129,19 +127,29 @@ export default function DashboardContent() {
                     </div>
                   </div>
                 </td>
-                <td className={`p-4 bg-white font-Montserrat text-[13px]`}>
+                <td
+                  className={`p-4 bg-white font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                >
                   ${company.amount.toLocaleString()}
                 </td>
-                <td className={`p-4 bg-[#EAEAEA] font-Montserrat text-[13px]`}>
+                <td
+                  className={`p-4 bg-[#EAEAEA] font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                >
                   {company.apy}
                 </td>
-                <td className={`p-4 bg-white font-Montserrat text-[13px]`}>
+                <td
+                  className={`p-4 bg-white font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                >
                   {company.term}
                 </td>
-                <td className={`p-4 bg-[#EAEAEA] font-Montserrat text-[13px]`}>
+                <td
+                  className={`p-4 bg-[#EAEAEA] font-Montserrat leading-[15px] text-[#1A1A1A] text-[13px]`}
+                >
                   {company.maturityDate}
                 </td>
-                <td className={`p-4 bg-white font-Montserrat text-[13px]`}>
+                <td
+                  className={`p-4 bg-white font-Montserrat leading-[15px] text-[#1A1A1A] text-[13px]`}
+                >
                   {company.dueDate}
                 </td>
               </tr>

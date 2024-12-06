@@ -10,6 +10,7 @@ import StartUpsChart from "@/components/startup/StartUpsChart";
 import { SearchInput } from "@/components/lenders/SearchInput";
 import { Search } from "lucide-react";
 import { CustomSearch } from "@/components/lenders/CustomSearch";
+import CustomStartupChart from "@/components/startup/CustomStartupChart";
 
 interface LenderData {
   name: string;
@@ -36,54 +37,6 @@ export default async function DashboardContent({
         : 0),
     0
   );
-
-  const investmentData = [
-    {
-      name: "Slope AI",
-      category: "Tech",
-      amount: 5000000,
-      apy: "19%",
-      term: "12 months",
-      maturityDate: "05/12/2025",
-      dueDate: "05/12/2024",
-    },
-    {
-      name: "Acme Corp",
-      category: "Fintech",
-      amount: 3000000,
-      apy: "17%",
-      term: "48 months",
-      maturityDate: "03/18/2028",
-      dueDate: "03/18/2024",
-    },
-    {
-      name: "Epsilon Dynamics",
-      category: "Software",
-      amount: 10000000,
-      apy: "18%",
-      term: "36 months",
-      maturityDate: "10/08/2027",
-      dueDate: "10/08/2024",
-    },
-    {
-      name: "Arch",
-      category: "AI",
-      amount: 1000000,
-      apy: "20%",
-      term: "48 months",
-      maturityDate: "09/15/2028",
-      dueDate: "09/15/2024",
-    },
-    {
-      name: "Pharmator",
-      category: "Pharmaceutical",
-      amount: 1000000,
-      apy: "18%",
-      term: "24months",
-      maturityDate: "01/18/2026",
-      dueDate: "01/18/2024",
-    },
-  ];
 
   const totalInvestors = startupContracts.acceptedContracts?.filter(
     (contract) => contract.investment_amount_paid
@@ -155,102 +108,81 @@ export default async function DashboardContent({
         {/* Left Stats */}
         <div className="flex flex-col justify-between space-y-[20px] min-w-[332px]">
           <DashboardCard
-            title="Total Investment"
-            value={`$20,000,000`}
+            title="Total Funds"
+            value={`$6,500,000`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
           <DashboardCard
-            title="Total Excepted Return"
-            value={`$4,000,000`}
-            className="h-[calc(50%-12px)] text-center content-center"
-          />
-          <DashboardCard
-            title="Companies Invested"
-            value={`6`}
+            title="Available Balance"
+            value={`$5,000,000`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
         </div>
 
         {/* Pie Chart Section */}
         <div className="w-full">
-          <StartUpsChart totalAmountInvested={totalAmountInvested!} />
+          <CustomStartupChart totalAmountInvested={totalAmountInvested!} />
         </div>
       </div>
 
       {/* Table Section */}
-      <div className="relative">
-        {/* <Search className="absolute left-3 top-3 h-4 w-4 text-gray-500 font-Montserrat" /> */}
-        {/* <SearchInput
-          placeholder="Search startups"
-          className="pl-10 bg-white border-gray-800 text-white font-Montserrat"
-        /> */}
-        <CustomSearch
-          placeholder="Search startups"
-          className="pl-10 bg-white border-gray-800 text-white font-Montserrat"
-        />
-      </div>
 
       <div className="overflow-x-auto bg-[#FAFAFA] rounded-lg">
         <table className="w-full">
           <thead>
-            <tr className="text-[#1A1A1A] text-sm leading-[15px] text-[12px]">
-              <th className=" text-[12px] text-center p-6 font-medium font-Montserrat">
-                Company Name
+            <tr className=" text-sm">
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Lender Name
               </th>
-              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
-                Amount Invested
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Total Funds
               </th>
-              <th className="text-[12px] text-center p-6 px-12 font-medium font-Montserrat">
-                APY
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Available Balance
               </th>
-              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
-                Term
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Initiation Date
               </th>
-              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
-                Maturity Date
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Loan Duration
               </th>
-              <th className="text-[12px] text-center p-6 font-medium font-Montserrat">
-                Due Payment Date
+              <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+                Due Date
               </th>
             </tr>
           </thead>
           <tbody>
-            {investmentData.map((company, index) => (
+            {lendersData.map((lender, index) => (
               <tr key={index}>
-                <td className={`p-4 bg-[#EAEAEA] font-Montserrat`}>
-                  <div>
-                    <div className="font-medium font-Montserrat text-[13px] leading-[15px]">
-                      {company.name}
-                    </div>
-                    <div className="text-sm text-gray-500 font-Montserrat text-[13px]">
-                      {company.category}
-                    </div>
-                  </div>
+                <td
+                  className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                >
+                  {lender.name}
                 </td>
                 <td
-                  className={`p-4 bg-white font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                  className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[12px]`}
                 >
-                  ${company.amount.toLocaleString()}
+                  ${lender.totalFunds.toLocaleString()}
                 </td>
                 <td
-                  className={`p-4 bg-[#EAEAEA] font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                  className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
                 >
-                  {company.apy}
+                  ${lender.availableBalance.toLocaleString()}
                 </td>
                 <td
-                  className={`p-4 bg-white font-Montserrat text-[13px] leading-[15px] text-[#1A1A1A]`}
+                  className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
                 >
-                  {company.term}
+                  {lender.initiationDate}
                 </td>
                 <td
-                  className={`p-4 bg-[#EAEAEA] font-Montserrat leading-[15px] text-[#1A1A1A] text-[13px]`}
+                  className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
                 >
-                  {company.maturityDate}
+                  {lender.loanDuration}
                 </td>
                 <td
-                  className={`p-4 bg-white font-Montserrat leading-[15px] text-[#1A1A1A] text-[13px]`}
+                  className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
                 >
-                  {company.dueDate}
+                  {lender.dueDate}
                 </td>
               </tr>
             ))}

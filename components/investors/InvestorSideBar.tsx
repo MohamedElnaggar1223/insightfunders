@@ -1,31 +1,26 @@
 import { UserType } from "@/lib/types/user";
-import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import LogOutSlider from "./LogOutSlider";
-import { cn } from "@/lib/utils";
 import InvestorSideBarLinks from "./InvestorSideBarLinks";
+import Image from "next/image";
 
 type Props = {
-    user: UserType
-}
+  user: UserType;
+};
 
-export default async function InvestorSideBar({ user }: Props)
-{
-    return (
-        <aside className='bg-[#212121] h-screen flex w-[342px] flex-col items-center justify-between py-12'>
-            <div className="flex flex-col items-center justify-between w-full gap-12">
-                <Link href='/' className='font-IntegralCF font-medium uppercase text-xs text-white'>
-                    Insight Funders
-                </Link>
-                <div className="flex gap-2 items-center justify-center">
-                    <div className='bg-gray-500 text-white font-medium w-6 h-6 rounded-full text-xs text-center flex items-center justify-center'>
-                        {user?.userInfo?.first_name?.at(0)?.toUpperCase()}
-                    </div>
-                    <p className='font-Montserrat font-light text-white text-xs'>{user?.userInfo?.first_name} {user?.userInfo?.last_name}</p>
-                </div>
-                <InvestorSideBarLinks />
-            </div>
-            <LogOutSlider />
-        </aside>
-    )
+export default async function InvestorSideBar({ user }: Props) {
+  return (
+    <aside className="bg-[#212121] h-screen flex w-[250px] flex-col items-center justify-between py-6 sidebardashboard ">
+      <div className="flex flex-col items-center justify-between w-full gap-12 sidebardashboard">
+        <Link
+          href="/"
+          className="font-IntegralCF font-medium uppercase text-xs text-white logoDiv"
+        >
+          <Image src="/images/logo.png" width={130} height={30} alt="logo" />
+        </Link>
+        <InvestorSideBarLinks />
+      </div>
+      <LogOutSlider />
+    </aside>
+  );
 }

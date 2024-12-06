@@ -48,25 +48,25 @@ export default function StartupSideBarLinks({
 
   return (
     <div
-      className={`flex flex-col w-[90%] mt-8 gap-2 sidebardashboardMenuLinks`}
+      className={`flex flex-col w-full mt-8 gap-2 sidebardashboardMenuLinks`}
     >
       <Link
         href="/"
         className={cn(
-          "py-2 text-sm t w-full",
+          "py-4 text-sm leading-[17px] t w-full",
           !pathname.startsWith("/offers") && !pathname.startsWith("/manage")
-            ? "bg-white font-medium text-black"
+            ? "bg-white font-medium text-[#1A1A1A]"
             : "text-white"
         )}
       >
-        Dashboard
+        Data Room
       </Link>
       <Link
         href="/manage"
         className={cn(
-          "py-2 text-sm  w-full",
+          "py-4 text-sm leading-[17px]  w-full",
           pathname.startsWith("/manage")
-            ? "bg-white font-medium text-black"
+            ? "bg-white font-medium text-[#1A1A1A]"
             : "text-white"
         )}
       >
@@ -88,13 +88,24 @@ export default function StartupSideBarLinks({
       <Link
         href="/offers"
         className={cn(
-          "py-2 text-sm  w-full",
+          "py-4 text-sm leading-[17px]  w-full",
           pathname.startsWith("/offers")
-            ? "bg-white font-medium text-black"
+            ? "bg-white font-medium text-[#1A1A1A]"
             : "text-white"
         )}
       >
         Offers
+      </Link>
+      <Link
+        href="/offers"
+        className={cn(
+          "py-4 text-sm leading-[17px]  w-full",
+          pathname.startsWith("/offers")
+            ? "bg-white font-medium text-[#1A1A1A]"
+            : "text-white"
+        )}
+      >
+        Referral
       </Link>
     </div>
   );
