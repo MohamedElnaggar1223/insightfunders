@@ -115,7 +115,7 @@ export default function StartUpsChart({ totalAmountInvested }: Props) {
             <div className="flex justify-between items-center gap-4">
               <div className="flex items-center gap-2  break-words">
                 <div className="w-3 h-3 rounded-full bg-[#EAEAEA]" />
-                <span className="text-[13px] font-Montserra text-left leading-[15px]">
+                <span className="text-[13px] font-Montserrat text-left leading-[15px]">
                   Remaining
                   <br />
                   Return Expected
