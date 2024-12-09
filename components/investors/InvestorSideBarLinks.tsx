@@ -54,31 +54,36 @@ export default function InvestorSideBarLinks() {
 
       {/* Referral Dropdown Section */}
       <div className="w-full">
-        <Link
-          href="/referral"
+        <button
+          onClick={() => setIsReferralOpen(!isReferralOpen)}
           className={cn(
             "py-4 text-sm font-Montserrat w-full px-4 flex justify-between items-center",
-            pathname === "/referral"
+            pathname === "/referral" && !isReferralOpen
               ? "bg-white font-medium text-black"
               : "text-white"
           )}
         >
           <span className="text-center w-full">Referral</span>
           {isReferralOpen ? (
-            <ChevronUp
-              onClick={() => setIsReferralOpen(!isReferralOpen)}
-              className="h-4 w-4"
-            />
+            <ChevronUp className="h-4 w-4" />
           ) : (
-            <ChevronDown
-              onClick={() => setIsReferralOpen(!isReferralOpen)}
-              className="h-4 w-4"
-            />
+            <ChevronDown className="h-4 w-4" />
           )}
-        </Link>
+        </button>
 
         {isReferralOpen && (
           <div className="bg-gray-800">
+            <Link
+              href="/referral"
+              className={cn(
+                "py-3 text-sm font-Montserrat w-full px-8 block",
+                pathname === "/referral"
+                  ? "bg-white font-medium text-black"
+                  : "text-white"
+              )}
+            >
+              Dashboard
+            </Link>
             <Link
               href="/earnings"
               className={cn(
