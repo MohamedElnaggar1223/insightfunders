@@ -240,4 +240,21 @@ export const countryDialingCodes = {
   "ZM": "+260",
   "ZW": "+263"
 };
-  
+
+
+// Add default country code (US)
+export const defaultCountryCode = "US";
+
+// Add priority country codes (commonly used ones at the top)
+export const priorityCountryCodes = {
+  "US": "+1",
+  "CA": "+1",
+  "UK": "+44",
+  "AU": "+61",
+  "FR": "+33",
+  "DE": "+49",
+  "IT": "+39",
+  "ES": "+34",
+  "JP": "+81",
+  "CN": "+86"
+};
