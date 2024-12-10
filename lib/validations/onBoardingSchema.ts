@@ -23,10 +23,10 @@ const startUpDetailsSchemaEffect = z.object({
     companyEmail: z.string().email({
         message: 'Please enter a valid email address'
     }),
-    phoneNumber: z.string().min(6, {
-        message: 'Invalid mobile number'
-    }).refine(value => {
-        return /^\d+$/.test(value)
+    phoneNumber: z.string().min(10, {
+        message: 'Please enter a valid phone number'
+    }).refine(value => value.replace(/\D/g, '').length === 10, {
+        message: 'Please enter a valid 10-digit phone number'
     }),
     countryCode: z.enum(Object.keys(countryDialingCodes) as [string, ...string[]], {
         message: 'Invalid code'

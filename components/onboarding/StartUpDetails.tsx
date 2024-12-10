@@ -80,7 +80,24 @@ export default function StartUpDetails({
       otherSector: startUpDetails.other_industry_and_sector ?? "",
     },
   });
-
+  const formatPhoneNumber = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length <= 3) {
+      return digits;
+    }
+    if (digits.length <= 6) {
+      return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    }
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  };
+  
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>, onChange: (...event: any[]) => void) => {
+    let value = e.target.value;
+    value = value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      onChange(formatPhoneNumber(value));
+    }
+  };
   form.watch("industrySector");
   form.watch("businessOwners");
 
@@ -371,8 +388,10 @@ export default function StartUpDetails({
                       <FormControl>
                         <input
                           className="flex border-y border-r border-[#D0D5DD] rounded-tr-[8px] rounded-br-[8px] flex-1 px-4 py-3 outline-none"
-                          placeholder="(555) 000 0000"
+                          placeholder="(555) 555-5555"
                           {...field}
+                          onChange={(e) => handlePhoneChange(e, field.onChange)}
+                          maxLength={14}
                         />
                       </FormControl>
                       <FormMessage className="absolute text-red-600 -bottom-7" />
