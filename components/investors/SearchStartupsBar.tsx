@@ -207,7 +207,7 @@ export default function SearchStartupsBar() {
               </div>
             </div>
             <div className="flex items-center justify-center pb-[20px] mr-auto gap-4 text-center">
-              {/* {stage || industry ? (
+              {stage || industry ? (
                 <button
                   onMouseDown={() => {
                     setFiltersOpen(false);
@@ -222,7 +222,7 @@ export default function SearchStartupsBar() {
                 </button>
               ) : (
                 <></>
-              )} */}
+              )}
               <button
                 onMouseDown={() => {
                   setFiltersOpen(false);

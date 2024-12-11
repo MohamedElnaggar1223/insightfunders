@@ -43,9 +43,9 @@ export default async function ExplorePage({ searchParams }: Props) {
             className="bg-white rounded-[8px] flex flex-col p-[20px] cursor-pointer"
           >
             <div className="flex gap-[7px] pb-[12px]">
-              <div className="flex w-[40px] h-[40px] items-center justify-center rounded-full  border-r border-2 border-[#00000050]">
+              <div className="flex w-[40px] h-[40px] items-center justify-center rounded-full">
                 <Image
-                  src="/images/placehodler.jpg"
+                  src="/images/SlopeAI.png"
                   alt={startup?.company_name!}
                   style={{ borderRadius: "50px" }}
                   width={100}
