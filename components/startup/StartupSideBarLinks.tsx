@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -21,6 +22,7 @@ export default function StartupSideBarLinks({
   legalDocuments,
 }: Props) {
   const pathname = usePathname();
+  const [isReferralOpen, setIsReferralOpen] = useState(false);
   const [data, setData] = useState("tejinder");
   const [hasDocuments, setHasDocuments] = useState(true);
 
@@ -54,7 +56,11 @@ export default function StartupSideBarLinks({
         href="/"
         className={cn(
           "py-4 text-sm leading-[17px] t w-full",
-          !pathname.startsWith("/offers") && !pathname.startsWith("/manage")
+          !pathname.startsWith("/offers") &&
+            !pathname.startsWith("/manage") &&
+            !pathname.startsWith("/referral") &&
+            !pathname.startsWith("/earnings") &&
+            !pathname.startsWith("/payment-setup")
             ? "bg-white font-medium text-[#1A1A1A]"
             : "text-white"
         )}
@@ -96,17 +102,62 @@ export default function StartupSideBarLinks({
       >
         Offers
       </Link>
-      <Link
-        href="/offers"
-        className={cn(
-          "py-4 text-sm leading-[17px]  w-full",
-          pathname.startsWith("/offers")
-            ? "bg-white font-medium text-[#1A1A1A]"
-            : "text-white"
+      <div className="w-full">
+        <button
+          onClick={() => setIsReferralOpen(!isReferralOpen)}
+          className={cn(
+            "py-4 text-sm font-Montserrat w-full pr-4 flex justify-between items-center text-left",
+            pathname === "/referral" && !isReferralOpen
+              ? "bg-white font-medium text-black"
+              : "text-white"
+          )}
+        >
+          <span className="text-center w-full">Referral</span>
+          {isReferralOpen ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </button>
+
+        {isReferralOpen && (
+          <div className="bg-gray-800">
+            <Link
+              href="/referral"
+              className={cn(
+                "py-3 text-sm font-Montserrat w-full px-8 block",
+                pathname === "/referral"
+                  ? "bg-white font-medium text-black"
+                  : "text-white"
+              )}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/earnings"
+              className={cn(
+                "py-3 text-sm font-Montserrat w-full px-8 block",
+                pathname === "/earnings"
+                  ? "bg-white font-medium text-black"
+                  : "text-white"
+              )}
+            >
+              Earnings
+            </Link>
+            <Link
+              href="/payment-setup"
+              className={cn(
+                "py-3 text-sm font-Montserrat w-full px-8 block",
+                pathname === "/payment-setup"
+                  ? "bg-white font-medium text-black"
+                  : "text-white"
+              )}
+            >
+              Payment Setup
+            </Link>
+          </div>
         )}
-      >
-        Referral
-      </Link>
+      </div>
     </div>
   );
 }
