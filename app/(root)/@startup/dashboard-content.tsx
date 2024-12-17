@@ -69,9 +69,16 @@ export default async function DashboardContent({
 
       {/* Table Section */}
 
-      <div className="overflow-x-auto bg-[#FAFAFA] rounded-lg">
-        <Table />
+      <div>
+        <StartUpsInvestors
+          searchParams={searchParams}
+          contracts={startupContracts.acceptedContracts!}
+        />
       </div>
+
+      {/* <div className="overflow-x-auto bg-[#FAFAFA] rounded-lg">
+        <Table />
+      </div> */}
     </div>
   );
 }
