@@ -51,13 +51,13 @@ export default function StartUpFinancialDetailsContainer({ user }: Props) {
   ) => {
     setIsPending(true);
 
-    const bankConnected = await checkBankConnected();
+    // const bankConnected = await checkBankConnected();
 
-    if (!bankConnected) {
-      setError("Please connect your bank account");
-      setIsPending(false);
-      return;
-    }
+    // if (!bankConnected) {
+    //   setError("Please connect your bank account");
+    //   setIsPending(false);
+    //   return;
+    // }
 
     await updateFinancialDetails(values);
     setIsPending(false);
@@ -75,7 +75,7 @@ export default function StartUpFinancialDetailsContainer({ user }: Props) {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 max-w-[90vw] flex flex-col pb-8 ipfield"
         >
-          <PlaidLink user={user} />
+          {/* <PlaidLink user={user} /> */}
           <FormField
             control={form.control}
             disabled={isPending}

@@ -26,16 +26,16 @@ export default async function StartupLayout({
 
   const startupBankAccount = await getBankAccount(user?.user.id!);
 
-  if (!startupBankAccount) {
-    return (
-      <section className="w-screen h-screen flex flex-col items-center justify-center text-center gap-12 max-w-[920px] mx-auto">
-        <h1 className="text-3xl font-semibold leading-[3rem]">
-          Please Connect Your Bank Account To Use InsightFunders!
-        </h1>
-        <PlaidLink user={user} />
-      </section>
-    );
-  }
+  // if (!startupBankAccount) {
+  //   return (
+  //     <section className="w-screen h-screen flex flex-col items-center justify-center text-center gap-12 max-w-[920px] mx-auto">
+  //       <h1 className="text-3xl font-semibold leading-[3rem]">
+  //         Please Connect Your Bank Account To Use InsightFunders!
+  //       </h1>
+  //       <PlaidLink user={user} />
+  //     </section>
+  //   );
+  // }
 
   return (
     <section className="min-w-screen min-h-screen flex items-center justify-center text-center bg-[#1A1A1A]">
