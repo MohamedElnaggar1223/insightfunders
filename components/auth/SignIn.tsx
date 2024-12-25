@@ -37,6 +37,7 @@ export default function SignIn() {
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     setLoading(true);
     const { error } = await signIn(values);
+    console.log({ test: error });
     setLoading(false);
     if (error) {
       if (error.message === "Invalid login credentials")

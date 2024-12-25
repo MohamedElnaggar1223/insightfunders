@@ -828,7 +828,7 @@ export type Database = {
         | "Buyouts"
         | "Bridge Loans"
         | "Other"
-      user_role: "startup" | "investor"
+      user_role: "startup" | "investor" | "partner";
     }
     CompositeTypes: {
       [_ in never]: never

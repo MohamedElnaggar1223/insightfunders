@@ -4,7 +4,7 @@ import { User } from "@supabase/supabase-js";
 export type UserType = {
     user: User
     userInfo?: {
-        role: "startup" | "investor" | null;
+        role: "startup" | "investor" | 'partner' | null;
         first_name: string | null;
         last_name: string | null;
         plaid_id: string | null;

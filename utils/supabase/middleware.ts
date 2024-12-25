@@ -52,7 +52,7 @@ export const updateSession = async (request: NextRequest) => {
             });
           },
         },
-      },
+      }
     );
 
     await supabase.auth.getUser();

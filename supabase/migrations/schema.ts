@@ -17,10 +17,9 @@ export const industry_and_sector = pgEnum("industry_and_sector", ['Technology', 
 export const max_facility_size = pgEnum("max_facility_size", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-250M', '$250M+'])
 export const minimum_revenue_requirement = pgEnum("minimum_revenue_requirement", ['N/A', '<$1M', '$1-10M', '$10-50M', '$50-100M', '$100M+'])
 export const products_offered = pgEnum("products_offered", ['Venture Debt', 'Asset-Based Lending', 'Warehouse Lending', 'Invoice and Contract Factoring', 'Revenue-Based Financing', 'Equipment Leasing', 'M&A', 'Recapitalizations and Refinancing', 'Buyouts', 'Bridge Loans', 'Other'])
-export const user_role = pgEnum("user_role", ['startup', 'investor'])
+export const user_role = pgEnum("user_role", ['startup', 'investor', 'partner'])
 export const action = pgEnum("action", ['INSERT', 'UPDATE', 'DELETE', 'TRUNCATE', 'ERROR'])
 export const equality_op = pgEnum("equality_op", ['eq', 'neq', 'lt', 'lte', 'gt', 'gte', 'in'])
-
 
 export const users = pgTable("users", {
 	id: uuid("id").default(sql`auth.uid()`).primaryKey().notNull(),

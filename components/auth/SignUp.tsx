@@ -27,11 +27,16 @@ import {
 import { signUp } from "@/lib/actions/auth";
 import Link from "next/link";
 import "../../app/globals.css";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const [lastAttempt, setLastAttempt] = useState<number>(0);
+  const COOLDOWN_PERIOD = 60000; // 1 minute in milliseconds
+  const router = useRouter();
   const [rolePage, setRolePage] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -41,18 +46,44 @@ export default function SignIn() {
       email: "",
       password: "",
       role: "startup",
+      confirmPassword: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
-    setIsPending(true);
-    await signUp(values);
-    setIsPending(false);
+    const now = Date.now();
+    if (now - lastAttempt < COOLDOWN_PERIOD) {
+      return;
+    }
+
+    try {
+      setLastAttempt(now);
+      const result = await signUp(values);
+
+      console.log({ result });
+
+      if (result.error) {
+        return;
+      }
+
+      if (result.success) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleContinue = () => {
+    const role = form.getValues("role");
+    if (role) {
+      setRolePage(false);
+    }
   };
 
   useEffect(() => {
     if (!rolePage) form.setValue("firstName", "");
-  }, [rolePage]);
+  }, [rolePage, form]);
 
   return (
     <Form {...form}>
@@ -169,6 +200,51 @@ export default function SignIn() {
                           />
                         </FormControl>
                       </FormItem>
+                      <FormItem
+                        className={cn(
+                          "flex m-auto justify-between items-start p-4 pb-6 gap-4 border-2 rounded-[12px] bg-white selectcard",
+                          form.getValues().role === "partner"
+                            ? "border-[#FF7A00]"
+                            : "border-white"
+                        )}
+                      >
+                        <FormLabel className="font-normal">
+                          <div className="flex gap-4 pl-2 items-center justify-between cursor-pointer">
+                            {form.getValues().role !== "partner" ? (
+                              <Circle
+                                size={24}
+                                fill="#fff"
+                                stroke="#00000080"
+                              />
+                            ) : (
+                              <CheckCircle2
+                                size={24}
+                                fill="#FF7A00"
+                                stroke="#fff"
+                              />
+                            )}
+                            <div className="flex flex-col gap-1">
+                              <p className="text-black font-semibold text-base font-Montserrat">
+                                Partner
+                              </p>
+                              <p className="text-black text-xs leading-5 font-Montserrat">
+                                I am a partner, looking for partnerships.
+                              </p>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <FormControl>
+                          <RadioGroupItem
+                            value="partner"
+                            className={cn(
+                              "mt-0imp opacity-0",
+                              form.getValues().role === "partner"
+                                ? "bg-main-purple"
+                                : "bg-white"
+                            )}
+                          />
+                        </FormControl>
+                      </FormItem>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
@@ -176,7 +252,7 @@ export default function SignIn() {
               )}
             />
             <button
-              onMouseDown={() => setRolePage(false)}
+              onClick={handleContinue}
               className="w-full !mt-8 bg-[#FF7A00] text-white font-medium rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70"
             >
               Continue
@@ -303,23 +379,25 @@ export default function SignIn() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              disabled={isPending}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem className="relative flex flex-col gap-1 !mt-0  max-w-[450px]">
-                  <FormControl>
-                    <input
-                      className="flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
-                      placeholder="Last name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className=" text-red-600  !mt-0" />
-                </FormItem>
-              )}
-            />
+            {form.getValues().role !== "partner" && (
+              <FormField
+                control={form.control}
+                disabled={isPending}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem className="relative flex flex-col gap-1 !mt-0  max-w-[450px]">
+                    <FormControl>
+                      <input
+                        className="flex flex-1 px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
+                        placeholder="Last name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className=" text-red-600  !mt-0" />
+                  </FormItem>
+                )}
+              />
+            )}
             <FormField
               control={form.control}
               disabled={isPending}
@@ -421,10 +499,55 @@ export default function SignIn() {
                 </FormItem>
               )}
             />
+            {form.getValues().role === "partner" && (
+              <FormField
+                control={form.control}
+                disabled={isPending}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem className="relative flex flex-col gap-1 !mt-0  max-w-[450px]">
+                    <FormControl>
+                      <div className="relative">
+                        <input
+                          type={confirmPasswordVisible ? "text" : "password"}
+                          className="flex flex-1 w-full px-6 placeholder:font-light py-3.5 text-sm rounded-[8px] outline-none"
+                          placeholder="Confirm Password"
+                          {...field}
+                        />
+                        {confirmPasswordVisible ? (
+                          <Eye
+                            className={cn(
+                              "absolute top-[36%] z-50 cursor-pointer left-[92%]"
+                            )}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setConfirmPasswordVisible((prev) => !prev);
+                            }}
+                            size={18}
+                          />
+                        ) : (
+                          <EyeOff
+                            className={cn(
+                              "absolute top-[36%] z-50 cursor-pointer left-[92%]"
+                            )}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setConfirmPasswordVisible((prev) => !prev);
+                            }}
+                            size={18}
+                          />
+                        )}
+                      </div>
+                    </FormControl>
+                    <FormMessage className=" text-red-600 !mt-0" />
+                  </FormItem>
+                )}
+              />
+            )}
             <button
+              type="submit"
               disabled={isPending}
               className="w-full !mt-4 bg-[#FF7A00] text-white font-bold rounded-[8px] mx-auto py-3.5 text-sm px-4 max-w-[216px] disabled:opacity-70"
-              type="submit"
             >
               {isPending ? (
                 <Loader2 stroke="#fff" className="animate-spin mx-auto" />
@@ -442,9 +565,7 @@ export default function SignIn() {
               </Link>
             </p>
             <p
-              onClick={() => {
-                if (!isPending) setRolePage(true);
-              }}
+              onClick={() => !isPending && setRolePage(true)}
               className="text-white text-sm flex items-center justify-start gap-1 cursor-pointer"
             >
               <ArrowLeft size={16} />{" "}

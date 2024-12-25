@@ -6,6 +6,35 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import PopUp from "./Popup";
 
+function formatDate(date: Date) {
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${month}/${day}/${year}`;
+}
+
+function getMonthsDifference(date1: Date, date2: Date) {
+  // Ensure date1 is the earlier date
+  if (date1 > date2) {
+    [date1, date2] = [date2, date1];
+  }
+
+  const years = date2.getFullYear() - date1.getFullYear();
+  const months = date2.getMonth() - date1.getMonth();
+  const days = date2.getDate() - date1.getDate();
+
+  // Calculate total months
+  let monthsDifference = years * 12 + months;
+
+  // Adjust for incomplete months
+  if (days < 0) {
+    monthsDifference--;
+  }
+
+  return monthsDifference;
+}
+
 interface LenderData {
   name: string;
   totalFunds: number;
@@ -15,9 +44,43 @@ interface LenderData {
   dueDate: string;
 }
 
-const Table = () => {
+type ActiveData = {
+  id: number;
+  investor_type: "Individual" | "Institution" | null;
+  institution_type:
+    | "Corporation"
+    | "Other"
+    | "Family Office"
+    | "Fund"
+    | "Registered Investment Advisor (RIA)"
+    | null;
+  user: {
+    first_name: string;
+    last_name: string | null;
+  };
+};
+
+interface TableProps {
+  contractsWithInvestors: any;
+  searchParams: {
+    page?: string;
+  };
+}
+
+const Table = ({ contractsWithInvestors, searchParams }: TableProps) => {
   const [open, setOpen] = useState(false);
-  const [activeData, setActiveData] = useState<any>();
+  const [activeData, setActiveData] = useState<ActiveData>();
+
+  const page = searchParams?.page ? parseInt(searchParams.page) : 1;
+
+  const startIndex = (page - 1) * 5 + 1;
+  const endIndex =
+    contractsWithInvestors.length >= page * 5
+      ? page * 5
+      : contractsWithInvestors.length;
+
+  const nextAvailable = endIndex < contractsWithInvestors.length;
+  const prevAvailable = page > 1;
 
   const lendersData: LenderData[] = [
     {
@@ -74,16 +137,14 @@ const Table = () => {
     <>
       <table className="w-full">
         <thead>
-          <tr className=" text-sm">
+          <tr className="bg-[#ffffff] text-sm">
             <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
               Lender Name
             </th>
             <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
               Total Funds
             </th>
-            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
-              Available Balance
-            </th>
+
             <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
               Initiation Date
             </th>
@@ -91,51 +152,58 @@ const Table = () => {
               Loan Duration
             </th>
             <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
-              Due Date
+              Maturity Date
             </th>
           </tr>
         </thead>
         <tbody>
-          {lendersData.map((lender, index) => (
-            <tr
-              key={index}
-              onClick={() => {
-                setActiveData(lender);
-                setOpen(true);
-              }}
-            >
-              <td
-                className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
-              >
-                {lender.name}
-              </td>
-              <td
-                className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[12px]`}
-              >
-                ${lender.totalFunds.toLocaleString()}
-              </td>
-              <td
-                className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
-              >
-                ${lender.availableBalance.toLocaleString()}
-              </td>
-              <td
-                className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
-              >
-                {lender.initiationDate}
-              </td>
-              <td
-                className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
-              >
-                {lender.loanDuration}
-              </td>
-              <td
-                className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
-              >
-                {lender.dueDate}
-              </td>
-            </tr>
-          ))}
+          {contractsWithInvestors.length > 0 ? (
+            contractsWithInvestors
+              .slice(startIndex - 1, endIndex)
+              .map((lender: ActiveData, index: number) => (
+                <tr
+                  key={index}
+                  onClick={() => {
+                    setActiveData(lender);
+                    setOpen(true);
+                  }}
+                >
+                  <td
+                    className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                  >
+                    {`${lender.investor?.user.first_name} ${lender.investor?.user.last_name}`}
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[12px]`}
+                  >
+                    ${lender.amount_invested}
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                  >
+                    {formatDate(new Date(lender.createdAt!))}
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
+                  >
+                    {getMonthsDifference(
+                      new Date(lender.createdAt!),
+                      new Date(lender.maturity_date!)
+                    )}{" "}
+                    months
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                  >
+                    {lender.maturity_date}
+                  </td>
+                </tr>
+              ))
+          ) : (
+            <p className="min-h-[200px] flex items-center justify-center font-Montserrat">
+              No data yet!
+            </p>
+          )}
         </tbody>
         <PopUp open={open} setOpen={setOpen} activeData={activeData} />
       </table>

@@ -95,6 +95,8 @@ export default function PersonalDetails({ searchParams, user }: Props) {
       ) {
         if (user.userInfo.role === "startup") {
           return router.push("/startup-details");
+        } else if (user.userInfo.role === "investor") {
+          return router.push("/investor-details");
         } else {
           return router.push("/investor-details");
         }

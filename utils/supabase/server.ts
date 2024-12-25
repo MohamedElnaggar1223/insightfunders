@@ -17,15 +17,17 @@ export const createClient = () => {
           try {
             cookieStore.set({ name, value, ...options });
           } catch (error) {
+            console.error("Error setting cookie:", error);
           }
         },
         remove(name: string, options: CookieOptions) {
           try {
             cookieStore.set({ name, value: "", ...options });
           } catch (error) {
+            console.error("Error setting cookie:", error);
           }
         },
       },
-    },
+    }
   );
 };

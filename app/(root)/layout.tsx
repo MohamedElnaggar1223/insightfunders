@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import { cn } from "@/lib/utils";
 import { getUser } from "@/lib/actions/auth";
 import localFont from "next/font/local";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -30,11 +31,13 @@ export default async function RootLayout({
   guest,
   startup,
   investor,
+  partner,
 }: Readonly<{
   children: React.ReactNode;
   guest: React.ReactNode;
   startup: React.ReactNode;
   investor: React.ReactNode;
+  partner: React.ReactNode;
 }>) {
   // const supabase = createClient()
 
@@ -78,6 +81,8 @@ export default async function RootLayout({
   // unstable_noStore()
 
   const user = await getUser();
+
+  console.log({ user });
 
   if (!user)
     return (
@@ -142,6 +147,21 @@ export default async function RootLayout({
         </html>
       );
     }
+  } else if (user?.userInfo && user?.userInfo.role === "partner") {
+    return (
+      <html lang="en" className="antialiased">
+        <body
+          className={cn(
+            inter.className,
+            "bg-[#F9FAFB] overflow-x-hidden",
+            logoFont.variable,
+            montserrat.variable
+          )}
+        >
+          {partner}
+        </body>
+      </html>
+    );
   }
 
   return (

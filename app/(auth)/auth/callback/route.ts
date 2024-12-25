@@ -4,12 +4,16 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const origin = requestUrl.origin;
 
   if (code) {
     const supabase = createClient();
-    await supabase.auth.exchangeCodeForSession(code);
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+    if (!error) {
+      return NextResponse.redirect(new URL("/", requestUrl.origin));
+    }
   }
 
-  return NextResponse.redirect(`${origin}/`);
+  // If there's no code or an error occurred, redirect to sign-in
+  return NextResponse.redirect(new URL("/sign-in", requestUrl.origin));
 }

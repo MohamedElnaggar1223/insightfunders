@@ -81,87 +81,95 @@ export default async function StartUpsInvestors({
   const prevAvailable = page > 1;
 
   return (
-    <div className={`flex flex-col gap-4 `}>
-      {/* <SearchInvestorsBar /> */}
-      <div className="flex flex-1 bg-white w-full flex-col overflow-auto">
-        <div className="flex w-full items-center justify-between px-4 py-[22.5px] bg-[#FAFAFA]">
-          <p className="text-xs font-medium flex-1 font-Montserrat">
-            Lender Name
-          </p>
-          <p className="text-xs font-medium flex-1 font-Montserrat">
-            Total Funds
-          </p>
-          <p className="text-xs font-medium flex-1 font-Montserrat">
-            Initiation Date
-          </p>
-          <p className="text-xs font-medium flex-1 font-Montserrat">
-            Loan Duration
-          </p>
-          <p className="text-xs font-medium flex-1 font-Montserrat">
-            Maturity Date
-          </p>
-        </div>
-        {contractsWithInvestors.length > 0 ? (
-          contractsWithInvestors
-            .slice(startIndex - 1, endIndex)
-            .map((contract, index) => (
-              <div
-                className={cn(
-                  "flex w-full items-center justify-between",
-                  index % 2 !== 0 && "bg-[#A1A1A133]"
-                )}
-              >
-                <InvestorNameDialog
-                  investor={contract.investor!}
-                  name={`${contract.investor?.user.first_name} ${contract.investor?.user.last_name}`}
-                />
-                <div className="flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6 gap-2">
-                  <span>${contract.amount_invested}</span>
-                </div>
-                <div className="flex-1 flex items-center justify-center py-6">
-                  {formatDate(new Date(contract.createdAt!))}
-                </div>
-                <div className="flex-1 flex items-center justify-center py-6">
-                  {getMonthsDifference(
-                    new Date(contract.createdAt!),
-                    new Date(contract.maturity_date!)
-                  )}{" "}
-                  months
-                </div>
-                <div className="flex-1 flex items-center justify-center bg-[#B4B4B4CC] h-full py-6">
-                  {contract.maturity_date}
-                </div>
-              </div>
-            ))
-        ) : (
-          <p className="min-h-[200px] flex items-center justify-center font-Montserrat">
-            No data yet!
-          </p>
-        )}
-        <div className="h-10 flex items-center px-4 justify-between ">
-          <p className="text-xs font-medium font-Montserrat">
-            Showing {startIndex} - {endIndex}
-          </p>
-          <div className="flex gap-2">
-            <Link
-              prefetch={true}
-              href={prevAvailable ? `/?page=${page - 1}` : "#"}
-            >
-              <ChevronLeft
-                stroke={prevAvailable ? "#000" : "#00000050"}
-                size={16}
-              />
-            </Link>
-            <Link
-              prefetch={true}
-              href={nextAvailable ? `/?page=${page + 1}` : "#"}
-            >
-              <ChevronRight
-                stroke={nextAvailable ? "#000" : "#00000050"}
-                size={16}
-              />
-            </Link>
-          </div>
+    <div>
+      <table className="w-full">
+        <thead>
+          <tr className="bg-[#FAFAFA] text-sm">
+            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+              Lender Name
+            </th>
+            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+              Total Funds
+            </th>
+            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+              Initiation Date
+            </th>
+            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+              Loan Duration
+            </th>
+            <th className="text-[12px] text-center p-[22px] font-medium font-Montserrat text-[#1A1A1A] leading-[14px]">
+              Due Date
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {contractsWithInvestors.length > 0 ? (
+            contractsWithInvestors
+              .slice(startIndex - 1, endIndex)
+              .map((lender, index) => (
+                <tr key={index}>
+                  <td className="border-0">
+                    <InvestorNameDialog
+                      investor={lender.investor!}
+                      name={`${lender.investor?.user.first_name} ${lender.investor?.user.last_name}`}
+                    />
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[12px]`}
+                  >
+                    ${lender.amount_invested}
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                  >
+                    {formatDate(new Date(lender.createdAt!))}
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[13px]`}
+                  >
+                    {getMonthsDifference(
+                      new Date(lender.createdAt!),
+                      new Date(lender.maturity_date!)
+                    )}{" "}
+                    months
+                  </td>
+                  <td
+                    className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}
+                  >
+                    {lender.maturity_date}
+                  </td>
+                </tr>
+              ))
+          ) : (
+            <p className="min-h-[200px] flex items-center justify-center font-Montserrat">
+              No data yet!
+            </p>
+          )}
+        </tbody>
+      </table>
+      <div className="h-10 bg-[#FAFAFA] flex items-center px-4 justify-between ">
+        <p className="text-xs font-medium font-Montserrat">
+          Showing {startIndex} - {endIndex}
+        </p>
+        <div className="flex gap-2">
+          <Link
+            prefetch={true}
+            href={prevAvailable ? `/?page=${page - 1}` : "#"}
+          >
+            <ChevronLeft
+              stroke={prevAvailable ? "#000" : "#00000050"}
+              size={16}
+            />
+          </Link>
+          <Link
+            prefetch={true}
+            href={nextAvailable ? `/?page=${page + 1}` : "#"}
+          >
+            <ChevronRight
+              stroke={nextAvailable ? "#000" : "#00000050"}
+              size={16}
+            />
+          </Link>
         </div>
       </div>
     </div>
