@@ -16,8 +16,8 @@ export default defineConfig({
     // password: process.env.PW || "",
     database: "postgres",
     port: 5432,
-    host: "aws-0-ap-southeast-1.pooler.supabase.com",
-    user: "postgres.dyzrubtyskmstctvahcj",
+    host: "db.yfthxfufboztoklokjbb.supabase.co",
+    user: "postgres",
     password: process.env.DATABASE_PW || "",
   },
 });

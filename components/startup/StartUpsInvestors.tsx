@@ -69,6 +69,11 @@ export default async function StartUpsInvestors({
     })
   );
 
+  const formatCurrency = (value: number) =>
+    `$${Intl.NumberFormat("us").format(value)}`;
+
+  console.log({ contractsWithInvestors, contracts });
+
   const page = searchParams?.page ? parseInt(searchParams.page) : 1;
 
   const startIndex = (page - 1) * 5 + 1;
@@ -108,7 +113,7 @@ export default async function StartUpsInvestors({
               .slice(startIndex - 1, endIndex)
               .map((lender, index) => (
                 <tr key={index}>
-                  <td className="border-0">
+                  <td className="border-0 p-0">
                     <InvestorNameDialog
                       investor={lender.investor!}
                       name={`${lender.investor?.user.first_name} ${lender.investor?.user.last_name}`}
@@ -117,7 +122,7 @@ export default async function StartUpsInvestors({
                   <td
                     className={`p-[22px] bg-[#FEFFFE] font-Montserrat text-[12px]`}
                   >
-                    ${lender.amount_invested}
+                    {formatCurrency(Number(lender.amount_invested))}
                   </td>
                   <td
                     className={`p-[22px] bg-[#EAEAEA] font-Montserrat text-[13px]`}

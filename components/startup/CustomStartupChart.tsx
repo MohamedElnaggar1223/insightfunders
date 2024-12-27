@@ -11,43 +11,35 @@ import { Pie, PieChart } from "recharts";
 
 type Props = {
   totalAmountInvested: number;
+  availableBalance: number;
+  totalReturnPaid: number;
 };
 
-export default function CustomStartupChart({ totalAmountInvested }: Props) {
-  // Calculate actual values and percentages
-  // const fundsUsed = 1500000; // Example value, replace with actual funds used
-  // const availableBalance = totalAmountInvested - fundsUsed;
-  // const total = totalAmountInvested;
-
-  const fundsUsed = 1500000;
-  const total = 6500000;
-  const availableBalance = 5000000;
-
+export default function CustomStartupChart({
+  totalAmountInvested,
+  availableBalance,
+  totalReturnPaid,
+}: Props) {
   const data = [
     {
       name: "Available Balance",
-      value: availableBalance,
-      percentage: total > 0 ? Math.round((availableBalance / total) * 100) : 0,
+      value: totalAmountInvested,
+      percentage:
+        totalReturnPaid > 0
+          ? Math.round((availableBalance / totalReturnPaid) * 100)
+          : 0,
       fill: "#5631CC",
     },
     {
       name: "Funds Used",
-      value: fundsUsed,
-      percentage: total > 0 ? Math.round((fundsUsed / total) * 100) : 0,
+      value: totalReturnPaid,
+      percentage:
+        totalReturnPaid > 0
+          ? Math.round((totalReturnPaid / totalReturnPaid) * 100)
+          : 0,
       fill: "#FF7A00",
     },
   ];
-
-  const defaultData = [
-    {
-      name: "No Data Available",
-      value: 1,
-      percentage: 100,
-      fill: "#5631CC",
-    },
-  ];
-
-  // const isAllZero = total === 0;
 
   const chartConfig = {
     availableBalance: {
@@ -109,7 +101,7 @@ export default function CustomStartupChart({ totalAmountInvested }: Props) {
                 </span>
               </div>
               <span className="text-[13px] font-Montserrat leading-[15px]">
-                {formatCurrency(fundsUsed)}
+                {formatCurrency(availableBalance)}
               </span>
             </div>
             <div className="flex justify-between items-center gap-4">
@@ -120,7 +112,7 @@ export default function CustomStartupChart({ totalAmountInvested }: Props) {
                 </span>
               </div>
               <span className="text-[13px] font-Montserrat leading-[15px]">
-                {formatCurrency(availableBalance)}
+                {formatCurrency(totalAmountInvested)}
               </span>
             </div>
             <div className="mt-2 pt-2 border-t border-gray-700">
@@ -129,7 +121,7 @@ export default function CustomStartupChart({ totalAmountInvested }: Props) {
                   Total Funds Available
                 </span>
                 <span className="text-[13px] font-bold font-Montserrat">
-                  {formatCurrency(total)}
+                  {formatCurrency(totalReturnPaid)}
                 </span>
               </div>
             </div>
@@ -138,26 +130,4 @@ export default function CustomStartupChart({ totalAmountInvested }: Props) {
       </CardContent>
     </Card>
   );
-}
-
-{
-  /* <div className="bg-white  h-full flex flex-col items-center justify-center text-left p-8 gap-12 rounded-[8px] shadow-lg">
-      <p className="text-black font-normal  mr-auto">Total Funds Available</p>
-      <div className="flex w-full gap-12">
-        <DonutChart
-          data={isAllZero ? defaultData : data}
-          category="value"
-          index="name"
-          valueFormatter={valueFormatter}
-          colors={colors}
-          className="w-40 textWhite"
-          showLabel={false}
-        />
-        <Legend
-          categories={["Available Balance", "Funds Used"]}
-          colors={["orange", "#212121"]}
-          className="max-w-xs text-white"
-        />
-      </div>
-    </div> */
 }

@@ -1,18 +1,10 @@
 import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
-import { Card } from "@/components/ui/card";
 import DashboardCard from "./DashboardCard";
-import ThreeDPieChart from "./ThreeDPieChart";
 import StartUpsInvestors from "@/components/startup/StartUpsInvestors";
 import { getUser } from "@/lib/actions/auth";
 import { getContracts } from "@/lib/actions/startup";
-import StartUpsChart from "@/components/startup/StartUpsChart";
-import { SearchInput } from "@/components/lenders/SearchInput";
-import { Search } from "lucide-react";
-import { CustomSearch } from "@/components/lenders/CustomSearch";
+
 import CustomStartupChart from "@/components/startup/CustomStartupChart";
-import PopUp from "./Table";
-import Table from "./Table";
 
 export default async function DashboardContent({
   searchParams,
@@ -31,9 +23,27 @@ export default async function DashboardContent({
     0
   );
 
-  const totalInvestors = startupContracts.acceptedContracts?.filter(
-    (contract) => contract.investment_amount_paid
-  ).length;
+  const totalReturnPaid = startupContracts.acceptedContracts?.reduce(
+    (acc, contract) =>
+      acc +
+      (contract.investment_amount_paid && contract.total_return_paid
+        ? parseFloat(contract.total_return_paid)
+        : 0),
+    0
+  );
+
+  const availableBalance = startupContracts.acceptedContracts?.reduce(
+    (acc, contract) =>
+      acc +
+      (contract.investment_amount_paid && contract.total_return_paid
+        ? parseFloat(contract.amount_invested) -
+          parseFloat(contract.total_return_paid)
+        : 0),
+    0
+  );
+
+  const formatCurrency = (value: number) =>
+    `$${Intl.NumberFormat("us").format(value)}`;
 
   return (
     <div
@@ -51,23 +61,26 @@ export default async function DashboardContent({
         <div className="flex flex-col justify-between space-y-[20px] min-w-[332px]">
           <DashboardCard
             title="Total Funds"
-            value={`$6,500,000`}
+            value={`${
+              totalAmountInvested && formatCurrency(totalAmountInvested)
+            }`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
           <DashboardCard
             title="Available Balance"
-            value={`$5,000,000`}
+            value={`${availableBalance && formatCurrency(availableBalance)}`}
             className="h-[calc(50%-12px)] text-center content-center"
           />
         </div>
 
-        {/* Pie Chart Section */}
         <div className="w-full">
-          <CustomStartupChart totalAmountInvested={totalAmountInvested!} />
+          <CustomStartupChart
+            totalAmountInvested={totalAmountInvested!}
+            availableBalance={availableBalance!}
+            totalReturnPaid={totalReturnPaid || 0}
+          />
         </div>
       </div>
-
-      {/* Table Section */}
 
       <div>
         <StartUpsInvestors
@@ -75,10 +88,6 @@ export default async function DashboardContent({
           contracts={startupContracts.acceptedContracts!}
         />
       </div>
-
-      {/* <div className="overflow-x-auto bg-[#FAFAFA] rounded-lg">
-        <Table />
-      </div> */}
     </div>
   );
 }
