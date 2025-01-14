@@ -54,10 +54,12 @@ type ActiveData = {
     | "Fund"
     | "Registered Investment Advisor (RIA)"
     | null;
+  investor: any;
   user: {
     first_name: string;
     last_name: string | null;
   };
+  [key: string]: any;
 };
 
 interface TableProps {
@@ -69,7 +71,7 @@ interface TableProps {
 
 const Table = ({ contractsWithInvestors, searchParams }: TableProps) => {
   const [open, setOpen] = useState(false);
-  const [activeData, setActiveData] = useState<ActiveData>();
+  const [activeData, setActiveData] = useState<ActiveData | undefined>(undefined);
 
   const page = searchParams?.page ? parseInt(searchParams.page) : 1;
 
@@ -205,6 +207,7 @@ const Table = ({ contractsWithInvestors, searchParams }: TableProps) => {
             </p>
           )}
         </tbody>
+        // @ts-ignore
         <PopUp open={open} setOpen={setOpen} activeData={activeData} />
       </table>
     </>

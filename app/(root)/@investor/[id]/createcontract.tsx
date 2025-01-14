@@ -55,7 +55,7 @@ export default function CreateContract({ user, startupId }: Props)
             amountInvested: 0,
             interestRate: 0,
             maturityDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-            paymentInterval: '',
+            paymentInterval: undefined,
             termSheet: new File([], "")
         }
     })

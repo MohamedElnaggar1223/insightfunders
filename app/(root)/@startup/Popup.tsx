@@ -15,11 +15,13 @@ interface PopUpProps {
       | "Fund"
       | "Registered Investment Advisor (RIA)"
       | null;
+    investor: any;
     user: {
       first_name: string;
       last_name: string | null;
-    };
-  };
+    } | undefined | any;
+    [key: string]: any;
+  } | any;
 }
 
 const PopUp = ({ open, setOpen, activeData }: PopUpProps) => {
